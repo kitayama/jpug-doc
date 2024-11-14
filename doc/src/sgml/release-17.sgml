@@ -26,7 +26,7 @@
     <productname>PostgreSQL</productname> 17 contains many new features
     and enhancements, including:
 -->
-《機械翻訳》<productname>PostgreSQL</productname> 17には、以下のような多くの新機能と拡張機能が含まれています。
+<productname>PostgreSQL</productname> 17には、以下をはじめとする多数の新機能と拡張が含まれています。
    </para>
 
    <itemizedlist>
@@ -146,7 +146,7 @@ JSONデータをテーブル表現形式に変換します。
     <productname>PostgreSQL</productname> 17 are explained in more detail
     in the sections below.
 -->
-《機械翻訳》上記の項目と<productname>PostgreSQL</productname> 17のその他の新機能については、以下の節で詳しく説明します。
+<productname>PostgreSQL</productname> 17の上記の項目とその他の新機能は次節でより詳しく説明されます。
    </para>
 
   </sect2>
@@ -1316,7 +1316,7 @@ Author: Nathan Bossart <nathan@postgresql.org>
        Allow granting the right to perform maintenance operations
        (Nathan Bossart)
 -->
-《機械翻訳》メンテナンス操作を実行する権利の付与を許可します。
+メンテナンス操作を実行する権限の付与が許可されました。
 (Nathan Bossart)
        <ulink url="&commit_baseurl;ecb0fd337">&sect;</ulink>
        </para>
@@ -1333,7 +1333,7 @@ Author: Nathan Bossart <nathan@postgresql.org>
        VIEW</command>, <command>CLUSTER</command>, and <command>LOCK
        TABLE</command>.
 -->
-《機械翻訳》パーミッションは、<link linkend="ddl-priv-maintain"><literal>MAINTAIN</literal></link>テーブルを使用して権限ごとに付与することも、<link linkend="predefined-roles"><literal>pg_maintain</literal></link>定義済みロールを使用してロールごとに付与することもできます。
+この権限は、<link linkend="ddl-priv-maintain"><literal>MAINTAIN</literal></link>権限を使用して権限ごとに付与することも、<link linkend="predefined-roles"><literal>pg_maintain</literal></link>定義済みロールを使用してロールごとに付与することもできます。
 許可される操作は、<command>VACUUM</command>、<command>ANALYZE</command>、<command>REINDEX</command>、<command>REFRESH MATERIALIZED VIEW</command>、<command>CLUSTER</command>、および<command>LOCK TABLE</command>です。
        </para>
       </listitem>
@@ -1352,7 +1352,7 @@ Author: Nathan Bossart <nathan@postgresql.org>
        linkend="functions-info-session-table"><function>pg_current_logfile()</function></link>
        (Pavlo Golub, Nathan Bossart)
 -->
-《機械翻訳》<link linkend="predefined-roles"><literal>pg_monitor</literal></link>メンバシップから実行へのロールを許可します<link linkend="functions-info-session-table"><function>pg_current_logfile()</function></link>。
+<link linkend="predefined-roles"><literal>pg_monitor</literal></link>メンバシップを持つロールが<link linkend="functions-info-session-table"><function>pg_current_logfile()</function></link>を実行できるようになりました。
 (Pavlo Golub, Nathan Bossart)
        <ulink url="&commit_baseurl;8d8afd48d">&sect;</ulink>
        </para>
@@ -1382,7 +1382,7 @@ Author: Robert Haas <rhaas@postgresql.org>
        to disallow <link linkend="sql-altersystem"><command>ALTER
        SYSTEM</command></link> (Jelte Fennema-Nio, Gabriele Bartolini)
 -->
-《機械翻訳》禁止するシステム変数<xref linkend="guc-allow-alter-system"/>を追加します<link linkend="sql-altersystem"><command>ALTER  SYSTEM</command></link>。
+<link linkend="sql-altersystem"><command>ALTER SYSTEM</command></link>を禁止するシステム変数<xref linkend="guc-allow-alter-system"/>が追加されました。
 (Jelte Fennema-Nio, Gabriele Bartolini)
        <ulink url="&commit_baseurl;d3ae2a24f">&sect;</ulink>
        </para>
