@@ -1415,9 +1415,9 @@ SPIPlanPtr SPI_prepare(const char * <parameter>command</parameter>, int <paramet
    The prepared statement can later be executed repeatedly using
    <function>SPI_execute_plan</function>.
 -->
-<function>SPI_prepare</function>は指定したコマンド用の準備済み文を作成し、それを返します。
+<function>SPI_prepare</function>は指定したコマンド用のプリペアド文を作成し、それを返します。
 しかし、そのコマンドは実行しません。
-その準備済み文は<function>SPI_execute_plan</function>を使って後で繰り返し実行できます。
+そのプリペアド文は<function>SPI_execute_plan</function>を使って後で繰り返し実行できます。
   </para>
 
   <para>
@@ -1434,8 +1434,8 @@ SPIPlanPtr SPI_prepare(const char * <parameter>command</parameter>, int <paramet
 -->
 同じ、あるいは類似のコマンドが繰り返し実行される場合、一度だけ解析を計画作成を行うことには一般に利点があります。
 また、コマンドの実行計画を再利用することにはさらに利点があるかも知れません。
-<function>SPI_prepare</function>はコマンド文字列を、解析結果をカプセル化した準備済み文に変換します。
-実行の度に独自計画を生成するのが役に立たないと分かった場合には、準備済み文は実行計画をキャッシュする場所も提供します。
+<function>SPI_prepare</function>はコマンド文字列を、解析結果をカプセル化したプリペアド文に変換します。
+実行の度に独自計画を生成するのが役に立たないと分かった場合には、プリペアド文は実行計画をキャッシュする場所も提供します。
   </para>
 
   <para>
@@ -1530,7 +1530,7 @@ SPIPlanPtr SPI_prepare(const char * <parameter>command</parameter>, int <paramet
    greater than 0 and <parameter>argtypes</parameter> is <symbol>NULL</symbol>.
 -->
 <function>SPI_prepare</function>は<type>SPIPlan</type>への非NULLのポインタを返します。
-ここで<type>SPIPlan</type>は準備済み文を表すopaque構造体です。
+ここで<type>SPIPlan</type>はプリペアド文を表すopaque構造体です。
 エラーの場合、<symbol>NULL</symbol>が返され、<function>SPI_execute</function>で使用されるエラーコードと同じコードの1つが<varname>SPI_result</varname>に設定されます。
 しかし、<parameter>command</parameter>が<symbol>NULL</symbol>の場合や、<parameter>nargs</parameter>が0未満の場合、<parameter>nargs</parameter>が0より大きくかつ<parameter>argtypes</parameter>が<symbol>NULL</symbol>の場合は、<symbol>SPI_ERROR_ARGUMENT</symbol>に設定されます。
   </para>
@@ -1560,7 +1560,7 @@ SPIPlanPtr SPI_prepare(const char * <parameter>command</parameter>, int <paramet
 -->
 パラメータが定義されていなければ、<function>SPI_execute_plan</function>が最初に使用された時に一般的な計画が作成され、以降の実行すべてでも利用されます。
 パラメータがあれば、始めの何回かの<function>SPI_execute_plan</function>の使用で、与えられたパラメータの値に固有の独自計画が作成されます。
-同じ準備済み文が十分に使用された後、<function>SPI_execute_plan</function>は一般的な計画を作成し、独自計画よりもそれほど高価でなければ、毎回再計画する代わりに一般的な計画を使い始めるようになります。
+同じプリペアド文が十分に使用された後、<function>SPI_execute_plan</function>は一般的な計画を作成し、独自計画よりもそれほど高価でなければ、毎回再計画する代わりに一般的な計画を使い始めるようになります。
 このデフォルトの動作が不適切であれば、<function>SPI_prepare_cursor</function>に<literal>CURSOR_OPT_GENERIC_PLAN</literal>または<literal>CURSOR_OPT_CUSTOM_PLAN</literal>フラグを設定することで、それぞれ一般的な計画か独自計画を強制的に利用するよう変更できます。
   </para>
 
@@ -1801,7 +1801,7 @@ SPIPlanPtr SPI_prepare_extended(const char * <parameter>command</parameter>,
    the parsing of external parameter references, as well as other facets
    of query parsing and planning.
 -->
-<function>SPI_prepare_extended</function>は指定したコマンド用の準備済み文を作成し、それを返します。しかし、そのコマンドは実行しません。
+<function>SPI_prepare_extended</function>は指定したコマンド用のプリペアド文を作成し、それを返します。しかし、そのコマンドは実行しません。
 この関数は、呼び出し元が、問い合わせの解析や計画のその他の面だけでなく、外部のパラメータ参照の解析も制御するオプションを指定できる追加機能のある<function>SPI_prepare</function>と等価です。
   </para>
  </refsect1>
@@ -1961,7 +1961,7 @@ SPIPlanPtr SPI_prepare_params(const char * <parameter>command</parameter>,
    with the addition that the caller can specify parser hook functions
    to control the parsing of external parameter references.
 -->
-<function>SPI_prepare_params</function>は指定したコマンドの準備済み文を作成し返します。
+<function>SPI_prepare_params</function>は指定したコマンドのプリペアド文を作成し返します。
 しかしそのコマンドを実行しません。
 この関数は<function>SPI_prepare_cursor</function>と同じですが、呼び出し元が外部パラメータ参照の解析を制御するパーサフック関数を指定できる点が追加されています。
   </para>
@@ -2104,7 +2104,7 @@ int SPI_getargcount(SPIPlanPtr <parameter>plan</parameter>)
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -2187,7 +2187,7 @@ Oid SPI_getargtypeid(SPIPlanPtr <parameter>plan</parameter>, int <parameter>argI
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -2273,7 +2273,7 @@ bool SPI_is_cursor_plan(SPIPlanPtr <parameter>plan</parameter>)
    <command>UPDATE</command> is allowed only if it contains a <literal>RETURNING</literal>
    clause.
 -->
-<function>SPI_prepare</function>で準備済み文が<function>SPI_cursor_open</function>への引数として渡すことができる場合、<function>SPI_is_cursor_plan</function>は<symbol>true</symbol>を返します。
+<function>SPI_prepare</function>でプリペアド文が<function>SPI_cursor_open</function>への引数として渡すことができる場合、<function>SPI_is_cursor_plan</function>は<symbol>true</symbol>を返します。
 渡すことができない場合は<symbol>false</symbol>を返します。
 この基準は、<parameter>plan</parameter>が単一のコマンドであり、かつ、そのコマンドが呼び出し元にタプルを返すことです。
 例えば、<literal>INTO</literal>句を含んでいない<command>SELECT</command>は可能です。
@@ -2295,7 +2295,7 @@ bool SPI_is_cursor_plan(SPIPlanPtr <parameter>plan</parameter>)
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -2383,7 +2383,7 @@ int SPI_execute_plan(SPIPlanPtr <parameter>plan</parameter>, Datum * <parameter>
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -2597,7 +2597,7 @@ int SPI_execute_plan_extended(SPIPlanPtr <parameter>plan</parameter>,
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -2832,7 +2832,7 @@ int SPI_execute_plan_with_paramlist(SPIPlanPtr <parameter>plan</parameter>,
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -2954,7 +2954,7 @@ int SPI_execp(SPIPlanPtr <parameter>plan</parameter>, Datum * <parameter>values<
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -3141,7 +3141,7 @@ C関数の呼び出し元にポータルの名前を返すことで、結果と�
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -3531,7 +3531,7 @@ Portal SPI_cursor_open_with_paramlist(const char *<parameter>name</parameter>,
 <!--
       prepared statement (returned by <function>SPI_prepare</function>)
 -->
-（<function>SPI_prepare</function>で返される）準備済み文
+（<function>SPI_prepare</function>で返される）プリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -4455,7 +4455,9 @@ void SPI_cursor_close(Portal <parameter>portal</parameter>)
 <!--
   <refpurpose>save a prepared statement</refpurpose>
 -->
-  <refpurpose>準備済み文を保存する</refpurpose>
+
+  <refpurpose>プリペアド文を保持する</refpurpose>
+
  </refnamediv>
 
  <refsynopsisdiv>
@@ -4479,7 +4481,7 @@ int SPI_keepplan(SPIPlanPtr <parameter>plan</parameter>)
    invocations of your C function in the current session.
 -->
 <function>SPI_keepplan</function>は渡された（<function>SPI_prepare</function>で準備された）文を<function>SPI_finish</function>とトランザクションマネージャで解放されないメモリ内に保存します。
-これは、現在のセッションにおける、その後のC関数の呼び出しで準備済み文を再利用できる機能を提供します。
+これは、現在のセッションにおける、その後のC関数の呼び出しでプリペアド文を再利用できる機能を提供します。
   </para>
  </refsect1>
 
@@ -4497,7 +4499,7 @@ int SPI_keepplan(SPIPlanPtr <parameter>plan</parameter>)
 <!--
       the prepared statement to be saved
 -->
-保存する準備済み文
+保存するプリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -4554,7 +4556,7 @@ int SPI_keepplan(SPIPlanPtr <parameter>plan</parameter>)
 <!--
   <refpurpose>save a prepared statement</refpurpose>
 -->
-  <refpurpose>準備済み文を保存する</refpurpose>
+  <refpurpose>プリペアド文を保存する</refpurpose>
  </refnamediv>
 
  <refsynopsisdiv>
@@ -4580,7 +4582,7 @@ SPIPlanPtr SPI_saveplan(SPIPlanPtr <parameter>plan</parameter>)
 -->
 <function>SPI_saveplan</function>は渡された（<function>SPI_prepare</function>で準備された）文を<function>SPI_finish</function>とトランザクションマネージャで解放されないメモリ内にコピーします。
 そして、コピーした文のポインタを返します。
-これは、現在のセッションにおける、その後のC関数の呼び出しで準備済み文を再利用できる機能を提供します。
+これは、現在のセッションにおける、その後のC関数の呼び出しでプリペアド文を再利用できる機能を提供します。
   </para>
  </refsect1>
 
@@ -4598,7 +4600,7 @@ SPIPlanPtr SPI_saveplan(SPIPlanPtr <parameter>plan</parameter>)
 <!--
       the prepared statement to be saved
 -->
-保存する準備済み文
+保存するプリペアド文
      </para>
     </listitem>
    </varlistentry>
@@ -4670,7 +4672,7 @@ SPIPlanPtr SPI_saveplan(SPIPlanPtr <parameter>plan</parameter>)
    function, since it accomplishes largely the same result without needing
    to physically copy the prepared statement's data structures.
 -->
-準備済み文のデータ構造を物理的にコピーする必要なく、ほとんど同じ結果をもたらしますので、たいていの場合、この関数よりも<function>SPI_keepplan</function>の方が好ましいです。
+プリペアド文のデータ構造を物理的にコピーする必要なく、ほとんど同じ結果をもたらしますので、たいていの場合、この関数よりも<function>SPI_keepplan</function>の方が好ましいです。
   </para>
  </refsect1>
 </refentry>
@@ -6977,7 +6979,7 @@ void SPI_freetuptable(SPITupleTable * <parameter>tuptable</parameter>)
 <!--
   <refpurpose>free a previously saved prepared statement</refpurpose>
 -->
-  <refpurpose>以前に保存した準備済み文を解放する</refpurpose>
+  <refpurpose>以前に保存したプリペアド文を解放する</refpurpose>
  </refnamediv>
 
  <refsynopsisdiv>
@@ -6998,7 +7000,7 @@ int SPI_freeplan(SPIPlanPtr <parameter>plan</parameter>)
    previously returned by <function>SPI_prepare</function> or saved by
    <function>SPI_keepplan</function> or <function>SPI_saveplan</function>.
 -->
-<function>SPI_freeplan</function>は、以前に<function>SPI_prepare</function>から返された、あるいは<function>SPI_keepplan</function>や<function>SPI_saveplan</function>で保存された準備済み文を解放します。
+<function>SPI_freeplan</function>は、以前に<function>SPI_prepare</function>から返された、あるいは<function>SPI_keepplan</function>や<function>SPI_saveplan</function>で保存されたプリペアド文を解放します。
   </para>
  </refsect1>
 
