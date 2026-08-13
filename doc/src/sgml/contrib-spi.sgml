@@ -46,7 +46,6 @@
   <title>refint &mdash; 参照整合性を実装する関数</title>
 
   <para>
-<!--
    <function>check_primary_key()</function> and
    <function>check_foreign_key()</function> are used to check foreign key constraints.
    (This functionality is long since superseded by the built-in foreign
@@ -102,7 +101,6 @@ check_primary_key (
   </note>
 
   <para>
-<!--
    <function>check_foreign_key()</function> checks the referenced table.
    To use, create an <literal>AFTER DELETE OR UPDATE</literal> trigger using this
    function on a table referenced by other table(s).  Specify as the trigger
@@ -116,11 +114,6 @@ check_primary_key (
    referencing tables as were specified by first argument).  Note that the
    primary/unique key columns should be marked NOT NULL and should have a
    unique index.
--->
-<function>check_foreign_key()</function>は被参照テーブルを検査します。
-使用方法は、この関数を使用する<literal>AFTER DELETE OR UPDATE</literal>トリガを他のテーブルで参照されるテーブルに作成することです。
-トリガ引数は、この関数が検査を実行しなければならない参照テーブル数、参照キーが見つかった場合の動作（<literal>cascade</literal> &mdash; 参照行を削除、<literal>restrict</literal> &mdash; 参照キーが存在する場合トランザクションをアボート、<literal>setnull</literal> &mdash;参照キーフィールドをNULLに設定）、主/一意キーを形成するトリガを発行したテーブルの列名、参照テーブルの名前と列名（最初の引数で指定された数のテーブル分繰り返す）です。
-主/一意キー列はNOT NULLと指定されていなければならず、また、一意性インデックスを持つべきであることに注意してください。
   </para>
 
   <note>

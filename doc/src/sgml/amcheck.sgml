@@ -585,7 +585,6 @@ B-Tree検証関数の<parameter>heapallindexed</parameter>引数が<literal>true
   <title><filename>amcheck</filename>を効果的に使う</title>
 
  <para>
-<!--
   <filename>amcheck</filename> can be effective at detecting various types of
   failure modes that <link linkend="checksums">data checksums</link> will fail
   to catch.  These include:

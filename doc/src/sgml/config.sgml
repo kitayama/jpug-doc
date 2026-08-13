@@ -2337,13 +2337,6 @@ TLSバージョン1.3を使用する接続については<xref linkend="guc-ssl-
         certificate.  This parameter can only be set in the
         <filename>postgresql.conf</filename> file or on the server command line.
         The default is <literal>X25519:prime256v1</literal>.
--->
-<acronym>ECDH</acronym>キー交換で使われる曲線の名前を指定します。
-接続するすべてのクライアントがこの設定をサポートしている必要があります。
-コロンで区切られたリストを使用して複数の曲線を指定できます。
-サーバの楕円曲線キーで使用されるのと同じ曲線である必要はありません。
-このパラメータは、<filename>postgresql.conf</filename>ファイルか、サーバのコマンドラインでのみ設定可能です。
-デフォルト値は<literal>X25519:prime256v1</literal>です。
        </para>
 
        <para>
@@ -2356,10 +2349,6 @@ TLSバージョン1.3を使用する接続については<xref linkend="guc-ssl-
         <command>openssl ecparam -list_curves</command>.  Not all of them are
         usable with <acronym>TLS</acronym> though, and many supported group
         names and aliases are omitted.
--->
-最も一般的な曲線の<productname>OpenSSL</productname>名は、<literal>prime256v1</literal>（NIST P-256）、<literal>secp384r1</literal>（NIST P-384）、および<literal>secp521r1</literal>（NIST P-521）です。
-<command>openssl ecparam -list_curves</command>コマンドを使用すると、使用可能なグループの不完全なリストを表示することができます。
-ただし、すべてが<acronym>TLS</acronym>で使用できるわけではなく、サポートされているグループ名と別名の多くは省略されています。
        </para>
 
        <para>
@@ -5221,7 +5210,7 @@ WALの更新をディスクへ強制するのに使用される方法です。
         A compressed page image will be decompressed during WAL replay.
         The supported methods are <literal>pglz</literal>,
         <literal>lz4</literal> (if <productname>PostgreSQL</productname>
-        was compiled with <option>&#45;-with-lz4</option>) and
+        was compiled with <option>--with-lz4</option>) and
         <literal>zstd</literal> (if <productname>PostgreSQL</productname>
         was compiled with <option>--with-zstd</option>).
         The value <literal>on</literal> is a historical spelling of <literal>pglz</literal>.
@@ -5229,12 +5218,7 @@ WALの更新をディスクへ強制するのに使用される方法です。
         Only superusers and users with the appropriate <literal>SET</literal>
         privilege can change this setting.
 -->
-このパラメータは、指定された圧縮方式を使用したWALの圧縮を有効にします。
-有効にすると、<productname>PostgreSQL</productname>サーバはWALに書き込まれる全ページイメージを圧縮します（例えば、<xref linkend="guc-full-page-writes"/>がオンの時やベースバックアップ中です）。
-圧縮されたページイメージはWAL再生中に伸長されます。
-サポートされている方法は<literal>pglz</literal>、<literal>lz4</literal>（<productname>PostgreSQL</productname>が<option>--with-lz4</option>でコンパイルされた場合）および<literal>zstd</literal>（<productname>PostgreSQL</productname>が<option>--with-zstd</option>でコンパイルされた場合）です。
-デフォルト値は<literal>off</literal>です。
-スーパーユーザと適切な<literal>SET</literal>権限を持つユーザのみがこの設定を変更できます。
+《》
        </para>
 
        <para>
@@ -12166,7 +12150,6 @@ log_line_prefix = '%m [%p] %q%u@%d/%a '
        </para>
 
        <para>
-<!--
         This setting only affects log messages printed as a result of
         <xref linkend="guc-log-statement"/>,
         <xref linkend="guc-log-min-duration-statement"/>, and related settings.

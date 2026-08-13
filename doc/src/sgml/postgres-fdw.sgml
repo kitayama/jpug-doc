@@ -1120,7 +1120,6 @@ check制約でそのような一貫しない動作があると、問い合わせ
       <term><literal>use_scram_passthrough</literal> (<type>boolean</type>)</term>
       <listitem>
        <para>
-<!--
         This option controls whether <filename>postgres_fdw</filename> will
         use the SCRAM pass-through authentication to connect to the foreign
         server.  It can be specified for a foreign server or a user mapping.
@@ -1130,10 +1129,6 @@ check制約でそのような一貫しない動作があると、問い合わせ
         plain-text user passwords to connect to the remote server.  This
         avoids storing plain-text user passwords in PostgreSQL system
         catalogs.
--->
-このオプションは、<filename>postgres_fdw</filename>がSCRAMパススルー認証を使用して外部サーバに接続するかどうかを制御します。
-SCRAMパススルー認証では、<filename>postgres_fdw</filename>はプレーンテキストユーザパスワードの代わりにSCRAMハッシュ化されたシークレットを使用してリモートサーバに接続します。
-これにより、プレーンテキストユーザパスワードがPostgreSQLシステムカタログに格納されるのを回避します。
        </para>
 
        <para>

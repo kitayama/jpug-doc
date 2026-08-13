@@ -3193,7 +3193,6 @@ REVOKE ALL ON accounts FROM PUBLIC;
      <term><literal>REFERENCES</literal></term>
      <listitem>
       <para>
-<!--
        Allows creation of a foreign key constraint referencing a
        table, or specific column(s) of a table. Great care should be taken when
        granting this privilege, since a user who creates a foreign key can arrange

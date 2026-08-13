@@ -1067,30 +1067,19 @@ HINT:  Execute a database-wide VACUUM in that database.
 
     <orderedlist>
      <listitem>
-<!--
       <simpara>Resolve old prepared transactions. You can find these by checking
        <link linkend="view-pg-prepared-xacts"><structname>pg_prepared_xacts</structname></link> for rows where
        <literal>age(transactionid)</literal> is large. Such transactions should be
        committed or rolled back.</simpara>
--->
-<simpara>古いプリペアドトランザクションを解決します。
-<link linkend="view-pg-prepared-xacts">pg_prepared_xacts</link>の<literal>age(transactionid)</literal>が大きい行を確認して見つけることができます。
-このようなトランザクションはコミットまたはロールバックされるべきです。</simpara>
      </listitem>
      <listitem>
-<!--
       <simpara>End long-running open transactions. You can find these by checking
        <link linkend="monitoring-pg-stat-activity-view"><structname>pg_stat_activity</structname></link> for rows where
        <literal>age(backend_xid)</literal> or <literal>age(backend_xmin)</literal> is
        large. Such transactions should be committed or rolled back, or the session
        can be terminated using <literal>pg_terminate_backend</literal>.</simpara>
--->
-<simpara>長時間実行されているオープントランザクションを終了します。
-<link linkend="monitoring-pg-stat-activity-view">pg_stat_activity</link>で<literal>age(backend_xid)</literal>または<literal>age(backend_xmin)</literal>が大きい行を確認して、これらを見つけることができます。
-このようなトランザクションはコミットまたはロールバックするか、<literal>pg_terminate_backend</literal>を使用してセッションを終了できます。</simpara>
      </listitem>
      <listitem>
-<!--
       <simpara>Drop any old replication slots. Use
        <link linkend="view-pg-replication-slots"><structname>pg_replication_slots</structname></link> to
        find slots where <literal>age(xmin)</literal> or <literal>age(catalog_xmin)</literal>
@@ -1098,11 +1087,6 @@ HINT:  Execute a database-wide VACUUM in that database.
        longer exist, or that have been down for a long time. If you drop a slot for a server
        that still exists and might still try to connect to that slot, that replica may
        need to be rebuilt.</simpara>
--->
-<simpara>古いレプリケーションスロットを削除します。
-<link linkend="monitoring-pg-stat-replication-view">pg_stat_replication</link>を使用して<literal>age(xmin)</literal>または<literal>age(catalog_xmin)</literal>が大きいスロットを見つけます。
-多くの場合、そのようなスロットは、もはや存在しないか長い間ダウンしているサーバへのレプリケーションのために作成されたものです。
-存在するサーバに対してスロットを削除しても、そのスロットに接続しようとする可能性がある場合、そのレプリカは再構築する必要があるでしょう。</simpara>
      </listitem>
      <listitem>
 <!--
@@ -1293,6 +1277,7 @@ MXIDが枯渇したときの通常の動作は、XIDが枯渇したときとほ�
        wraparound problems.</simpara>
      </listitem>
      <listitem>
+<!--
       <simpara>MXID information is not directly visible in system views such as
        <literal>pg_stat_activity</literal>; however, looking for old XIDs is still a good
        way of determining which transactions are causing MXID wraparound problems.</simpara>

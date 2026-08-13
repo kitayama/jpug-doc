@@ -5,7 +5,10 @@
   <title>Release 18.6</title>
 
   <formalpara>
+<!--
   <title>Release date:</title>
+-->
+  <title>リリース日:</title>
   <para>2026-08-13</para>
   </formalpara>
 
@@ -24,7 +27,10 @@
    <title>Migration to Version 18.6</title>
 
    <para>
+<!--
     A dump/restore is not required for those running 18.X.
+-->
+18.Xからの移行ではダンプ/リストアは不要です。
    </para>
 
    <para>
@@ -51,7 +57,10 @@
   </sect2>
 
   <sect2 id="release-18-6-changes">
+<!--
    <title>Changes</title>
+-->
+   <title>変更点</title>
 
    <itemizedlist>
 
@@ -4087,15 +4096,11 @@ Branch: REL_14_STABLE [b282280e9] 2026-05-11 05:13:51 -0700
      </para>
 
      <para>
-<!--
       Use <function>timingsafe_bcmp()</function> instead
       of <function>memcmp()</function> or <function>strcmp()</function>
       when checking passwords, hashes, etc.  It is not known whether the
       data dependency of those functions is usefully exploitable in any of
       these places, but in the interests of safety, replace them.
--->
-パスワードやハッシュなどの検証には、 <function>memcpy()</function>や<function>strcmp()</function>の代わりに<function>timingsafe_bcmp()</function>を使用するようになりました。
-これらの関数のデータ依存性が、これらの箇所で悪用される可能性があるかどうかは不明ですが、安全を期してこれらが置き換えられました。
      </para>
 
      <para>

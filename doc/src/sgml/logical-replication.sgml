@@ -3277,6 +3277,7 @@ WAL送信プロセスはWALのロジカルデコーディング（<xref linkend=
   </para>
 
   <para>
+<!--
    In order to be able to copy the initial table data, the role used for the
    replication connection must have the <literal>SELECT</literal> privilege on
    a published table (or be a superuser).

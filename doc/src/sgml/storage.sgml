@@ -1239,7 +1239,6 @@ data. Empty in ordinary tables.</entry>
 
  <para>
 
-<!--
   The first 24 bytes of each page consists of a page header
   (<structname>PageHeaderData</structname>). Its format is detailed in <xref
   linkend="pageheaderdata-table"/>. The first field tracks the most
@@ -1264,22 +1263,6 @@ data. Empty in ordinary tables.</entry>
   more than one page size in an installation.
   The last field is a hint that shows whether pruning the page is likely
   to be profitable: it tracks the oldest un-pruned XMAX on the page.
--->
-それぞれのページの最初の24バイトはページヘッダ(<structname>PageHeaderData</structname>)から構成されています。
-その書式を<xref linkend="pageheaderdata-table"/>にて説明します。
-最初のフィールドは、このページに関連する最も最近のWAL項目を表しています。
-2番目のフィールドには<xref linkend="app-initdb-data-checksums"/>が有効な場合にページチェックサムが格納されています。
-次にフラグビットを含む2バイトのフィールドがあります。
-その後に2バイトの整数フィールドが3つ続きます（<structfield>pd_lower</structfield>、<structfield>pd_upper</structfield>、<structfield>pd_special</structfield>）。
-これらには、割り当てられていない空間の始まり、割り当てられていない空間の終わり、そして特別な空間の始まりのバイトオフセットが格納されています。
-ページヘッダの次の2バイトである<structfield>pd_pagesize_version</structfield>は、ページサイズとバージョン指示子の両方を格納します。
-<productname>PostgreSQL</productname> 8.3以降のバージョン番号は4、<productname>PostgreSQL</productname> 8.1と8.2のバージョン番号は3、<productname>PostgreSQL</productname> 8.0のバージョン番号は2、<productname>PostgreSQL</productname> 7.3と7.4のバージョン番号は1です。
-それより前のリリースのバージョン番号は0です。
-（ほとんどのバージョン間で基本的なページレイアウトやヘッダの書式は変更されていませんが、ヒープ行ヘッダのレイアウトが変更されました。）
-ページサイズは基本的に照合用としてのみ存在しています。
-同一インストレーションでの複数のページサイズはサポートされていません。
-最後のフィールドはそのページの切り詰めが有益かどうかを示すヒントです。
-これはページ上で切り詰められていないもっとも古いXMAXが追跡するものです。
 
  </para>
 

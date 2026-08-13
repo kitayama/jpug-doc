@@ -10334,19 +10334,12 @@ GET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> VALU
     </para>
 
     <para>
-<!--
      This command has two forms: The first form retrieves
      descriptor <quote>header</quote> item, which applies to the result
      set in its entirety.  One example is the row count.  The second
      form, which requires the column number as additional parameter,
      retrieves information about a particular column.  Examples are
      the column name and the actual column value.
--->
-このコマンドには２つの構文があります。
-１番目の構文では、そのまま結果セットに適用されている記述子の<quote>ヘッダ</quote>項目を取り出します。
-行数が１つの例です。
-列番号を追加のパラメータとして必要とする２番目の構文では特定の列に関する情報を取り出します。
-例えば、列名と列の実際の値です。
     </para>
    </refsect1>
 

@@ -6621,7 +6621,7 @@ cast(-1234 as bytea)           <lineannotation>\xfffffb2e</lineannotation>
         Bitwise shift left
         (string length is preserved)
 -->
-ビット単位の左シフト（文字列長は保存されます）
+《》
        </para>
        <para>
         <literal>B'10001' &lt;&lt; 3</literal>
@@ -6639,7 +6639,7 @@ cast(-1234 as bytea)           <lineannotation>\xfffffb2e</lineannotation>
         Bitwise shift right
         (string length is preserved)
 -->
-ビット単位の右シフト（文字列長は保存されます）
+《》
        </para>
        <para>
         <literal>B'10001' &gt;&gt; 2</literal>
@@ -18972,7 +18972,6 @@ OIDで指定したパーサが認識できるトークンの型を記述する�
         <returnvalue>uuid</returnvalue>
        </para>
        <para>
-<!--
         Generates a version 7 (time-ordered) UUID. The timestamp is
         computed using UNIX timestamp with millisecond precision +
         sub-millisecond timestamp + random. The optional
