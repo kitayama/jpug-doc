@@ -31,7 +31,10 @@
   </para>
 
   <sect2 id="release-18-6-migration">
+<!--
    <title>Migration to Version 18.6</title>
+-->
+   <title>バージョン18.6への移行</title>
 
    <para>
 <!--
@@ -71,7 +74,6 @@
     Also, if you are upgrading from a version earlier than 18.2,
     see <xref linkend="release-18-2"/>.
 -->
-《マッチ度[85.416667]》しかしながら、18.2より前のバージョンからアップグレードする場合は、<xref linkend="release-18-2"/>を参照してください。
 《機械翻訳》«Also, if you are upgrading from a version earlier than 18.2, see <xref linkend="release-18-2"/>.»
    </para>
   </sect2>
@@ -156,9 +158,8 @@ output_plugin_libraries = 'pgoutput, test_decoding, my_trusted_decoder'
       for reporting this problem.
       (CVE-2026-6471)
 -->
-《マッチ度[75.757576]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu Kunpengに感謝します。
-(CVE-2026-6476)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Vladimir Tokarev and Yu Kunpeng for reporting this problem. (CVE-2026-6471)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Vladimir Tokarev and Yu Kunpeng for reporting this problem. »
+(CVE-2026-6471)
      </para>
     </listitem>
 
@@ -240,9 +241,8 @@ pgp_sym_decrypt(encrypted_column, <replaceable>any key</replaceable>, 'ignore-ci
       for reporting this problem.
       (CVE-2026-14663)
 -->
-《マッチ度[74.137931]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu Kunpengに感謝します。
-(CVE-2026-6476)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Shishir Sharma for reporting this problem. (CVE-2026-14663)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Shishir Sharma for reporting this problem. »
+(CVE-2026-14663)
      </para>
     </listitem>
 
@@ -310,9 +310,8 @@ Branch: REL_14_STABLE [7215c7e96] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-6464)
 -->
-《マッチ度[75.213675]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたXint Codeに感謝します。
-(CVE-2026-6474)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Alexander Lakhin for reporting this problem. (CVE-2026-6464)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Alexander Lakhin for reporting this problem. »
+(CVE-2026-6464)
      </para>
     </listitem>
 
@@ -357,9 +356,8 @@ Branch: REL_14_STABLE [1f49beef2] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-16239)
 -->
-《マッチ度[70.967742]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたCalif.io（ClaudeおよびAnthropic Researchとの協力）に感謝します。
-(CVE-2026-6479)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) and Peter Geoghegan for reporting this problem. (CVE-2026-16239)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) and Peter Geoghegan for reporting this problem. »
+(CVE-2026-16239)
      </para>
     </listitem>
 
@@ -441,9 +439,8 @@ Branch: REL_14_STABLE [890327639] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14664)
 -->
-《マッチ度[73.949580]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたXint Codeに感謝します。
-(CVE-2026-6474)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Francesco Verardi for reporting this problem. (CVE-2026-14664)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Francesco Verardi for reporting this problem. »
+(CVE-2026-14664)
      </para>
     </listitem>
 
@@ -484,9 +481,8 @@ Branch: REL_14_STABLE [42d333a78] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-18024)
 -->
-《マッチ度[71.559633]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたXint Codeに感謝します。
-(CVE-2026-6474)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. (CVE-2026-18024)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. »
+(CVE-2026-18024)
      </para>
     </listitem>
 
@@ -527,9 +523,8 @@ Branch: REL_18_STABLE [8d428c6e6] 2026-08-10 06:38:12 -0700
       for reporting this problem.
       (CVE-2026-16238)
 -->
-《マッチ度[68.613139]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたPavel Kohoutに感謝します。
-(CVE-2026-6638)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Amy Burnett (OpenAI Codex Security) for reporting this problem. (CVE-2026-16238)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Amy Burnett (OpenAI Codex Security) for reporting this problem. »
+(CVE-2026-16238)
      </para>
     </listitem>
 
@@ -570,9 +565,8 @@ Branch: REL_14_STABLE [59205c7e9] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14668)
 -->
-《マッチ度[72.477064]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu Kunpengに感謝します。
-(CVE-2026-6476)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. (CVE-2026-14668)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. »
+(CVE-2026-14668)
      </para>
     </listitem>
 
@@ -620,9 +614,8 @@ Branch: REL_14_STABLE [1e3014f37] 2026-08-10 06:38:34 -0700
       for reporting these problems.
       (CVE-2026-14662)
 -->
-《マッチ度[65.333333]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu KunpengとMartin Heistermannに感謝します。
-(CVE-2026-6477)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Yuhang Wu, Zhenpeng Lin, Zheng Yu, and Hcamael for reporting these problems. (CVE-2026-14662)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Yuhang Wu, Zhenpeng Lin, Zheng Yu, and Hcamael for reporting these problems. »
+(CVE-2026-14662)
      </para>
     </listitem>
 
@@ -672,9 +665,8 @@ Branch: REL_14_STABLE [c7f462838] 2026-08-10 06:38:35 -0700
       for reporting these problems.
       (CVE-2026-14679)
 -->
-《マッチ度[65.972222]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu KunpengとMartin Heistermannに感謝します。
-(CVE-2026-6477)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Zheng Yu, ylwangtju, and Masahiko Sawada for reporting these problems. (CVE-2026-14679)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Zheng Yu, ylwangtju, and Masahiko Sawada for reporting these problems. »
+(CVE-2026-14679)
      </para>
     </listitem>
 
@@ -722,9 +714,8 @@ Branch: REL_14_STABLE [913fe0c31] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14680)
 -->
-《マッチ度[67.883212]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたXint Codeに感謝します。
-(CVE-2026-6473)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Amy Burnett (OpenAI Codex Security) for reporting this problem. (CVE-2026-14680)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Amy Burnett (OpenAI Codex Security) for reporting this problem. »
+(CVE-2026-14680)
      </para>
     </listitem>
 
@@ -764,9 +755,8 @@ Branch: REL_14_STABLE [70a3b4e18] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-6469)
 -->
-《マッチ度[75.675676]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたXint Codeに感謝します。
-(CVE-2026-6473)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Noah Misch for reporting this problem. (CVE-2026-6469)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Noah Misch for reporting this problem. »
+(CVE-2026-6469)
      </para>
     </listitem>
 
@@ -809,9 +799,8 @@ Branch: REL_14_STABLE [967acab87] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-15741)
 -->
-《マッチ度[78.915663]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたCalif.io（ClaudeおよびAnthropic Researchとの協力）に感謝します。
-(CVE-2026-6479)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) for reporting this problem. (CVE-2026-15741)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) for reporting this problem. »
+(CVE-2026-15741)
      </para>
     </listitem>
 
@@ -871,9 +860,8 @@ Branch: REL_14_STABLE [1a358b8f2] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-6470)
 -->
-《マッチ度[75.892857]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu Kunpengに感謝します。
-(CVE-2026-6476)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Jingzhou Fu for reporting this problem. (CVE-2026-6470)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Jingzhou Fu for reporting this problem.»
+ (CVE-2026-6470)
      </para>
     </listitem>
 
@@ -915,9 +903,8 @@ Branch: REL_14_STABLE [f4174aa84] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-14666)
 -->
-《マッチ度[69.172932]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたPavel Kohoutに感謝します。
-(CVE-2026-6638)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ilya Staroverov and Shinya Kato for reporting this problem. (CVE-2026-14666)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ilya Staroverov and Shinya Kato for reporting this problem. »
+(CVE-2026-14666)
      </para>
     </listitem>
 
@@ -957,9 +944,8 @@ Branch: REL_17_STABLE [067a64d40] 2026-08-10 06:38:18 -0700
       for reporting this problem.
       (CVE-2026-14681)
 -->
-《マッチ度[71.028037]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu Kunpengに感謝します。
-(CVE-2026-6476)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks p4p3r for reporting this problem. (CVE-2026-14681)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks p4p3r for reporting this problem. »
+(CVE-2026-14681)
      </para>
     </listitem>
 
@@ -1002,9 +988,8 @@ Branch: REL_16_STABLE [fadbe882d] 2026-08-10 06:38:24 -0700
       for reporting this problem.
       (CVE-2026-14672)
 -->
-《マッチ度[75.221239]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたXint Codeに感謝します。
-(CVE-2026-6473)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Radim Marek for reporting this problem. (CVE-2026-14672)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Radim Marek for reporting this problem. »
+(CVE-2026-14672)
      </para>
     </listitem>
 
@@ -1047,9 +1032,8 @@ Branch: REL_14_STABLE [74c59d062] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-16241)
 -->
-《マッチ度[72.972973]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたXint Codeに感謝します。
-(CVE-2026-6473)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks ylwangtju for reporting this problem. (CVE-2026-16241)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks ylwangtju for reporting this problem. »
+(CVE-2026-16241)
      </para>
     </listitem>
 
@@ -1093,9 +1077,8 @@ Branch: REL_14_STABLE [2006fca40] 2026-08-10 06:38:37 -0700
       for reporting this problem.
       (CVE-2026-18408)
 -->
-《マッチ度[65.068493]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたAltan Birlerに感謝します。
-(CVE-2026-2003)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Lucas Velgus, Filip Janus, and Daniel Bakker for reporting this problem. (CVE-2026-18408)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Lucas Velgus, Filip Janus, and Daniel Bakker for reporting this problem. »
+(CVE-2026-18408)
      </para>
     </listitem>
 
@@ -1143,9 +1126,8 @@ Branch: REL_14_STABLE [57aa21f69] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-19385)
 -->
-《マッチ度[74.358974]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたJoe Conwayに感謝します。
-(CVE-2026-6478)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Masahiko Sawada for reporting this problem. (CVE-2026-19385)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Masahiko Sawada for reporting this problem. »
+(CVE-2026-19385)
      </para>
     </listitem>
 
@@ -1186,9 +1168,8 @@ Branch: REL_14_STABLE [d7fcfead3] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14670)
 -->
-《マッチ度[72.477064]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu Kunpengに感謝します。
-(CVE-2026-6476)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. (CVE-2026-14670)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. »
+(CVE-2026-14670)
      </para>
     </listitem>
 
@@ -1229,9 +1210,8 @@ Branch: REL_14_STABLE [aff9dac1c] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14677)
 -->
-《マッチ度[63.313609]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたPositive TechnologiesのAleksey Solovevに感謝します。
-(CVE-2025-12818)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks the Tulya Project (Team Dhiutsa, Bitecope Technologies Private Ltd) for reporting this problem. (CVE-2026-14677)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks the Tulya Project (Team Dhiutsa, Bitecope Technologies Private Ltd) for reporting this problem. »
+(CVE-2026-14677)
      </para>
     </listitem>
 
@@ -1277,9 +1257,8 @@ Branch: REL_14_STABLE [39d792040] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-14673)
 -->
-《マッチ度[70.992366]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたJoe Conwayに感謝します。
-(CVE-2026-6478)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Yuelin Wang and Jacob Brazeal for reporting this problem. (CVE-2026-14673)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Yuelin Wang and Jacob Brazeal for reporting this problem. »
+(CVE-2026-14673)
      </para>
     </listitem>
 
@@ -1322,9 +1301,8 @@ Branch: REL_14_STABLE [9505175f2] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-15742)
 -->
-《マッチ度[78.915663]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたCalif.io（ClaudeおよびAnthropic Researchとの協力）に感謝します。
-(CVE-2026-6479)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) for reporting this problem. (CVE-2026-15742)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) for reporting this problem. »
+(CVE-2026-15742)
      </para>
     </listitem>
 
@@ -1360,9 +1338,8 @@ Branch: REL_18_STABLE [8a31ffc2d] 2026-08-10 06:38:11 -0700
       for reporting this problem.
       (CVE-2026-14676)
 -->
-《マッチ度[60.240964]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu KunpengとMartin Heistermannに感謝します。
-(CVE-2026-6477)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Sajeeb Lohani (with TrendAI Zero Day Initiative) and Yuelin Wang for reporting this problem. (CVE-2026-14676)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Sajeeb Lohani (with TrendAI Zero Day Initiative) and Yuelin Wang for reporting this problem. »
+(CVE-2026-14676)
      </para>
     </listitem>
 
@@ -1403,9 +1380,8 @@ Branch: REL_14_STABLE [a74aa0854] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14678)
 -->
-《マッチ度[75.862069]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたXint Codeに感謝します。
-(CVE-2026-6473)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Mehmet D. Ince for reporting this problem. (CVE-2026-14678)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Mehmet D. Ince for reporting this problem. »
+(CVE-2026-14678)
      </para>
     </listitem>
 
@@ -1447,9 +1423,8 @@ Branch: REL_14_STABLE [5b72d0279] 2026-06-05 12:08:05 -0500
       for reporting this problem.
       (CVE-2026-14671)
 -->
-《マッチ度[72.477064]》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYu Kunpengに感謝します。
-(CVE-2026-6476)
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. (CVE-2026-14671)»
+《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. »
+(CVE-2026-14671)
      </para>
     </listitem>
 
@@ -3945,8 +3920,6 @@ Branch: REL_14_STABLE [2d44bb900] 2026-07-03 13:50:51 +0900
       for <command>\df</command> to consider procedures too
       (Erik Wienhold)
 -->
-《マッチ度[59.016393]》<application>psql</application>での<command>VACUUM</command>オプション値に対するタブ補完を修正しました。
-(Yugo Nagata)
 《機械翻訳》«Fix <application>psql</application>'s tab completion for <command>\df</command> to consider procedures too »
 (Erik Wienhold)
       <ulink url="&commit_baseurl;598af79b1">&sect;</ulink>
@@ -4013,8 +3986,6 @@ Branch: REL_17_STABLE [c03784a21] 2026-05-27 10:35:49 +0900
       Fix cleanup of publisher-side objects after errors
       in <application>pg_createsubscriber</application> (Nisha Moond)
 -->
-《マッチ度[54.385965]》<application>pg_createsubscriber</application>において、サブスクリプション名が正しくクォートされるようになりました。
-(Nathan Bossart)
 《機械翻訳》«Fix cleanup of publisher-side objects after errors in <application>pg_createsubscriber</application> »
 (Nisha Moond)
       <ulink url="&commit_baseurl;196b4b5ae">&sect;</ulink>
@@ -4662,8 +4633,6 @@ Branch: REL_14_STABLE [812cc1a73] 2026-08-02 11:26:30 -0400
       Update time zone data files to <application>tzdata</application>
       release 2026c (Tom Lane)
 -->
-《マッチ度[85.393258]》タイムゾーンデータファイルが<application>tzdata</application>リリース2026bに更新されました。
-(Tom Lane)
 《機械翻訳》«Update time zone data files to <application>tzdata</application> release 2026c »
 (Tom Lane)
       <ulink url="&commit_baseurl;5f67124fa">&sect;</ulink>
