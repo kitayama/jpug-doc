@@ -3962,7 +3962,11 @@ SELECT
 コマンド名に<literal>x</literal>が付与された場合は、拡張モードで結果が表示されます。
 コマンド名に<literal>+</literal>が付与された場合は、データベースのサイズ、デフォルトのテーブル空間、および説明も表示します。
 （サイズ情報は現在のユーザが接続可能なデータベースでのみ表示されます。）
-《機械翻訳》«List the databases in the server and show their names, owners, character set encodings, and access privileges. If <replaceable class="parameter">pattern</replaceable> is specified, only databases whose names match the pattern are listed. If <literal>x</literal> is appended to the command name, the results are displayed in expanded mode. If <literal>+</literal> is appended to the command name, database sizes, default tablespaces, and descriptions are also displayed. Size information is available for databases on which the current user has <literal>CONNECT</literal> privilege, or if the current user is a superuser or has privileges of the <literal>pg_read_all_stats</literal> role.»
+《機械翻訳》サーバ内のデータベースをリストし、その名前、所有者、キャラクタセットのエンコード方式およびアクセスの権限を表示します。
+<replaceable class="parameter">パターン</replaceable>が指定されている場合は、名前がマッチパターンであるデータベースのみがリストされます。
+<literal>x</literal>がコマンド名前に追加されている場合は、結果が拡張モードに表示されます。
+<literal>+</literal>がコマンド名前に追加されている場合は、データベースのサイズ、デフォルトの表領域および説明も表示されます。
+サイズ情報は、現在ユーザが権限であるか<literal>CONNECT</literal>、現在ユーザがスーパーユーザであるか<literal>pg_read_all_stats</literal>ロールの権限を持つデータベースで使用できます。
         </para>
         </listitem>
       </varlistentry>
@@ -5437,7 +5441,7 @@ SELECT 1 \bind \sendpipeline
         neither variable interpolation nor backquote expansion are performed.
 -->
 《マッチ度[70.813397]》他のほとんどのメタコマンドと異なり、行の残り部分はすべて<command>\ef</command>の引数であると常に解釈され、引数内の変数の置換も逆引用符の展開も行われません。
-《機械翻訳》«Unlike most other meta-commands, the entire remainder of the line is always taken to be the argument of <command>\unrestrict</command>, and neither variable interpolation nor backquote expansion are performed.»
+《機械翻訳》他のほとんどのメタコマンドとは異なり、直線の残り全体は常に<command>\unrestrict</command>の引数とみなされ、変数補間も逆引用符拡張も実行されません。
         </para>
         </listitem>
       </varlistentry>

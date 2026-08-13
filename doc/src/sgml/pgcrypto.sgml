@@ -1542,7 +1542,10 @@ Applies to: pgp_sym_encrypt, pgp_pub_encrypt
     enabled, so there is no guarantee that the decrypted plaintext actually
     originated from a holder of the key.
 -->
-《機械翻訳》«Dangerous! Instructs pgcrypto to use an incorrect decryption algorithm matching the historical behavior prior to the fix for CVE-2026-14663, by completely ignoring failures from the OpenSSL cipher in use. This is intended only for users who need to recover incorrectly-encrypted messages created when the <literal>cipher-algo</literal> was unavailable under the OpenSSL configuration in use. Such faulty messages do not require the correct decryption key when <literal>ignore-cipher-failure</literal> is enabled, so there is no guarantee that the decrypted plaintext actually originated from a holder of the key.»
+《機械翻訳》Dangerous!使用中のOpenSSL暗号の失敗を完全に無視することにより、pgcryptoに不正な復号化アルゴリズムマッチングを使用するように指示します。
+これは、使用中のOpenSSL設定で<literal>cipher-algo</literal>が利用できなかった場合に作成された、誤って暗号化されたメッセージを回復する必要があるユーザのみを対象としています。
+このような不正なメッセージは、<literal>ignore-cipher-failure</literal>が有効になっている場合は正しい復号化キーを必要としないため、復号化された平文が実際にキーのホルダーから発信されたものであるという保証はありません。
+14663 2026
    </para>
    <para>
 <!--
@@ -1556,7 +1559,10 @@ Applies to: pgp_sym_encrypt, pgp_pub_encrypt
     integrity checks, that result is coincidental and does not make the
     recovered plaintext trustworthy.
 -->
-《機械翻訳》«Contrast the case of a message which was correctly encrypted, but the cipher that produced it is unavailable under the current <productname>OpenSSL</productname> configuration. Recovering such plaintext via <filename>pgcrypto</filename> requires making the actual cipher available to OpenSSL by, for example, enabling the appropriate provider. <literal>ignore-cipher-failure</literal> is not necessary or helpful for that scenario. If <quote>decryption</quote> of a correctly encrypted message with this option happens to pass PGP integrity checks, that result is coincidental and does not make the recovered plaintext trustworthy.»
+《機械翻訳》正しく暗号化されたメッセージのケースと、それを生成した暗号が現在<productname>OpenSSL</productname>設定では利用できないことを対比させてください。
+このような平文を<filename>pgcrypto</filename>を介して回復するには、例の場合、適切なプロバイダを有効にすることによって、実際の暗号をOpenSSLで利用できるようにする必要があります。
+<literal>ignore-cipher-failure</literal>はそのシナリオにとって必要でも有用でもありません。
+このオプションを使用して正しく暗号化されたメッセージの<quote>復号化</quote>がたまたまPGP整合性チェックに合格した場合、その結果は偶然の一致であり、回復された平文をmakeすることはできません。
    </para>
 <literallayout>
 Values: 0, 1
@@ -1983,7 +1989,7 @@ fips_mode() returns boolean
       <function>pgp_pub_encrypt()</function> do not use built in crypto so
       they are not affected.
 -->
-《機械翻訳》«<function>pgp_sym_encrypt()</function> and <function>pgp_pub_encrypt()</function> do not use built in crypto so they are not affected.»
+《機械翻訳》<function>pgp_sym_encrypt()</function>および<function>pgp_pub_encrypt()</function>は、組み込み暗号を使用しないでください。
      </para>
     </listitem>
    </varlistentry>

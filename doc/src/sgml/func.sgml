@@ -6622,7 +6622,7 @@ cast(-1234 as bytea)           <lineannotation>\xfffffb2e</lineannotation>
         (string length is preserved)
 -->
 《マッチ度[65.957447]》ビット単位の左シフト（文字列長は保存されます）
-《機械翻訳》«Bitwise shift left (string length is preserved)»
+《機械翻訳》ビット単位のシフトレフト（文字列長さは保持されます）。
        </para>
        <para>
         <literal>B'10001' &lt;&lt; 3</literal>
@@ -6641,7 +6641,7 @@ cast(-1234 as bytea)           <lineannotation>\xfffffb2e</lineannotation>
         (string length is preserved)
 -->
 《マッチ度[66.666667]》ビット単位の右シフト（文字列長は保存されます）
-《機械翻訳》«Bitwise shift right (string length is preserved)»
+《機械翻訳》ビット単位のシフト右（文字列長さは保持されます）。
        </para>
        <para>
         <literal>B'10001' &gt;&gt; 2</literal>
@@ -18987,7 +18987,13 @@ OIDで指定したパーサが認識できるトークンの型を記述する�
         An error is raised if the resulting timestamp is outside this
         range.
 -->
-《機械翻訳》«Generates a version 7 (time-ordered) UUID. The timestamp is computed using UNIX timestamp with millisecond precision + sub-millisecond timestamp + random. The optional parameter <parameter>shift</parameter> will shift the computed timestamp by the given <type>interval</type>. Infinite interval values are not accepted. The shifted timestamp must fall within the range supported by UUID version 7's 48-bit millisecond timestamp field: from 1970-01-01 00:00:00 UTC to approximately year 10889. An error is raised if the resulting timestamp is outside this range.»
+《機械翻訳》バージョン7 <parameter>shift</parameter>時間順UUIDを生成します。
+タイムスタンプは、UNIXタイムスタンプを使用して、ミリ秒精度+サブ-ミリ秒タイムスタンプ+ランダムで計算されます。
+オプショナルパラメータは、指定された<type>インターバル</type>によって計算されたタイムスタンプをシフトします。
+無限インターバルの値は受け入れられません。
+シフトされたタイムスタンプは、UUIDバージョン7の48-ビット（1970-01-01 00:00:00 UTCから約10889年まで）でサポートされるレンジの範囲内にある必要があります。
+生成されたがこのの外にある場合は、が発生します。
+レンジミリ秒エラーフィールドタイムスタンプタイムスタンプ
        </para>
        <para>
         <literal>uuidv7()</literal>
