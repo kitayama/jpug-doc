@@ -3268,12 +3268,15 @@ WAL送信プロセスはWALのロジカルデコーディング（<xref linkend=
   </para>
 
   <para>
+<!--
    The name of the output plugin used by the replication connection must be
    included in the server's <xref linkend="guc-output-plugin-libraries"/>. (For
    subscriptions, the plugin name that is used is <literal>pgoutput</literal>.)
    Superusers may modify the trusted list per-connection, by including
    <literal>options=-coutput_plugin_libraries=...</literal> in the connection
    string.
+-->
+《機械翻訳》«The name of the output plugin used by the replication connection must be included in the server's <xref linkend="guc-output-plugin-libraries"/>. (For subscriptions, the plugin name that is used is <literal>pgoutput</literal>.) Superusers may modify the trusted list per-connection, by including <literal>options=-coutput_plugin_libraries=...</literal> in the connection string.»
   </para>
 
   <para>
@@ -3609,10 +3612,13 @@ WAL送信プロセスはWALのロジカルデコーディング（<xref linkend=
     </listitem>
     <listitem>
      <para>
+<!--
       The output plugins referenced by the slots in the old cluster must be
       installed in the new PostgreSQL executable directory. They must also be
       included in the new cluster's <xref linkend="guc-output-plugin-libraries"/>;
       see that parameter's documentation for safety information.
+-->
+《機械翻訳》«The output plugins referenced by the slots in the old cluster must be installed in the new PostgreSQL executable directory. They must also be included in the new cluster's <xref linkend="guc-output-plugin-libraries"/>; see that parameter's documentation for safety information.»
      </para>
     </listitem>
     <listitem>

@@ -625,10 +625,15 @@ typedef struct ValidatorModuleResult
 -->
    <title>シャットダウンコールバック</title>
    <para>
+<!--
     The <function>shutdown_cb</function> callback is executed when the server
     backend has finished validating tokens for the connection. If the validator
     module has any allocated state, this callback should free it to avoid
     resource leaks.
+-->
+《マッチ度[78.723404]》<function>shutdown_cb</function>コールバックは、接続に関連付けられたバックエンドプロセスが終了するときに実行されます。
+検証器モジュールにメモリを割り当てられた状態がある場合、このコールバックはリソースリークを回避するためにフリーする必要があります。
+《機械翻訳》«The <function>shutdown_cb</function> callback is executed when the server backend has finished validating tokens for the connection. If the validator module has any allocated state, this callback should free it to avoid resource leaks.»
 <programlisting>
 typedef void (*ValidatorShutdownCB) (ValidatorModuleState *state);
 </programlisting>

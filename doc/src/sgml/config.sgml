@@ -1756,6 +1756,7 @@ SCRAM-SHA-256を使用してパスワードを暗号化するときに実行さ�
        </para>
        <note>
         <para>
+<!--
          If a role password was created with a different iteration count than
          the value of <literal>scram_iterations</literal> specified in the
          <filename>postgresql.conf</filename> file or on the server command
@@ -1765,6 +1766,8 @@ SCRAM-SHA-256を使用してパスワードを暗号化するときに実行さ�
          are created with <literal>scram_iterations</literal> set to the value
          specified in the <filename>postgresql.conf</filename> file or on the
          server command line.
+-->
+《機械翻訳》«If a role password was created with a different iteration count than the value of <literal>scram_iterations</literal> specified in the <filename>postgresql.conf</filename> file or on the server command line, an unauthenticated user can discern the existence of the role by observing discrepancies in the server's responses to connection attempts. If you find this concerning, ensure that all role passwords are created with <literal>scram_iterations</literal> set to the value specified in the <filename>postgresql.conf</filename> file or on the server command line.»
         </para>
        </note>
       </listitem>
@@ -2330,6 +2333,7 @@ TLSバージョン1.3を使用する接続については<xref linkend="guc-ssl-
       </term>
       <listitem>
        <para>
+<!--
         Specifies the named group to use for <acronym>TLS</acronym> key
         exchange.  It needs to be supported by all clients that
         connect.  Multiple groups can be specified by using a colon-separated
@@ -2337,9 +2341,18 @@ TLSバージョン1.3を使用する接続については<xref linkend="guc-ssl-
         certificate.  This parameter can only be set in the
         <filename>postgresql.conf</filename> file or on the server command line.
         The default is <literal>X25519:prime256v1</literal>.
+-->
+《マッチ度[74.065421]》<acronym>ECDH</acronym>キー交換で使われる曲線の名前を指定します。
+接続するすべてのクライアントがこの設定をサポートしている必要があります。
+コロンで区切られたリストを使用して複数の曲線を指定できます。
+サーバの楕円曲線キーで使用されるのと同じ曲線である必要はありません。
+このパラメータは、<filename>postgresql.conf</filename>ファイルか、サーバのコマンドラインでのみ設定可能です。
+デフォルト値は<literal>X25519:prime256v1</literal>です。
+《機械翻訳》«Specifies the named group to use for <acronym>TLS</acronym> key exchange. It needs to be supported by all clients that connect. Multiple groups can be specified by using a colon-separated list. It does not need to match the key type used by the server certificate. This parameter can only be set in the <filename>postgresql.conf</filename> file or on the server command line. The default is <literal>X25519:prime256v1</literal>.»
        </para>
 
        <para>
+<!--
         <productname>OpenSSL</productname> names for the most common groups
         are:
         <literal>prime256v1</literal> (NIST P-256),
@@ -2349,6 +2362,11 @@ TLSバージョン1.3を使用する接続については<xref linkend="guc-ssl-
         <command>openssl ecparam -list_curves</command>.  Not all of them are
         usable with <acronym>TLS</acronym> though, and many supported group
         names and aliases are omitted.
+-->
+《マッチ度[82.232346]》最も一般的な曲線の<productname>OpenSSL</productname>名は、<literal>prime256v1</literal>（NIST P-256）、<literal>secp384r1</literal>（NIST P-384）、および<literal>secp521r1</literal>（NIST P-521）です。
+<command>openssl ecparam -list_curves</command>コマンドを使用すると、使用可能なグループの不完全なリストを表示することができます。
+ただし、すべてが<acronym>TLS</acronym>で使用できるわけではなく、サポートされているグループ名と別名の多くは省略されています。
+《機械翻訳》«<productname>OpenSSL</productname> names for the most common groups are: <literal>prime256v1</literal> (NIST P-256), <literal>secp384r1</literal> (NIST P-384), <literal>secp521r1</literal> (NIST P-521). An incomplete list of available groups can be shown with the command <command>openssl ecparam -list_curves</command>. Not all of them are usable with <acronym>TLS</acronym> though, and many supported group names and aliases are omitted.»
        </para>
 
        <para>
@@ -5210,15 +5228,21 @@ WALの更新をディスクへ強制するのに使用される方法です。
         A compressed page image will be decompressed during WAL replay.
         The supported methods are <literal>pglz</literal>,
         <literal>lz4</literal> (if <productname>PostgreSQL</productname>
-        was compiled with <option>--with-lz4</option>) and
+        was compiled with <option>&#45;-with-lz4</option>) and
         <literal>zstd</literal> (if <productname>PostgreSQL</productname>
-        was compiled with <option>--with-zstd</option>).
+        was compiled with <option>&#45;-with-zstd</option>).
         The value <literal>on</literal> is a historical spelling of <literal>pglz</literal>.
         The default value is <literal>off</literal>.
         Only superusers and users with the appropriate <literal>SET</literal>
         privilege can change this setting.
 -->
-《》
+《マッチ度[77.751756]》このパラメータは、指定された圧縮方式を使用したWALの圧縮を有効にします。
+有効にすると、<productname>PostgreSQL</productname>サーバはWALに書き込まれる全ページイメージを圧縮します（例えば、<xref linkend="guc-full-page-writes"/>がオンの時やベースバックアップ中です）。
+圧縮されたページイメージはWAL再生中に伸長されます。
+サポートされている方法は<literal>pglz</literal>、<literal>lz4</literal>（<productname>PostgreSQL</productname>が<option>--with-lz4</option>でコンパイルされた場合）および<literal>zstd</literal>（<productname>PostgreSQL</productname>が<option>--with-zstd</option>でコンパイルされた場合）です。
+デフォルト値は<literal>off</literal>です。
+スーパーユーザと適切な<literal>SET</literal>権限を持つユーザのみがこの設定を変更できます。
+《機械翻訳》«This parameter enables compression of WAL using the specified compression method. When enabled, the <productname>PostgreSQL</productname> server compresses full page images written to WAL (e.g. when <xref linkend="guc-full-page-writes"/> is on, during a base backup, etc.). A compressed page image will be decompressed during WAL replay. The supported methods are <literal>pglz</literal>, <literal>lz4</literal> (if <productname>PostgreSQL</productname> was compiled with <option>--with-lz4</option>) and <literal>zstd</literal> (if <productname>PostgreSQL</productname> was compiled with <option>--with-zstd</option>). The value <literal>on</literal> is a historical spelling of <literal>pglz</literal>. The default value is <literal>off</literal>. Only superusers and users with the appropriate <literal>SET</literal> privilege can change this setting.»
        </para>
 
        <para>
@@ -6926,6 +6950,7 @@ WAL要約は、先行するバックアップと新しいバックアップの�
        </term>
        <listitem>
         <para>
+<!--
          Lists the libraries installed in <xref linkend="guc-dynamic-library-path"/>
          that are also trusted for use as logical output plugins by replication
          clients. Any <link linkend="logicaldecoding-example">logical decoding</link>
@@ -6934,8 +6959,11 @@ WAL要約は、先行するバックアップと新しいバックアップの�
          restriction. The default is <literal>'pgoutput, test_decoding'</literal>,
          which are the two logical output plugins included in the standard
          <productname>PostgreSQL</productname> distribution.
+-->
+《機械翻訳》«Lists the libraries installed in <xref linkend="guc-dynamic-library-path"/> that are also trusted for use as logical output plugins by replication clients. Any <link linkend="logicaldecoding-example">logical decoding</link> or <link linkend="protocol-replication">replication</link> requests for other libraries will be refused. All users are subject to this restriction. The default is <literal>'pgoutput, test_decoding'</literal>, which are the two logical output plugins included in the standard <productname>PostgreSQL</productname> distribution.»
         </para>
         <para>
+<!--
          The format is a comma-separated list of library names, where each name
          is interpreted as for the <link linkend="sql-load"><command>LOAD</command></link>
          command (but logical decoding clients must specify a plugin name that
@@ -6943,28 +6971,42 @@ WAL要約は、先行するバックアップと新しいバックアップの�
          variations in case or path structure). Whitespace between entries is
          ignored; surround a library name with double quotes if you need to
          include whitespace or commas in the name.
+-->
+《機械翻訳》«The format is a comma-separated list of library names, where each name is interpreted as for the <link linkend="sql-load"><command>LOAD</command></link> command (but logical decoding clients must specify a plugin name that <emphasis>exactly</emphasis> matches an entry in the list, without variations in case or path structure). Whitespace between entries is ignored; surround a library name with double quotes if you need to include whitespace or commas in the name.»
         </para>
         <para>
+<!--
          It is the responsibility of the server administrator to ensure that
          libraries added to this list do not unintentionally give additional
          privileges to non-superusers when they are loaded into the server.
+-->
+《機械翻訳》«It is the responsibility of the server administrator to ensure that libraries added to this list do not unintentionally give additional privileges to non-superusers when they are loaded into the server.»
         </para>
         <note>
          <para>
+<!--
           When updating the server from a version that does not have the
           <literal>output_plugin_libraries</literal> parameter, the following
           query can help construct the list of plugins that are required by all
           persistent logical replication slots:
+-->
+《機械翻訳》«When updating the server from a version that does not have the <literal>output_plugin_libraries</literal> parameter, the following query can help construct the list of plugins that are required by all persistent logical replication slots:»
 <programlisting>
 SELECT DISTINCT plugin FROM pg_replication_slots WHERE plugin IS NOT NULL;
 </programlisting>
+<!--
           Review the list carefully for safety before adjusting
           <literal>output_plugin_libraries</literal>.
+-->
+《機械翻訳》«Review the list carefully for safety before adjusting <literal>output_plugin_libraries</literal>.»
          </para>
          <para>
+<!--
           The above query can only display plugins which were successfully
           added to replication slots at some point in the past. Newly refused
           requests will appear in the logs with a message similar to
+-->
+《機械翻訳》«The above query can only display plugins which were successfully added to replication slots at some point in the past. Newly refused requests will appear in the logs with a message similar to»
 <programlisting>
 ERROR:  library "..." may not be used as an output plugin
 DETAIL:  The configuration parameter "output_plugin_libraries" (currently 'pgoutput, test_decoding') does not name this library as a trusted output plugin.
@@ -12150,12 +12192,18 @@ log_line_prefix = '%m [%p] %q%u@%d/%a '
        </para>
 
        <para>
+<!--
         This setting only affects log messages printed as a result of
         <xref linkend="guc-log-statement"/>,
         <xref linkend="guc-log-min-duration-statement"/>, and related settings.
         Non-zero values of this setting add some overhead, particularly
         if parameters are sent in binary form, since then conversion to
         text is required.
+-->
+《マッチ度[82.594937]》この設定は、<xref linkend="guc-log-statement"/>、<xref linkend="guc-log-duration"/>および関連設定の結果を表示するログメッセージにのみ影響します。
+ゼロ以外の値の設定は、とりわけパラメータがバイナリ形式で送信される際に多少のオーバーヘッドをもたらします。
+テキストへの変換が必要になるからです。
+《機械翻訳》«This setting only affects log messages printed as a result of <xref linkend="guc-log-statement"/>, <xref linkend="guc-log-min-duration-statement"/>, and related settings. Non-zero values of this setting add some overhead, particularly if parameters are sent in binary form, since then conversion to text is required.»
        </para>
       </listitem>
      </varlistentry>
@@ -19055,7 +19103,11 @@ LOG:  CleanUpLock: deleting: lock(0xb7acd844) id(24688,24696,0,0,0,1)
       </term>
       <listitem>
        <para>
+<!--
         Only has effect if <link linkend="checksums">data checksums</link> are enabled.
+-->
+《マッチ度[63.291139]》<xref linkend="app-initdb-data-checksums"/>が有効の時のみ効果があります。
+《機械翻訳》«Only has effect if <link linkend="checksums">data checksums</link> are enabled.»
        </para>
        <para>
 <!--

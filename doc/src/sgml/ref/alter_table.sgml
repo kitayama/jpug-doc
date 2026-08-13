@@ -1451,6 +1451,7 @@ fillfactor、TOAST、およびautovacuumのストレージパラメータおよ�
     <term><literal>ATTACH PARTITION <replaceable class="parameter">partition_name</replaceable> { FOR VALUES <replaceable class="parameter">partition_bound_spec</replaceable> | DEFAULT }</literal></term>
     <listitem>
      <para>
+<!--
       This form attaches an existing table (which might itself be partitioned)
       as a partition of the target table. The table can be attached
       as a partition for specific values using <literal>FOR VALUES</literal>
@@ -1466,6 +1467,14 @@ fillfactor、TOAST、およびautovacuumのストレージパラメータおよ�
       <xref linkend="sql-createforeigntable"/>.)  For each user-defined
       row-level trigger that exists in the target table, a corresponding one
       is created in the attached table.
+-->
+《マッチ度[72.660358]》この構文は、既存のテーブル（それ自体がパーティションテーブルのこともあります）を対象テーブルのパーティションとして追加します。
+テーブルは、<literal>FOR VALUES</literal>を使って指定の値のパーティションとして、あるいは、<literal>DEFAULT</literal>を使ってデフォルトパーティションとして追加できます。
+対象テーブルの各インデックスについて、対応するインデックスが付加されるテーブルに作られます。
+また、同等のインデックスが既にある場合には、そのインデックスが、<command>ALTER INDEX ATTACH PARTITION</command>が実行された場合と同様に、対象テーブルのインデックスに付加されます。
+既存のテーブルが外部テーブルの場合、今のところ対象テーブルに<literal>UNIQUE</literal>インデックスがあるときにはテーブルを対象テーブルのパーティションとして追加することはできない点に注意してください（<xref linkend="sql-createforeigntable"/>も参照してください）。
+対象テーブルにある各ユーザ定義の行レベルのトリガに対しては、対応するものが付加されるテーブルに作られます。
+《機械翻訳》«This form attaches an existing table (which might itself be partitioned) as a partition of the target table. The table can be attached as a partition for specific values using <literal>FOR VALUES</literal> or as a default partition by using <literal>DEFAULT</literal>. For each index in the target table, if a valid equivalent index already exists in the partition, it will be attached to the target table's index, as if ALTER INDEX ATTACH PARTITION had been executed; otherwise, a new corresponding index will be created. Invalid indexes on the partition are skipped. Note that if the existing table is a foreign table, it is currently not allowed to attach the table as a partition of the target table if there are <literal>UNIQUE</literal> indexes on the target table. (See also <xref linkend="sql-createforeigntable"/>.) For each user-defined row-level trigger that exists in the target table, a corresponding one is created in the attached table.»
      </para>
 
      <para>

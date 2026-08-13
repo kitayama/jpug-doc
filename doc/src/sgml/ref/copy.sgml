@@ -677,11 +677,15 @@ WHERE <replaceable class="parameter">condition</replaceable>
    </para>
 
    <para>
+<!--
     Currently, subqueries and generated columns are not allowed in
     <literal>WHERE</literal> expressions, and the evaluation does not see
     any changes made by the <command>COPY</command> itself (this matters
     when the expression contains calls to <literal>VOLATILE</literal>
     functions).
+-->
+《マッチ度[86.379928]》今のところ、<literal>WHERE</literal>式の中での副問い合わせは認められていませんし、評価は<command>COPY</command>自身により行われた変更を見ることはありません(これは、式が<literal>VOLATILE</literal>関数の呼び出しを含む場合に問題になります)。
+《機械翻訳》«Currently, subqueries and generated columns are not allowed in <literal>WHERE</literal> expressions, and the evaluation does not see any changes made by the <command>COPY</command> itself (this matters when the expression contains calls to <literal>VOLATILE</literal> functions).»
    </para>
 
     </listitem>

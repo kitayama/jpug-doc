@@ -1531,6 +1531,7 @@ Applies to: pgp_sym_encrypt, pgp_pub_encrypt
    <title>ignore-cipher-failure</title>
 
    <para>
+<!--
     Dangerous! Instructs pgcrypto to use an incorrect decryption algorithm
     matching the historical behavior prior to the fix for CVE-2026-14663, by
     completely ignoring failures from the OpenSSL cipher in use. This is
@@ -1540,8 +1541,11 @@ Applies to: pgp_sym_encrypt, pgp_pub_encrypt
     correct decryption key when <literal>ignore-cipher-failure</literal> is
     enabled, so there is no guarantee that the decrypted plaintext actually
     originated from a holder of the key.
+-->
+《機械翻訳》«Dangerous! Instructs pgcrypto to use an incorrect decryption algorithm matching the historical behavior prior to the fix for CVE-2026-14663, by completely ignoring failures from the OpenSSL cipher in use. This is intended only for users who need to recover incorrectly-encrypted messages created when the <literal>cipher-algo</literal> was unavailable under the OpenSSL configuration in use. Such faulty messages do not require the correct decryption key when <literal>ignore-cipher-failure</literal> is enabled, so there is no guarantee that the decrypted plaintext actually originated from a holder of the key.»
    </para>
    <para>
+<!--
     Contrast the case of a message which was correctly encrypted, but the cipher
     that produced it is unavailable under the current <productname>OpenSSL</productname>
     configuration. Recovering such plaintext via <filename>pgcrypto</filename>
@@ -1551,6 +1555,8 @@ Applies to: pgp_sym_encrypt, pgp_pub_encrypt
     of a correctly encrypted message with this option happens to pass PGP
     integrity checks, that result is coincidental and does not make the
     recovered plaintext trustworthy.
+-->
+《機械翻訳》«Contrast the case of a message which was correctly encrypted, but the cipher that produced it is unavailable under the current <productname>OpenSSL</productname> configuration. Recovering such plaintext via <filename>pgcrypto</filename> requires making the actual cipher available to OpenSSL by, for example, enabling the appropriate provider. <literal>ignore-cipher-failure</literal> is not necessary or helpful for that scenario. If <quote>decryption</quote> of a correctly encrypted message with this option happens to pass PGP integrity checks, that result is coincidental and does not make the recovered plaintext trustworthy.»
    </para>
 <literallayout>
 Values: 0, 1
@@ -1972,9 +1978,12 @@ fips_mode() returns boolean
 <literal>fips</literal>は、<productname>OpenSSL</productname>がFIPSモードで動作していることが検出された場合に、これらの関数を無効にします。
      </para>
      <para>
+<!--
       <function>pgp_sym_encrypt()</function> and
       <function>pgp_pub_encrypt()</function> do not use built in crypto so
       they are not affected.
+-->
+《機械翻訳》«<function>pgp_sym_encrypt()</function> and <function>pgp_pub_encrypt()</function> do not use built in crypto so they are not affected.»
      </para>
     </listitem>
    </varlistentry>

@@ -271,8 +271,12 @@ CREATE TYPE <replaceable class="parameter">name</replaceable>
    </para>
 
    <para>
+<!--
     To be able to create a range type, you must have <literal>USAGE</literal>
     privilege on the subtype.
+-->
+《マッチ度[72.727273]》複合型を作成するためには、すべての属性型に対して<literal>USAGE</literal>権限を持たなければなりません。
+《機械翻訳》«To be able to create a range type, you must have <literal>USAGE</literal> privilege on the subtype.»
    </para>
   </refsect2>
 

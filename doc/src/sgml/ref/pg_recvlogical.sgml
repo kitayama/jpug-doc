@@ -702,9 +702,13 @@ LSNが<replaceable>lsn</replaceable>と正確に一致するレコードがあ�
   <title>注釈</title>
 
   <para>
+<!--
    <application>pg_recvlogical</application> will preserve group permissions on
    the output files if group permissions are enabled on the source
    cluster.
+-->
+《マッチ度[85.906040]》<application>pg_recvlogical</application>は、ソースクラスタでグループパーミッションが有効である場合、受け取ったWALファイルのグループパーミッションを維持します。
+《機械翻訳》«<application>pg_recvlogical</application> will preserve group permissions on the output files if group permissions are enabled on the source cluster.»
   </para>
 
  </refsect1>
