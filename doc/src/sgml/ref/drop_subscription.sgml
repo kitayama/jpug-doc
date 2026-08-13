@@ -162,9 +162,8 @@ DROP SUBSCRIPTION [ IF EXISTS ] <replaceable class="parameter">name</replaceable
 その後、<command>DROP SUBSCRIPTION</command>はサブスクリプション自身のレプリケーションスロットを削除しようとしません。
 テーブルの同期化が完了していない場合は、パブリッシャーに接続して、内部で作成されたテーブル同期化スロットを削除することができます。
 パブリッシャーが到達不能な場合は、それらのスロット（およびがまだ存在する場合は）を手動で削除する必要があります。
-それ以外の場合は、WALの予約が継続され、最終的にがいっぱいになる可能性があります。
+それ以外の場合は、WALの予約が継続され、最終的にディスクがいっぱいになる可能性があります。
 <xref linkend="logical-replication-subscription-slot"/>も参照してください。
-ディスクメインスロット
   </para>
 
   <para>

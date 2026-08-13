@@ -27,7 +27,7 @@
    Note: 18.5 was never released, due to a regression discovered
    post-wrap.
 -->
-《機械翻訳》«Note: 18.5 was never released, due to a regression discovered post-wrap.»
+《機械翻訳》ノート:18.5は、ラップ後に発見されたリグレッションのため、リリースされませんでした。
   </para>
 
   <sect2 id="release-18-6-migration">
@@ -48,7 +48,7 @@
     However, the first three security entries below describe configuration
     adjustments and data cleanups that you may need to make after updating.
 -->
-《機械翻訳》«However, the first three security entries below describe configuration adjustments and data cleanups that you may need to make after updating.»
+《機械翻訳》ただし、以下の最初の3つのセキュリティ項目では、更新後にmakeする必要がある設定調整とデータ清掃について説明します。
    </para>
 
    <para>
@@ -57,7 +57,7 @@
     about possibly-corrupt <structfield>reltuples</structfield> values for
     their tables.
 -->
-《機械翻訳》«Also, if you have any GIN indexes, see the changelog entry below about possibly-corrupt <structfield>reltuples</structfield> values for their tables.»
+《機械翻訳》また、GINインデックスがある場合は、以下のエントリの変更ログで破損の可能性<structfield>reltuples</structfield>テーブルの値について確認してください。
    </para>
 
    <para>
@@ -66,7 +66,8 @@
     or <filename>contrib/ltree</filename>, you may need to reindex indexes
     made with those extensions; see the relevant entries below.
 -->
-《機械翻訳》«Also, if you use <filename>contrib/btree_gist</filename> or <filename>contrib/ltree</filename>, you may need to reindex indexes made with those extensions; see the relevant entries below.»
+《機械翻訳》また、<filename>contrib/btree_gist</filename>または<filename>contrib/ltree</filename>を使用する場合は、これらの拡張で作成されたインデックスをインデックス再作成する必要があるかもしれません。
+以下の関連するエントリを参照してください。
    </para>
 
    <para>
@@ -74,7 +75,7 @@
     Also, if you are upgrading from a version earlier than 18.2,
     see <xref linkend="release-18-2"/>.
 -->
-《機械翻訳》«Also, if you are upgrading from a version earlier than 18.2, see <xref linkend="release-18-2"/>.»
+《機械翻訳》また、18.2より前のバージョンからアップグレードする場合は、<xref linkend="release-18-2"/>を参照してください。
    </para>
   </sect2>
 
@@ -108,7 +109,7 @@ Branch: REL_17_STABLE [4fcccea97] 2026-08-10 06:38:18 -0700
       new server parameter <varname>output_plugin_libraries</varname>
       (Jacob Champion)
 -->
-《機械翻訳》«Restrict logical decoding output plugins to the set specified by a new server parameter <varname>output_plugin_libraries</varname> »
+《機械翻訳》ロジカルデコーディング出力プラグインを、新しいサーバパラメータ<varname>output_plugin_libraries</varname>.
 (Jacob Champion)
       <ulink url="&commit_baseurl;2a29b607d">&sect;</ulink>
       <ulink url="&commit_baseurl;82fd68801">&sect;</ulink>
@@ -121,7 +122,8 @@ Branch: REL_17_STABLE [4fcccea97] 2026-08-10 06:38:18 -0700
       locking this down without breaking setups that worked before,
       introduce a whitelist of allowed output plugins.
 -->
-《機械翻訳》«Previously, a replication user could select any loadable library for logical decoding, allowing exploits of various sorts. To allow locking this down without breaking setups that worked before, introduce a whitelist of allowed output plugins.»
+《機械翻訳》これまでは、レプリケーションユーザはロジカルデコーディングのロード可能ライブラリをセレクトすることができ、さまざまな種類のエクスプロイトを可能にしていた。
+前で動作していたセットアップを壊すことなくこのダウンをロックできるようにするために、許可されたアウトプットプラグインのホワイトリストを導入した。
      </para>
 
      <para>
@@ -133,7 +135,8 @@ Branch: REL_17_STABLE [4fcccea97] 2026-08-10 06:38:18 -0700
       Installations that rely on other output plugins must add them
       after updating the server, for example
 -->
-《機械翻訳》«By default, only the output plugins shipped as part of <productname>PostgreSQL</productname> (<literal>pgoutput</literal> and <literal>test_decoding</literal>) are included in <varname>output_plugin_libraries</varname>. Installations that rely on other output plugins must add them after updating the server, for example»
+《機械翻訳》デフォルト別では、パートで出荷された<productname>PostgreSQL</productname><literal>pgoutput</literal>および<literal>test_decoding</literal>の出力プラグインのみが<varname>output_plugin_libraries</varname>に含まれます。
+他の出力プラグインに依存するインストールでは、例のサーバ更新の後にそれらを追加する必要があります。
 <programlisting>
 output_plugin_libraries = 'pgoutput, test_decoding, my_trusted_decoder'
 </programlisting>
@@ -148,7 +151,8 @@ output_plugin_libraries = 'pgoutput, test_decoding, my_trusted_decoder'
       Make necessary additions to the new cluster's setting before
       performing <application>pg_upgrade</application>.
 -->
-《機械翻訳》«Additionally, <command>pg_upgrade --check</command> will fail if the <varname>output_plugin_libraries</varname> parameter on the new cluster does not permit the plugins of logical replication slots on the old cluster, when migrating from versions 17 and later. Make necessary additions to the new cluster's setting before performing <application>pg_upgrade</application>.»
+《機械翻訳》さらに、<command>pg_upgrade--チェック</command>は、バージョン17以降から移行する場合、<varname>output_plugin_libraries</varname>新しいクラスタのパラメータが古いクラスタの論理レプリケーションスロットのプラグインを許可しない場合に失敗します。
+makeは、新しいクラスタの設定前に必要な追加を実行します<application>pg_upgrade</application>。
      </para>
 
      <para>
@@ -158,7 +162,7 @@ output_plugin_libraries = 'pgoutput, test_decoding, my_trusted_decoder'
       for reporting this problem.
       (CVE-2026-6471)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Vladimir Tokarev and Yu Kunpeng for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたVladimir TokarevとYu Kunpengに感謝します。
 (CVE-2026-6471)
      </para>
     </listitem>
@@ -187,7 +191,7 @@ Branch: REL_14_STABLE [e2c48c81f] 2026-08-10 06:38:37 -0700
       Fix <filename>contrib/pgcrypto</filename>'s PGP encryption to detect
       unsupported ciphers (Daniel Gustafsson)
 -->
-《機械翻訳》«Fix <filename>contrib/pgcrypto</filename>'s PGP encryption to detect unsupported ciphers »
+《機械翻訳》サポートされていない暗号を検出するために、<filename>contrib/pgcrypto</filename>のPGP暗号化を修正。
 (Daniel Gustafsson)
       <ulink url="&commit_baseurl;fe32b10fc">&sect;</ulink>
       <ulink url="&commit_baseurl;4c5128ca0">&sect;</ulink>
@@ -204,7 +208,8 @@ Branch: REL_14_STABLE [e2c48c81f] 2026-08-10 06:38:37 -0700
       cipher algorithms (cipher-algo=blowfish/bf, twofish, cast5, or
       3des).
 -->
-《機械翻訳》«Previously, if OpenSSL rejected the requested cipher (for example, because it is running in FIPS mode, or the legacy provider hasn't been loaded), <application>pgcrypto</application> failed to notice the failure and simply XOR'd the non-encrypted block with the plaintext, rendering the <quote>encryption</quote> trivially breakable. This will typically occur with deprecated or non-FIPS cipher algorithms (cipher-algo=blowfish/bf, twofish, cast5, or 3des).»
+《機械翻訳》以前は、OpenSSLが要求された暗号を拒否した場合（FIPS例で実行されているか、レガシープロバイダがロードされていないため、モード用、<application>pgcrypto</application>失敗に気づかず、暗号化されていないブロックとプレーンテキストを単純にXORして、<quote>暗号化</quote>を些細な解読可能なものにしていました。
+これは通常、非推奨またはFIPS以外の暗号アルゴリズム(cipher-algo=blowfish/bf、twofish、キャスト5、または3 des）で発生します。
      </para>
 
      <para>
@@ -219,7 +224,9 @@ Branch: REL_14_STABLE [e2c48c81f] 2026-08-10 06:38:37 -0700
       their previous behavior, allowing the faulty encryption wrapper to
       be stripped off:
 -->
-《機械翻訳》«By default, <application>pgcrypto</application> will now fail to decrypt any messages that were affected in this way. To allow retrieval of such data, a new option <literal>ignore-cipher-failure</literal> has been added to <function>pgp_pub_decrypt()</function> and <function>pgp_sym_decrypt()</function>. Setting <literal>ignore-cipher-failure=1</literal> will restore their previous behavior, allowing the faulty encryption wrapper to be stripped off:»
+《機械翻訳》デフォルトにより、<application>pgcrypto</application>はこの方法で影響を受けたメッセージの復号化に失敗するようになりました。
+このようなデータを取得できるようにするために、新しいオプション<literal>ignore-cipher-failure</literal>が<function>pgp_pub_decrypt()</function>と<function>pgp_sym_decrypt()</function>。
+Setting <literal>ignore-cipher-failure=1</literal>は以前の動作をリストアし、欠陥のある暗号化ラッパーをオフから取り除くことができますに追加されました。
 <programlisting>
 pgp_sym_decrypt(encrypted_column, <replaceable>any key</replaceable>, 'ignore-cipher-failure=1')
 </programlisting>
@@ -231,7 +238,10 @@ pgp_sym_decrypt(encrypted_column, <replaceable>any key</replaceable>, 'ignore-ci
       algorithms is not the same, this approach will not work. See the
       documentation for <literal>ignore-cipher-failure</literal>.
 -->
-《機械翻訳》«Once the affected messages are identified and stripped of their wrappers, they can then be re-encrypted with a modern algorithm. It is important however that the behavior of OpenSSL be the same as it was when the faulty messages were created: if the set of unsupported algorithms is not the same, this approach will not work. See the documentation for <literal>ignore-cipher-failure</literal>.»
+《機械翻訳》影響を受けたメッセージが特定され、ラッパーが取り除かれると、最新のアルゴリズムで再暗号化できます。
+ただし、OpenSSLの動作が、欠陥のあるメッセージが作成されたときと同じであることが重要です。
+サポートされていないアルゴリズムのセットが同じでない場合、このアプローチは機能しません。
+については、文書を参照してください<literal>ignore-cipher-failure</literal>。
      </para>
 
      <para>
@@ -241,7 +251,7 @@ pgp_sym_decrypt(encrypted_column, <replaceable>any key</replaceable>, 'ignore-ci
       for reporting this problem.
       (CVE-2026-14663)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Shishir Sharma for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたShishir Sharmaに感謝します。
 (CVE-2026-14663)
      </para>
     </listitem>
@@ -271,7 +281,8 @@ Branch: REL_14_STABLE [7215c7e96] 2026-08-10 06:38:36 -0700
       the <command>COPY</command> fails before
       sending <literal>PGRES_COPY_IN</literal> (Tom Lane)
 -->
-《機械翻訳》«Fix <application>psql</application> to skip in-line data following a scripted <command>COPY ... FROM STDIN</command> command, even if the <command>COPY</command> fails before sending <literal>PGRES_COPY_IN</literal> »
+《機械翻訳》<command>COPY</command>が<application>psql</application>の送信に失敗した場合でも、スクリプト化された<command>COPY ... FROM STDIN</command>データに従って、直線内のコピーコマンドに前を修正する。
+<literal>PGRES_COPY_IN</literal>
 (Tom Lane)
       <ulink url="&commit_baseurl;29921259e">&sect;</ulink>
       <ulink url="&commit_baseurl;900894d35">&sect;</ulink>
@@ -289,7 +300,9 @@ Branch: REL_14_STABLE [7215c7e96] 2026-08-10 06:38:36 -0700
       and to skip data on its own authority if the server doesn't respond
       with <literal>PGRES_COPY_IN</literal>.
 -->
-《機械翻訳》«Previously, if a <literal>COPY</literal> command failed at startup (for instance, because the target table doesn't exist) <application>psql</application> would not realize that and would proceed to read the following in-line data as SQL commands. In the best case that's wrong and in the worst case it's a SQL-injection hazard. Teach <application>psql</application> to recognize syntactically-valid <command>COPY ... FROM STDIN</command> commands and to skip data on its own authority if the server doesn't respond with <literal>PGRES_COPY_IN</literal>.»
+《機械翻訳》これまでは、<literal>COPY</literal>コマンドがスタートアップで失敗した場合インスタンスにはターゲットテーブルが存在しないため<application>psql</application>はそれを認識せず、以下の直線データ内をSQLコマンドとして読み進めていました。
+ベストケースでは間違いであり、最悪のケースではSQLインジェクションハザードです。
+<application>psql</application>に構文的に有効な<command>コピー.FROM STDIN</command>コマンドを認識させ、サーバが<literal>PGRES_COPY_IN</literal>で応答しない場合はスキップデータを権限上でにするように教えました。
      </para>
 
      <para>
@@ -300,7 +313,8 @@ Branch: REL_14_STABLE [7215c7e96] 2026-08-10 06:38:36 -0700
       a <literal>\.</literal> data terminator line after each such
       command.
 -->
-《機械翻訳》«While this fix is unlikely to affect any production SQL scripts, test scripts might intentionally exercise failing <command>COPY ... FROM STDIN</command> commands. Those will need to gain a <literal>\.</literal> data terminator line after each such command.»
+《機械翻訳》この修正が稼働のSQLスクリプトに影響を与える可能性は低いですが、テストスクリプトが意図的に練習で失敗する<command>コピー.FROM STDIN</command>コマンドを実行する可能性があります。
+これらのスクリプトは、このようなコマンドの後に<literal>\.</literal>データターミネータ直線を取得する必要があります。
      </para>
 
      <para>
@@ -310,7 +324,7 @@ Branch: REL_14_STABLE [7215c7e96] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-6464)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Alexander Lakhin for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたAlexander Lakhinに感謝します。
 (CVE-2026-6464)
      </para>
     </listitem>
@@ -332,7 +346,7 @@ Branch: REL_14_STABLE [1f49beef2] 2026-08-10 06:38:36 -0700
       running <command>EXECUTE</command> or <command>FETCH</command>
       (Robert Haas)
 -->
-《機械翻訳》«Cross-check the output row type of a portal running <command>EXECUTE</command> or <command>FETCH</command> »
+《機械翻訳》クロス-チェック<command>EXECUTE</command>または<command>FETCH</command>.を実行する行の出力ポータルタイプ。
 (Robert Haas)
       <ulink url="&commit_baseurl;37b8f3b0e">&sect;</ulink>
      </para>
@@ -345,7 +359,9 @@ Branch: REL_14_STABLE [1f49beef2] 2026-08-10 06:38:36 -0700
       possible to make the declared row types of the two portals diverge,
       leading to server memory disclosure and arbitrary code execution.
 -->
-《機械翻訳》«<command>EXECUTE</command> and <command>FETCH</command> use two portals: an outer one for the statement itself, and an inner one running the query being executed on its behalf. It was previously possible to make the declared row types of the two portals diverge, leading to server memory disclosure and arbitrary code execution.»
+《機械翻訳》<command>EXECUTE</command>および<command>FETCH</command> 2つのポータルを使用します。
+1つはステートメント自分自身用の外部ポータルで、もう1つは問い合わせを実行する内部ポータルです。
+以前は、2つのポータルの宣言された行タイプをmakeすることが可能であったため、サーバメモリの開示と任意のコードの実行につながりました。
      </para>
 
      <para>
@@ -356,7 +372,7 @@ Branch: REL_14_STABLE [1f49beef2] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-16239)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) and Peter Geoghegan for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたBen Morris（Claude and Anthropic Researchと共同で）とPeter Geogheganに感謝します。
 (CVE-2026-16239)
      </para>
     </listitem>
@@ -378,7 +394,7 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       Fix buffer overrun with long time zone abbreviation in
       <function>to_char()</function> (Tom Lane)
 -->
-《機械翻訳》«Fix buffer overrun with long time zone abbreviation in <function>to_char()</function> »
+《機械翻訳》<function>to_char()</function>では、バッファオーバーランを長いタイムゾーン省略形で固定します。
 (Tom Lane)
       <ulink url="&commit_baseurl;4fafe2380">&sect;</ulink>
      </para>
@@ -388,7 +404,7 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       This can easily crash the server, and exploits leading to arbitrary
       code execution have been reported.
 -->
-《機械翻訳》«This can easily crash the server, and exploits leading to arbitrary code execution have been reported.»
+《機械翻訳》これは容易にサーバをクラッシュすることができ、恣意的なコードの実行につながるエクスプロイトが報告されている。
      </para>
 
      <para>
@@ -400,7 +416,8 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       for reporting this problem.
       (CVE-2026-14669)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael, Amjad Shahzad, Tan Zhen of AntAISecurityLab, Tomer Fichman, Zheng Yu, Amy Burnett (OpenAI Codex Security), Rick de Jager, Heewon Song, Sylvie Mayer, Aleksander Alekseev, and Hillai Ben Sasson for reporting this problem. (CVE-2026-14669)»
+《機械翻訳》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたHcamael、Amjad Shahzad、AntAISecurityLabのTan Zhen、Tomer Fichman、Zheng Yu、Amy Burnett（OpenAI Codexセキュリティ）、Rick de Jager、Heewon Song、Sylvie Mayer、Aleksander Alekseev、およびHillai Ben Sassonに感謝します。
+CVE-2026-14669。
      </para>
     </listitem>
 
@@ -419,7 +436,7 @@ Branch: REL_14_STABLE [890327639] 2026-08-10 06:38:35 -0700
 <!--
       Fix buffer overrun in regexp match/split functions (Masahiko Sawada)
 -->
-《機械翻訳》«Fix buffer overrun in regexp match/split functions »
+《機械翻訳》regexpバッファオーバーラン/split関数のマッチを修正しました。
 (Masahiko Sawada)
       <ulink url="&commit_baseurl;b7e5c3f63">&sect;</ulink>
      </para>
@@ -429,7 +446,7 @@ Branch: REL_14_STABLE [890327639] 2026-08-10 06:38:35 -0700
       If passed invalidly-encoded data, these functions could write past
       the end of their conversion buffer.
 -->
-《機械翻訳》«If passed invalidly-encoded data, these functions could write past the end of their conversion buffer.»
+《機械翻訳》不正にエンコードされたデータが渡された場合、これらの関数は変換バッファの末尾を超えて書き込む可能性があります。
      </para>
 
      <para>
@@ -439,7 +456,7 @@ Branch: REL_14_STABLE [890327639] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14664)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Francesco Verardi for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたFrancesco Verardiに感謝します。
 (CVE-2026-14664)
      </para>
     </listitem>
@@ -460,7 +477,7 @@ Branch: REL_14_STABLE [42d333a78] 2026-08-10 06:38:36 -0700
       Harden the <function>ascii()</function> function against invalid
       input (Michael Paquier)
 -->
-《機械翻訳》«Harden the <function>ascii()</function> function against invalid input »
+《機械翻訳》無効な入力に対して<function>ascii()</function>関数を固定します。
 (Michael Paquier)
       <ulink url="&commit_baseurl;08e812c02">&sect;</ulink>
      </para>
@@ -471,7 +488,8 @@ Branch: REL_14_STABLE [42d333a78] 2026-08-10 06:38:36 -0700
       to read and return a few bytes of data that it shouldn't.  In
       assert-enabled builds, its assertions could be triggered too.
 -->
-《機械翻訳》«By supplying invalidly-encoded input, this function could be coaxed to read and return a few bytes of data that it shouldn't. In assert-enabled builds, its assertions could be triggered too.»
+《機械翻訳》無効にエンコードされた入力を提供することで、この関数は、読み取るべきではない結果の数バイトを読み取り、データするように誘導することができます。
+assertが有効なビルドでは、そのアサーションもトリガされる可能性があります。
      </para>
 
      <para>
@@ -481,7 +499,7 @@ Branch: REL_14_STABLE [42d333a78] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-18024)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたHcamaelに感謝します。
 (CVE-2026-18024)
      </para>
     </listitem>
@@ -500,7 +518,7 @@ Branch: REL_18_STABLE [8d428c6e6] 2026-08-10 06:38:12 -0700
       in <function>pg_restore_attribute_stats()</function>
       (OpenAI Security Research Team)
 -->
-《機械翻訳》«Fix multirange type handling in <function>pg_restore_attribute_stats()</function> »
+《機械翻訳》複数範囲のタイプハンドリングを<function>pg_restore_attribute_stats()</function>で修正します。
 (OpenAI Security Research Team)
       <ulink url="&commit_baseurl;08454e8b2">&sect;</ulink>
       <ulink url="&commit_baseurl;8d428c6e6">&sect;</ulink>
@@ -513,7 +531,8 @@ Branch: REL_18_STABLE [8d428c6e6] 2026-08-10 06:38:12 -0700
       for the bounds histogram, but it was wrong for all the other
       statistics kinds.
 -->
-《機械翻訳》«<function>pg_restore_attribute_stats()</function> treated multirange types just like their underlying range type. This works correctly for the bounds histogram, but it was wrong for all the other statistics kinds.»
+《機械翻訳》<function>pg_restore_attribute_stats()</function>は基底の範囲型と同じように多重範囲型を扱いました。
+これは境界のヒストグラムでは正しく動作しますが、他のすべての種類の間違いでは統計処理でした。
      </para>
 
      <para>
@@ -523,7 +542,7 @@ Branch: REL_18_STABLE [8d428c6e6] 2026-08-10 06:38:12 -0700
       for reporting this problem.
       (CVE-2026-16238)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Amy Burnett (OpenAI Codex Security) for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたAmy Burnett（OpenAI Codex Security）に感謝します。
 (CVE-2026-16238)
      </para>
     </listitem>
@@ -544,7 +563,7 @@ Branch: REL_14_STABLE [59205c7e9] 2026-08-10 06:38:35 -0700
       Make <function>scalarineqsel()</function> check that a constant it
       expects to be of type <type>tid</type> actually is (Tom Lane)
 -->
-《機械翻訳》«Make <function>scalarineqsel()</function> check that a constant it expects to be of type <type>tid</type> actually is »
+《機械翻訳》make <function>scalarineqsel()</function>タイプ<type>TID</type>であると予想されるチェックが実際にある定数。
 (Tom Lane)
       <ulink url="&commit_baseurl;a2cb5a1cf">&sect;</ulink>
      </para>
@@ -555,7 +574,7 @@ Branch: REL_14_STABLE [59205c7e9] 2026-08-10 06:38:35 -0700
       this estimator, but a maliciously-constructed operator could violate
       it, leading to a crash or server memory disclosure.
 -->
-《機械翻訳》«This expectation will hold for all the built-in operators that use this estimator, but a maliciously-constructed operator could violate it, leading to a crash or server memory disclosure.»
+《機械翻訳》この期待は、この推定量を使用するすべての組み込み演算子に当てはまるが、悪意を持って構築された演算子はそれに違反し、クラッシュやサーバメモリの開示につながる可能性がある。
      </para>
 
      <para>
@@ -565,7 +584,7 @@ Branch: REL_14_STABLE [59205c7e9] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14668)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたHcamaelに感謝します。
 (CVE-2026-14668)
      </para>
     </listitem>
@@ -594,7 +613,7 @@ Branch: REL_14_STABLE [1e3014f37] 2026-08-10 06:38:34 -0700
       overly long values (both individual lexemes and total vector/query
       length) (Tom Lane)
 -->
-《機械翻訳》«Harden <type>tsvector</type> and <type>tsquery</type> code against overly long values (both individual lexemes and total vector/query length) »
+《機械翻訳》過度に長い値<type>個々のコードとベクタ/問い合わせ語彙素の合計の両方</type>に対して長さtsvectorと<type>tsquery</type>を強化します。
 (Tom Lane)
       <ulink url="&commit_baseurl;e25135057">&sect;</ulink>
       <ulink url="&commit_baseurl;dddc8a69f">&sect;</ulink>
@@ -604,7 +623,7 @@ Branch: REL_14_STABLE [1e3014f37] 2026-08-10 06:38:34 -0700
 <!--
       The documented limits were not enforced in all code paths.
 -->
-《機械翻訳》«The documented limits were not enforced in all code paths.»
+《機械翻訳》文書化された制限は、コードのすべての経路で実施されたわけではありません。
      </para>
 
      <para>
@@ -614,7 +633,7 @@ Branch: REL_14_STABLE [1e3014f37] 2026-08-10 06:38:34 -0700
       for reporting these problems.
       (CVE-2026-14662)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Yuhang Wu, Zhenpeng Lin, Zheng Yu, and Hcamael for reporting these problems. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYuhang Wu、Zhenpeng Lin、Zheng Yu、Hcamaelに感謝します。
 (CVE-2026-14662)
      </para>
     </listitem>
@@ -643,7 +662,7 @@ Branch: REL_14_STABLE [c7f462838] 2026-08-10 06:38:35 -0700
       deal with more than <literal>FUNC_MAX_ARGS</literal> function
       arguments (Tom Lane)
 -->
-《機械翻訳》«Fix various places that mistakenly assumed they would not have to deal with more than <literal>FUNC_MAX_ARGS</literal> function arguments »
+《機械翻訳》<literal>FUNC_MAX_ARGS</literal>関数の議論以上のものを扱う必要がないと誤って想定していたさまざまな場所を修正します。
 (Tom Lane)
       <ulink url="&commit_baseurl;7f0e1aac7">&sect;</ulink>
       <ulink url="&commit_baseurl;2a03f21da">&sect;</ulink>
@@ -655,7 +674,7 @@ Branch: REL_14_STABLE [c7f462838] 2026-08-10 06:38:35 -0700
       aggregate function is <literal>FUNC_MAX_ARGS - 1</literal>, but the
       parser failed to enforce that, creating hazards downstream.
 -->
-《機械翻訳》«Notably, the server's actual limit on the number of arguments to an aggregate function is <literal>FUNC_MAX_ARGS - 1</literal>, but the parser failed to enforce that, creating hazards downstream.»
+《機械翻訳》注目すべきことに、サーバの集約関数への引数の数に対する実際の制限は<literal>FUNC_MAX_ARGS - 1</literal>であるが、パーサはそれを強制することに失敗し、下流に危険をもたらした。
      </para>
 
      <para>
@@ -665,7 +684,7 @@ Branch: REL_14_STABLE [c7f462838] 2026-08-10 06:38:35 -0700
       for reporting these problems.
       (CVE-2026-14679)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Zheng Yu, ylwangtju, and Masahiko Sawada for reporting these problems. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたZheng Yu、ylwangtju、Masahiko Sawadaに感謝します。
 (CVE-2026-14679)
      </para>
     </listitem>
@@ -693,7 +712,7 @@ Branch: REL_14_STABLE [913fe0c31] 2026-08-10 06:38:35 -0700
       Reject calls from SQL to functions that take or return
       type <type>internal</type> (Tom Lane)
 -->
-《機械翻訳》«Reject calls from SQL to functions that take or return type <type>internal</type> »
+《機械翻訳》SQLから、または戻り値の型<type>内部</type>を取る機能へのコールを拒否します。
 (Tom Lane)
       <ulink url="&commit_baseurl;54649de65">&sect;</ulink>
       <ulink url="&commit_baseurl;722695db1">&sect;</ulink>
@@ -704,7 +723,7 @@ Branch: REL_14_STABLE [913fe0c31] 2026-08-10 06:38:35 -0700
       The existing defenses against doing this have been shown to be
       insufficient, so add more explicit checks.
 -->
-《機械翻訳》«The existing defenses against doing this have been shown to be insufficient, so add more explicit checks.»
+《機械翻訳》これを行うことに対する既存の防御策は不十分であることが示されているため、より明示的なチェックを追加します。
      </para>
 
      <para>
@@ -714,7 +733,7 @@ Branch: REL_14_STABLE [913fe0c31] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14680)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Amy Burnett (OpenAI Codex Security) for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたAmy Burnett（OpenAI Codex Security）に感謝します。
 (CVE-2026-14680)
      </para>
     </listitem>
@@ -735,7 +754,7 @@ Branch: REL_14_STABLE [70a3b4e18] 2026-08-10 06:38:35 -0700
       Preserve the ownership of extended statistics objects when they are
       rebuilt by <command>ALTER TABLE</command> (Masahiko Sawada)
 -->
-《機械翻訳》«Preserve the ownership of extended statistics objects when they are rebuilt by <command>ALTER TABLE</command> »
+《機械翻訳》拡張統計情報オブジェクトが<command>ALTER TABLE</command>によって再建された場合、その所有権を保持します。
 (Masahiko Sawada)
       <ulink url="&commit_baseurl;a1fa24127">&sect;</ulink>
      </para>
@@ -745,7 +764,7 @@ Branch: REL_14_STABLE [70a3b4e18] 2026-08-10 06:38:35 -0700
       Previously, the role running <command>ALTER TABLE</command> gained
       ownership of such objects, but that seems inappropriate.
 -->
-《機械翻訳》«Previously, the role running <command>ALTER TABLE</command> gained ownership of such objects, but that seems inappropriate.»
+《機械翻訳》以前は、ロールランニング<command>ALTER TABLE</command>がそのようなオブジェクトのオーナーシップを取得しましたが、それは不適切なようです。
      </para>
 
      <para>
@@ -755,7 +774,7 @@ Branch: REL_14_STABLE [70a3b4e18] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-6469)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Noah Misch for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたNoah Mischに感謝します。
 (CVE-2026-6469)
      </para>
     </listitem>
@@ -776,7 +795,7 @@ Branch: REL_14_STABLE [967acab87] 2026-08-10 06:38:35 -0700
       When deparsing an <function>EXTRACT()</function> function call,
       quote the field name if needed (Nathan Bossart)
 -->
-《機械翻訳》«When deparsing an <function>EXTRACT()</function> function call, quote the field name if needed »
+《機械翻訳》<function>EXTRACT()</function>関数呼び出しを構文解析する際には、必要に応じてフィールド名前を引用してください。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;0ddd9098a">&sect;</ulink>
      </para>
@@ -789,7 +808,8 @@ Branch: REL_14_STABLE [967acab87] 2026-08-10 06:38:35 -0700
       during <application>pg_dump</application>), the string body was
       regurgitated verbatim, allowing SQL injection.
 -->
-《機械翻訳》«The parser accepts any string literal as a field name in <function>EXTRACT()</function>, deferring validation to execution. If the call is stored and deparsed (for example during <application>pg_dump</application>), the string body was regurgitated verbatim, allowing SQL injection.»
+《機械翻訳》パーサは、文字列リテラルをフィールド名前として受け入れます<function>EXTRACT()</function>バリデーションの実行を延期します。
+呼び出しが保存され、<application>pg_dump</application>の間に例に対して解析解除されると、文字列本体が逐語的に戻され、SQLインジェクションが可能になります。
      </para>
 
      <para>
@@ -799,7 +819,7 @@ Branch: REL_14_STABLE [967acab87] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-15741)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたBen Morris（Claude and Anthropic Researchと共同で）に感謝します。
 (CVE-2026-15741)
      </para>
     </listitem>
@@ -834,7 +854,7 @@ Branch: REL_14_STABLE [1a358b8f2] 2026-08-10 06:38:36 -0700
       Check for <literal>USAGE</literal> privilege on data types in places
       that formerly failed to check that (Nathan Bossart)
 -->
-《機械翻訳》«Check for <literal>USAGE</literal> privilege on data types in places that formerly failed to check that »
+《機械翻訳》チェック、以前はそれをチェックすることができなかった場所の<literal>USAGE</literal>データの権限タイプのために。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;2e91f8548">&sect;</ulink>
       <ulink url="&commit_baseurl;57f59ca1d">&sect;</ulink>
@@ -850,7 +870,9 @@ Branch: REL_14_STABLE [1a358b8f2] 2026-08-10 06:38:36 -0700
       objects depending on the type, possibly blocking the type's owner
       from changing the type later.
 -->
-《機械翻訳》«<command>CREATE TYPE AS RANGE</command> did not check, nor did <command>ALTER TABLE OF</command>, nor did commands that create stored expressions. These omissions allowed roles without <literal>USAGE</literal> privilege to nonetheless create objects depending on the type, possibly blocking the type's owner from changing the type later.»
+《機械翻訳》<command>CREATEタイプASレンジ</command>はチェックを行わず、<command>ALTERテーブルOF</command>も行わず、格納された式を作成するコマンドも行いませんでした。
+これらの省略により、<literal>USAGE</literal>権限を持たないロールでもタイプに依存するオブジェクトを作成することができました。
+タイプの所有者であるブロッキングは後でタイプを変更する可能性がありました。
      </para>
 
      <para>
@@ -860,7 +882,7 @@ Branch: REL_14_STABLE [1a358b8f2] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-6470)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Jingzhou Fu for reporting this problem.»
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたJingzhou Fuに感謝します。
  (CVE-2026-6470)
      </para>
     </listitem>
@@ -881,7 +903,7 @@ Branch: REL_14_STABLE [f4174aa84] 2026-08-10 06:38:36 -0700
       Invalidate role-dependent cached plans after role changes
       (Ilya Staroverov, Shinya Kato, Nathan Bossart)
 -->
-《機械翻訳》«Invalidate role-dependent cached plans after role changes »
+《機械翻訳》ロールの変更後に、ロールに依存するキャッシュ済計画を無効化します。
 (Ilya Staroverov, Shinya Kato, Nathan Bossart)
       <ulink url="&commit_baseurl;0b12f56bf">&sect;</ulink>
      </para>
@@ -893,7 +915,7 @@ Branch: REL_14_STABLE [f4174aa84] 2026-08-10 06:38:36 -0700
       previously we'd continue to use cached plans that were made
       according to the old state of affairs.
 -->
-《機械翻訳》«Role membership, role attribute, and database ownership changes may impact the expected behavior of row-level security policies, but previously we'd continue to use cached plans that were made according to the old state of affairs.»
+《機械翻訳》ロールメンバシップ、ロール属性、データベースの所有者の変更は、行-レベルセキュリティポリシーの期待される動作をインパクトする可能性がありますが、以前は、古い状況に従って作成されたキャッシュされたプランを引き続き使用していました。
      </para>
 
      <para>
@@ -903,7 +925,7 @@ Branch: REL_14_STABLE [f4174aa84] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-14666)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ilya Staroverov and Shinya Kato for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたIlya StaroverovとShinya Katoに感謝します。
 (CVE-2026-14666)
      </para>
     </listitem>
@@ -920,7 +942,7 @@ Branch: REL_17_STABLE [067a64d40] 2026-08-10 06:38:18 -0700
 <!--
       Reject GSSEncRequest after direct SSL connection (Michael Paquier)
 -->
-《機械翻訳》«Reject GSSEncRequest after direct SSL connection »
+《機械翻訳》直接SSLコネクション後にGSSEncRequestを拒否します。
 (Michael Paquier)
       <ulink url="&commit_baseurl;203a48209">&sect;</ulink>
      </para>
@@ -934,7 +956,9 @@ Branch: REL_17_STABLE [067a64d40] 2026-08-10 06:38:18 -0700
       Thus, a <filename>pg_hba</filename> policy intending to disallow TLS
       would not be enforced correctly.
 -->
-《機械翻訳》«After establishing a TLS-encrypted connection, the server would still accept a request for GSSAPI encryption. If that succeeded, the connection would proceed using TLS encryption, but it would look like a GSS connection to the <filename>pg_hba</filename> rules. Thus, a <filename>pg_hba</filename> policy intending to disallow TLS would not be enforced correctly.»
+《機械翻訳》TLSで暗号化されたコネクションを確立した後も、サーバはGSSAPI暗号化用のリクエストを受け入れます。
+それが成功した場合、コネクションはTLS暗号化を使用して処理を進めますが、<filename>pg_hba</filename>ルールに対してGSSコネクションのように見えます。
+したがって、TLSを許可しない<filename>pg_hba</filename>ポリシーは正しく適用されません。
      </para>
 
      <para>
@@ -944,7 +968,7 @@ Branch: REL_17_STABLE [067a64d40] 2026-08-10 06:38:18 -0700
       for reporting this problem.
       (CVE-2026-14681)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks p4p3r for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたp4p3rに感謝します。
 (CVE-2026-14681)
      </para>
     </listitem>
@@ -962,7 +986,7 @@ Branch: REL_16_STABLE [fadbe882d] 2026-08-10 06:38:24 -0700
 <!--
       Make mock SCRAM authentication secrets more plausible (Nathan Bossart)
 -->
-《機械翻訳》«Make mock SCRAM authentication secrets more plausible »
+《機械翻訳》makeはスクラム認証の秘密をよりもっともらしく模倣している。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;822143c4d">&sect;</ulink>
      </para>
@@ -978,7 +1002,9 @@ Branch: REL_16_STABLE [fadbe882d] 2026-08-10 06:38:24 -0700
       instead, to make the mock secret look more like the installation's
       real secrets.
 -->
-《機械翻訳》«If a SCRAM login is attempted against a role that doesn't exist or doesn't have a SCRAM secret, we generate a mock secret and carry out the authentication handshake anyway, to avoid revealing these facts to an attacker. But the mock secret was made with a fixed iteration count, which in itself can be an observable response discrepancy. Use the configuration setting <varname>scram_iterations</varname> instead, to make the mock secret look more like the installation's real secrets.»
+《機械翻訳》もしSCRAMログインが存在しないかSCRAM秘密を持っていないロールに対して試みられるなら、攻撃者にこれらの事実を明らかにすることを避けるために、模擬秘密を生成し、とにかく認証ハンドシェイクを実行します。
+しかし、模擬秘密は固定反復カウントで作られました、自分自身では観測可能な回答不一致である可能性があります。
+設定設定を使用してください<varname>scram_iterations</varname>代わりに、makeするために模擬秘密はインストールの本当の秘密のように見えます。
      </para>
 
      <para>
@@ -988,7 +1014,7 @@ Branch: REL_16_STABLE [fadbe882d] 2026-08-10 06:38:24 -0700
       for reporting this problem.
       (CVE-2026-14672)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Radim Marek for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたRadim Marekに感謝します。
 (CVE-2026-14672)
      </para>
     </listitem>
@@ -1010,7 +1036,7 @@ Branch: REL_14_STABLE [74c59d062] 2026-08-10 06:38:35 -0700
       applications caused by invalid <type>bytea</type> data received from
       the server (Michael Paquier)
 -->
-《機械翻訳》«Fix out-of-bounds writes in <application>ecpg</application> applications caused by invalid <type>bytea</type> data received from the server »
+《機械翻訳》サーバから受信した無効な<type>bytea</type>データによって引き起こされた<application>ecpg</application>アプリケーションの範囲外の書き込みを修正しました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;a14ba29b1">&sect;</ulink>
      </para>
@@ -1022,7 +1048,8 @@ Branch: REL_14_STABLE [74c59d062] 2026-08-10 06:38:35 -0700
       A broken or malicious server might send a string shorter than 2
       bytes, resulting in memory clobber in the application.
 -->
-《機械翻訳》«<application>ecpg</application> assumed without checking that any <type>bytea</type> value must begin with <literal>\x</literal>. A broken or malicious server might send a string shorter than 2 bytes, resulting in memory clobber in the application.»
+《機械翻訳》<application>ecpg</application>は、<type>bytea</type>値が<literal>\x</literal>で始まらなければならないことをチェックせずに想定されます。
+破損した、または悪意のあるサーバは2バイトより短い文字列を送信する可能性があり、その結果、アプリケーションのメモリが破壊されます。
      </para>
 
      <para>
@@ -1032,7 +1059,7 @@ Branch: REL_14_STABLE [74c59d062] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-16241)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks ylwangtju for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたylwangtjuに感謝します。
 (CVE-2026-16241)
      </para>
     </listitem>
@@ -1054,7 +1081,7 @@ Branch: REL_14_STABLE [2006fca40] 2026-08-10 06:38:37 -0700
       of <application>psql</application>'s <command>\unrestrict</command>
       command (Nathan Bossart)
 -->
-《機械翻訳》«Do not do backquote expansion on the argument of <application>psql</application>'s <command>\unrestrict</command> command »
+《機械翻訳》<application>psql</application>の<command>\unrestrict</command>コマンドの引数で逆引用符拡張をしないでください。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;71ca694c7">&sect;</ulink>
      </para>
@@ -1067,7 +1094,8 @@ Branch: REL_14_STABLE [2006fca40] 2026-08-10 06:38:37 -0700
       running <application>psql</application>, the exact scenario that
       CVE-2025-8714 intended to prevent.
 -->
-《機械翻訳》«This oversight in the fix for CVE-2025-8714 allows a malicious server to inject shell commands into plain-text dump output that will be run at restore time on the machine running <application>psql</application>, the exact scenario that CVE-2025-8714 intended to prevent.»
+《機械翻訳》CVE-2025-8714の修正におけるこの見落としは、悪意のあるサーバが、<application>psql</application> CVE-2025-8714が防止しようとした正確なシェルであるを実行しているテキストでダンプ時間に実行されるプレーンなリストア出力にマシンコマンドを注入することを可能にする。
+シナリオ
      </para>
 
      <para>
@@ -1077,7 +1105,7 @@ Branch: REL_14_STABLE [2006fca40] 2026-08-10 06:38:37 -0700
       for reporting this problem.
       (CVE-2026-18408)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Lucas Velgus, Filip Janus, and Daniel Bakker for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたLucas Velgus、Filip Janus、Daniel Bakkerに感謝します。
 (CVE-2026-18408)
      </para>
     </listitem>
@@ -1100,7 +1128,7 @@ Branch: REL_14_STABLE [57aa21f69] 2026-08-10 06:38:35 -0700
       cannot have more than <literal>FUNC_MAX_ARGS</literal> entries
       (Tom Lane)
 -->
-《機械翻訳》«Remove <application>pg_dump</application>'s assumption that <structname>pg_proc</structname>.<structfield>protrftypes</structfield> cannot have more than <literal>FUNC_MAX_ARGS</literal> entries »
+《機械翻訳》<structname>pg_proc</structname>.<structfield>prontftypes</structfield>は<literal>FUNC_MAX_ARGS</literal>エントリより多く持つことはできないという<application>pg_dump</application>の仮定を削除しました。
 (Tom Lane)
       <ulink url="&commit_baseurl;3392cce5c">&sect;</ulink>
      </para>
@@ -1116,7 +1144,9 @@ Branch: REL_14_STABLE [57aa21f69] 2026-08-10 06:38:35 -0700
       it has.  An overrun would lead to a memory clobber
       inside <application>pg_dump</application>.
 -->
-《機械翻訳》«Since there could be entries for both input and output arguments, it's feasible for this array's length to exceed <literal>FUNC_MAX_ARGS</literal> (which constrains only input arguments). Even if that were not so, <application>pg_dump</application> cannot assume that the server was built with the same value of <literal>FUNC_MAX_ARGS</literal> that it has. An overrun would lead to a memory clobber inside <application>pg_dump</application>.»
+《機械翻訳》入出力引数の両方に対してエントリが存在する可能性があるため、この配列の長さが<literal>FUNC_MAX_ARGS</literal>入力引数のみを制約するを超える可能性があります。
+たとえそうでなかったとしても、<application>pg_dump</application>はサーバが<literal>FUNC_MAX_ARGS</literal>それが持つと同じ値で構築されたと想定することはできません。
+オーバーランは内部でメモリを破壊することになります<application>pg_dump</application>。
      </para>
 
      <para>
@@ -1126,7 +1156,7 @@ Branch: REL_14_STABLE [57aa21f69] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-19385)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Masahiko Sawada for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたMasahiko Sawadaに感謝します。
 (CVE-2026-19385)
      </para>
     </listitem>
@@ -1147,7 +1177,7 @@ Branch: REL_14_STABLE [d7fcfead3] 2026-08-10 06:38:35 -0700
       Harden <application>PL/Perl</application>
       against <quote>tied</quote> Perl arrays and hashes (Tom Lane)
 -->
-《機械翻訳》«Harden <application>PL/Perl</application> against <quote>tied</quote> Perl arrays and hashes »
+《機械翻訳》Perlの配列とハッシュを<application>PL/Perl</application><quote>結合</quote>されたものに対して強化する。
 (Tom Lane)
       <ulink url="&commit_baseurl;87c4b8219">&sect;</ulink>
      </para>
@@ -1158,7 +1188,7 @@ Branch: REL_14_STABLE [d7fcfead3] 2026-08-10 06:38:35 -0700
       memory overwrite, or to constructing a corrupt result array (which
       would likely cause problems later).
 -->
-《機械翻訳》«A tied object that doesn't behave like a regular one could lead to memory overwrite, or to constructing a corrupt result array (which would likely cause problems later).»
+《機械翻訳》通常のオブジェクトのように動作しないメモリが関連付けられていると、配列が上書きされたり、不正な結果リザルトが構築されたりする可能性があります（これは後で問題を引き起こす可能性があります）。
      </para>
 
      <para>
@@ -1168,7 +1198,7 @@ Branch: REL_14_STABLE [d7fcfead3] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14670)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたHcamaelに感謝します。
 (CVE-2026-14670)
      </para>
     </listitem>
@@ -1190,7 +1220,8 @@ Branch: REL_14_STABLE [aff9dac1c] 2026-08-10 06:38:35 -0700
       in <application>PL/Perl</application>
       and <application>PL/Tcl</application> (Heikki Linnakangas)
 -->
-《機械翻訳》«Fix integer overflows in memory-allocation calculations in <application>PL/Perl</application> and <application>PL/Tcl</application> »
+《機械翻訳》メモリ内の整数オーバーフローを修正しました。
+<application>PL/Perl</application>と<application>PL/Tcl</application>.アロケーション
 (Heikki Linnakangas)
       <ulink url="&commit_baseurl;028ee716a">&sect;</ulink>
      </para>
@@ -1200,7 +1231,7 @@ Branch: REL_14_STABLE [aff9dac1c] 2026-08-10 06:38:35 -0700
       This is the same type of problem as CVE-2026-6473, just in a
       different part of the code, and is fixed in the same way.
 -->
-《機械翻訳》«This is the same type of problem as CVE-2026-6473, just in a different part of the code, and is fixed in the same way.»
+《機械翻訳》これは、コードの別のタイプにあるだけで、CVE-2026-6473と同じ問題のパートであり、同じ方法で修正されます。
      </para>
 
      <para>
@@ -1210,7 +1241,7 @@ Branch: REL_14_STABLE [aff9dac1c] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14677)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks the Tulya Project (Team Dhiutsa, Bitecope Technologies Private Ltd) for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたTulyaプロジェクト(チームDhiutsa、Bitecope TechnologiesプライベートLtdに感謝します。
 (CVE-2026-14677)
      </para>
     </listitem>
@@ -1232,7 +1263,7 @@ Branch: REL_14_STABLE [39d792040] 2026-08-10 06:38:36 -0700
       restrict <varname>search_path</varname> before executing index
       expressions (Noah Misch)
 -->
-《機械翻訳》«Ensure that <filename>contrib/amcheck</filename> functions restrict <varname>search_path</varname> before executing index expressions »
+《機械翻訳》保証who <filename>contrib/amcheck</filename> functions restrict <varname>search_path</varname>前はインデックス式を実行します。
 (Noah Misch)
       <ulink url="&commit_baseurl;0a61fcde0">&sect;</ulink>
      </para>
@@ -1247,7 +1278,9 @@ Branch: REL_14_STABLE [39d792040] 2026-08-10 06:38:36 -0700
       functions; but if that privilege was granted out, it created a
       larger hazard than the documentation suggests.
 -->
-《機械翻訳》«Because amcheck will run such index expressions as the owner of their tables, a caller could potentially hijack <varname>search_path</varname>-dependent functions to run arbitrary code as the table owner. By default this is not a vulnerability because only superusers are allowed to call amcheck functions; but if that privilege was granted out, it created a larger hazard than the documentation suggests.»
+《機械翻訳》amcheckはテーブルのインデックス式のような所有者式を実行しますので、呼び出し元が任意のコードをテーブル所有者として実行するために<varname>search_path</varname>-dependent関数を乗っ取る可能性があります。
+デフォルトではスーパーユーザのみがamcheck関数を呼び出しで実行することを許可されているため、これは弱点ではありません。
+しかし、権限が許可された場合、文書が示唆するよりも大きな危険をもたらしました。
      </para>
 
      <para>
@@ -1257,7 +1290,7 @@ Branch: REL_14_STABLE [39d792040] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-14673)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Yuelin Wang and Jacob Brazeal for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたYuelin WangとJacob Brazealに感謝します。
 (CVE-2026-14673)
      </para>
     </listitem>
@@ -1280,7 +1313,7 @@ Branch: REL_14_STABLE [9505175f2] 2026-08-10 06:38:36 -0700
       and <function>levenshtein_less_equal()</function> functions
       (Nathan Bossart)
 -->
-《機械翻訳》«Fix integer overflows in <filename>contrib/fuzzystrmatch</filename>'s <function>levenshtein()</function> and <function>levenshtein_less_equal()</function> functions »
+《機械翻訳》<filename>contrib/fuzzystrmatch</filename>の<function>levenshtein()</function>および<function>levenshtein_less_equal()</function>関数での整数オーバーフローを修正しました。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;e88eb4e76">&sect;</ulink>
      </para>
@@ -1291,7 +1324,7 @@ Branch: REL_14_STABLE [9505175f2] 2026-08-10 06:38:36 -0700
       overflows, thereby producing nonsensical results, and even causing
       out-of-bounds writes in some cases.
 -->
-《機械翻訳》«Passing large cost values to these functions could cause integer overflows, thereby producing nonsensical results, and even causing out-of-bounds writes in some cases.»
+《機械翻訳》これらの関数にラージコストの値を渡すと整数オーバーフローが発生し、意味のない結果が生成されたり、場合によっては範囲外の書き込みが発生したりする可能性がありました。
      </para>
 
      <para>
@@ -1301,7 +1334,7 @@ Branch: REL_14_STABLE [9505175f2] 2026-08-10 06:38:36 -0700
       for reporting this problem.
       (CVE-2026-15742)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Ben Morris (in collaboration with Claude and Anthropic Research) for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたBen Morris（Claude and Anthropic Researchと共同で）に感謝します。
 (CVE-2026-15742)
      </para>
     </listitem>
@@ -1318,7 +1351,7 @@ Branch: REL_18_STABLE [8a31ffc2d] 2026-08-10 06:38:11 -0700
       Fix buffer overrun
       in <filename>contrib/pg_stat_statements</filename> (Álvaro Herrera)
 -->
-《機械翻訳》«Fix buffer overrun in <filename>contrib/pg_stat_statements</filename> »
+《機械翻訳》バッファオーバーランを<filename>contrib/pg_stat_statements</filename>.
 (Álvaro Herrera)
       <ulink url="&commit_baseurl;8a31ffc2d">&sect;</ulink>
      </para>
@@ -1328,7 +1361,7 @@ Branch: REL_18_STABLE [8a31ffc2d] 2026-08-10 06:38:11 -0700
       Query normalization didn't accurately account for the amount of
       space the normalized string would require.
 -->
-《機械翻訳》«Query normalization didn't accurately account for the amount of space the normalized string would require.»
+《機械翻訳》問い合わせ正規化は、正規化されたアカウントが必要とするスペースの量に対して、文字列を正確に計算しなかった。
      </para>
 
      <para>
@@ -1338,7 +1371,7 @@ Branch: REL_18_STABLE [8a31ffc2d] 2026-08-10 06:38:11 -0700
       for reporting this problem.
       (CVE-2026-14676)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Sajeeb Lohani (with TrendAI Zero Day Initiative) and Yuelin Wang for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたSajeeb Lohani（TrendAI Zero Day Initiativeと共に）とYuelin Wangに感謝します。
 (CVE-2026-14676)
      </para>
     </listitem>
@@ -1359,7 +1392,7 @@ Branch: REL_14_STABLE [a74aa0854] 2026-08-10 06:38:35 -0700
       Fix datatype error in <filename>contrib/pg_trgm</filename>'s GiST
       picksplit function (Heikki Linnakangas)
 -->
-《機械翻訳》«Fix datatype error in <filename>contrib/pg_trgm</filename>'s GiST picksplit function »
+《機械翻訳》<filename>contrib/pg_trgm</filename>'s GiST picksplitエラーのデータ型関数を修正しました。
 (Heikki Linnakangas)
       <ulink url="&commit_baseurl;849019a50">&sect;</ulink>
      </para>
@@ -1370,7 +1403,8 @@ Branch: REL_14_STABLE [a74aa0854] 2026-08-10 06:38:35 -0700
       typically causing bad split decisions; but a crash could ensue
       if you're very unlucky.
 -->
-《機械翻訳》«This mistake resulted in reading past the end of the buffer, typically causing bad split decisions; but a crash could ensue if you're very unlucky.»
+《機械翻訳》このミスの結果、バッファの終わりを超えて読むことになり、通常は誤った分割決定が発生しました。
+しかし、非常に運が悪いとクラッシュが起こる可能性があります。
      </para>
 
      <para>
@@ -1380,7 +1414,7 @@ Branch: REL_14_STABLE [a74aa0854] 2026-08-10 06:38:35 -0700
       for reporting this problem.
       (CVE-2026-14678)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Mehmet D. Ince for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたMehmet D. Inceに感謝します。
 (CVE-2026-14678)
      </para>
     </listitem>
@@ -1400,7 +1434,7 @@ Branch: REL_14_STABLE [5b72d0279] 2026-06-05 12:08:05 -0500
       Remove the plan cache in <filename>contrib/refint</filename>
       (Ayush Tiwari)
 -->
-《機械翻訳》«Remove the plan cache in <filename>contrib/refint</filename> »
+《機械翻訳》プランのキャッシュを削除します<filename>contrib/refint</filename>。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;79a506228">&sect;</ulink>
      </para>
@@ -1413,7 +1447,9 @@ Branch: REL_14_STABLE [5b72d0279] 2026-06-05 12:08:05 -0500
       originally-needed values rather than the key values that should be
       used.  The simplest solution is to remove it.
 -->
-《機械翻訳》«This caching behavior has several serious bugs, notably that <function>check_foreign_key()</function> embeds the new key values in its cascade-UPDATE queries, so a cached plan reuses the originally-needed values rather than the key values that should be used. The simplest solution is to remove it.»
+《機械翻訳》このキャッシュ動作にはいくつかの重大なバグがあります。
+特に、<function>check_foreign_key()</function>は新しいキー値をカスケード-更新問い合わせに埋め込むため、キャッシュされたプランは、使用されるべきキー値ではなく、本来必要な値を再利用する。
+最も簡単な解決策は、それを削除することです。
      </para>
 
      <para>
@@ -1423,7 +1459,7 @@ Branch: REL_14_STABLE [5b72d0279] 2026-06-05 12:08:05 -0500
       for reporting this problem.
       (CVE-2026-14671)
 -->
-《機械翻訳》«The <productname>PostgreSQL</productname> Project thanks Hcamael for reporting this problem. »
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたHcamaelに感謝します。
 (CVE-2026-14671)
      </para>
     </listitem>
@@ -1441,7 +1477,8 @@ Branch: REL_18_STABLE [d4420a972] 2026-07-30 14:59:39 +0200
       <structname>pg_class</structname>.<structfield>reltuples</structfield>
       value correctly (Jan Nidzwetzki, Tomas Vondra)
 -->
-《機械翻訳》«Ensure that parallel GIN index builds update the table's <structname>pg_class</structname>.<structfield>reltuples</structfield> value correctly »
+《機械翻訳》パラレルGINインデックスが更新を建設する保証は、テーブルの<structname>pg_クラス</structname>です。
+<structfield>reltuples</structfield>値は正しく。
 (Jan Nidzwetzki, Tomas Vondra)
       <ulink url="&commit_baseurl;d4420a972">&sect;</ulink>
      </para>
@@ -1461,7 +1498,13 @@ Branch: REL_18_STABLE [d4420a972] 2026-07-30 14:59:39 +0200
       their <structfield>reltuples</structfield> entries look sane.
       A query such as this may be helpful:
 -->
-《機械翻訳》«A parallel worker could report an uninitialized value for the number of rows it processed, leading to a bogus value for <structfield>reltuples</structfield>, even Infinity or NaN. Such values could lead to subsequent autovacuum and autoanalyze operations never deciding that the table needs to be processed. If so, the situation will not self-heal. A manual <command>ANALYZE</command> command, or creation of another index, will be needed to reset <structfield>reltuples</structfield> to the correct value. If you have any tables with GIN indexes, it's recommended to check to see if their <structfield>reltuples</structfield> entries look sane. A query such as this may be helpful:»
+《機械翻訳》パラレルワーカーは、処理した行数の初期化されていない値をレポートし、<structfield>reltuples</structfield> InfinityやNaNであっても偽の値をもたらす可能性があります。
+このような値は、後続のオートバキュームおよび自動分析操作で、テーブルニーズを処理することを決定しない可能性があります。
+その場合、シチュエーションは自己修復しません。
+マニュアル<structfield>reltuples</structfield>コマンド、または別のインデックスの作成は、正しい値にリセットするために必要になります。
+GINインデックスを持つテーブルがある場合は、チェックに<structfield>reltuples</structfield>エントリが正常に見えるかどうかを確認することをお勧めします。
+次のような問い合わせが役立つ場合があります。
+<command>ANALYZE</command>
 <programlisting>
 SELECT DISTINCT t.oid::regclass, t.reltuples
 FROM pg_class t
@@ -1489,7 +1532,8 @@ Branch: REL_14_STABLE [cec48686a] 2026-08-07 17:30:06 +0900
       asynchronous Append plan node (Alexander Korotkov, Gleb Kashkin,
       Etsuro Fujita)
 -->
-《機械翻訳》«Fix mis-handling of asynchronous reads when rescanning an asynchronous Append plan node »
+《機械翻訳》非同期Appendプランのハンドリングを再スキャンする際に、ノードの読み取りが正しく行われない問題を修正しました。
+非同期
 (Alexander Korotkov, Gleb Kashkin, Etsuro Fujita)
       <ulink url="&commit_baseurl;4ea497a92">&sect;</ulink>
      </para>
@@ -1504,7 +1548,9 @@ Branch: REL_14_STABLE [cec48686a] 2026-08-07 17:30:06 +0900
       scan.  The outcome could be incorrect query results, an infinite
       loop, or an assertion failure.
 -->
-《機械翻訳》«When an upper plan node rescans an Append before having read the entire Append output, we need to discard any in-flight requests sent to external servers (by <filename>postgres_fdw</filename> for example). This was not done correctly in cases where a subplan has parameter changes or is discarded by partition pruning in the next scan. The outcome could be incorrect query results, an infinite loop, or an assertion failure.»
+《機械翻訳》上位プランノードがAppend前を再スキャンしてAppendの出力全体を読み込んだら、外部サーバに送信されたin-フライト要求を破棄する必要があります<filename>postgres_fdw</filename> by for例)。
+これは、サブプランにパラメータの変更がある場合や、次のスキャンのパーティションプルーニングによって破棄される場合には正しく行われませんでした。
+結果は、問い合わせの結果が正しくない、無限ループ、またはアサーションの失敗となる可能性があります。
      </para>
     </listitem>
 
@@ -1524,7 +1570,7 @@ Branch: REL_14_STABLE [6098f35f4] 2026-07-31 15:39:21 +1200
       Fix error in partition pruning for RANGE-partitioned tables
       (David Rowley)
 -->
-《機械翻訳》«Fix error in partition pruning for RANGE-partitioned tables »
+《機械翻訳》レンジ～テーブルパーティションのパーティション剪定でエラーを固定。
 (David Rowley)
       <ulink url="&commit_baseurl;02e69be47">&sect;</ulink>
      </para>
@@ -1534,7 +1580,7 @@ Branch: REL_14_STABLE [6098f35f4] 2026-07-31 15:39:21 +1200
       In some cases the DEFAULT partition would be skipped when it should
       not be, which could lead to rows missing from query results.
 -->
-《機械翻訳》«In some cases the DEFAULT partition would be skipped when it should not be, which could lead to rows missing from query results.»
+《機械翻訳》場合によっては、デフォルトパーティションが本来でないときにスキップされたになり、問い合わせの結果から行が欠落することがあります。
      </para>
     </listitem>
 
@@ -1550,7 +1596,7 @@ Branch: REL_18_STABLE [bba4e095d] 2026-06-25 12:15:02 +0900
       Correctly update foreign-data-wrapper state in a ModifyTable plan
       node after pruning result relations (Ayush Tiwari, Rafia Sabih)
 -->
-《機械翻訳》«Correctly update foreign-data-wrapper state in a ModifyTable plan node after pruning result relations »
+《機械翻訳》結果のラッパーをプルーニングした後、ModifyTableプランノードで外国-データ-リレーションの状態が正しく更新されます。
 (Ayush Tiwari, Rafia Sabih)
       <ulink url="&commit_baseurl;1ef917e3a">&sect;</ulink>
       <ulink url="&commit_baseurl;bba4e095d">&sect;</ulink>
@@ -1563,7 +1609,7 @@ Branch: REL_18_STABLE [bba4e095d] 2026-06-25 12:15:02 +0900
       and the table had any foreign-table partitions, a crash
       or erroneous behavior was likely.
 -->
-《機械翻訳》«Previously, if run-time partition pruning determined that some partitions of a partitioned target table need not be scanned and the table had any foreign-table partitions, a crash or erroneous behavior was likely.»
+《機械翻訳》以前は、実行時のパーティションプルーニングによって、分割されたターゲットテーブルの一部のパーティションをスキャンする必要がないと判断され、そのテーブルに外部テーブルパーティションがある場合、クラッシュまたは誤った動作が発生する可能性があった。
      </para>
     </listitem>
 
@@ -1580,7 +1626,8 @@ Branch: REL_18_STABLE [4908225be] 2026-07-08 20:46:26 +0100
       with <literal>RETURNING OLD</literal> on a table that has
       a <literal>BEFORE UPDATE</literal> trigger (Dean Rasheed)
 -->
-《機械翻訳》«Fix missed concurrent update in <command>UPDATE</command> with <literal>RETURNING OLD</literal> on a table that has a <literal>BEFORE UPDATE</literal> trigger »
+《機械翻訳》<literal>BEFORE UPDATE</literal>トリガを持つテーブル上のwith <literal>RETURNING OLD</literal>で同時更新が失敗する問題を修正しました。
+<command>UPDATE</command>
 (Dean Rasheed)
       <ulink url="&commit_baseurl;4908225be">&sect;</ulink>
      </para>
@@ -1594,7 +1641,8 @@ Branch: REL_18_STABLE [4908225be] 2026-07-08 20:46:26 +0100
       (although the trigger itself, and the final output row, saw the
       correct values).
 -->
-《機械翻訳》«If the target row was concurrently updated, then at isolation level <literal>READ COMMITTED</literal> any <literal>OLD</literal> values in <literal>RETURNING</literal> should reflect the updated row. But stale values were returned if there was a trigger (although the trigger itself, and the final output row, saw the correct values).»
+《機械翻訳》ターゲット行が同時に更新された場合、隔離レベルで<literal>READ COMMITTED</literal> <literal>RETURNING</literal>内の任意の<literal>OLD</literal>値は更新された行を反映する必要があります。
+しかし、トリガがある場合は古い値が返されました（ただし、トリガ自分自身と最終的な出力行には正しい値が表示されました）。
      </para>
     </listitem>
 
@@ -1610,7 +1658,7 @@ Branch: REL_18_STABLE [f70acc8a2] 2026-07-31 23:24:46 +1200
       Fix hash join performance issue when there are multiple join keys
       and many NULL values (David Rowley)
 -->
-《機械翻訳》«Fix hash join performance issue when there are multiple join keys and many NULL values »
+《機械翻訳》ハッシュ結合パフォーマンスキーと多くのNULL値がある場合のマルチプル結合問題を修正しました。
 (David Rowley)
       <ulink url="&commit_baseurl;f70acc8a2">&sect;</ulink>
      </para>
@@ -1622,7 +1670,9 @@ Branch: REL_18_STABLE [f70acc8a2] 2026-07-31 23:24:46 +1200
       the null was in a non-last join column, bloating the hash table
       quite a lot if many inputs contain nulls.
 -->
-《機械翻訳》«Null-keyed tuples should not get inserted into the hash table, since they will never match any other tuples. The code got this wrong if the null was in a non-last join column, bloating the hash table quite a lot if many inputs contain nulls.»
+《機械翻訳》NULLキー付きタプルはハッシュテーブルに挿入されるべきではありません。
+なぜなら、それらは他のタプルをマッチにすることは決してないからです。
+コードは、NULLが最後以外の結合カラムにあった場合にこの間違いを取得し、多くの入力にNULLが含まれている場合にハッシュテーブルをかなり膨張させます。
      </para>
     </listitem>
 
@@ -1638,7 +1688,7 @@ Branch: REL_18_STABLE [9108fed3e] 2026-06-11 12:08:48 +0100
       parenthesized <literal>OLD</literal>/<literal>NEW</literal>
       in <literal>RETURNING</literal> expressions (Marko Grujic)
 -->
-《機械翻訳》«Fix parsing of parenthesized <literal>OLD</literal>/<literal>NEW</literal> in <literal>RETURNING</literal> expressions »
+《機械翻訳》<literal>RETURNING</literal>エクスプレッション内でカッコで囲まれた<literal>OLD</literal>/<literal>NEW</literal>のパースを修正しました。
 (Marko Grujic)
       <ulink url="&commit_baseurl;9108fed3e">&sect;</ulink>
      </para>
@@ -1649,7 +1699,7 @@ Branch: REL_18_STABLE [9108fed3e] 2026-06-11 12:08:48 +0100
       and <literal>(old).*</literal> were mis-handled, effectively
       converting them to <literal>NEW</literal> references.
 -->
-《機械翻訳》«Expressions such as <literal>(old).colname</literal> and <literal>(old).*</literal> were mis-handled, effectively converting them to <literal>NEW</literal> references.»
+《機械翻訳》<literal>(old).colname</literal>や<literal>(old).*</literal>などの式は誤って処理され、事実上<literal>NEW</literal>参照に変換されました。
      </para>
     </listitem>
 
@@ -1671,7 +1721,7 @@ Branch: REL_14_STABLE [13b627a3e] 2026-07-28 16:09:04 -0400
       (<replaceable>array</replaceable>)</literal> expressions
       (Ayush Tiwari)
 -->
-《機械翻訳》«Fix planner's nullability and strictness checks for <literal><replaceable>value</replaceable> IN (<replaceable>array</replaceable>)</literal> expressions »
+《機械翻訳》プランナの<literal><replaceable>value</replaceable> IN (<replaceable>array</replaceable>)</literal>式に対するNULL許容性と厳密性のチェックを修正した。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;277122036">&sect;</ulink>
      </para>
@@ -1683,7 +1733,8 @@ Branch: REL_14_STABLE [13b627a3e] 2026-07-28 16:09:04 -0400
       to be applied that should not be.  This could result in wrong query
       answers if the array actually was empty.
 -->
-《機械翻訳》«These checks should only succeed if the array operand is known to be non-empty, but that consideration was missed, allowing optimizations to be applied that should not be. This could result in wrong query answers if the array actually was empty.»
+《機械翻訳》これらのチェックは、配列オペランドが空でないことがわかっているが、考慮されていないため、本来適用されるべきではない最適化が適用された場合にのみ成功します。
+これにより、間違い問い合わせが実際に空の場合に、配列地域の回答が得られる可能性があります。
      </para>
     </listitem>
 
@@ -1706,7 +1757,7 @@ Branch: REL_16_STABLE [d610d8e8b] 2026-07-20 12:17:40 +0900
 <!--
       Fix incorrect join removal logic (Matheus Alcantara, Richard Guo)
 -->
-《機械翻訳》«Fix incorrect join removal logic »
+《機械翻訳》誤った結合取外しロジックを修正する。
 (Matheus Alcantara, Richard Guo)
       <ulink url="&commit_baseurl;21f5e659e">&sect;</ulink>
       <ulink url="&commit_baseurl;9e40d07e1">&sect;</ulink>
@@ -1718,7 +1769,7 @@ Branch: REL_16_STABLE [d610d8e8b] 2026-07-20 12:17:40 +0900
       from within the nullable side of an outer join to not be replaced by
       NULL when it should be.
 -->
-《機械翻訳》«In edge cases, it was possible for a constant output value coming from within the nullable side of an outer join to not be replaced by NULL when it should be.»
+《機械翻訳》エッジケースでは、定数のNull許容側の内部から取得した外部結合の出力の値が、NULLによって置換されるべきときに置換されない可能性がありました。
      </para>
     </listitem>
 
@@ -1736,7 +1787,7 @@ Branch: REL_18_STABLE [18105e6db] 2026-07-15 09:22:58 +0900
       Clean up PlaceHolderVars more thoroughly during join removal
       (Richard Guo, Arne Roland)
 -->
-《機械翻訳》«Clean up PlaceHolderVars more thoroughly during join removal »
+《機械翻訳》結合の撤去作業中は、PlaceHolderVarsをより徹底的に清掃してください。
 (Richard Guo, Arne Roland)
       <ulink url="&commit_baseurl;e02526795">&sect;</ulink>
       <ulink url="&commit_baseurl;18105e6db">&sect;</ulink>
@@ -1747,7 +1798,7 @@ Branch: REL_18_STABLE [18105e6db] 2026-07-15 09:22:58 +0900
       This fix corrects various edge cases that could trip assertions or
       result in incorrect plans.
 -->
-《機械翻訳》«This fix corrects various edge cases that could trip assertions or result in incorrect plans.»
+《機械翻訳》この修正では、アサーションをトリップしたり、誤った計画を生成する可能性のあるさまざまなエッジケースが修正されている。
      </para>
     </listitem>
 
@@ -1767,7 +1818,7 @@ Branch: REL_14_STABLE [64778fac7] 2026-06-08 11:48:18 -0400
       container datatypes (arrays, composites, ranges) (Andrei Lepikhov,
       Tom Lane)
 -->
-《機械翻訳》«Add missed checks for hashability of equality comparisons on container datatypes (arrays, composites, ranges) »
+《機械翻訳》コンテナデータ型（配列、コンポジット、範囲）での等価性比較のハッシュ可能性のチェック漏れが追加された。
 (Andrei Lepikhov, Tom Lane)
       <ulink url="&commit_baseurl;11aed8d19">&sect;</ulink>
      </para>
@@ -1779,7 +1830,8 @@ Branch: REL_14_STABLE [64778fac7] 2026-06-08 11:48:18 -0400
       step was missed in some places, leading to <quote>could not identify
       a hash function</quote> failures at execution.
 -->
-《機械翻訳》«The planner must verify hashability of the container's component type(s) before deciding it can use a hash-based plan type. This step was missed in some places, leading to <quote>could not identify a hash function</quote> failures at execution.»
+《機械翻訳》プランナは、コンテナのコンポーネントタイプ前のハッシュ可能性を検証し、ハッシュを拠点とするプランタイプを使用できることを決定する必要があります。
+このステップがいくつかの場所で欠落していたため、実行時に失敗しました<quote>ハッシュ機能を識別できませんでした</quote>。
      </para>
     </listitem>
 
@@ -1795,7 +1847,7 @@ Branch: REL_18_STABLE [fe5d62951] 2026-07-06 16:15:45 +0900
       Avoid pushing <literal>WHERE</literal> clauses down past a grouping
       step that has a different equivalence rule (Richard Guo)
 -->
-《機械翻訳》«Avoid pushing <literal>WHERE</literal> clauses down past a grouping step that has a different equivalence rule »
+《機械翻訳》同等ダウンが異なるグループ化ステップを通過して<literal>WHERE</literal>条項ルールをプッシュすることは避けてください。
 (Richard Guo)
       <ulink url="&commit_baseurl;fe5d62951">&sect;</ulink>
      </para>
@@ -1807,7 +1859,8 @@ Branch: REL_18_STABLE [fe5d62951] 2026-07-06 16:15:45 +0900
       same collation.  Otherwise it might filter some rows the grouping
       would have merged.
 -->
-《機械翻訳》«A test on a grouping column that is grouped by a nondeterministic collation is safe to push down only if it is a comparison using that same collation. Otherwise it might filter some rows the grouping would have merged.»
+《機械翻訳》非決定性テストによってグループ化されたグループ化カラムの照合順序は、同じ照合順序を使用する比較である場合にのみ、セーフからプッシュダウンになります。
+そうでない場合は、グループ化がマージしたはずの行をフィルタする可能性があります。
      </para>
     </listitem>
 
@@ -1827,7 +1880,7 @@ Branch: REL_15_STABLE [842e34efa] 2026-07-08 00:00:34 +1200
       that have an <literal>EXCLUDE</literal> clause or
       lack <literal>ORDER BY</literal> (Chengpeng Yan, David Rowley)
 -->
-《機械翻訳》«Fix mis-optimization of <function>COUNT</function> window functions that have an <literal>EXCLUDE</literal> clause or lack <literal>ORDER BY</literal> »
+《機械翻訳》<literal>EXCLUDE</literal>最適化または欠損<literal>ORDER BY</literal>を持つ<function>COUNT</function>ウィンドウ関数の句ミスを修正した。
 (Chengpeng Yan, David Rowley)
       <ulink url="&commit_baseurl;cf184ec77">&sect;</ulink>
      </para>
@@ -1837,7 +1890,7 @@ Branch: REL_15_STABLE [842e34efa] 2026-07-08 00:00:34 +1200
       These window functions were treated as monotonic when they should
       not be, allowing wrong answers to be computed.
 -->
-《機械翻訳》«These window functions were treated as monotonic when they should not be, allowing wrong answers to be computed.»
+《機械翻訳》これらの窓関数は、単調であるべきでないときに単調として扱われ、間違いの回答を計算することを可能にした。
      </para>
     </listitem>
 
@@ -1853,7 +1906,7 @@ Branch: REL_18_STABLE [5fd1c3f28] 2026-06-28 12:31:29 -0400
       planner looks up statistics for a column of type <type>"char"</type>
       (Feng Wu)
 -->
-《機械翻訳》«Avoid <quote>cache lookup failed for collation 0</quote> error when planner looks up statistics for a column of type <type>"char"</type> »
+《機械翻訳》プランナが統計処理でタイプ<type>"char"</type>のキャッシュを検索する場合は、<quote>照合順序0のカラム検索に失敗</quote>エラーを回避します。
 (Feng Wu)
       <ulink url="&commit_baseurl;5fd1c3f28">&sect;</ulink>
      </para>
@@ -1875,7 +1928,7 @@ Branch: REL_14_STABLE [cad17745e] 2026-08-04 09:06:46 +0200
       Fix <command>ALTER COLUMN ... DROP EXPRESSION</command> to work when
       there are multiple levels of partitions (Alberto Piai)
 -->
-《機械翻訳》«Fix <command>ALTER COLUMN ... DROP EXPRESSION</command> to work when there are multiple levels of partitions »
+《機械翻訳》<command>ALTER COLUMN ... DROP EXPRESSION</command>マルチプルレベルの間仕切りがある場合に機能するように修正します。
 (Alberto Piai)
       <ulink url="&commit_baseurl;c374f2807">&sect;</ulink>
      </para>
@@ -1894,7 +1947,7 @@ Branch: REL_17_STABLE [1d6c654c8] 2026-07-20 17:21:20 +0200
       Fix attaching partitions of indexes that are exclusion constraints
       (Japin Li)
 -->
-《機械翻訳》«Fix attaching partitions of indexes that are exclusion constraints »
+《機械翻訳》排他制約であるインデックスのパーティションの付加を修正しました。
 (Japin Li)
       <ulink url="&commit_baseurl;19e3aa704">&sect;</ulink>
      </para>
@@ -1904,7 +1957,7 @@ Branch: REL_17_STABLE [1d6c654c8] 2026-07-20 17:21:20 +0200
       Notably, this oversight broke dump/restore of partitioned exclusion
       constraints.
 -->
-《機械翻訳》«Notably, this oversight broke dump/restore of partitioned exclusion constraints.»
+《機械翻訳》特に、この見落としは、分割された排他制約のダンプ/リストアを破壊した。
      </para>
     </listitem>
 
@@ -1920,7 +1973,7 @@ Branch: REL_18_STABLE [41247cdf6] 2026-05-23 00:01:24 +0900
       partitioned <literal>NOT NULL</literal> constraints
       via <command>ALTER CONSTRAINT</command> (Andreas Karlsson)
 -->
-《機械翻訳》«Prevent setting <literal>NO INHERIT</literal> on partitioned <literal>NOT NULL</literal> constraints via <command>ALTER CONSTRAINT</command> »
+《機械翻訳》設定を禁止する<literal>NO INHERIT</literal>パーティション化された<literal>NOT NULL</literal> <command>ALTER CONSTRAINT</command>による制約。
 (Andreas Karlsson)
       <ulink url="&commit_baseurl;41247cdf6">&sect;</ulink>
      </para>
@@ -1933,7 +1986,8 @@ Branch: REL_18_STABLE [41247cdf6] 2026-05-23 00:01:24 +0900
       enforced by constraint creation, but not by <command>ALTER TABLE
       ... ALTER CONSTRAINT</command>.
 -->
-《機械翻訳》«<literal>NOT NULL</literal> constraints on partitioned tables are supposed to be inherited by all partitions, and therefore must not be marked <literal>NO INHERIT</literal>. This rule was correctly enforced by constraint creation, but not by <command>ALTER TABLE ... ALTER CONSTRAINT</command>.»
+《機械翻訳》<literal>NOT NULL</literal>テーブルパーティションの制約はすべてのパーティションに継承されることになっているため、<literal>NO INHERIT</literal>とマークされてはなりません。
+このルールは制約の作成時に正しく適用されましたが、<command>ALTER TABLE ... ALTER CONSTRAINT</command>では適用されませんでした。
      </para>
     </listitem>
 
@@ -1952,7 +2006,7 @@ Branch: REL_14_STABLE [1b17a6e3c] 2026-07-04 11:34:26 -0400
 <!--
       Disallow renaming a rule to <literal>_RETURN</literal> (Tom Lane)
 -->
-《機械翻訳》«Disallow renaming a rule to <literal>_RETURN</literal> »
+《機械翻訳》ルール名を<literal>_RETURN</literal>.
 (Tom Lane)
       <ulink url="&commit_baseurl;a7f7958ab">&sect;</ulink>
      </para>
@@ -1963,7 +2017,7 @@ Branch: REL_14_STABLE [1b17a6e3c] 2026-07-04 11:34:26 -0400
       rule, but <command>ALTER RULE</command> allowed renaming other rules
       to <literal>_RETURN</literal>, causing trouble later.
 -->
-《機械翻訳》«That name is reserved for a view's <literal>ON SELECT</literal> rule, but <command>ALTER RULE</command> allowed renaming other rules to <literal>_RETURN</literal>, causing trouble later.»
+《機械翻訳》その名前はビューの予約である<literal>ON SELECT</literal>ルールだが、<command>ALTERルール</command>は他のルールを<literal>_RETURN</literal>に改名することを許可し、後にトラブルを引き起こした。
      </para>
     </listitem>
 
@@ -1981,7 +2035,7 @@ Branch: REL_16_STABLE [e61d44fde] 2026-08-03 12:25:49 -0700
       Fix missing lock release for role membership grants in <command>DROP
       OWNED BY</command> (Jeff Davis)
 -->
-《機械翻訳》«Fix missing lock release for role membership grants in <command>DROP OWNED BY</command> »
+《機械翻訳》<command>DROP OWNED BY</command>で欠落しているロックリリースのロールメンバシップ認可を修正します。
 (Jeff Davis)
       <ulink url="&commit_baseurl;a0daa0b41">&sect;</ulink>
      </para>
@@ -1991,7 +2045,7 @@ Branch: REL_16_STABLE [e61d44fde] 2026-08-03 12:25:49 -0700
       This oversight resulted in a warning message, followed by retaining
       a lock on the membership grant until the end of the transaction.
 -->
-《機械翻訳》«This oversight resulted in a warning message, followed by retaining a lock on the membership grant until the end of the transaction.»
+《機械翻訳》この見落としの結果、ワーニングメッセージが誕生し、その後、トランザクションの終わりまでメンバシップ助成金のロックが維持されました。
      </para>
     </listitem>
 
@@ -2009,7 +2063,7 @@ Branch: REL_16_STABLE [485527190] 2026-07-08 08:51:09 +0900
       Fix failure of <command>EXPLAIN</command> when
       deparsing <literal>SQL/JSON</literal> aggregates (Richard Guo)
 -->
-《機械翻訳》«Fix failure of <command>EXPLAIN</command> when deparsing <literal>SQL/JSON</literal> aggregates »
+《機械翻訳》<command>EXPLAIN</command>deparse <literal>SQL/JSON</literal> aggregates.*の失敗を修正しました。
 (Richard Guo)
       <ulink url="&commit_baseurl;45364e496">&sect;</ulink>
      </para>
@@ -2019,7 +2073,7 @@ Branch: REL_16_STABLE [485527190] 2026-07-08 08:51:09 +0900
       Some plan structures resulted in <quote>invalid
       JsonConstructorExpr underlying node type</quote> errors.
 -->
-《機械翻訳》«Some plan structures resulted in <quote>invalid JsonConstructorExpr underlying node type</quote> errors.»
+《機械翻訳》一部のプラン構造で<quote>ノードタイプの基礎となる無効なJsonConstructorExpr</quote>エラーが発生しました。
      </para>
     </listitem>
 
@@ -2039,7 +2093,7 @@ Branch: REL_14_STABLE [55adef7ab] 2026-07-28 08:35:21 +0900
       Fix use of <command>REINDEX CONCURRENTLY</command> with
       a deferred uniqueness constraint (Nitin Motiani)
 -->
-《機械翻訳》«Fix use of <command>REINDEX CONCURRENTLY</command> with a deferred uniqueness constraint »
+《機械翻訳》<command>REINDEX CONCURRENTLY</command> with a遅延一意性制約の使用を修正しました。
 (Nitin Motiani)
       <ulink url="&commit_baseurl;e4527519b">&sect;</ulink>
      </para>
@@ -2050,7 +2104,8 @@ Branch: REL_14_STABLE [55adef7ab] 2026-07-28 08:35:21 +0900
       CONCURRENTLY</command> was incorrectly marked as enforcing immediate
       uniqueness, causing spurious reports of constraint violation.
 -->
-《機械翻訳》«The transient index copy created during <command>REINDEX CONCURRENTLY</command> was incorrectly marked as enforcing immediate uniqueness, causing spurious reports of constraint violation.»
+《機械翻訳》の間に作成された一時的なインデックスコピーは、即時の一意性を強制するものとして誤ってマークされ、制約違反の誤った報告を引き起こした。
+<command>REINDEX CONCURRENTLY</command>
      </para>
     </listitem>
 
@@ -2069,7 +2124,7 @@ Branch: REL_18_STABLE [51652c42d] 2026-07-06 14:47:58 -0400
       Fix <literal>LIKE</literal> matching with nondeterministic
       collations and backslashes (Nitin Motiani, Tom Lane)
 -->
-《機械翻訳》«Fix <literal>LIKE</literal> matching with nondeterministic collations and backslashes »
+《機械翻訳》照合とバックスラッシュが明確でない<literal>LIKE</literal>マッチングを修正しました。
 (Nitin Motiani, Tom Lane)
       <ulink url="&commit_baseurl;a99bd8d58">&sect;</ulink>
       <ulink url="&commit_baseurl;51652c42d">&sect;</ulink>
@@ -2085,7 +2140,9 @@ Branch: REL_18_STABLE [51652c42d] 2026-07-06 14:47:58 -0400
       character to be matched exactly rather than allowing the
       nondeterministic collation to decide if there's a match.
 -->
-《機械翻訳》«When using a nondeterministic collation, <literal>LIKE</literal> mishandled an escaped backslash (<literal>\\</literal>), treating it as effectively not there. It also did the wrong thing with a leading backslash preceding an ordinary character; in that case the backslash should be effectively ignored, but it caused the ordinary character to be matched exactly rather than allowing the nondeterministic collation to decide if there's a match.»
+《機械翻訳》非決定性照合順序を使用する場合、<literal>LIKE</literal>エスケープされたバックスラッシュ<literal>\\</literal>を誤って処理し、実質的に存在しないものとして処理しました。
+また、通常の文字の前に間違いが先行するバックスラッシュの処理も行いました。
+このケースではバックスラッシュは実質的に無視されるはずですが、非決定性照合順序がマッチがあるかどうかを決定できるようにするのではなく、通常の文字が正確に一致するようにしました。
      </para>
     </listitem>
 
@@ -2101,7 +2158,7 @@ Branch: REL_18_STABLE [d0bb49e61] 2026-07-06 13:06:25 -0400
       Fix <literal>LIKE</literal>/regex optimization for indexscan with
       exact-match pattern (Jelte Fennema-Nio)
 -->
-《機械翻訳》«Fix <literal>LIKE</literal>/regex optimization for indexscan with exact-match pattern »
+《機械翻訳》正確な最適化マッチを使用するインデックススキャン用の<literal>LIKE</literal>/regexパターンを修正しました。
 (Jelte Fennema-Nio)
       <ulink url="&commit_baseurl;d0bb49e61">&sect;</ulink>
      </para>
@@ -2117,7 +2174,9 @@ Branch: REL_18_STABLE [d0bb49e61] 2026-07-06 13:06:25 -0400
       <literal>\d <replaceable>tablename</replaceable></literal>
       command much slower.
 -->
-《機械翻訳》«Refactoring for <literal>LIKE</literal> with non-deterministic collations accidentally broke the optimization for converting a <literal>LIKE</literal> or regex exact-match pattern to an equality index condition when the index collation doesn't match the expression collation. Among other things, that made <application>psql</application>'s <literal>\d <replaceable>tablename</replaceable></literal> command much slower.»
+《機械翻訳》<literal>LIKE</literal>非決定性照合を使用したのリファクタリングでは、最適化パターンがマッチインデックスをマッチしていない場合に、<literal>LIKE</literal>または正規表現の正確な式照合順序を等式条件に変換するためのが誤って壊れた。
+とりわけ、<application>psql</application>の<literal>\d <replaceable>tablename</replaceable></literal>コマンドははるかに遅くなった。
+インデックス照合順序
      </para>
     </listitem>
 
@@ -2139,7 +2198,7 @@ Branch: REL_18_STABLE [5f003855e] 2026-08-11 21:24:28 +0300
       Fix matching of localized month/day names
       in <function>to_date()</function> (Heikki Linnakangas)
 -->
-《機械翻訳》«Fix matching of localized month/day names in <function>to_date()</function> »
+《機械翻訳》ローカライズされた月/日の名前のマッチングを修正しました<function>to_date()</function>.
 (Heikki Linnakangas)
       <ulink url="&commit_baseurl;011384ba4">&sect;</ulink>
       <ulink url="&commit_baseurl;5f003855e">&sect;</ulink>
@@ -2150,7 +2209,7 @@ Branch: REL_18_STABLE [5f003855e] 2026-08-11 21:24:28 +0300
       The matching logic misbehaved in cases where case-folding changes
       the byte length of the string.
 -->
-《機械翻訳》«The matching logic misbehaved in cases where case-folding changes the byte length of the string.»
+《機械翻訳》マッチングロジックでは、ケース折りによって文字列のバイト長さが変更された場合に問題が発生した。
      </para>
     </listitem>
 
@@ -2165,7 +2224,7 @@ Branch: REL_18_STABLE [66ec24276] 2026-07-07 15:04:31 -0700
 <!--
       Correct case-folding rules for Greek final sigma (Jeff Davis)
 -->
-《機械翻訳》«Correct case-folding rules for Greek final sigma »
+《機械翻訳》ケース最終シグマのギリシャフォールディング規則を修正する。
 (Jeff Davis)
       <ulink url="&commit_baseurl;66ec24276">&sect;</ulink>
      </para>
@@ -2176,7 +2235,8 @@ Branch: REL_18_STABLE [66ec24276] 2026-07-07 15:04:31 -0700
       consider it to be a final sigma.  This only affects the
       built-in <literal>pg_unicode_fast</literal> locale.
 -->
-《機械翻訳》«If the string is preceded only by Case Ignorable characters, don't consider it to be a final sigma. This only affects the built-in <literal>pg_unicode_fast</literal> locale.»
+《機械翻訳》文字列の前にケースIgnorable文字しかない場合、それを最終シグマとはみなさない。
+これは組み込みの<literal>pg_unicode_fast</literal>ロケールにのみ影響する。
      </para>
     </listitem>
 
@@ -2195,7 +2255,7 @@ Branch: REL_14_STABLE [8bb935d61] 2026-06-05 07:50:18 +0900
       Fix incorrect NFC recomposition for Hangul U+11A7 (TBASE)
       (Diego Frias, Michael Paquier)
 -->
-《機械翻訳》«Fix incorrect NFC recomposition for Hangul U+11A7 (TBASE) »
+《機械翻訳》ハングルU+11A7(TBASE)の不正なNFC再構成を修正します。
 (Diego Frias, Michael Paquier)
       <ulink url="&commit_baseurl;273fe9485">&sect;</ulink>
      </para>
@@ -2205,7 +2265,7 @@ Branch: REL_14_STABLE [8bb935d61] 2026-06-05 07:50:18 +0900
       This character was treated as a valid T syllable, which it is not,
       and hence silently swallowed during normalization.
 -->
-《機械翻訳》«This character was treated as a valid T syllable, which it is not, and hence silently swallowed during normalization.»
+《機械翻訳》この文字は有効なT音節として扱われましたが、実際はそうではないため、正規化中に静かに飲み込まれました。
      </para>
     </listitem>
 
@@ -2224,7 +2284,7 @@ Branch: REL_14_STABLE [1e0458172] 2026-06-08 11:49:27 -0700
       Avoid possible truncation of output lexemes in case-insensitive
       <literal>synonym</literal> dictionaries (Jeff Davis)
 -->
-《機械翻訳》«Avoid possible truncation of output lexemes in case-insensitive <literal>synonym</literal> dictionaries »
+《機械翻訳》ケースの影響を受けない<literal>synonym</literal>辞書語彙素では、出力が切り捨てられる可能性があります。
 (Jeff Davis)
       <ulink url="&commit_baseurl;89e648498">&sect;</ulink>
      </para>
@@ -2234,7 +2294,7 @@ Branch: REL_14_STABLE [1e0458172] 2026-06-08 11:49:27 -0700
       If folding to lower case increased the byte length of a lexeme, it
       was incorrectly truncated to its original byte length when emitted.
 -->
-《機械翻訳》«If folding to lower case increased the byte length of a lexeme, it was incorrectly truncated to its original byte length when emitted.»
+《機械翻訳》下部ケースへの折り畳みが語彙素のバイト長さを増加させた場合、放出時にオリジナルバイト長さに誤って切り捨てられた。
      </para>
     </listitem>
 
@@ -2251,7 +2311,7 @@ Branch: REL_17_STABLE [5e78ebca5] 2026-07-07 13:35:23 -0700
       Defend against truncated UTF-8 characters in case-conversion logic
       (Jeff Davis)
 -->
-《機械翻訳》«Defend against truncated UTF-8 characters in case-conversion logic »
+《機械翻訳》ケース-変換ロジックで切り捨てられたUTF-8文字に対する防御。
 (Jeff Davis)
       <ulink url="&commit_baseurl;9021c8f3c">&sect;</ulink>
      </para>
@@ -2271,7 +2331,7 @@ Branch: REL_14_STABLE [74d3482f4] 2026-06-03 12:47:34 +0900
 <!--
       Fix typo in <function>hash_record_extended()</function> (Man Zeng)
 -->
-《機械翻訳》«Fix typo in <function>hash_record_extended()</function> »
+《機械翻訳》タイポを<function>hash_record_extended()</function>.
 (Man Zeng)
       <ulink url="&commit_baseurl;b3f13c032">&sect;</ulink>
      </para>
@@ -2284,7 +2344,9 @@ Branch: REL_14_STABLE [74d3482f4] 2026-06-03 12:47:34 +0900
       However, extension-provided hash functions could be affected if they
       inspect <literal>PG_ARGISNULL(1)</literal>.
 -->
-《機械翻訳》«The code failed to initialize the second isnull argument passed to FunctionCallInvoke(). This is harmless for existing in-core extended hash support functions, which will not examine that value. However, extension-provided hash functions could be affected if they inspect <literal>PG_ARGISNULL(1)</literal>.»
+《機械翻訳》コードは、FunctionCallInvoke()に渡された2番目のisnull引数の初期化に失敗しました。
+これは、その値を検査しない既存の-コア拡張ハッシュサポート関数には問題ありません。
+ただし、extension提供のハッシュ関数は、検査<literal>PG_ARGISNULL(1)</literal>。
      </para>
     </listitem>
 
@@ -2302,7 +2364,7 @@ Branch: REL_16_STABLE [6c760f6b6] 2026-07-28 10:39:50 -0700
       Fix <function>pg_get_publication_tables()</function> to not fail if
       a publishable table is dropped concurrently (Bharath Rupireddy)
 -->
-《機械翻訳》«Fix <function>pg_get_publication_tables()</function> to not fail if a publishable table is dropped concurrently »
+《機械翻訳》<function>pg_get_publication_tables()</function>発行可能なテーブルが同時に削除されても失敗しないように修正しました。
 (Bharath Rupireddy)
       <ulink url="&commit_baseurl;73d63d1c1">&sect;</ulink>
      </para>
@@ -2324,7 +2386,7 @@ Branch: REL_14_STABLE [0115650de] 2026-07-06 12:24:28 -0400
       Prevent <function>satisfies_hash_partition()</function> from
       crashing with <literal>VARIADIC NULL</literal> (Robert Haas)
 -->
-《機械翻訳》«Prevent <function>satisfies_hash_partition()</function> from crashing with <literal>VARIADIC NULL</literal> »
+《機械翻訳》<function>satisfies_hash_partition()</function>が<literal>VARIADIC NULL</literal>.
 (Robert Haas)
       <ulink url="&commit_baseurl;0c06ebf12">&sect;</ulink>
      </para>
@@ -2346,7 +2408,7 @@ Branch: REL_14_STABLE [262cc4df2] 2026-06-04 12:24:51 -0400
       in <function>tsvector_filter()</function> and allied functions
       (Ewan Young)
 -->
-《機械翻訳》«Report invalid-weight errors more cleanly and consistently in <function>tsvector_filter()</function> and allied functions »
+《機械翻訳》レポートが無効-ウェイトは、<function>tsvector_filter()</function>および関連する関数において、より明確かつ一貫してエラーを発生させる。
 (Ewan Young)
       <ulink url="&commit_baseurl;c5194139c">&sect;</ulink>
      </para>
@@ -2358,7 +2420,8 @@ Branch: REL_14_STABLE [262cc4df2] 2026-06-04 12:24:51 -0400
       as <function>charout()</function> would render them.  This avoids
       possibly producing an invalidly-encoded error message.
 -->
-《機械翻訳》«In particular, report weight characters that are not printable ASCII in octal form (<literal>\<replaceable>nnn</replaceable></literal>), as <function>charout()</function> would render them. This avoids possibly producing an invalidly-encoded error message.»
+《機械翻訳》特に、<literal>\<replaceable>nnn</replaceable></literal>のように、8進数のウェイトで表示可能なASCII文字ではないレポートフォーム文字は、<function>charout()</function>表示されます。
+これにより、無効にエンコードされたエラーメッセージが生成される可能性がなくなります。
      </para>
     </listitem>
 
@@ -2374,7 +2437,7 @@ Branch: REL_18_STABLE [c31b0fca0] 2026-07-16 11:50:13 -0700
       Reject out-of-range timestamp shift values
       in <function>uuidv7()</function> (Baji Shaik)
 -->
-《機械翻訳》«Reject out-of-range timestamp shift values in <function>uuidv7()</function> »
+《機械翻訳》<function>uuidv7()</function>.内のレンジ外タイムスタンプシフト値を拒否します。
 (Baji Shaik)
       <ulink url="&commit_baseurl;c31b0fca0">&sect;</ulink>
      </para>
@@ -2385,7 +2448,8 @@ Branch: REL_18_STABLE [c31b0fca0] 2026-07-16 11:50:13 -0700
       of the range that a v7 UUID can represent.  Previously, a garbage
       UUID value was produced.
 -->
-《機械翻訳》«The shift value must not be so large as to produce a timestamp out of the range that a v7 UUID can represent. Previously, a garbage UUID value was produced.»
+《機械翻訳》シフト値は、v7ラージが表現できるタイムスタンプからレンジを生成するようなUUIDであってはなりません。
+以前は、ガーベッジUUID値が生成されていました。
      </para>
     </listitem>
 
@@ -2410,7 +2474,7 @@ Branch: REL_14_STABLE [a17f39aa2] 2026-06-12 12:39:40 +0900
       Fix mishandling of namespace nodes in <function>xpath()</function>
       (Michael Paquier)
 -->
-《機械翻訳》«Fix mishandling of namespace nodes in <function>xpath()</function> »
+《機械翻訳》<function>xpath()</function>でのネームスペースノードの誤った処理を修正しました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;4c777d6dd">&sect;</ulink>
       <ulink url="&commit_baseurl;0d145be2c">&sect;</ulink>
@@ -2421,7 +2485,7 @@ Branch: REL_14_STABLE [a17f39aa2] 2026-06-12 12:39:40 +0900
       This fix avoids an unexpected <quote>could not copy node</quote>
       error.
 -->
-《機械翻訳》«This fix avoids an unexpected <quote>could not copy node</quote> error.»
+《機械翻訳》この修正により、予期しない<quote>ノードをコピーできない</quote>エラーが回避されます。
      </para>
     </listitem>
 
@@ -2440,7 +2504,7 @@ Branch: REL_17_STABLE [c768637d6] 2026-07-02 15:06:12 +0900
       Fix <type>jsonpath</type>'s <function>.decimal</function> method to
       not throw a hard error for incorrect precision or scale (Ewan Young)
 -->
-《機械翻訳》«Fix <type>jsonpath</type>'s <function>.decimal</function> method to not throw a hard error for incorrect precision or scale »
+《機械翻訳》<type>jsonpath</type>の<function>.decimal</function>メソッドが誤ったハードまたはエラーに対して精度位取りをスローしないように修正した。
 (Ewan Young)
       <ulink url="&commit_baseurl;84001a04d">&sect;</ulink>
       <ulink url="&commit_baseurl;90789900b">&sect;</ulink>
@@ -2450,7 +2514,7 @@ Branch: REL_17_STABLE [c768637d6] 2026-07-02 15:06:12 +0900
 <!--
       Silent mode should suppress these errors, but failed to.
 -->
-《機械翻訳》«Silent mode should suppress these errors, but failed to.»
+《機械翻訳》サイレントモードはこれらの誤りを抑制すべきであるが、できなかった。
      </para>
     </listitem>
 
@@ -2468,7 +2532,8 @@ Branch: REL_16_STABLE [60abb3c73] 2026-06-11 16:17:58 +0200
       constructs have an argument that is of string category but lacks a
       cast to type <type>text</type> (Ayush Tiwari)
 -->
-《機械翻訳》«Fix NULL-pointer crash when <literal>IS JSON</literal> or similar constructs have an argument that is of string category but lacks a cast to type <type>text</type> »
+《機械翻訳》<literal>IS JSON</literal>または類似の構成に、NULLポインタのクラッシュはあるが、タイプ<type>テキスト</type>への引数がない場合、文字列カテゴリを修正しました。
+キャスト
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;35d9a6263">&sect;</ulink>
      </para>
@@ -2479,7 +2544,7 @@ Branch: REL_16_STABLE [60abb3c73] 2026-06-11 16:17:58 +0200
       core <productname>PostgreSQL</productname>, but the problem is
       reachable with some extension types.
 -->
-《機械翻訳》«There are no such data types in core <productname>PostgreSQL</productname>, but the problem is reachable with some extension types.»
+《機械翻訳》コアにはそのようなデータタイプはありません<productname>PostgreSQL</productname>ただし、一部のextensionタイプでは問題が発生する可能性があります。
      </para>
     </listitem>
 
@@ -2496,7 +2561,7 @@ Branch: REL_17_STABLE [71cd10cd2] 2026-07-07 08:26:50 +0900
       Ensure that <literal>SQL/JSON</literal> <literal>ON EMPTY / ON ERROR
       DEFAULT</literal> values are coerced to the correct typmod (Ewan Young)
 -->
-《機械翻訳》«Ensure that <literal>SQL/JSON</literal> <literal>ON EMPTY / ON ERROR DEFAULT</literal> values are coerced to the correct typmod »
+《機械翻訳》保証<literal>SQL/JSON</literal> <literal>ON EMPTY / ON ERROR DEFAULT</literal>値は正しいtypmodに強制されます。
 (Ewan Young)
       <ulink url="&commit_baseurl;441e4c8d6">&sect;</ulink>
      </para>
@@ -2507,7 +2572,7 @@ Branch: REL_17_STABLE [71cd10cd2] 2026-07-07 08:26:50 +0900
       a <type>numeric</type> target column were not applied to the default
       value.
 -->
-《機械翻訳》«For example, the declared precision and scale of a <type>numeric</type> target column were not applied to the default value.»
+《機械翻訳》例の場合、宣言された精度と<type>数値</type>位取りカラムのターゲットはデフォルト値に適用されませんでした。
      </para>
     </listitem>
 
@@ -2527,7 +2592,7 @@ Branch: REL_14_STABLE [fec40878c] 2026-08-04 18:01:55 +1200
       Avoid machine-dependent behavior when dividing the smallest
       possible <type>money</type> value by -1 (Andrey Rachitskiy)
 -->
-《機械翻訳》«Avoid machine-dependent behavior when dividing the smallest possible <type>money</type> value by -1 »
+《機械翻訳》可能な最小の<type>金額</type>値を-1で割るときは、マシンに依存する動作を避けてください。
 (Andrey Rachitskiy)
       <ulink url="&commit_baseurl;6298a41b4">&sect;</ulink>
      </para>
@@ -2549,7 +2614,7 @@ Branch: REL_14_STABLE [dda622edc] 2026-08-02 16:49:18 -0400
       Fix crash after out-of-memory failure partway through creation of a
       cache entry for a text search dictionary (Tom Lane)
 -->
-《機械翻訳》«Fix crash after out-of-memory failure partway through creation of a cache entry for a text search dictionary »
+《機械翻訳》クラッシュディクショナリのメモリエントリの作成中に、キャッシュ外エラーが発生した場合にテキストサーチを修正しました。
 (Tom Lane)
       <ulink url="&commit_baseurl;81b1e7916">&sect;</ulink>
      </para>
@@ -2571,7 +2636,7 @@ Branch: REL_14_STABLE [cfc720ef4] 2026-08-02 13:22:39 -0400
       Fix memory-safety bugs in processing of incorrect ispell/hunspell
       dictionary files (Andrey Rachitskiy)
 -->
-《機械翻訳》«Fix memory-safety bugs in processing of incorrect ispell/hunspell dictionary files »
+《機械翻訳》間違ったispell/hunspellディクショナリファイルを処理する際のメモリ安全に関するバグを修正しました。
 (Andrey Rachitskiy)
       <ulink url="&commit_baseurl;4689ea9ce">&sect;</ulink>
      </para>
@@ -2594,7 +2659,7 @@ Branch: REL_16_STABLE [cc3fe7e2a] 2026-07-03 18:01:00 +0300
       Prevent access to other sessions' temporary tables (Jim Jones,
       Daniil Davydov, Alexander Korotkov)
 -->
-《機械翻訳》«Prevent access to other sessions' temporary tables »
+《機械翻訳》他のセッションのアクセステーブルへの一時的を禁止します。
 (Jim Jones, Daniil Davydov, Alexander Korotkov)
       <ulink url="&commit_baseurl;1b0dd0815">&sect;</ulink>
       <ulink url="&commit_baseurl;3aaefe892">&sect;</ulink>
@@ -2605,7 +2670,7 @@ Branch: REL_16_STABLE [cc3fe7e2a] 2026-07-03 18:01:00 +0300
       Some code paths failed to prevent this, leading to silently wrong
       (inconsistent) results.
 -->
-《機械翻訳》«Some code paths failed to prevent this, leading to silently wrong (inconsistent) results.»
+《機械翻訳》コード経路の中にはこれを防ぐことができず、静かに間違い（一貫性のない）結果をもたらした。
      </para>
     </listitem>
 
@@ -2620,7 +2685,7 @@ Branch: REL_18_STABLE [ed8050370] 2026-08-05 11:44:01 -0400
       Prevent <quote>no empty local buffer available</quote> errors during
       temporary table access (Melanie Plageman)
 -->
-《機械翻訳》«Prevent <quote>no empty local buffer available</quote> errors during temporary table access »
+《機械翻訳》ローカルバッファアクセス時のエラー<quote>空の一時テーブルがない</quote>を防止します。
 (Melanie Plageman)
       <ulink url="&commit_baseurl;ed8050370">&sect;</ulink>
      </para>
@@ -2632,7 +2697,8 @@ Branch: REL_18_STABLE [ed8050370] 2026-08-05 11:44:01 -0400
       of <varname>effective_io_concurrency</varname> could allow a single
       stream to use all the buffers, resulting in failure.
 -->
-《機械翻訳》«Limit the number of local buffers that the read streaming mechanism is allowed to use. Previously, a large value of <varname>effective_io_concurrency</varname> could allow a single stream to use all the buffers, resulting in failure.»
+《機械翻訳》読取りローカル・ストリーミングが使用できるメカニズム・バッファの数を制限します。
+以前は、ラージ値に<varname>effective_io_concurrency</varname>を指定すると、1つのストリームがすべてのバッファを使用できるため、エラーが発生していました。
      </para>
     </listitem>
 
@@ -2649,7 +2715,7 @@ Branch: REL_17_STABLE [288d4e83f] 2026-07-31 10:34:40 -0500
       Fix the order in which autovacuum processes databases
       (Rustam Khamidullin)
 -->
-《機械翻訳》«Fix the order in which autovacuum processes databases »
+《機械翻訳》自動バキュームプロセスがデータベースに登録しているオーダーを修正します。
 (Rustam Khamidullin)
       <ulink url="&commit_baseurl;4cc49cb70">&sect;</ulink>
      </para>
@@ -2659,7 +2725,7 @@ Branch: REL_17_STABLE [288d4e83f] 2026-07-31 10:34:40 -0500
       It was unintentionally processing databases from lowest to highest
       score, when it should be doing the reverse.
 -->
-《機械翻訳》«It was unintentionally processing databases from lowest to highest score, when it should be doing the reverse.»
+《機械翻訳》本来はその逆であるべきデータベースを、意図せずに最低スコアから最高スコアまで処理していました。
      </para>
     </listitem>
 
@@ -2679,7 +2745,7 @@ Branch: REL_18_STABLE [7c25cdb1e] 2026-08-07 10:06:41 -0400
       in <command>VACUUM</command>'s wraparound failsafe mode
       (Melanie Plageman)
 -->
-《機械翻訳》«Restore full use of shared buffer pool in <command>VACUUM</command>'s wraparound failsafe mode »
+《機械翻訳》リストア<command>VACUUM</command>周回フェイルセーフモードでの共同バッファプールのフル活用
 (Melanie Plageman)
       <ulink url="&commit_baseurl;585181e07">&sect;</ulink>
       <ulink url="&commit_baseurl;7c25cdb1e">&sect;</ulink>
@@ -2694,7 +2760,10 @@ Branch: REL_18_STABLE [7c25cdb1e] 2026-08-07 10:06:41 -0400
       to allow vacuuming to proceed as fast as possible.  This behavior
       was accidentally broken during refactoring in v18; restore it.
 -->
-《機械翻訳》«An ordinary <command>VACUUM</command> is limited to use just a few shared buffers, so as not to impinge too much on other processing. However, in failsafe mode we want to reclaim transaction IDs as quickly as possible, so that limit is supposed to be abandoned to allow vacuuming to proceed as fast as possible. This behavior was accidentally broken during refactoring in v18; restore it.»
+《機械翻訳》通常の<command>VACUUM</command>は、他の処理にあまり影響を与えないように、いくつかの共有バッファのみを使用するように制限されています。
+ただし、フェイルセーフモードでは、できるだけ早くトランザクションIDを再要求したいので、この制限は放棄され、バキューム処理ができるだけ早く処理できるようになります。
+この動作は、v18でのリファクタリング中に誤って壊れました。
+リストアit。
      </para>
     </listitem>
 
@@ -2709,7 +2778,7 @@ Branch: REL_17_STABLE [8ad414831] 2026-06-08 15:29:21 +0900
 <!--
       Fix memory leak in parallel vacuum worker processes (Baji Shaik)
 -->
-《機械翻訳》«Fix memory leak in parallel vacuum worker processes »
+《機械翻訳》パラレルバキュームワーカープロセスでメモリリークを固定します。
 (Baji Shaik)
       <ulink url="&commit_baseurl;4154a1482">&sect;</ulink>
      </para>
@@ -2719,7 +2788,7 @@ Branch: REL_17_STABLE [8ad414831] 2026-06-08 15:29:21 +0900
       Progress reports from a parallel worker leaked about 1kB per report,
       with the waste accumulating for the life of the worker process.
 -->
-《機械翻訳》«Progress reports from a parallel worker leaked about 1kB per report, with the waste accumulating for the life of the worker process.»
+《機械翻訳》パラレルワーカーからの経過報告は、レポートごとに約1つのキロバイトが漏洩し、ワーカープロセスの存続期間中に廃棄物が蓄積した。
      </para>
     </listitem>
 
@@ -2739,7 +2808,7 @@ Branch: REL_14_STABLE [15fd7a3e2] 2026-07-28 10:56:39 +0200
       Honor query cancel and vacuum delay during GIN index posting-tree
       cleanup (Paul Kim, Alexander Korotkov)
 -->
-《機械翻訳》«Honor query cancel and vacuum delay during GIN index posting-tree cleanup »
+《機械翻訳》GINキャンセル赴任中に問い合わせインデックスとバキューム遅延に敬意を表します-ツリークリーンアップ。
 (Paul Kim, Alexander Korotkov)
       <ulink url="&commit_baseurl;7becb647d">&sect;</ulink>
      </para>
@@ -2750,7 +2819,7 @@ Branch: REL_14_STABLE [15fd7a3e2] 2026-07-28 10:56:39 +0200
       missed check could allow vacuum to run for a long time before
       noticing an interrupt.
 -->
-《機械翻訳》«The posting tree for a common value can be large, so that this missed check could allow vacuum to run for a long time before noticing an interrupt.»
+《機械翻訳》共通値のための提示ツリーは、ラージとすることができ、したがって、この逃したチェックは、バキュームが中断に気づいて長い間前を実行することを可能にすることができる。
      </para>
     </listitem>
 
@@ -2770,7 +2839,7 @@ Branch: REL_14_STABLE [e4ad22eb0] 2026-07-17 15:52:56 -0400
       Fix possible mis-decoding of index tuples during GiST and SP-GiST
       index-only scans (Peter Geoghegan)
 -->
-《機械翻訳》«Fix possible mis-decoding of index tuples during GiST and SP-GiST index-only scans »
+《機械翻訳》インデックスおよびSP-GiST GiSTのみのスキャン中に発生する可能性があったインデックスタプルのデコードミスが修正されました。
 (Peter Geoghegan)
       <ulink url="&commit_baseurl;959b7fa2c">&sect;</ulink>
      </para>
@@ -2782,7 +2851,8 @@ Branch: REL_14_STABLE [e4ad22eb0] 2026-07-17 15:52:56 -0400
       it could only fail if the range column were not the first index
       column.
 -->
-《機械翻訳》«This error could lead to emitting corrupted data from an index-only scan plan. The only affected core opclass is GiST's range_ops, and it could only fail if the range column were not the first index column.»
+《機械翻訳》このエラーは、インデックスのみのスキャンプランからの汚染されたデータの排出につながる可能性があります。
+影響を受ける唯一のコアopclassはGiSTのレンジ_opsであり、レンジカラムが最初のインデックスカラムでない場合にのみ失敗します。
      </para>
     </listitem>
 
@@ -2800,7 +2870,7 @@ Branch: REL_16_STABLE [0fd5595aa] 2026-07-15 15:58:15 -0400
       Ensure that the new last block of a bulk-extended table is added to
       its free space map promptly (Jingtang Zhang)
 -->
-《機械翻訳》«Ensure that the new last block of a bulk-extended table is added to its free space map promptly »
+《機械翻訳》バルク-拡張テーブルの新たな最後のブロックがその空き領域マップに速やかに追加される保証。
 (Jingtang Zhang)
       <ulink url="&commit_baseurl;eabc9a9dd">&sect;</ulink>
      </para>
@@ -2812,7 +2882,8 @@ Branch: REL_16_STABLE [0fd5595aa] 2026-07-15 15:58:15 -0400
       eventually get corrected by vacuum, but meanwhile the space wouldn't
       be used.
 -->
-《機械翻訳》«An off-by-one error caused the last block of a multi-block table extension to not be marked as free in the map. This would eventually get corrected by vacuum, but meanwhile the space wouldn't be used.»
+《機械翻訳》マルチ-ブロックテーブルextensionの最後のブロックがマップでフリーと表示されなかったのは、オフごとのエラーが原因でした。
+これは最終的にバキュームによって修正されますが、その間スペースは使用されませんでした。
      </para>
     </listitem>
 
@@ -2828,7 +2899,8 @@ Branch: REL_17_STABLE [011eedcdc] 2026-06-22 18:03:23 -0400
       Avoid possible double-free or infinite error recovery loop in
       resource cleanup during transaction abort (Tom Lane)
 -->
-《機械翻訳》«Avoid possible double-free or infinite error recovery loop in resource cleanup during transaction abort »
+《機械翻訳》トランザクション中断中のリソースフリーでは、二重無限またはエラーリカバリループの可能性を避けてください。
+クリーンアップ
 (Tom Lane)
       <ulink url="&commit_baseurl;ac6a58a70">&sect;</ulink>
      </para>
@@ -2849,7 +2921,7 @@ Branch: REL_14_STABLE [4b3bc6b71] 2026-06-19 12:52:00 -0400
       When creating directories, tolerate concurrent creation of the same
       directory (Andrew Dunstan, Tom Lane)
 -->
-《機械翻訳》«When creating directories, tolerate concurrent creation of the same directory »
+《機械翻訳》ディレクトリを作成する場合、同じディレクトリの同時作成を許容します。
 (Andrew Dunstan, Tom Lane)
       <ulink url="&commit_baseurl;aa80c34c8">&sect;</ulink>
      </para>
@@ -2866,7 +2938,7 @@ Branch: REL_18_STABLE [e9692de1d] 2026-06-19 15:26:51 +1200
       Fix JIT-compiled tuple deconstruction code to account correctly for
       virtual generated columns (David Rowley)
 -->
-《機械翻訳》«Fix JIT-compiled tuple deconstruction code to account correctly for virtual generated columns »
+《機械翻訳》仮想的に生成された列に対して、JITコンパイルされたタプル分解コードがアカウントに正しく修正されました。
 (David Rowley)
       <ulink url="&commit_baseurl;e9692de1d">&sect;</ulink>
      </para>
@@ -2893,7 +2965,7 @@ Branch: REL_14_STABLE [36b6ed260] 2026-05-27 18:37:48 +0300
       Prevent creation of dangling object dependencies by acquiring a
       shared lock on any object being depended on (Bertrand Drouvot)
 -->
-《機械翻訳》«Prevent creation of dangling object dependencies by acquiring a shared lock on any object being depended on »
+《機械翻訳》依存しているオブジェクトの共有ロックを取得することで、ダングリングオブジェクトの依存関係が作成されないようにします。
 (Bertrand Drouvot)
       <ulink url="&commit_baseurl;c8cd3d697">&sect;</ulink>
       <ulink url="&commit_baseurl;f9d5a52da">&sect;</ulink>
@@ -2909,7 +2981,9 @@ Branch: REL_14_STABLE [36b6ed260] 2026-05-27 18:37:48 +0300
       leaving an invalid function definition behind.  Now, one transaction
       or the other will fail.
 -->
-《機械翻訳》«The shared lock will conflict with any attempt to drop the depended-on object, eliminating the race condition that formerly existed. For example, if one session drops a schema (that appears empty to it) concurrently with some other session creating a function in that schema, previously both transactions could commit, leaving an invalid function definition behind. Now, one transaction or the other will fail.»
+《機械翻訳》共有ロックは、以前に存在していたオブジェクトを削除して、依存していた競合条件を削除しようとする試みをコンフリクトします。
+例の場合、あるセッションが（空に見える）スキーマを削除すると同時に、他のセッションがそのスキーマに関数を作成すると、以前は両方の取引がコミットする可能性があり、無効な関数定義が残されていました。
+これで、どちらかのトランザクションが失敗します。
      </para>
     </listitem>
 
@@ -2930,7 +3004,7 @@ Branch: REL_14_STABLE [2fc3e1b44] 2026-07-25 12:01:24 -0400
       for <literal>SERIALIZABLE</literal> isolation mode
       (Peter Geoghegan)
 -->
-《機械翻訳》«Fix race condition in conflict detection for <literal>SERIALIZABLE</literal> isolation mode »
+《機械翻訳》<literal>SERIALIZABLE</literal>隔離競合条件のコンフリクト検出にモードを固定する。
 (Peter Geoghegan)
       <ulink url="&commit_baseurl;d560e730e">&sect;</ulink>
      </para>
@@ -2941,7 +3015,7 @@ Branch: REL_14_STABLE [2fc3e1b44] 2026-07-25 12:01:24 -0400
       index, allowing failure of serializability due to improperly
       allowing conflicting transactions to commit.
 -->
-《機械翻訳》«A conflict could be missed when examining an initially-empty btree index, allowing failure of serializability due to improperly allowing conflicting transactions to commit.»
+《機械翻訳》最初は空であったb-treeコンフリクトを検査する際にインデックスが見落とされる可能性があり、コミットへの競合するトランザクションを不適切に許可することにより、直列化可能性の失敗を可能にする。
      </para>
     </listitem>
 
@@ -2958,7 +3032,7 @@ Branch: REL_15_STABLE [159324a73] 2026-05-27 16:26:08 -0700
 <!--
       Fix race condition in ProcSignalBarrier code (Masahiko Sawada)
 -->
-《機械翻訳》«Fix race condition in ProcSignalBarrier code »
+《機械翻訳》ProcSignalBarrierコードの競合条件を修正します。
 (Masahiko Sawada)
       <ulink url="&commit_baseurl;1a9b1cc18">&sect;</ulink>
      </para>
@@ -2970,7 +3044,7 @@ Branch: REL_15_STABLE [159324a73] 2026-05-27 16:26:08 -0700
       PID <replaceable>nnnn</replaceable> to accept
       ProcSignalBarrier</quote>.
 -->
-《機械翻訳》«This error could result in processes getting stuck, typically after reporting <quote>still waiting for backend with PID <replaceable>nnnn</replaceable> to accept ProcSignalBarrier</quote>.»
+《機械翻訳》このエラーにより、通常はレポート後にプロセスが停止する可能性があります<quote><replaceable>nnnn</replaceable> ProcSignalBarrierを受け入れるためにPIDでバックエンドを待機しています</quote>。
      </para>
     </listitem>
 
@@ -2995,7 +3069,7 @@ Branch: REL_14_STABLE [db4d12fc9] 2026-05-27 17:20:00 +0900
       Fix race conditions when a set of processes that belong to the same
       lock group exit at the same time (Vlad Lesin)
 -->
-《機械翻訳》«Fix race conditions when a set of processes that belong to the same lock group exit at the same time »
+《機械翻訳》同じロックグループに属する一連のプロセスが同時に終了する場合の競合状態を修正した。
 (Vlad Lesin)
       <ulink url="&commit_baseurl;ae08eb168">&sect;</ulink>
       <ulink url="&commit_baseurl;12c9b8b42">&sect;</ulink>
@@ -3008,7 +3082,10 @@ Branch: REL_14_STABLE [db4d12fc9] 2026-05-27 17:20:00 +0900
       arise in regular parallel query, since the leader won't exit before
       seeing its workers finish; but some extensions reach the problem.
 -->
-《機械翻訳》«These errors could lead to PANIC aborts, with messages such as <quote>latch already owned</quote>. The issue does not normally arise in regular parallel query, since the leader won't exit before seeing its workers finish; but some extensions reach the problem.»
+《機械翻訳》これらのエラーは、<quote>パニックはすでに所有されています</quote>のようなメッセージを表示して、ラッチの中断につながる可能性があります。
+この問題は通常のパラレル問い合わせでは発生しません。
+なぜなら、リーダーはワーカーが終了するのを見て前を出ることはないからです。
+しかし、いくつかの拡張はこの問題に到達します。
      </para>
     </listitem>
 
@@ -3033,7 +3110,7 @@ Branch: REL_17_STABLE [067213430] 2026-07-15 17:43:38 -0400
       Fix WAL logging of operations that clear bits in tables' visibility
       maps (Melanie Plageman, Andres Freund)
 -->
-《機械翻訳》«Fix WAL logging of operations that clear bits in tables' visibility maps »
+《機械翻訳》ロギングがテーブルの可視マップに割り込む操作のWALクリアを修正しました。
 (Melanie Plageman, Andres Freund)
       <ulink url="&commit_baseurl;d0fb1da21">&sect;</ulink>
       <ulink url="&commit_baseurl;f581fa729">&sect;</ulink>
@@ -3048,7 +3125,9 @@ Branch: REL_17_STABLE [067213430] 2026-07-15 17:43:38 -0400
       torn page writes to go uncorrected.  This could lead to misbehavior
       later, such as wrong results from index-only scans.
 -->
-《機械翻訳》«Such VM changes were missed by the WAL summarizer, potentially leading to incorrect incremental backups. We also failed to log full-page images of such VM pages when needed, potentially allowing torn page writes to go uncorrected. This could lead to misbehavior later, such as wrong results from index-only scans.»
+《機械翻訳》このようなVMの変更はWALサマライザによって見逃され、不正な増分バックアップを引き起こす可能性がありました。
+また、必要なときにこのようなVMページのフルページイメージをログすることに失敗し、引き裂かれたページ書き込みが修正されない可能性がありました。
+これは、インデックスのみのスキャンからの間違い結果など、後で不正な動作を引き起こす可能性がありました。
      </para>
     </listitem>
 
@@ -3069,7 +3148,7 @@ Branch: REL_17_STABLE [d28cdf46e] 2026-07-22 08:49:00 -0400
       Prevent WAL summarizer process from getting stuck at a timeline
       switch (Robert Haas)
 -->
-《機械翻訳》«Prevent WAL summarizer process from getting stuck at a timeline switch »
+《機械翻訳》WALサマライザプロセスがタイムラインスイッチで立ち往生するのを防ぎます。
 (Robert Haas)
       <ulink url="&commit_baseurl;18f0de6b8">&sect;</ulink>
       <ulink url="&commit_baseurl;1d299d6ab">&sect;</ulink>
@@ -3094,7 +3173,7 @@ Branch: REL_16_STABLE [d9b49e5b4] 2026-06-12 11:44:19 +0900
       Fix race with timeline selection in logical decoding during standby
       promotion (Bertrand Drouvot)
 -->
-《機械翻訳》«Fix race with timeline selection in logical decoding during standby promotion »
+《機械翻訳》スタンバイのプロモーション中にロジカルデコーディングのタイムライン選択とのレースを修正しました。
 (Bertrand Drouvot)
       <ulink url="&commit_baseurl;b4bd13850">&sect;</ulink>
       <ulink url="&commit_baseurl;4bff3aa51">&sect;</ulink>
@@ -3107,7 +3186,8 @@ Branch: REL_16_STABLE [d9b49e5b4] 2026-06-12 11:44:19 +0900
       error.  A repeat attempt would succeed, so there was no permanent
       problem but there was an availability hazard.
 -->
-《機械翻訳》«Logical decoding being performed on the standby could fail with a <quote>requested WAL segment has already been removed</quote> error. A repeat attempt would succeed, so there was no permanent problem but there was an availability hazard.»
+《機械翻訳》スタンバイで実行されるロジカルデコーディングは、<quote>要求されたWALセグメントが既に削除されている</quote>エラーで失敗する可能性がありました。
+再試行は成功するため、永続的な問題はありませんでしたが、可用性の危険がありました。
      </para>
     </listitem>
 
@@ -3126,7 +3206,7 @@ Branch: REL_14_STABLE [e18b77153] 2026-05-23 08:10:18 +0900
       Avoid exposing a WAL receiver's full connection string during timeline
       jumps (Chao Li)
 -->
-《機械翻訳》«Avoid exposing a WAL receiver's full connection string during timeline jumps »
+《機械翻訳》タイムラインジャンプ中に、WALレシーバのコネクション文字列全体を露出させないようにします。
 (Chao Li)
       <ulink url="&commit_baseurl;b903d1792">&sect;</ulink>
      </para>
@@ -3138,7 +3218,8 @@ Branch: REL_14_STABLE [e18b77153] 2026-05-23 08:10:18 +0900
       But it transiently showed the full string when we re-use an existing
       WAL receiver.
 -->
-《機械翻訳》«The <structname>pg_stat_wal_receiver</structname> view should show a sanitized version of the connection string, without sensitive data. But it transiently showed the full string when we re-use an existing WAL receiver.»
+《機械翻訳》<structname>pg_stat_wal_receiver</structname>ビューはコネクション文字列の消毒されたバージョンを示し、敏感なデータは示さないはずです。
+しかし、既存のWALレシーバを再利用するときに一時的に完全な文字列を示しました。
      </para>
     </listitem>
 
@@ -3158,7 +3239,7 @@ Branch: REL_14_STABLE [510a05f07] 2026-05-16 18:01:46 -0700
       of columns in tuples received during logical replication (Varik
       Matevosyan)
 -->
-《機械翻訳》«Use run-time checks, not just Asserts, to verify the correct number of columns in tuples received during logical replication »
+《機械翻訳》アサート中に受け取ったタプルの正しい列数を検証するために、論理レプリケーションだけではなく、ランタイム検査を使用してください。
 (Varik Matevosyan)
       <ulink url="&commit_baseurl;dc3db3a83">&sect;</ulink>
      </para>
@@ -3169,7 +3250,8 @@ Branch: REL_14_STABLE [510a05f07] 2026-05-16 18:01:46 -0700
       columns.  While we could not find a scenario in which this would
       have serious ill effects, extra caution seems warranted.
 -->
-《機械翻訳》«A malicious or buggy publisher could send inconsistent numbers of columns. While we could not find a scenario in which this would have serious ill effects, extra caution seems warranted.»
+《機械翻訳》悪意のあるパブリッシャーやバグのあるシナリオは、矛盾した数の列を送信する可能性があります。
+これが深刻な悪影響を及ぼす地域は見つかりませんでしたが、特別な注意が必要と思われます。
      </para>
     </listitem>
 
@@ -3188,7 +3270,7 @@ Branch: REL_14_STABLE [2a00840e8] 2026-06-15 15:35:37 -0400
       Clean up quoting of string parameters within constructed replication
       commands (Tom Lane)
 -->
-《機械翻訳》«Clean up quoting of string parameters within constructed replication commands »
+《機械翻訳》建設された文字列内のレプリケーションコマンドパラメータの見積もりをクリーンアップします。
 (Tom Lane)
       <ulink url="&commit_baseurl;abb582555">&sect;</ulink>
      </para>
@@ -3205,7 +3287,10 @@ Branch: REL_14_STABLE [2a00840e8] 2026-06-15 15:35:37 -0400
       users and there is no reason for them to use a slot name coming from
       an untrustworthy source.
 -->
-《機械翻訳》«Various places that generate replication commands were not being adequately careful about quoting replication slot names and other parameters that need to be inserted into those commands. This could result in unexpected syntax errors in those commands. In principle, a crafted replication slot name could result in SQL injection; but such a scenario seems very unlikely to occur in practice, since replication operations can only be invoked by highly-privileged users and there is no reason for them to use a slot name coming from an untrustworthy source.»
+《機械翻訳》レプリケーションコマンドを生成する様々な場所で、これらのコマンドに挿入する必要があるレプリケーションスロット名やその他のパラメータの引用に十分な注意が払われていませんでした。
+これにより、これらのコマンドで予期しない構文エラーが発生する可能性がありました。
+原則的には、巧妙に細工されたレプリケーションスロット名前はSQLインジェクションを引き起こす可能性がありますが、実際にはそのようなシナリオは非常に起こりにくいと思われます。
+なぜなら、レプリケーション操作は高度な権限を持つユーザのみが呼び出すことができ、信頼できないソースからのスロット名前を使用する理由はないからです。
      </para>
     </listitem>
 
@@ -3224,7 +3309,7 @@ Branch: REL_14_STABLE [c2d34db0a] 2026-07-28 12:33:50 -0700
 <!--
       Fix logical decoding of empty prepared transactions (Masahiko Sawada)
 -->
-《機械翻訳》«Fix logical decoding of empty prepared transactions »
+《機械翻訳》空の準備されたトランザクションのロジカルデコーディングを修正しました。
 (Masahiko Sawada)
       <ulink url="&commit_baseurl;b563fc6bd">&sect;</ulink>
      </para>
@@ -3237,7 +3322,8 @@ Branch: REL_14_STABLE [c2d34db0a] 2026-07-28 12:33:50 -0700
       built-in subscriber this breaks replication, and other plugins will
       probably not like it either.
 -->
-《機械翻訳》«A prepared transaction that did not cause any decodable updates could result in sending <command>COMMIT/ROLLBACK PREPARED</command> to the output plugin with no preceding <command>PREPARE</command>. For the built-in subscriber this breaks replication, and other plugins will probably not like it either.»
+《機械翻訳》デコード可能な更新を引き起こさなかったプリペアードトランザクションは、先行する<command>PREPARE</command>がない<command>COMMIT/ROLLBACK PREPARED</command>を出力プラグインに送信する結果になる可能性があります。
+組み込みのサブスクライバーでは、これはレプリケーションを壊し、他のプラグインもおそらくそれを好まないでしょう。
      </para>
     </listitem>
 
@@ -3256,7 +3342,7 @@ Branch: REL_15_STABLE [d2980067b] 2026-06-30 08:52:50 +0900
       Fix corruption of unlogged sequences after standby promotion
       (Fujii Masao)
 -->
-《機械翻訳》«Fix corruption of unlogged sequences after standby promotion »
+《機械翻訳》スタンバイ昇格後のログされないシーケンスの破損を修正しました。
 (Fujii Masao)
       <ulink url="&commit_baseurl;627605713">&sect;</ulink>
      </para>
@@ -3268,7 +3354,7 @@ Branch: REL_15_STABLE [d2980067b] 2026-06-30 08:52:50 +0900
       standby could fail with <quote>bad magic number in sequence</quote>
       or related errors.
 -->
-《機械翻訳》«Previously, if an unlogged sequence was created on the primary and replicated to a standby, accessing the sequence after promoting the standby could fail with <quote>bad magic number in sequence</quote> or related errors.»
+《機械翻訳》以前は、ログに記録されていないシーケンスがプライマリで作成され、スタンバイに複製された場合、スタンバイをプロモートした後にシーケンスをアクセスすると、<quote>シーケンスのマジックナンバーが悪い</quote>または関連するエラーで失敗することがありました。
      </para>
     </listitem>
 
@@ -3288,7 +3374,7 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       Fix cascading standby reconnect failure after archive fallback
       (Marco Nenciarini)
 -->
-《機械翻訳》«Fix cascading standby reconnect failure after archive fallback »
+《機械翻訳》カスケードスタンバイ代替後のアーカイブ再接続障害を修正しました。
 (Marco Nenciarini)
       <ulink url="&commit_baseurl;331016322">&sect;</ulink>
      </para>
@@ -3299,7 +3385,7 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       with <quote>requested starting point ... is ahead of the WAL flush
       position</quote> after falling back to archive recovery.
 -->
-《機械翻訳》«A cascading standby could fail to reconnect to its upstream standby with <quote>requested starting point ... is ahead of the WAL flush position</quote> after falling back to archive recovery.»
+《機械翻訳》カスケードスタンバイは、アーカイブスタンバイにフォールバックした後、<quote>要求された開始点が.WALフラッシュ位置の前にあります</quote>で上流リカバリへの再接続に失敗する可能性があります。
      </para>
     </listitem>
 
@@ -3315,7 +3401,7 @@ Branch: REL_18_STABLE [311e66df9] 2026-08-08 00:10:06 +0900
       Prevent accepting hot-standby connections before WAL replay has
       reached a consistent database state (Nikhil Sontakke)
 -->
-《機械翻訳》«Prevent accepting hot-standby connections before WAL replay has reached a consistent database state »
+《機械翻訳》ホット-スタンバイ間の接続を許可しない前WALリプレイが一貫したデータベース状態になりました。
 (Nikhil Sontakke)
       <ulink url="&commit_baseurl;311e66df9">&sect;</ulink>
      </para>
@@ -3334,7 +3420,7 @@ Branch: REL_17_STABLE [4a375527a] 2026-05-27 02:28:49 +0300
       <structname>pg_database</structname>.<structfield>dathasloginevt</structfield>
       locally on a standby server (Ayush Tiwari)
 -->
-《機械翻訳》«Do not try to clear <structname>pg_database</structname>.<structfield>dathasloginevt</structfield> locally on a standby server »
+《機械翻訳》トライからクリア<structname>pg_データベース</structname>には移動しないでください<structfield>dathasloginevt</structfield>スタンバイサーバでローカルに移動します。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;97b5c5aaa">&sect;</ulink>
      </para>
@@ -3346,7 +3432,8 @@ Branch: REL_17_STABLE [4a375527a] 2026-05-27 02:28:49 +0300
       and there's no need anyway since replay of the primary's database
       change will soon fix it.
 -->
-《機械翻訳》«Event trigger cleanup tried to perform that action on standby servers as well as the primary. That can't work on a standby, and there's no need anyway since replay of the primary's database change will soon fix it.»
+《機械翻訳》イベントトリガクリーンアップはプライマリだけでなくスタンバイサーバでもその行動を実行しようとしました。
+それはスタンバイでは機能しませんし、プライマリのデータベース変更のリプレイがすぐにそれを修正するので、とにかくその必要はありません。
      </para>
     </listitem>
 
@@ -3362,7 +3449,7 @@ Branch: REL_17_STABLE [ea834d747] 2026-06-18 09:35:53 +0530
       Avoid race condition while dropping obsolete replication slots
       (Xuneng Zhou)
 -->
-《機械翻訳》«Avoid race condition while dropping obsolete replication slots »
+《機械翻訳》古い競合条件スロットを削除するときは、レプリケーションを使用しないでください。
 (Xuneng Zhou)
       <ulink url="&commit_baseurl;08458bcae">&sect;</ulink>
      </para>
@@ -3372,7 +3459,7 @@ Branch: REL_17_STABLE [ea834d747] 2026-06-18 09:35:53 +0530
       An incorrect unlock and log message could occur if another session
       immediately re-used the dropped slot's shared-memory entry.
 -->
-《機械翻訳》«An incorrect unlock and log message could occur if another session immediately re-used the dropped slot's shared-memory entry.»
+《機械翻訳》誤ったロック解除およびログメッセージは、別のセッションが、ドロップされたスロットの共有メモリエントリを直ちに再利用した場合に発生する可能性がある。
      </para>
     </listitem>
 
@@ -3391,7 +3478,7 @@ Branch: REL_14_STABLE [968c50845] 2026-06-03 18:47:52 +0900
       Avoid race condition while dropping ephemeral replication slots
       (Zhijie Hou)
 -->
-《機械翻訳》«Avoid race condition while dropping ephemeral replication slots »
+《機械翻訳》エフェメラルレプリケーションスロットをドロップするときは、競合条件を避けてください。
 (Zhijie Hou)
       <ulink url="&commit_baseurl;f833c9207">&sect;</ulink>
      </para>
@@ -3404,7 +3491,9 @@ Branch: REL_14_STABLE [968c50845] 2026-06-03 18:47:52 +0900
       dropped slot's shared-memory entry.  Skip those updates in the case
       of an ephemeral slot.
 -->
-《機械翻訳》«The slot-releasing code performed some additional updates to the replication slot's shared-memory entry after releasing the slot. This is unsafe since another session could immediately re-use the dropped slot's shared-memory entry. Skip those updates in the case of an ephemeral slot.»
+《機械翻訳》スロットをリリースするコードは、レプリケーションスロットをリリースした後に、スロットの共有メモリエントリに対していくつかの追加更新を実行しました。
+これは、削除されたスロットの共有メモリエントリを別のセッションがすぐに再利用できるため、安全ではありません。
+スキップは、一時的なスロットのケースでこれらの更新を行います。
      </para>
     </listitem>
 
@@ -3423,7 +3512,7 @@ Branch: REL_14_STABLE [e3c4e3746] 2026-05-13 11:46:26 +0900
       Fix stale progress reports during logical replication table
       synchronization (Shinya Kato)
 -->
-《機械翻訳》«Fix stale progress reports during logical replication table synchronization »
+《機械翻訳》論理レプリケーションテーブルの同期化中に古い進行状況レポートを修正しました。
 (Shinya Kato)
       <ulink url="&commit_baseurl;d9cd9b4d7">&sect;</ulink>
      </para>
@@ -3436,7 +3525,8 @@ Branch: REL_14_STABLE [e3c4e3746] 2026-05-13 11:46:26 +0900
       data copy had finished.  The stale entry remained visible until
       synchronization caught up with the publisher.
 -->
-《機械翻訳》«Previously, the <structname>pg_stat_progress_copy</structname> view in the subscriber would continue to show the initial <command>COPY</command> operation as active even after the data copy had finished. The stale entry remained visible until synchronization caught up with the publisher.»
+《機械翻訳》これまでは、サブスクライバーの<structname>pg_stat_progress_コピー</structname>ビューは、データコピーが終了した後も最初の<command>COPY</command>オペレーションをアクティブとして表示し続けていました。
+古いエントリは、同期がパブリッシャーに追いつくまで可視のままでした。
      </para>
     </listitem>
 
@@ -3458,7 +3548,7 @@ Branch: REL_15_STABLE [a8fb98b7b] 2026-07-06 09:48:06 +0900
 <!--
       Clear base backup progress on backup failure (Chao Li)
 -->
-《機械翻訳》«Clear base backup progress on backup failure »
+《機械翻訳》バックアップの失敗に関するクリアベースバックアップの進展。
 (Chao Li)
       <ulink url="&commit_baseurl;e7564ee8c">&sect;</ulink>
       <ulink url="&commit_baseurl;e2ad214dd">&sect;</ulink>
@@ -3472,7 +3562,7 @@ Branch: REL_15_STABLE [a8fb98b7b] 2026-07-06 09:48:06 +0900
       disconnected.  <application>pg_basebackup</application> normally
       disconnects immediately, but other clients might not.
 -->
-《機械翻訳》«Previously the <structname>pg_stat_progress_basebackup</structname> view would continue to show a stale progress entry after a failure, until the replication client disconnected. <application>pg_basebackup</application> normally disconnects immediately, but other clients might not.»
+《機械翻訳》以前は、<structname>pg_stat_progress_basebackup</structname>ビューは、障害発生後、エントリクライアントが切断されるまで、古い進行状況レプリケーションを表示し続けました<application>pg_basebackup</application>通常はすぐに切断されますが、他のクライアントは切断されない場合があります。
      </para>
     </listitem>
 
@@ -3499,7 +3589,7 @@ Branch: REL_15_STABLE [9e4771825] 2026-06-23 07:59:03 +0900
       when <varname>track_functions</varname> is enabled (Sami Imseih,
       Michael Paquier)
 -->
-《機械翻訳》«Fix possible PANIC due to concurrent drop of pgstats entries when <varname>track_functions</varname> is enabled »
+《機械翻訳》<varname>track_functions</varname>が有効な場合にpgstatsエントリが同時に削除されることで発生する可能性があったパニックを修正しました。
 (Sami Imseih, Michael Paquier)
       <ulink url="&commit_baseurl;5cc59834b">&sect;</ulink>
       <ulink url="&commit_baseurl;8a4f389dd">&sect;</ulink>
@@ -3522,7 +3612,7 @@ Branch: REL_15_STABLE [10e20e59e] 2026-08-07 14:23:39 +0900
       Clean up broken local pgstats entry after failing to obtain space for
       the corresponding shared hashtable entry (Niall Newman)
 -->
-《機械翻訳》«Clean up broken local pgstats entry after failing to obtain space for the corresponding shared hashtable entry »
+《機械翻訳》対応する共有ハッシュテーブルローカル用のエントリの取得に失敗した後、壊れたスペースpgstatsエントリをクリーンアップします。
 (Niall Newman)
       <ulink url="&commit_baseurl;2fd8d45ec">&sect;</ulink>
      </para>
@@ -3532,7 +3622,7 @@ Branch: REL_15_STABLE [10e20e59e] 2026-08-07 14:23:39 +0900
       Failure to do this led to a null-pointer dereference the next time
       the local entry was used.
 -->
-《機械翻訳》«Failure to do this led to a null-pointer dereference the next time the local entry was used.»
+《機械翻訳》これを行わなかった場合、次にローカルエントリが使用されたときにNULL-ポインタ間の逆参照が発生しました。
      </para>
     </listitem>
 
@@ -3547,7 +3637,7 @@ Branch: REL_18_STABLE [13f940b4b] 2026-06-17 16:05:37 +0900
       Avoid recording incorrect I/O operation statistics after a failed
       read or write (Bertrand Drouvot)
 -->
-《機械翻訳》«Avoid recording incorrect I/O operation statistics after a failed read or write »
+《機械翻訳》読み取りまたは書き込みに失敗した後に、誤った入出力オペレーション統計処理を記録しないようにしてください。
 (Bertrand Drouvot)
       <ulink url="&commit_baseurl;13f940b4b">&sect;</ulink>
      </para>
@@ -3569,7 +3659,8 @@ Branch: REL_14_STABLE [e520ad34b] 2026-06-24 09:17:36 +0900
       dereference crash when working with an
       invalid <type>PostgreSQL::InServer::ARRAY</type> object (Xing Guo)
 -->
-《機械翻訳》«In <application>PL/Perl</application>, avoid NULL pointer dereference crash when working with an invalid <type>PostgreSQL::InServer::ARRAY</type> object »
+《機械翻訳》では、無効なヌルポインタ<type>クラッシュ::InServer::PostgreSQL</type>を操作するときに配列がオブジェクトを逆参照しないようにします。
+<application>PL/Perl</application>
 (Xing Guo)
       <ulink url="&commit_baseurl;e430ecc59">&sect;</ulink>
      </para>
@@ -3591,7 +3682,7 @@ Branch: REL_14_STABLE [309dc4526] 2026-06-29 14:21:15 +0900
       In <application>PL/Python</application>, properly check for errors
       when working with sequence and mapping objects (Richard Guo)
 -->
-《機械翻訳》«In <application>PL/Python</application>, properly check for errors when working with sequence and mapping objects »
+《機械翻訳》<application>PL/Python</application>では、シーケンスオブジェクトとマッピングオブジェクトを使用するときのエラーが正しくチェックされるようになりました。
 (Richard Guo)
       <ulink url="&commit_baseurl;53482fcb9">&sect;</ulink>
      </para>
@@ -3601,7 +3692,7 @@ Branch: REL_14_STABLE [309dc4526] 2026-06-29 14:21:15 +0900
       Previously, a broken object or an unhandled exception could result
       in a NULL pointer dereference crash.
 -->
-《機械翻訳》«Previously, a broken object or an unhandled exception could result in a NULL pointer dereference crash.»
+《機械翻訳》以前は、壊れたオブジェクトまたは処理されない例外により、ヌルポインタのクラッシュの逆参照が発生する可能性があった。
      </para>
     </listitem>
 
@@ -3643,7 +3734,7 @@ Branch: REL_14_STABLE [7532f2117] 2026-07-09 18:36:41 +0300
       from the SSL or GSS decryption buffer
       during <function>pqReadData()</function> (Jacob Champion)
 -->
-《機械翻訳》«In <application>libpq</application>, always drain all pending bytes from the SSL or GSS decryption buffer during <function>pqReadData()</function> »
+《機械翻訳》<application>libpq</application>では、<function>pqReadData()</function>の間にSSLまたはGSS復号化バッファからすべての保留バイトを常に排出します。
 (Jacob Champion)
       <ulink url="&commit_baseurl;2167302b7">&sect;</ulink>
       <ulink url="&commit_baseurl;bb0a54518">&sect;</ulink>
@@ -3657,7 +3748,7 @@ Branch: REL_14_STABLE [7532f2117] 2026-07-09 18:36:41 +0300
       calling application waits for more data to arrive on the socket, but
       actually all the data has already arrived.
 -->
-《機械翻訳》«This avoids edge cases where <application>libpq</application> or its calling application waits for more data to arrive on the socket, but actually all the data has already arrived.»
+《機械翻訳》これにより、<application>libpq</application>またはその呼び出し元のアプリケーションがソケットにさらにデータが到着するのを待っているが、実際にはすべてのデータがすでに到着しているというエッジケースが回避される。
      </para>
     </listitem>
 
@@ -3673,7 +3764,7 @@ Branch: REL_18_STABLE [6b46a5d1b] 2026-08-04 17:05:44 +0900
       Improve <application>libpq</application>'s handling of out-of-memory
       conditions (Anthonin Bonnefoy)
 -->
-《機械翻訳》«Improve <application>libpq</application>'s handling of out-of-memory conditions »
+《機械翻訳》改善<application>libpq</application>メモリ外の状況のハンドリング。
 (Anthonin Bonnefoy)
       <ulink url="&commit_baseurl;6b46a5d1b">&sect;</ulink>
      </para>
@@ -3692,7 +3783,7 @@ Branch: REL_18_STABLE [dd5eca055] 2026-07-03 15:00:00 +0300
       new-style BackendKeyData and CancelRequest messages correctly
       (Anthonin Bonnefoy)
 -->
-《機械翻訳》«Fix <application>libpq</application>'s trace facility to print new-style BackendKeyData and CancelRequest messages correctly »
+《機械翻訳》<application>libpq</application>のトレース機能をプリントの新しいスタイルBackendKeyDataメッセージとCancelRequestメッセージに正しく修正した。
 (Anthonin Bonnefoy)
       <ulink url="&commit_baseurl;dd5eca055">&sect;</ulink>
      </para>
@@ -3713,7 +3804,7 @@ Branch: REL_14_STABLE [1b79c8d1a] 2026-06-15 11:38:40 +0300
       Allow <application>libpq</application> to accept
       ParameterDescription messages exceeding 30000 bytes (Ning Sun)
 -->
-《機械翻訳》«Allow <application>libpq</application> to accept ParameterDescription messages exceeding 30000 bytes »
+《機械翻訳》Allow <application>libpq</application> 30000バイトを超えるParameterDescriptionメッセージを受け入れる。
 (Ning Sun)
       <ulink url="&commit_baseurl;b1ab4bc52">&sect;</ulink>
      </para>
@@ -3725,7 +3816,8 @@ Branch: REL_14_STABLE [1b79c8d1a] 2026-06-15 11:38:40 +0300
       could be long.  The limit resulted in failure for prepared queries
       having more than 7498 parameters, which is unlikely but supported.
 -->
-《機械翻訳》«Previously, this message type was not among those that <application>libpq</application>'s validity heuristics believed could be long. The limit resulted in failure for prepared queries having more than 7498 parameters, which is unlikely but supported.»
+《機械翻訳》以前は、このメッセージタイプは、<application>libpq</application>有効性のヒューリスティックスで長いと考えられていたものの中には含まれていなかった。
+この制限により、7498を超えるパラメータを持つプリペアド問い合わせで失敗したが、これは起こりそうにないがサポートされている。
      </para>
     </listitem>
 
@@ -3740,7 +3832,7 @@ Branch: REL_18_STABLE [917fdbc63] 2026-06-25 16:58:29 -0400
       Fix null-pointer crash in <application>ecpg</application> compiler
       (Jehan-Guillaume de Rorthais)
 -->
-《機械翻訳》«Fix null-pointer crash in <application>ecpg</application> compiler »
+《機械翻訳》NULL-ポインタクラッシュを<application>ecpg</application>コンパイラに固定する。
 (Jehan-Guillaume de Rorthais)
       <ulink url="&commit_baseurl;917fdbc63">&sect;</ulink>
      </para>
@@ -3751,7 +3843,7 @@ Branch: REL_18_STABLE [917fdbc63] 2026-06-25 16:58:29 -0400
       a <literal>DECLARE</literal> section containing a union nested
       inside a struct.
 -->
-《機械翻訳》«<application>ecpg</application> failed on a <literal>DECLARE</literal> section containing a union nested inside a struct.»
+《機械翻訳》構造体内にネストされたセクションを含む<literal>DECLARE</literal>ユニオンで<application>ecpg</application>が失敗しました。
      </para>
     </listitem>
 
@@ -3771,7 +3863,7 @@ Branch: REL_14_STABLE [9e8fd9f7a] 2026-06-08 17:14:20 +0900
       in <application>ecpg</application>'s <literal>GET/SET
       DESCRIPTOR</literal> statements (Masashi Kamura)
 -->
-《機械翻訳》«Reject multiple descriptor header items in <application>ecpg</application>'s <literal>GET/SET DESCRIPTOR</literal> statements »
+《機械翻訳》<application>ecpg</application>の<literal>GET/SET DESCRIPTOR</literal>ステートメント内のマルチプルディスクリプタヘッダ項目を拒否します。
 (Masashi Kamura)
       <ulink url="&commit_baseurl;081434b0f">&sect;</ulink>
      </para>
@@ -3782,7 +3874,8 @@ Branch: REL_14_STABLE [9e8fd9f7a] 2026-06-08 17:14:20 +0900
       generated.  Adjust the grammar and the documentation to allow only
       one header item.
 -->
-《機械翻訳》«Previously the grammar allowed this syntax, but broken C code was generated. Adjust the grammar and the documentation to allow only one header item.»
+《機械翻訳》以前は、文法はこの構文を許可していましたが、壊れたCコードが生成されました。
+文法と文書を調整して、ヘッダアイテムを1つだけ許可するようにしてください。
      </para>
     </listitem>
 
@@ -3797,7 +3890,7 @@ Branch: REL_18_STABLE [1e9bc4074] 2026-06-03 08:58:29 +0900
       Fix issues with deferred errors in pipeline mode
       in <application>psql</application> (Michael Paquier)
 -->
-《機械翻訳》«Fix issues with deferred errors in pipeline mode in <application>psql</application> »
+《機械翻訳》<application>psql</application>で、パイプラインモードの遅延エラーに関する問題を修正しました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;1e9bc4074">&sect;</ulink>
      </para>
@@ -3809,7 +3902,7 @@ Branch: REL_18_STABLE [1e9bc4074] 2026-06-03 08:58:29 +0900
       error in response to a Sync message, such as a deferred constraint
       violation.
 -->
-《機械翻訳》«<application>psql</application> could get stuck or suffer an assertion failure in some scenarios where the server reports an error in response to a Sync message, such as a deferred constraint violation.»
+《機械翻訳》<application>psql</application>遅延のアサーション違反など、サーバが回答のエラーを同期メッセージに報告する一部のシナリオでは、スタックまたは制約障害が発生する可能性があります。
      </para>
     </listitem>
 
@@ -3828,7 +3921,7 @@ Branch: REL_14_STABLE [a4ca91ea1] 2026-06-08 14:38:01 +0900
       Make line widths match in <application>psql</application>'s expanded
       aligned output format (Pavel Stehule)
 -->
-《機械翻訳》«Make line widths match in <application>psql</application>'s expanded aligned output format »
+《機械翻訳》make直線幅マッチin <application>psql</application>の拡張に位置合わせされた出力フォーマット。
 (Pavel Stehule)
       <ulink url="&commit_baseurl;07a6c262b">&sect;</ulink>
      </para>
@@ -3838,7 +3931,7 @@ Branch: REL_14_STABLE [a4ca91ea1] 2026-06-08 14:38:01 +0900
       When the table's data rows are narrower than the record header lines,
       widen the data rows to match the headers, avoiding unsightly output.
 -->
-《機械翻訳》«When the table's data rows are narrower than the record header lines, widen the data rows to match the headers, avoiding unsightly output.»
+《機械翻訳》テーブルのデータ行がレコードのヘッダ行よりも狭い場合は、データ行をヘッダのマッチまで広げて、見苦しい出力を回避します。
      </para>
     </listitem>
 
@@ -3855,7 +3948,7 @@ Branch: REL_18_STABLE [e0c641ebb] 2026-05-18 08:33:36 -0700
       variable <varname>WATCH_INTERVAL</varname>
       (Sven Klemm, Daniel Gustafsson)
 -->
-《機械翻訳》«Enforce the intended upper limit for <application>psql</application>'s special variable <varname>WATCH_INTERVAL</varname> »
+《機械翻訳》<application>psql</application>の特別変数の意図された上限を実施する<varname>WATCH_INTERVAL</varname>。
 (Sven Klemm, Daniel Gustafsson)
       <ulink url="&commit_baseurl;e0c641ebb">&sect;</ulink>
      </para>
@@ -3865,7 +3958,7 @@ Branch: REL_18_STABLE [e0c641ebb] 2026-05-18 08:33:36 -0700
       If a too-large value was given, <application>psql</application>
       reported an error but applied the setting anyway.
 -->
-《機械翻訳》«If a too-large value was given, <application>psql</application> reported an error but applied the setting anyway.»
+《機械翻訳》too-ラージ値が指定された場合、<application>psql</application>はエラーを報告しましたが、設定を適用しました。
      </para>
     </listitem>
 
@@ -3885,7 +3978,7 @@ Branch: REL_14_STABLE [4e19081da] 2026-07-25 19:11:34 +0900
       Fix <application>psql</application>'s privilege check for showing
       database size in <command>\l+</command> (Christoph Berg)
 -->
-《機械翻訳》«Fix <application>psql</application>'s privilege check for showing database size in <command>\l+</command> »
+《機械翻訳》データベースサイズを見せたフィックス<application>psql</application>の権限チェック<command>\l+</command>。
 (Christoph Berg)
       <ulink url="&commit_baseurl;f2d6cf880">&sect;</ulink>
      </para>
@@ -3899,7 +3992,9 @@ Branch: REL_14_STABLE [4e19081da] 2026-07-25 19:11:34 +0900
       provision and would not call the function unless the user
       has <literal>CONNECT</literal> privilege.
 -->
-《機械翻訳》«The underlying server function permits users who have <literal>pg_read_all_stats</literal> privileges to see the sizes of all databases, even if they lack <literal>CONNECT</literal> privilege. But <application>psql</application> was unaware of that provision and would not call the function unless the user has <literal>CONNECT</literal> privilege.»
+《機械翻訳》基礎となるサーバ関数では、<literal>pg_read_all_stats</literal>権限を持つユーザは、すべてのデータベースのサイズを参照することができます。
+これは、データベースが存在しない場合でも同様です<literal>CONNECT</literal>権限。
+しかし、<application>psql</application>はこの規定を認識しておらず、ユーザが<literal>CONNECT</literal>権限を持たない限り、関数を呼び出ししませんでした。
      </para>
     </listitem>
 
@@ -3920,7 +4015,7 @@ Branch: REL_14_STABLE [2d44bb900] 2026-07-03 13:50:51 +0900
       for <command>\df</command> to consider procedures too
       (Erik Wienhold)
 -->
-《機械翻訳》«Fix <application>psql</application>'s tab completion for <command>\df</command> to consider procedures too »
+《機械翻訳》<application>psql</application>ののタブ完了<command>\df</command>手順も検討
 (Erik Wienhold)
       <ulink url="&commit_baseurl;598af79b1">&sect;</ulink>
      </para>
@@ -3940,7 +4035,7 @@ Branch: REL_15_STABLE [f18fcd9a4] 2026-05-14 12:31:43 +0900
       Fix thread-safety bug in <application>pgbench</application>
       (Fujii Masao)
 -->
-《機械翻訳》«Fix thread-safety bug in <application>pgbench</application> »
+《機械翻訳》スレッド安全バグを<application>pgbench</application>.
 (Fujii Masao)
       <ulink url="&commit_baseurl;98dd6c204">&sect;</ulink>
      </para>
@@ -3952,7 +4047,7 @@ Branch: REL_15_STABLE [f18fcd9a4] 2026-05-14 12:31:43 +0900
       could attempt to use the same buffer to construct error messages,
       leading to corrupted log output.
 -->
-《機械翻訳》«When <application>pgbench</application> runs with multiple threads and the <option>--verbose-errors</option> option, different threads could attempt to use the same buffer to construct error messages, leading to corrupted log output.»
+《機械翻訳》<application>pgbench</application>がマルチプルスレッドと<option>--verbose-errors</option>オプションで実行されると、異なるスレッドが同じバッファからコンストラクトへのエラーメッセージを使用しようとする可能性があり、ログの出力が破損する可能性があります。
      </para>
     </listitem>
 
@@ -3968,7 +4063,7 @@ Branch: REL_17_STABLE [090ce6934] 2026-06-29 13:02:07 +0200
       In <application>pg_combinebackup</application>, prevent infinite
       loop if the source file is shorter than expected (Peter Eisentraut)
 -->
-《機械翻訳》«In <application>pg_combinebackup</application>, prevent infinite loop if the source file is shorter than expected »
+《機械翻訳》<application>pg_combinebackup</application>では、無限ループが予想より短い場合はソースファイルを防止します。
 (Peter Eisentraut)
       <ulink url="&commit_baseurl;d36b72894">&sect;</ulink>
      </para>
@@ -3986,7 +4081,7 @@ Branch: REL_17_STABLE [c03784a21] 2026-05-27 10:35:49 +0900
       Fix cleanup of publisher-side objects after errors
       in <application>pg_createsubscriber</application> (Nisha Moond)
 -->
-《機械翻訳》«Fix cleanup of publisher-side objects after errors in <application>pg_createsubscriber</application> »
+《機械翻訳》<application>pg_createsubscriber</application>でエラーが発生した後のパブリッシャー側オブジェクトのクリーンアップを修正しました。
 (Nisha Moond)
       <ulink url="&commit_baseurl;196b4b5ae">&sect;</ulink>
      </para>
@@ -3998,7 +4093,8 @@ Branch: REL_17_STABLE [c03784a21] 2026-05-27 10:35:49 +0900
       publication and replication slot that it created on the publisher.
       Some error cases failed to do so.
 -->
-《機械翻訳》«When <application>pg_createsubscriber</application> fails after creating logical replication objects, it should remove the publication and replication slot that it created on the publisher. Some error cases failed to do so.»
+《機械翻訳》論理レプリケーションオブジェクトを作成した後に<application>pg_createsubscriber</application>が失敗した場合は、パブリッシャーに作成したパブリケーションとレプリケーションスロットを削除する必要があります。
+そうしなかったエラーのケースもあります。
      </para>
     </listitem>
 
@@ -4018,7 +4114,7 @@ Branch: REL_14_STABLE [5552a15a3] 2026-05-20 15:57:19 +0900
       for <application>pg_recvlogical</application> output files
       (Fujii Masao)
 -->
-《機械翻訳》«Use the source cluster's group-read file permissions for <application>pg_recvlogical</application> output files »
+《機械翻訳》ソースクラスタのグループアクセス権<application>pg_recvlogical</application>ファイルを出力するためのファイル読み取り権限を使用します。
 (Fujii Masao)
       <ulink url="&commit_baseurl;89b4b3ae3">&sect;</ulink>
      </para>
@@ -4028,7 +4124,7 @@ Branch: REL_14_STABLE [5552a15a3] 2026-05-20 15:57:19 +0900
       <application>pg_recvlogical</application> was documented to behave
       this way, but it never actually enabled group-read.
 -->
-《機械翻訳》«<application>pg_recvlogical</application> was documented to behave this way, but it never actually enabled group-read.»
+《機械翻訳》<application>pg_recvlogical</application>はこのように動作すると説明されていましたが、実際にグループが読めるようにはなっていませんでした。
      </para>
     </listitem>
 
@@ -4047,7 +4143,7 @@ Branch: REL_18_STABLE [477efef08] 2026-06-16 15:58:17 +0900
       or <option>&#45;-statistics-only</option>
       (Chao Li, Michael Paquier)
 -->
-《機械翻訳》«Fix inconsistent behavior of <application>pg_restore</application> with <option>--statistics</option> or <option>--statistics-only</option> »
+《機械翻訳》<option>--statistics</option>または<option>--statistics-only</option>を持つ<application>pg_リストア</application>の一貫性のない動作を修正しました。
 (Chao Li, Michael Paquier)
       <ulink url="&commit_baseurl;42ffdedcf">&sect;</ulink>
       <ulink url="&commit_baseurl;477efef08">&sect;</ulink>
@@ -4060,7 +4156,7 @@ Branch: REL_18_STABLE [477efef08] 2026-06-16 15:58:17 +0900
       expected items, unlike <application>pg_dump</application> with
       similar options.
 -->
-《機械翻訳》«When combined with other selective-restore options such as <option>--schema</option>, these options failed to restore the expected items, unlike <application>pg_dump</application> with similar options.»
+《機械翻訳》<option>--schema</option>のような他の選択的リストアオプションと組み合わせると、これらのオプションは<application>pg_dump</application>類似のリストアとは異なり、期待された項目をオプションすることができなかった。
      </para>
     </listitem>
 
@@ -4075,7 +4171,7 @@ Branch: REL_18_STABLE [7e085aabd] 2026-06-17 09:18:39 -0500
       Fix <command>vacuumdb &#45;-missing-stats-only</command> to ignore
       partitioned expression indexes (Baji Shaik)
 -->
-《機械翻訳》«Fix <command>vacuumdb --missing-stats-only</command> to ignore partitioned expression indexes »
+《機械翻訳》<command>vacuumdb --missing-stats-only</command>パーティション化された式インデックスを無視するように修正しました。
 (Baji Shaik)
       <ulink url="&commit_baseurl;7e085aabd">&sect;</ulink>
      </para>
@@ -4087,7 +4183,8 @@ Branch: REL_18_STABLE [7e085aabd] 2026-06-17 09:18:39 -0500
       nothing since statistics are never created for partitioned indexes,
       only for their leaf indexes.
 -->
-《機械翻訳》«Previously, <application>vacuumdb</application> would always attempt to <command>ANALYZE</command> the partitioned table, accomplishing nothing since statistics are never created for partitioned indexes, only for their leaf indexes.»
+《機械翻訳》以前は、<application>vacuumdb</application>は常に<command>ANALYZE</command>パーティション化されたテーブルを試みていました。
+統計処理はパーティション化されたインデックスに対して作成されることはなく、リーフインデックスに対してのみ作成されるため、何も達成されませんでした。
      </para>
     </listitem>
 
@@ -4103,7 +4200,7 @@ Branch: REL_18_STABLE [12c32bbc8] 2026-06-12 09:39:19 +0900
       corruption of a btree metapage's <literal>allequalimage</literal>
       flag (Chao Li)
 -->
-《機械翻訳》«In <filename>contrib/amcheck</filename>, fix failure to report corruption of a btree metapage's <literal>allequalimage</literal> flag »
+《機械翻訳》<filename>contrib/amcheck</filename>btreeメタページ<literal>allequalimage</literal>レポートのフラグの破損に対する失敗を修正しました。
 (Chao Li)
       <ulink url="&commit_baseurl;12c32bbc8">&sect;</ulink>
      </para>
@@ -4121,7 +4218,7 @@ Branch: REL_18_STABLE [1f8ab91c1] 2026-07-06 09:32:30 +0900
       In <filename>contrib/amcheck</filename>, fix query-lifespan memory
       leak while verifying a GIN index (Kirill Reshke)
 -->
-《機械翻訳》«In <filename>contrib/amcheck</filename>, fix query-lifespan memory leak while verifying a GIN index »
+《機械翻訳》<filename>contrib/amcheck</filename>では、問い合わせメモリリークを検証する際にGIN寿命インデックスを修正しました。
 (Kirill Reshke)
       <ulink url="&commit_baseurl;1f8ab91c1">&sect;</ulink>
      </para>
@@ -4142,7 +4239,7 @@ Branch: REL_14_STABLE [af09b18cb] 2026-06-14 04:06:43 +0300
       In <filename>contrib/amcheck</filename>, handle short-header varlena
       datums correctly (Andrey Borodin)
 -->
-《機械翻訳》«In <filename>contrib/amcheck</filename>, handle short-header varlena datums correctly »
+《機械翻訳》<filename>contrib/amcheck</filename>,ハンドルshort-ヘッダvarlenaデータムで正しく動作するようになりました。
 (Andrey Borodin)
       <ulink url="&commit_baseurl;897e79486">&sect;</ulink>
      </para>
@@ -4152,7 +4249,7 @@ Branch: REL_14_STABLE [af09b18cb] 2026-06-14 04:06:43 +0300
       This error could result in doing excess work while verifying a btree
       index, but seems not to have had any worse consequences.
 -->
-《機械翻訳》«This error could result in doing excess work while verifying a btree index, but seems not to have had any worse consequences.»
+《機械翻訳》このエラーは、btreeインデックスを検証する際に過剰な作業を行う可能性がありますが、これ以上悪い結果にはならなかったようです。
      </para>
     </listitem>
 
@@ -4173,7 +4270,7 @@ Branch: REL_14_STABLE [255bce448] 2026-07-01 13:27:22 -0400
       fix <literal>NaN</literal> handling in the <type>float4</type>
       and <type>float8</type> opclasses (Bill Kim, Tom Lane)
 -->
-《機械翻訳》«In <filename>contrib/btree_gist</filename>, fix <literal>NaN</literal> handling in the <type>float4</type> and <type>float8</type> opclasses »
+《機械翻訳》<filename>contrib/btree_GiST</filename>で、opclass <literal>NaN</literal><type>float4</type>と<type>float8</type>のハンドリングを修正しました。
 (Bill Kim, Tom Lane)
       <ulink url="&commit_baseurl;1e1d07792">&sect;</ulink>
      </para>
@@ -4187,7 +4284,8 @@ Branch: REL_14_STABLE [255bce448] 2026-07-01 13:27:22 -0400
       after installing this update, if there is any possibility that there
       are <literal>NaN</literal> entries in those columns.
 -->
-《機械翻訳》«Comparisons, as well as the GiST penalty and distance functions, did not account for <literal>NaN</literal> and would give the wrong answer when handed one. It is recommended to reindex <filename>btree_gist</filename> indexes on float columns after installing this update, if there is any possibility that there are <literal>NaN</literal> entries in those columns.»
+《機械翻訳》比較は、GiSTペナルティ関数や遠隔関数と同様に、アカウントではありませんでした<literal>NaN</literal>そして、渡されたときに間違いの答えを返します。
+これらの列に<literal>NaN</literal>エントリがある可能性がある場合は、この更新をインストールした後にインデックス再作成<filename>btree_GiST</filename>float列のインデックスを行うことをお勧めします。
      </para>
     </listitem>
 
@@ -4204,7 +4302,7 @@ Branch: REL_18_STABLE [558c4ea9a] 2026-07-03 13:11:14 -0400
       of <type>bit</type>/<type>varbit</type> entries during GiST index
       construction (Tom Lane)
 -->
-《機械翻訳》«In <filename>contrib/btree_gist</filename>, fix sorting of <type>bit</type>/<type>varbit</type> entries during GiST index construction »
+《機械翻訳》<filename>contrib/btree_GiST</filename>では、並べ替えインデックスの構築中に<type>ビット</type>/<type>varbit</type>エントリのGiSTを修正しました。
 (Tom Lane)
       <ulink url="&commit_baseurl;558c4ea9a">&sect;</ulink>
      </para>
@@ -4218,7 +4316,9 @@ Branch: REL_18_STABLE [558c4ea9a] 2026-07-03 13:11:14 -0400
       reindex <filename>btree_gist</filename> indexes on bit columns
       after installing this update.
 -->
-《機械翻訳》«Values of bit types were sorted as though they were <type>bytea</type>s, which did not cause any obvious failure but would result in an inefficient index, since the types' representations are different. It is recommended to reindex <filename>btree_gist</filename> indexes on bit columns after installing this update.»
+《機械翻訳》ビット型の値は<type>bytea</type>であるかのようにソートされました。
+これは明らかな失敗を引き起こしませんでしたが、型の表現が異なるため、非効率的なインデックスになりました。
+このインデックス再作成をインストールした後に、ビット<filename>btree_gist</filename>更新列のインデックスを行うことをお勧めします。
      </para>
     </listitem>
 
@@ -4238,7 +4338,7 @@ Branch: REL_14_STABLE [286f9a3ce] 2026-07-03 13:50:14 -0400
       In <filename>contrib/btree_gist</filename>, fix searches using a
       not-equal operator (Ayush Tiwari)
 -->
-《機械翻訳》«In <filename>contrib/btree_gist</filename>, fix searches using a not-equal operator »
+《機械翻訳》<filename>contrib/btree_gist</filename>で、等しくない演算子を使用した検索を修正しました。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;12c519207">&sect;</ulink>
      </para>
@@ -4249,7 +4349,7 @@ Branch: REL_14_STABLE [286f9a3ce] 2026-07-03 13:50:14 -0400
       pages applied the wrong comparison function, leading to wrong
       results and potentially crashes.
 -->
-《機械翻訳》«For variable-length data types, the code for scanning non-leaf index pages applied the wrong comparison function, leading to wrong results and potentially crashes.»
+《機械翻訳》変数-長さデータタイプの場合、リーフインデックス以外のページをスキャンするコードは間違い比較関数を適用していたため、間違いの結果が得られ、クラッシュする可能性がありました。
      </para>
     </listitem>
 
@@ -4268,7 +4368,7 @@ Branch: REL_18_STABLE [130396e6c] 2026-05-26 00:52:38 +0900
       setting for <varname>use_scram_passthrough</varname> overrides one
       for a foreign server (Matheus Alcantara)
 -->
-《機械翻訳》«In <filename>contrib/dblink</filename> and <filename>contrib/postgres_fdw</filename>, ensure that a user-mapping setting for <varname>use_scram_passthrough</varname> overrides one for a foreign server »
+《機械翻訳》<filename>contrib/dblink</filename>および<filename>contrib/postgres_fdw</filename>,保証では、ユーザ-マッピングの設定<varname>use_scram_passthrough</varname>は外部サーバの設定より優先されます。
 (Matheus Alcantara)
       <ulink url="&commit_baseurl;88d7748d2">&sect;</ulink>
       <ulink url="&commit_baseurl;130396e6c">&sect;</ulink>
@@ -4279,7 +4379,7 @@ Branch: REL_18_STABLE [130396e6c] 2026-05-26 00:52:38 +0900
       Previously the precedence went the other way, but that is
       inconsistent with the behavior of other foreign-table options.
 -->
-《機械翻訳》«Previously the precedence went the other way, but that is inconsistent with the behavior of other foreign-table options.»
+《機械翻訳》以前は優先順位が逆でしたが、それは他の外国-テーブルオプションの行動と矛盾しています。
      </para>
     </listitem>
 
@@ -4295,7 +4395,7 @@ Branch: REL_18_STABLE [cd777e27e] 2026-05-26 01:08:47 +0900
       on <filename>contrib/dblink</filename> foreign-data wrappers
       (Matheus Alcantara)
 -->
-《機械翻訳》«Reject setting <varname>use_scram_passthrough</varname> on <filename>contrib/dblink</filename> foreign-data wrappers »
+《機械翻訳》<filename>contrib/dblink</filename>外部通過地点ラッパーの設定<varname>use_scram_データ</varname>を拒否する。
 (Matheus Alcantara)
       <ulink url="&commit_baseurl;cd777e27e">&sect;</ulink>
      </para>
@@ -4306,7 +4406,7 @@ Branch: REL_18_STABLE [cd777e27e] 2026-05-26 01:08:47 +0900
       mappings, but dblink incorrectly allowed it at the FDW level as
       well (and then ignored it).
 -->
-《機械翻訳》«This option is only meaningful on foreign servers and user mappings, but dblink incorrectly allowed it at the FDW level as well (and then ignored it).»
+《機械翻訳》このオプションは外部サーバとユーザのマッピングでのみ意味がありますが、dblinkは誤ってFDWレベルでもこのオプションを許可しました（そして無視しました）。
      </para>
     </listitem>
 
@@ -4334,7 +4434,7 @@ Branch: REL_14_STABLE [1f6b2295f] 2026-06-18 12:22:55 -0400
       <filename>contrib/jsonb_plpython</filename>
       (Aleksander Alekseev)
 -->
-《機械翻訳》«Fix unguarded recursion and loops in <filename>contrib/hstore_plperl</filename>, <filename>contrib/jsonb_plperl</filename>, and <filename>contrib/jsonb_plpython</filename> »
+《機械翻訳》<filename>contrib/hstore_plperl</filename>,<filename>contrib/jsonb_plperl</filename>,and <filename>contrib/jsonb_plpython</filename>.における無防備な再帰とループを修正しました。
 (Aleksander Alekseev)
       <ulink url="&commit_baseurl;e3b7a43fa">&sect;</ulink>
       <ulink url="&commit_baseurl;d65cf6f80">&sect;</ulink>
@@ -4347,7 +4447,7 @@ Branch: REL_14_STABLE [1f6b2295f] 2026-06-18 12:22:55 -0400
       loop caused when attempting to dereference circular chains of Perl
       object references.
 -->
-《機械翻訳》«Prevent stack overflow when dealing with deeply nested <type>jsonb</type> values, and allow interruption of the infinite loop caused when attempting to dereference circular chains of Perl object references.»
+《機械翻訳》深くネストされた<type>スタックオーバーフロー</type>値を処理するときのjsonbを防止し、Perl無限ループ参照の循環チェーンを逆参照しようとするときに発生するオブジェクトの中断を許可します。
      </para>
     </listitem>
 
@@ -4366,7 +4466,7 @@ Branch: REL_14_STABLE [a96b051a9] 2026-05-25 18:15:49 -0400
       Fix missed release of statistics catcache entry
       in <filename>contrib/intarray</filename> (Man Zeng)
 -->
-《機械翻訳》«Fix missed release of statistics catcache entry in <filename>contrib/intarray</filename> »
+《機械翻訳》<filename>contrib/intarray</filename>にある統計処理catcacheエントリの見逃しリリースを修正しました。
 (Man Zeng)
       <ulink url="&commit_baseurl;e7544c518">&sect;</ulink>
      </para>
@@ -4376,7 +4476,7 @@ Branch: REL_14_STABLE [a96b051a9] 2026-05-25 18:15:49 -0400
       This oversight led to warnings like <quote>resource was not closed:
       cache pg_statistic</quote>.
 -->
-《機械翻訳》«This oversight led to warnings like <quote>resource was not closed: cache pg_statistic</quote>.»
+《機械翻訳》この見落としにより、<quote>resource is not閉じた:キャッシュpg_statistic</quote>のような警告が発生しました。
      </para>
     </listitem>
 
@@ -4395,7 +4495,8 @@ Branch: REL_14_STABLE [f528a5606] 2026-06-16 09:31:23 +0300
       In <filename>contrib/ltree</filename>, fix integer overflow in
       comparisons (Ayush Tiwari)
 -->
-《機械翻訳》«In <filename>contrib/ltree</filename>, fix integer overflow in comparisons »
+《機械翻訳》では、整数オーバーフローを比較して修正します。
+<filename>contrib/ltree</filename>
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;c3e36a9a5">&sect;</ulink>
      </para>
@@ -4407,7 +4508,8 @@ Branch: REL_14_STABLE [f528a5606] 2026-06-16 09:31:23 +0300
       index contains such values, it is probably corrupt and should be
       reindexed after installing this update.
 -->
-《機械翻訳》«<type>ltree</type> values containing more than about 14,653 labels resulted in wrong comparison answers due to overflow. If a btree index contains such values, it is probably corrupt and should be reindexed after installing this update.»
+《機械翻訳》<type>ltree</type>値に約14,653を超えるラベルが含まれている場合、オーバーフローのために間違い比較の回答が得られました。
+btreeインデックス包含の値の場合、おそらく破損しているため、この更新をインストールした後にインデックスを再作成する必要があります。
      </para>
     </listitem>
 
@@ -4424,7 +4526,7 @@ Branch: REL_17_STABLE [2aa6be6e6] 2026-06-22 12:59:16 -0400
       after encountering an error while using an OSSLCipher object
       (Yuelin Wang)
 -->
-《機械翻訳》«In <filename>contrib/pgcrypto</filename>, avoid double-free crash after encountering an error while using an OSSLCipher object »
+《機械翻訳》で、<filename>contrib/pgcrypto</filename> OSLSCipherフリーを使用中にクラッシュに遭遇した後は、二重エラーオブジェクトを使用しないでください。
 (Yuelin Wang)
       <ulink url="&commit_baseurl;020426268">&sect;</ulink>
      </para>
@@ -4442,7 +4544,7 @@ Branch: REL_18_STABLE [3bf2cb225] 2026-06-26 19:48:20 +0200
       in <filename>contrib/pg_prewarm</filename>'s autoprewarm worker
       (Matheus Alcantara)
 -->
-《機械翻訳》«Fix out-of-bounds access in <filename>contrib/pg_prewarm</filename>'s autoprewarm worker »
+《機械翻訳》境界外のアクセスを<filename>contrib/pg_prewarm</filename>のautoprewarmワーカーで修正します。
 (Matheus Alcantara)
       <ulink url="&commit_baseurl;3bf2cb225">&sect;</ulink>
      </para>
@@ -4452,7 +4554,7 @@ Branch: REL_18_STABLE [3bf2cb225] 2026-06-26 19:48:20 +0200
       The code tried to fetch a value from one past the end of an array,
       risking a segfault.
 -->
-《機械翻訳》«The code tried to fetch a value from one past the end of an array, risking a segfault.»
+《機械翻訳》コードは、配列の端を過ぎたところから値をフェッチしようとし、セグフォールトの危険を冒しました。
      </para>
     </listitem>
 
@@ -4472,7 +4574,7 @@ Branch: REL_14_STABLE [1eda3eb07] 2026-06-06 08:16:46 +0900
       <function>heap_force_kill</function> and
       <function>heap_force_freeze</function> functions (Michael Paquier)
 -->
-《機械翻訳》«Fix array overrun in <filename>contrib/pg_surgery</filename>'s <function>heap_force_kill</function> and <function>heap_force_freeze</function> functions »
+《機械翻訳》<filename>contrib/pg_surgery</filename>の<function>heap_force_kill</function>および<function>heap_force_freeze</function>関数の配列オーバーランを修正しました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;2b09f8a91">&sect;</ulink>
      </para>
@@ -4483,7 +4585,7 @@ Branch: REL_14_STABLE [1eda3eb07] 2026-06-06 08:16:46 +0900
       MaxHeapTuplesPerPage wrote one byte past the end of the allocated
       array, potentially crashing the server.
 -->
-《機械翻訳》«Attempting to change a TID whose offset number equals MaxHeapTuplesPerPage wrote one byte past the end of the allocated array, potentially crashing the server.»
+《機械翻訳》TID番号がMaxHeapTuplePerPageに等しいオフセットを変更しようとすると、割り当てられたバイトの末尾を超えて1つの配列が書き込まれ、サーバがクラッシュする可能性がありました。
      </para>
     </listitem>
 
@@ -4503,7 +4605,7 @@ Branch: REL_14_STABLE [e9d53cf45] 2026-08-04 11:44:11 +0200
       In <filename>contrib/pg_surgery</filename>, avoid infinite loop with
       TID arrays having more than 64K elements (Andrey Rachitskiy)
 -->
-《機械翻訳》«In <filename>contrib/pg_surgery</filename>, avoid infinite loop with TID arrays having more than 64K elements »
+《機械翻訳》では、<filename>contrib/pg_surgery</filename> 64K以上の要素を持つ無限ループ配列を持つTIDは避けてください。
 (Andrey Rachitskiy)
       <ulink url="&commit_baseurl;19f0391df">&sect;</ulink>
      </para>
@@ -4525,7 +4627,7 @@ Branch: REL_14_STABLE [1de0a711d] 2026-05-14 13:11:49 -0500
       in <filename>contrib/refint</filename>'s
       <function>check_foreign_key()</function> (Ayush Tiwari)
 -->
-《機械翻訳》«Avoid NULL-pointer dereference in <filename>contrib/refint</filename>'s <function>check_foreign_key()</function> »
+《機械翻訳》<filename>contrib/refint</filename>の<function>check_foreign_key()</function>.*でのNULL-ポインタの逆参照を避ける。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;ed0c4d5af">&sect;</ulink>
      </para>
@@ -4536,7 +4638,8 @@ Branch: REL_14_STABLE [1de0a711d] 2026-05-14 13:11:49 -0500
       led to a crash.  This is an oversight in the fix for CVE-2026-6637,
       but the code that was there before that wasn't really right either.
 -->
-《機械翻訳》«In the on-update-cascade case, a null value of a referenced column led to a crash. This is an oversight in the fix for CVE-2026-6637, but the code that was there before that wasn't really right either.»
+《機械翻訳》更新カスケードケースでは、被参照カラムのNULL値がクラッシュにつながりました。
+これはCVE-2026-6637の修正における見落としですが、以前に存在していたコードも実際には正しくありませんでした。
      </para>
     </listitem>
 
@@ -4556,7 +4659,7 @@ Branch: REL_14_STABLE [58b91fc73] 2026-06-11 12:34:45 +0300
       with <literal>~</literal> certainty indicators correctly
       (Ewan Young)
 -->
-《機械翻訳》«Fix <filename>contrib/seg</filename> to print segments with <literal>~</literal> certainty indicators correctly »
+《機械翻訳》<filename>contrib/seg</filename>をプリントセグメントに<literal>~</literal>確実度インジケータで正しく修正した。
 (Ewan Young)
       <ulink url="&commit_baseurl;0004cab4d">&sect;</ulink>
      </para>
@@ -4570,7 +4673,8 @@ Branch: REL_14_STABLE [58b91fc73] 2026-06-11 12:34:45 +0300
       the upper boundary was not printed at all, incorrectly converting
       the value into an open interval.
 -->
-《機械翻訳》«Due to a typo, <function>seg_out()</function> did not print a <literal>~</literal> certainty indicator attached to a segment's upper boundary. Worse, if the lower boundary had <literal>~</literal> while the upper boundary had no indicator, the upper boundary was not printed at all, incorrectly converting the value into an open interval.»
+《機械翻訳》タイポのために、<function>seg_out()</function>は<literal>~</literal>セグメントの上部境界にアタッチされた確実性指示子を印刷しませんでした。
+さらに悪いことに、下部境界に<literal>~</literal>があり、上部境界には指示子がない場合、上部境界はまったく印刷されず、値がオープンインターバルに誤って変換されました。
      </para>
     </listitem>
 
@@ -4590,7 +4694,7 @@ Branch: REL_14_STABLE [f3f901a53] 2026-06-11 14:29:29 +0900
       <function>xpath_nodeset()</function> function (Andrey Chernyy,
       Michael Paquier)
 -->
-《機械翻訳》«Fix crash with namespace nodes in <filename>contrib/xml2</filename>'s <function>xpath_nodeset()</function> function »
+《機械翻訳》<filename>contrib/xml2</filename>の<function>xpath_nodeset()</function>関数の名前空間ノードでクラッシュを修正しました。
 (Andrey Chernyy, Michael Paquier)
       <ulink url="&commit_baseurl;91b57eade">&sect;</ulink>
      </para>
@@ -4611,7 +4715,7 @@ Branch: REL_14_STABLE [086652c02] 2026-06-12 13:57:22 +0200
       Support building <productname>PostgreSQL</productname> with
       OpenSSL 4 (Daniel Gustafsson)
 -->
-《機械翻訳》«Support building <productname>PostgreSQL</productname> with OpenSSL 4 »
+《機械翻訳》サポートの建物<productname>PostgreSQL</productname>OpenSSL 4.
 (Daniel Gustafsson)
       <ulink url="&commit_baseurl;27cf3b5af">&sect;</ulink>
      </para>
@@ -4633,7 +4737,7 @@ Branch: REL_14_STABLE [812cc1a73] 2026-08-02 11:26:30 -0400
       Update time zone data files to <application>tzdata</application>
       release 2026c (Tom Lane)
 -->
-《機械翻訳》«Update time zone data files to <application>tzdata</application> release 2026c »
+タイムゾーンデータファイルが<application>tzdata</application>リリース2026cに更新されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;5f67124fa">&sect;</ulink>
      </para>
@@ -4646,7 +4750,9 @@ Branch: REL_14_STABLE [812cc1a73] 2026-08-02 11:26:30 -0400
       be <literal>CST</literal> from that time forward.  That seems likely
       to change, but it's unclear what new abbreviation will be used.
 -->
-《機械翻訳》«Alberta (America/Edmonton) will be on year-round UTC-06 (effectively, permanent DST) beginning in November 2026. This release assumes that their TZ abbreviation will be <literal>CST</literal> from that time forward. That seems likely to change, but it's unclear what new abbreviation will be used.»
+《機械翻訳》アルバータ（アメリカ/エドモントン）は、2026年11月から1年を通してUTC-06（事実上の恒久的なDST）になります。
+このリリースでは、TZの省略形が<literal>CST</literal>それ以降になると想定しています。
+これは変更される可能性がありますが、新しい省略形が使用されるかどうかは不明です。
      </para>
 
      <para>
@@ -4654,7 +4760,7 @@ Branch: REL_14_STABLE [812cc1a73] 2026-08-02 11:26:30 -0400
       Morocco (Africa/Casablanca) will move to permanent UTC+00,
       without daylight saving time transitions, on 2026-09-20.
 -->
-《機械翻訳》«Morocco (Africa/Casablanca) will move to permanent UTC+00, without daylight saving time transitions, on 2026-09-20.»
+《機械翻訳》モロッコ(Africa/Casablanca)は、2026-09-20に夏時間の移行なしで恒久的なUTC+00に移行します。
      </para>
     </listitem>
 
@@ -5158,7 +5264,8 @@ Branch: REL_14_STABLE [b282280e9] 2026-05-11 05:13:51 -0700
 -->
 《マッチ度[89.389068]》パスワードやハッシュなどの検証には、 <function>memcpy()</function>や<function>strcmp()</function>の代わりに<function>timingsafe_bcmp()</function>を使用するようになりました。
 これらの関数のデータ依存性が、これらの箇所で悪用される可能性があるかどうかは不明ですが、安全を期してこれらが置き換えられました。
-《機械翻訳》«Use <function>timingsafe_bcmp()</function> instead of <function>memcmp()</function> or <function>strcmp()</function> when checking passwords, hashes, etc. It is not known whether the data dependency of those functions is usefully exploitable in any of these places, but in the interests of safety, replace them.»
+《機械翻訳》使用<function>timingsafe_bcmp()</function>代わり<function>memcmp()</function>または、パスワード、ハッシュなどをチェックする場合には、または、これらの関数のデータ依存性がこれらの場所のいずれかで有効に利用できるかどうかは不明であるが、安全のためにそれらを置き換える。
+<function>strcmp()</function>
      </para>
 
      <para>
