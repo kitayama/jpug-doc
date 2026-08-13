@@ -587,12 +587,8 @@ B-Tree検証関数の<parameter>heapallindexed</parameter>引数が<literal>true
  <para>
 <!--
   <filename>amcheck</filename> can be effective at detecting various types of
-  failure modes that <link
-  linkend="app-initdb-data-checksums"><application>data
-  checksums</application></link> will fail to catch.  These include:
--->
-<filename>amcheck</filename>は、<link linkend="app-initdb-data-checksums"><application>データチェックサム</application></link>が検知できないような、様々なタイプの障害モードを効果的に検知できます。
-以下のようなものがあります。
+  failure modes that <link linkend="checksums">data checksums</link> will fail
+  to catch.  These include:
 
   <itemizedlist>
    <listitem>

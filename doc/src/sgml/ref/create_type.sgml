@@ -269,6 +269,11 @@ CREATE TYPE <replaceable class="parameter">name</replaceable>
 範囲型の名前が部分文字列<literal>range</literal>を含んでいれば、多重範囲型の名前は、範囲型の名前における部分文字列<literal>range</literal>を<literal>multirange</literal>で置き換えることで作られます。
 そうでなければ、多重範囲型の名前は範囲型の名前の末尾に<literal>_multirange</literal>を追加することで作られます。
    </para>
+
+   <para>
+    To be able to create a range type, you must have <literal>USAGE</literal>
+    privilege on the subtype.
+   </para>
   </refsect2>
 
   <refsect2>

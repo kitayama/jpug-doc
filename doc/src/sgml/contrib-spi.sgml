@@ -50,11 +50,17 @@
    <function>check_primary_key()</function> and
    <function>check_foreign_key()</function> are used to check foreign key constraints.
    (This functionality is long since superseded by the built-in foreign
-   key mechanism, of course, but the module is still useful as an example.)
--->
-<function>check_primary_key()</function>および<function>check_foreign_key()</function>は、外部キー制約を検査するために使用されます。
-（当然ながら、この機能はかなり前に組み込みの外部キー機能に取って代わりました。しかし例としてはまだ有用です。）
+   key mechanism, of course, but the module is still useful as an example.
+   This module will be removed in <productname>PostgreSQL</productname> 20.)
   </para>
+
+  <note>
+   <para>
+    <filename>refint</filename> requires a
+    <link linkend="ddl-schemas-patterns">secure schema usage pattern</link> and
+    data types where the equality operator is named <literal>=</literal>.
+   </para>
+  </note>
 
   <para>
 <!--
@@ -72,6 +78,29 @@
 複数の外部キーを扱うためには、各参照に対してトリガを作成してください。
   </para>
 
+  <note>
+   <para>
+    The <emphasis>referenced</emphasis> table name and column name arguments to
+    <function>check_primary_key()</function> are copied as-is into internally
+    generated SQL statements and therefore must be double-quoted by the user as
+    necessary in the <command>CREATE TRIGGER</command> command.  See
+    <xref linkend="sql-syntax-identifiers"/> for more information about quoting
+    SQL identifiers.  Conversely, the <emphasis>referencing</emphasis> table
+    column name arguments should not be double quoted.  See the following mock
+    example of proper use of <function>check_primary_key()</function>:
+<programlisting>
+CREATE TRIGGER mytrigger
+AFTER INSERT OR UPDATE ON referencing_table
+FOR EACH ROW EXECUTE PROCEDURE
+check_primary_key (
+    'column A', 'column B',         -- referencing table columns
+    'myschema."referenced table"',  -- referenced table
+    '"column A"', '"column B"'      -- referenced table columns
+);
+</programlisting>
+   </para>
+  </note>
+
   <para>
 <!--
    <function>check_foreign_key()</function> checks the referenced table.
@@ -82,7 +111,7 @@
    (<literal>cascade</literal> &mdash; to delete the referencing row,
    <literal>restrict</literal> &mdash; to abort transaction if referencing keys
    exist, <literal>setnull</literal> &mdash; to set referencing key fields to null),
-   the triggered table's column names which form the primary/unique key, then
+   the referenced table's column names which form the primary/unique key, then
    the referencing table name and column names (repeated for as many
    referencing tables as were specified by first argument).  Note that the
    primary/unique key columns should be marked NOT NULL and should have a
@@ -93,6 +122,31 @@
 トリガ引数は、この関数が検査を実行しなければならない参照テーブル数、参照キーが見つかった場合の動作（<literal>cascade</literal> &mdash; 参照行を削除、<literal>restrict</literal> &mdash; 参照キーが存在する場合トランザクションをアボート、<literal>setnull</literal> &mdash;参照キーフィールドをNULLに設定）、主/一意キーを形成するトリガを発行したテーブルの列名、参照テーブルの名前と列名（最初の引数で指定された数のテーブル分繰り返す）です。
 主/一意キー列はNOT NULLと指定されていなければならず、また、一意性インデックスを持つべきであることに注意してください。
   </para>
+
+  <note>
+   <para>
+    The <emphasis>referencing</emphasis> table name and column name arguments
+    to <function>check_foreign_key()</function> are copied as-is into
+    internally generated SQL statements and therefore must be double-quoted by
+    the user as necessary in the <command>CREATE TRIGGER</command> command.
+    See <xref linkend="sql-syntax-identifiers"/> for more information about
+    quoting SQL identifiers.  Conversely, the <emphasis>referenced</emphasis>
+    table column name arguments should not be double quoted.  See the following
+    mock example of proper use of <function>check_foreign_key()</function>:
+<programlisting>
+CREATE TRIGGER mytrigger
+AFTER DELETE OR UPDATE ON referenced_table
+FOR EACH ROW EXECUTE PROCEDURE
+check_foreign_key (
+    1,                              -- number of referencing tables
+    'cascade',                      -- action
+    'column A', 'column B',         -- referenced table columns
+    'myschema."referencing table"', -- referencing table
+    '"column A"', '"column B"'      -- referencing table columns
+);
+</programlisting>
+   </para>
+  </note>
 
   <para>
 <!--

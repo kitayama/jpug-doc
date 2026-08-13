@@ -3953,14 +3953,9 @@ SELECT
         are displayed in expanded mode.
         If <literal>+</literal> is appended to the command name, database
         sizes, default tablespaces, and descriptions are also displayed.
-        (Size information is only available for databases that the current
-        user can connect to.)
--->
-サーバ内のデータベースについて、その名前、所有者、文字集合符号化方式、およびアクセス権限を一覧表示します。
-<replaceable class="parameter">pattern</replaceable>を指定すると、パターンにマッチする名前を持つデータベースのみを表示します。
-コマンド名に<literal>x</literal>が付与された場合は、拡張モードで結果が表示されます。
-コマンド名に<literal>+</literal>が付与された場合は、データベースのサイズ、デフォルトのテーブル空間、および説明も表示します。
-（サイズ情報は現在のユーザが接続可能なデータベースでのみ表示されます。）
+        Size information is available for databases on which the current user has
+        <literal>CONNECT</literal> privilege, or if the current user is a superuser
+        or has privileges of the <literal>pg_read_all_stats</literal> role.
         </para>
         </listitem>
       </varlistentry>
@@ -5427,6 +5422,11 @@ SELECT 1 \bind \sendpipeline
         <application>pg_restore</application>, but it may be useful elsewhere.
 -->
 このコマンドは、主に<application>pg_dump</application>、<application>pg_dumpall</application>、および<application>pg_restore</application>で生成されるプレーンテキストダンプでの使用を目的としていますが、他の場所でも役に立つかもしれません。
+        </para>
+        <para>
+        Unlike most other meta-commands, the entire remainder of the line is
+        always taken to be the argument of <command>\unrestrict</command>, and
+        neither variable interpolation nor backquote expansion are performed.
         </para>
         </listitem>
       </varlistentry>
