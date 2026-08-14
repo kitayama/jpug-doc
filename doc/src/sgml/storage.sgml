@@ -1244,7 +1244,7 @@ data. Empty in ordinary tables.</entry>
   (<structname>PageHeaderData</structname>). Its format is detailed in <xref
   linkend="pageheaderdata-table"/>. The first field tracks the most
   recent WAL entry related to this page. The second field contains
-  the page checksum if <xref linkend="app-initdb-data-checksums"/> are
+  the page checksum if <link linkend="checksums">data checksums</link> are
   enabled.  Next is a 2-byte field containing flag bits. This is followed
   by three 2-byte integer fields (<structfield>pd_lower</structfield>,
   <structfield>pd_upper</structfield>, and
@@ -1265,7 +1265,7 @@ data. Empty in ordinary tables.</entry>
   The last field is a hint that shows whether pruning the page is likely
   to be profitable: it tracks the oldest un-pruned XMAX on the page.
 -->
-それぞれのページの最初の24バイトはページヘッダ(<structname>PageHeaderData</structname>)から構成されています。
+《マッチ度[95.295613]》それぞれのページの最初の24バイトはページヘッダ(<structname>PageHeaderData</structname>)から構成されています。
 その書式を<xref linkend="pageheaderdata-table"/>にて説明します。
 最初のフィールドは、このページに関連する最も最近のWAL項目を表しています。
 2番目のフィールドには<xref linkend="app-initdb-data-checksums"/>が有効な場合にページチェックサムが格納されています。

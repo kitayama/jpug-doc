@@ -3992,9 +3992,10 @@ LOG:  CleanUpLock: deleting: lock(0xb7acd844) id(24688,24696,0,0,0,1)
       <listitem>
        <para>
 <!--
-        Only has effect if <xref linkend="app-initdb-data-checksums"/> are enabled.
+        Only has effect if <link linkend="checksums">data checksums</link> are enabled.
 -->
-<xref linkend="app-initdb-data-checksums"/>が有効の時のみ効果があります。
+《マッチ度[63.291139]》<xref linkend="app-initdb-data-checksums"/>が有効の時のみ効果があります。
+《機械翻訳》<link linkend="checksums">データチェックサム</link>が有効になっている場合のみ有効です。
        </para>
        <para>
 <!--

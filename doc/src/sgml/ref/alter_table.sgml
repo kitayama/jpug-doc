@@ -1456,10 +1456,11 @@ fillfactor、TOAST、およびautovacuumのストレージパラメータおよ�
       as a partition of the target table. The table can be attached
       as a partition for specific values using <literal>FOR VALUES</literal>
       or as a default partition by using <literal>DEFAULT</literal>.
-      For each index in the target table, a corresponding
-      one will be created in the attached table; or, if an equivalent
-      index already exists, it will be attached to the target table's index,
-      as if <command>ALTER INDEX ATTACH PARTITION</command> had been executed.
+      For each index in the target table, if a valid equivalent index
+      already exists in the partition, it will be attached to the target
+      table's index, as if ALTER INDEX ATTACH PARTITION had been executed;
+      otherwise, a new corresponding index will be created.  Invalid indexes
+      on the partition are skipped.
       Note that if the existing table is a foreign table, it is currently not
       allowed to attach the table as a partition of the target table if there
       are <literal>UNIQUE</literal> indexes on the target table.  (See also
@@ -1467,12 +1468,21 @@ fillfactor、TOAST、およびautovacuumのストレージパラメータおよ�
       row-level trigger that exists in the target table, a corresponding one
       is created in the attached table.
 -->
-この構文は、既存のテーブル（それ自体がパーティションテーブルのこともあります）を対象テーブルのパーティションとして追加します。
+《マッチ度[72.660358]》この構文は、既存のテーブル（それ自体がパーティションテーブルのこともあります）を対象テーブルのパーティションとして追加します。
 テーブルは、<literal>FOR VALUES</literal>を使って指定の値のパーティションとして、あるいは、<literal>DEFAULT</literal>を使ってデフォルトパーティションとして追加できます。
 対象テーブルの各インデックスについて、対応するインデックスが付加されるテーブルに作られます。
 また、同等のインデックスが既にある場合には、そのインデックスが、<command>ALTER INDEX ATTACH PARTITION</command>が実行された場合と同様に、対象テーブルのインデックスに付加されます。
 既存のテーブルが外部テーブルの場合、今のところ対象テーブルに<literal>UNIQUE</literal>インデックスがあるときにはテーブルを対象テーブルのパーティションとして追加することはできない点に注意してください（<xref linkend="sql-createforeigntable"/>も参照してください）。
 対象テーブルにある各ユーザ定義の行レベルのトリガに対しては、対応するものが付加されるテーブルに作られます。
+《機械翻訳》このフォームは、既存のテーブル（自分自身がパーティション化されている場合もあります）をターゲットテーブルのパーティションとしてアタッチします。
+テーブルは、を使用して特定の値のパーティションとして<literal>FOR VALUES</literal>または<literal>DEFAULT</literal>を使用してデフォルトパーティションとしてアタッチできます。
+ターゲットテーブルのインデックスごとに、同等の有効なインデックスがパーティションにすでに存在する場合は、ALTERインデックスアタッチパーティションが実行された場合と同様にターゲットテーブルのインデックスにアタッチされます。
+それ以外の場合は、対応するインデックスが新規作成されます。
+パーティションの無効なインデックスはスキップされたです。
+ノートでは、既存のがである場合、<literal>UNIQUE</literal>のインデックスが存在する場合には、そのをのとして挿入することは現在許可されていません。
+（<xref linkend="sql-createforeigntable"/>も参照してください。）
+内に存在する定義された-✔ごとに、対応するものがアタッチされたに作成されます。
+テーブルアタッチ行テーブル外部テーブルパーティションターゲットテーブルテーブルターゲットテーブルターゲットテーブルレベルトリガユーザ
      </para>
 
      <para>

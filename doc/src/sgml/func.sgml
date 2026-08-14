@@ -6621,7 +6621,8 @@ cast(-1234 as bytea)           <lineannotation>\xfffffb2e</lineannotation>
         Bitwise shift left
         (string length is preserved)
 -->
-ビット単位の左シフト（文字列長は保存されます）
+《マッチ度[65.957447]》ビット単位の左シフト（文字列長は保存されます）
+《機械翻訳》ビット単位のシフトレフト（文字列長さは保持されます）。
        </para>
        <para>
         <literal>B'10001' &lt;&lt; 3</literal>
@@ -6639,7 +6640,8 @@ cast(-1234 as bytea)           <lineannotation>\xfffffb2e</lineannotation>
         Bitwise shift right
         (string length is preserved)
 -->
-ビット単位の右シフト（文字列長は保存されます）
+《マッチ度[66.666667]》ビット単位の右シフト（文字列長は保存されます）
+《機械翻訳》ビット単位のシフト右（文字列長さは保持されます）。
        </para>
        <para>
         <literal>B'10001' &gt;&gt; 2</literal>
@@ -18978,10 +18980,20 @@ OIDで指定したパーサが認識できるトークンの型を記述する�
         sub-millisecond timestamp + random. The optional
         parameter <parameter>shift</parameter> will shift the computed
         timestamp by the given <type>interval</type>.
+        Infinite interval values are not accepted.
+        The shifted timestamp must fall within the range supported by
+        UUID version 7's 48-bit millisecond timestamp field: from
+        1970-01-01 00:00:00 UTC to approximately year 10889.
+        An error is raised if the resulting timestamp is outside this
+        range.
 -->
-バージョン7（時間順）のUUIDを生成します。
-タイムスタンプは、ミリ秒精度のUNIXタイムスタンプ+サブミリ秒のタイムスタンプ+ランダム値を使用して計算されます。
-オプションのパラメータ<parameter>shift</parameter>は、計算されたタイムスタンプを指定された<type>interval</type>だけシフトします。
+《機械翻訳》バージョン7 <parameter>shift</parameter>時間順UUIDを生成します。
+タイムスタンプは、UNIXタイムスタンプを使用して、ミリ秒精度+サブ-ミリ秒タイムスタンプ+ランダムで計算されます。
+オプショナルパラメータは、指定された<type>インターバル</type>によって計算されたタイムスタンプをシフトします。
+無限インターバルの値は受け入れられません。
+シフトされたタイムスタンプは、UUIDバージョン7の48-ビット（1970-01-01 00:00:00 UTCから約10889年まで）でサポートされるレンジの範囲内にある必要があります。
+生成されたがこのの外にある場合は、が発生します。
+レンジミリ秒エラーフィールドタイムスタンプタイムスタンプ
        </para>
        <para>
         <literal>uuidv7()</literal>
@@ -33770,23 +33782,6 @@ PUBLIC仮想ロールは実在するロールのメンバには決してなれ�
         </para>
         <para>
          <literal>'{calvin=r*w/hobbes,hobbes=r*w*/postgres}'::aclitem[] @&gt; 'calvin=r*/hobbes'::aclitem</literal>
-         <returnvalue>t</returnvalue>
-        </para></entry>
-       </row>
-
-       <row>
-        <entry role="func_table_entry"><para role="func_signature">
-         <type>aclitem[]</type> <literal>~</literal> <type>aclitem</type>
-         <returnvalue>boolean</returnvalue>
-        </para>
-        <para>
-<!--
-         This is a deprecated alias for <literal>@&gt;</literal>.
--->
-これは<literal>@&gt;</literal>の廃止予定の別名です。
-        </para>
-        <para>
-         <literal>'{calvin=r*w/hobbes,hobbes=r*w*/postgres}'::aclitem[] ~ 'calvin=r*/hobbes'::aclitem</literal>
          <returnvalue>t</returnvalue>
         </para></entry>
        </row>

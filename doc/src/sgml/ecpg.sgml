@@ -10309,7 +10309,7 @@ EXEC SQL EXECUTE IMMEDIATE :command;
 
    <refsynopsisdiv>
 <synopsis>
-GET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> <replaceable class="parameter">:cvariable</replaceable> = <replaceable class="parameter">descriptor_header_item</replaceable> [, ... ]
+GET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> <replaceable class="parameter">:cvariable</replaceable> = <replaceable class="parameter">descriptor_header_item</replaceable>
 GET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> VALUE <replaceable class="parameter">column_number</replaceable> <replaceable class="parameter">:cvariable</replaceable> = <replaceable class="parameter">descriptor_item</replaceable> [, ... ]
 </synopsis>
    </refsynopsisdiv>
@@ -10336,17 +10336,22 @@ GET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> VALU
     <para>
 <!--
      This command has two forms: The first form retrieves
-     descriptor <quote>header</quote> items, which apply to the result
+     descriptor <quote>header</quote> item, which applies to the result
      set in its entirety.  One example is the row count.  The second
      form, which requires the column number as additional parameter,
      retrieves information about a particular column.  Examples are
      the column name and the actual column value.
 -->
-このコマンドには２つの構文があります。
+《マッチ度[89.488636]》このコマンドには２つの構文があります。
 １番目の構文では、そのまま結果セットに適用されている記述子の<quote>ヘッダ</quote>項目を取り出します。
 行数が１つの例です。
 列番号を追加のパラメータとして必要とする２番目の構文では特定の列に関する情報を取り出します。
 例えば、列名と列の実際の値です。
+《機械翻訳》このコマンドには2つの形式があります。
+最初のフォームは、結果セット全体に適用されるディスクリプタ<quote>ヘッダ</quote>アイテムを取得します。
+1つ目の例は行カウントです。
+2つ目のフォームは、追加パラメータとしてカラム番号を必要とし、特定のカラムに関する情報を取得します。
+たとえば、カラム名前や実際のカラム値などです。
     </para>
    </refsect1>
 
@@ -11015,7 +11020,7 @@ EXEC SQL SET CONNECTION = con1;
 
    <refsynopsisdiv>
 <synopsis>
-SET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> <replaceable class="parameter">descriptor_header_item</replaceable> = <replaceable>value</replaceable> [, ... ]
+SET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> <replaceable class="parameter">descriptor_header_item</replaceable> = <replaceable>value</replaceable>
 SET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> VALUE <replaceable class="parameter">number</replaceable> <replaceable class="parameter">descriptor_item</replaceable> = <replaceable>value</replaceable> [, ...]
 </synopsis>
    </refsynopsisdiv>

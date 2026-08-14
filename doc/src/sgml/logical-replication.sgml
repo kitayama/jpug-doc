@@ -3269,6 +3269,19 @@ WAL送信プロセスはWALのロジカルデコーディング（<xref linkend=
 
   <para>
 <!--
+   The name of the output plugin used by the replication connection must be
+   included in the server's <xref linkend="guc-output-plugin-libraries"/>. (For
+   subscriptions, the plugin name that is used is <literal>pgoutput</literal>.)
+   Superusers may modify the trusted list per-connection, by including
+   <literal>options=-coutput_plugin_libraries=...</literal> in the connection
+   string.
+-->
+《機械翻訳》レプリケーション名前で使用される出力用プラグインのコネクションは、サーバの<xref linkend="guc-output-plugin-libraries"/>に含まれている必要があります(サブスクリプションの場合、使用されるプラグイン名前は<literal>pgoutput</literal>.です。
+スーパーユーザは、<literal>options=-coutput_plugin_libraries=...</literal>をコネクショントラステッドに含めることで、コネクションごとに文字列リストを変更できます。
+  </para>
+
+  <para>
+<!--
    In order to be able to copy the initial table data, the role used for the
    replication connection must have the <literal>SELECT</literal> privilege on
    a published table (or be a superuser).
@@ -3601,10 +3614,14 @@ WAL送信プロセスはWALのロジカルデコーディング（<xref linkend=
     <listitem>
      <para>
 <!--
-      The output plugins referenced by the slots on the old cluster must be
-      installed in the new PostgreSQL executable directory.
+      The output plugins referenced by the slots in the old cluster must be
+      installed in the new PostgreSQL executable directory. They must also be
+      included in the new cluster's <xref linkend="guc-output-plugin-libraries"/>;
+      see that parameter's documentation for safety information.
 -->
-古いクラスタのスロットで参照される出力プラグインは、新しいPostgreSQLの実行ファイル格納ディレクトリにインストールする必要があります。
+《機械翻訳》古い被参照のスロットにあるクラスタの出力プラグインは、新しいPostgreSQLの実行可能ディレクトリにインストールする必要があります。
+また、新しいクラスタの<xref linkend="guc-output-plugin-libraries"/>にも含める必要があります。
+安全に関する情報については、そのパラメータの文書を参照してください。
      </para>
     </listitem>
     <listitem>
