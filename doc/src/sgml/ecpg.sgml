@@ -10342,16 +10342,11 @@ GET DESCRIPTOR <replaceable class="parameter">descriptor_name</replaceable> VALU
      retrieves information about a particular column.  Examples are
      the column name and the actual column value.
 -->
-《マッチ度[89.488636]》このコマンドには２つの構文があります。
+このコマンドには２つの構文があります。
 １番目の構文では、そのまま結果セットに適用されている記述子の<quote>ヘッダ</quote>項目を取り出します。
 行数が１つの例です。
 列番号を追加のパラメータとして必要とする２番目の構文では特定の列に関する情報を取り出します。
 例えば、列名と列の実際の値です。
-《機械翻訳》このコマンドには2つの形式があります。
-最初のフォームは、結果セット全体に適用されるディスクリプタ<quote>ヘッダ</quote>アイテムを取得します。
-1つ目の例は行カウントです。
-2つ目のフォームは、追加パラメータとしてカラム番号を必要とし、特定のカラムに関する情報を取得します。
-たとえば、カラム名前や実際のカラム値などです。
     </para>
    </refsect1>
 
