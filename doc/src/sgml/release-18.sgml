@@ -27,7 +27,7 @@
    Note: 18.5 was never released, due to a regression discovered
    post-wrap.
 -->
-《機械翻訳》ノート:18.5は、ラップ後に発見されたリグレッションのため、リリースされませんでした。
+注意:18.5は、開発終了後に発見されたリグレッションのため、リリースされませんでした。
   </para>
 
   <sect2 id="release-18-6-migration">
@@ -48,7 +48,7 @@
     However, the first three security entries below describe configuration
     adjustments and data cleanups that you may need to make after updating.
 -->
-《機械翻訳》ただし、以下の最初の3つのセキュリティ項目では、更新後にmakeする必要がある設定調整とデータ清掃について説明します。
+ただし、以下の最初の3つのセキュリティ関連の項目では、更新後に必要となる可能性のある設定の調整やデータのクリーンアップについて説明しています。
    </para>
 
    <para>
@@ -57,7 +57,7 @@
     about possibly-corrupt <structfield>reltuples</structfield> values for
     their tables.
 -->
-《機械翻訳》また、GINインデックスがある場合は、以下のエントリの変更ログで破損の可能性<structfield>reltuples</structfield>テーブルの値について確認してください。
+また、GINインデックスを使用している場合は、それらのテーブルの<structfield>reltuples</structfield>値が破損している可能性があることについて、以下の変更履歴の記述を確認してください。
    </para>
 
    <para>
@@ -66,8 +66,7 @@
     or <filename>contrib/ltree</filename>, you may need to reindex indexes
     made with those extensions; see the relevant entries below.
 -->
-《機械翻訳》また、<filename>contrib/btree_gist</filename>または<filename>contrib/ltree</filename>を使用する場合は、これらの拡張で作成されたインデックスをインデックス再作成する必要があるかもしれません。
-以下の関連するエントリを参照してください。
+また、<filename>contrib/btree_gist</filename>または<filename>contrib/ltree</filename>を使用する場合は、それらの拡張で作成されたインデックスの再作成が必要になることがあります。以下の関連項目を参照してください。
    </para>
 
    <para>
@@ -75,7 +74,7 @@
     Also, if you are upgrading from a version earlier than 18.2,
     see <xref linkend="release-18-2"/>.
 -->
-《機械翻訳》また、18.2より前のバージョンからアップグレードする場合は、<xref linkend="release-18-2"/>を参照してください。
+また、18.2より前のバージョンからアップグレードする場合は、<xref linkend="release-18-2"/>を参照してください。
    </para>
   </sect2>
 
@@ -109,7 +108,7 @@ Branch: REL_17_STABLE [4fcccea97] 2026-08-10 06:38:18 -0700
       new server parameter <varname>output_plugin_libraries</varname>
       (Jacob Champion)
 -->
-《機械翻訳》ロジカルデコーディング出力プラグインを、新しいサーバパラメータ<varname>output_plugin_libraries</varname>.
+ロジカルデコーディング出力プラグインを、新しいサーバパラメータ<varname>output_plugin_libraries</varname>で指定されたセットに制限するようになりました。
 (Jacob Champion)
       <ulink url="&commit_baseurl;2a29b607d">&sect;</ulink>
       <ulink url="&commit_baseurl;82fd68801">&sect;</ulink>
@@ -122,8 +121,8 @@ Branch: REL_17_STABLE [4fcccea97] 2026-08-10 06:38:18 -0700
       locking this down without breaking setups that worked before,
       introduce a whitelist of allowed output plugins.
 -->
-《機械翻訳》これまでは、レプリケーションユーザはロジカルデコーディングのロード可能ライブラリをセレクトすることができ、さまざまな種類のエクスプロイトを可能にしていた。
-前で動作していたセットアップを壊すことなくこのダウンをロックできるようにするために、許可されたアウトプットプラグインのホワイトリストを導入した。
+以前は、レプリケーションユーザがロジカルデコーディング用に任意のロード可能なライブラリを選択できたため、さまざまな種類の悪用が可能でした。
+以前動作していた構成を壊すことなくこの制限を適用できるように、許可される出力プラグインのホワイトリストを導入します。
      </para>
 
      <para>
@@ -135,8 +134,8 @@ Branch: REL_17_STABLE [4fcccea97] 2026-08-10 06:38:18 -0700
       Installations that rely on other output plugins must add them
       after updating the server, for example
 -->
-《機械翻訳》デフォルト別では、パートで出荷された<productname>PostgreSQL</productname><literal>pgoutput</literal>および<literal>test_decoding</literal>の出力プラグインのみが<varname>output_plugin_libraries</varname>に含まれます。
-他の出力プラグインに依存するインストールでは、例のサーバ更新の後にそれらを追加する必要があります。
+デフォルトでは、<productname>PostgreSQL</productname>の一部として提供される出力プラグインの<literal>pgoutput</literal>および<literal>test_decoding</literal>のみが<varname>output_plugin_libraries</varname>に含まれます。
+他の出力プラグインを必要とするインストールでは、サーバの更新後にそれらを追加する必要があります。例えば下記のように設定します。
 <programlisting>
 output_plugin_libraries = 'pgoutput, test_decoding, my_trusted_decoder'
 </programlisting>
@@ -151,8 +150,8 @@ output_plugin_libraries = 'pgoutput, test_decoding, my_trusted_decoder'
       Make necessary additions to the new cluster's setting before
       performing <application>pg_upgrade</application>.
 -->
-《機械翻訳》さらに、<command>pg_upgrade--チェック</command>は、バージョン17以降から移行する場合、<varname>output_plugin_libraries</varname>新しいクラスタのパラメータが古いクラスタの論理レプリケーションスロットのプラグインを許可しない場合に失敗します。
-makeは、新しいクラスタの設定前に必要な追加を実行します<application>pg_upgrade</application>。
+さらに、バージョン17以降から移行する場合、新しいクラスタの<varname>output_plugin_libraries</varname>パラメータが古いクラスタの論理レプリケーションスロットで使用されているプラグインを許可していないと、<command>pg_upgrade --check</command>は失敗します。
+<application>pg_upgrade</application>を実行する前に、新しいクラスタの設定に必要な追加を行ってください。
      </para>
 
      <para>
@@ -191,7 +190,7 @@ Branch: REL_14_STABLE [e2c48c81f] 2026-08-10 06:38:37 -0700
       Fix <filename>contrib/pgcrypto</filename>'s PGP encryption to detect
       unsupported ciphers (Daniel Gustafsson)
 -->
-《機械翻訳》サポートされていない暗号を検出するために、<filename>contrib/pgcrypto</filename>のPGP暗号化を修正。
+<filename>contrib/pgcrypto</filename>のPGP暗号化がサポートされていない暗号を検出するように修正されました。
 (Daniel Gustafsson)
       <ulink url="&commit_baseurl;fe32b10fc">&sect;</ulink>
       <ulink url="&commit_baseurl;4c5128ca0">&sect;</ulink>
@@ -208,8 +207,8 @@ Branch: REL_14_STABLE [e2c48c81f] 2026-08-10 06:38:37 -0700
       cipher algorithms (cipher-algo=blowfish/bf, twofish, cast5, or
       3des).
 -->
-《機械翻訳》以前は、OpenSSLが要求された暗号を拒否した場合（FIPS例で実行されているか、レガシープロバイダがロードされていないため、モード用、<application>pgcrypto</application>失敗に気づかず、暗号化されていないブロックとプレーンテキストを単純にXORして、<quote>暗号化</quote>を些細な解読可能なものにしていました。
-これは通常、非推奨またはFIPS以外の暗号アルゴリズム(cipher-algo=blowfish/bf、twofish、キャスト5、または3 des）で発生します。
+以前は、要求された暗号化方式がOpenSSLによって拒否された場合（例えば、FIPSモードで動作している、あるいはレガシープロバイダが読み込まれていない場合など）、<application>pgcrypto</application>はその失敗を検知できず、単に暗号化されていないブロックと平文との間でXOR演算を行っていたため、その<quote>暗号化</quote>は極めて容易に解読可能な状態になっていました。
+これは通常、非推奨または非FIPSの暗号アルゴリズム(cipher-algo=blowfish/bf,twofish,cast5,3des）を使用した場合に発生します。
      </para>
 
      <para>
@@ -224,9 +223,9 @@ Branch: REL_14_STABLE [e2c48c81f] 2026-08-10 06:38:37 -0700
       their previous behavior, allowing the faulty encryption wrapper to
       be stripped off:
 -->
-《機械翻訳》デフォルトにより、<application>pgcrypto</application>はこの方法で影響を受けたメッセージの復号化に失敗するようになりました。
-このようなデータを取得できるようにするために、新しいオプション<literal>ignore-cipher-failure</literal>が<function>pgp_pub_decrypt()</function>と<function>pgp_sym_decrypt()</function>。
-Setting <literal>ignore-cipher-failure=1</literal>は以前の動作をリストアし、欠陥のある暗号化ラッパーをオフから取り除くことができますに追加されました。
+デフォルトでは、<application>pgcrypto</application>はこのように影響を受けたメッセージの復号に失敗するようになりました。
+そのようなデータを復元できるようにするため、<function>pgp_pub_decrypt()</function>および<function>pgp_sym_decrypt()</function>に新しいオプション<literal>ignore-cipher-failure</literal>が追加されました。
+<literal>ignore-cipher-failure=1</literal>を設定すると以前の動作に戻り、不完全な暗号化ラッパーを取り除くことが可能になります。
 <programlisting>
 pgp_sym_decrypt(encrypted_column, <replaceable>any key</replaceable>, 'ignore-cipher-failure=1')
 </programlisting>
@@ -238,10 +237,10 @@ pgp_sym_decrypt(encrypted_column, <replaceable>any key</replaceable>, 'ignore-ci
       algorithms is not the same, this approach will not work. See the
       documentation for <literal>ignore-cipher-failure</literal>.
 -->
-《機械翻訳》影響を受けたメッセージが特定され、ラッパーが取り除かれると、最新のアルゴリズムで再暗号化できます。
-ただし、OpenSSLの動作が、欠陥のあるメッセージが作成されたときと同じであることが重要です。
-サポートされていないアルゴリズムのセットが同じでない場合、このアプローチは機能しません。
-については、文書を参照してください<literal>ignore-cipher-failure</literal>。
+影響を受けたメッセージが特定され、そのラッパーを取り除けば、最新のアルゴリズムで再暗号化できます。
+ただし、OpenSSLの動作が、問題のあるメッセージが作成された当時と同じであることが重要です。
+サポートされていないアルゴリズムのセットが異なる場合、この方法は機能しません。
+<literal>ignore-cipher-failure</literal>については、ドキュメントを見てください。
      </para>
 
      <para>
@@ -281,8 +280,7 @@ Branch: REL_14_STABLE [7215c7e96] 2026-08-10 06:38:36 -0700
       the <command>COPY</command> fails before
       sending <literal>PGRES_COPY_IN</literal> (Tom Lane)
 -->
-《機械翻訳》<command>COPY</command>が<application>psql</application>の送信に失敗した場合でも、スクリプト化された<command>COPY ... FROM STDIN</command>データに従って、直線内のコピーコマンドに前を修正する。
-<literal>PGRES_COPY_IN</literal>
+スクリプト化された<command>COPY ... FROM STDIN</command>コマンドにおいて、<literal>PGRES_COPY_IN</literal>が送信される前に<command>COPY</command>が失敗した場合でも、続くインラインデータをスキップするように<application>psql</application>が修正されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;29921259e">&sect;</ulink>
       <ulink url="&commit_baseurl;900894d35">&sect;</ulink>
@@ -300,9 +298,9 @@ Branch: REL_14_STABLE [7215c7e96] 2026-08-10 06:38:36 -0700
       and to skip data on its own authority if the server doesn't respond
       with <literal>PGRES_COPY_IN</literal>.
 -->
-《機械翻訳》これまでは、<literal>COPY</literal>コマンドがスタートアップで失敗した場合インスタンスにはターゲットテーブルが存在しないため<application>psql</application>はそれを認識せず、以下の直線データ内をSQLコマンドとして読み進めていました。
-ベストケースでは間違いであり、最悪のケースではSQLインジェクションハザードです。
-<application>psql</application>に構文的に有効な<command>コピー.FROM STDIN</command>コマンドを認識させ、サーバが<literal>PGRES_COPY_IN</literal>で応答しない場合はスキップデータを権限上でにするように教えました。
+これまでは、例えば対象のテーブルが存在しないなどの理由で<literal>COPY</literal>コマンドが開始時に失敗すると、<application>psql</application>はその失敗を認識せず、続くインラインデータをSQLコマンドとして読み込もうとしていました。
+最良の場合でも誤った動作であり、最悪の場合にはSQLインジェクションの危険性がありました。
+<application>psql</application>が構文的に正しい<command>COPY ... FROM STDIN</command>コマンドを認識し、サーバが<literal>PGRES_COPY_IN</literal>で応答しない場合はpsqlの判断でデータをスキップするよう変更されました。
      </para>
 
      <para>
@@ -313,8 +311,8 @@ Branch: REL_14_STABLE [7215c7e96] 2026-08-10 06:38:36 -0700
       a <literal>\.</literal> data terminator line after each such
       command.
 -->
-《機械翻訳》この修正が稼働のSQLスクリプトに影響を与える可能性は低いですが、テストスクリプトが意図的に練習で失敗する<command>コピー.FROM STDIN</command>コマンドを実行する可能性があります。
-これらのスクリプトは、このようなコマンドの後に<literal>\.</literal>データターミネータ直線を取得する必要があります。
+この修正が本番環境のSQLスクリプトに影響を与える可能性は低いですが、テストスクリプトでは意図的に失敗する<command>COPY ... FROM STDIN</command>コマンドを実行している場合があるかもしれません。
+そのようなテストスクリプトは、該当する各コマンドの後にデータ終了を示す<literal>\.</literal>の行を追加する必要があります。
      </para>
 
      <para>
@@ -346,7 +344,7 @@ Branch: REL_14_STABLE [1f49beef2] 2026-08-10 06:38:36 -0700
       running <command>EXECUTE</command> or <command>FETCH</command>
       (Robert Haas)
 -->
-《機械翻訳》クロス-チェック<command>EXECUTE</command>または<command>FETCH</command>.を実行する行の出力ポータルタイプ。
+<command>EXECUTE</command>または<command>FETCH</command>を実行するポータルの出力行型を相互に検証するようになりました。
 (Robert Haas)
       <ulink url="&commit_baseurl;37b8f3b0e">&sect;</ulink>
      </para>
@@ -359,9 +357,9 @@ Branch: REL_14_STABLE [1f49beef2] 2026-08-10 06:38:36 -0700
       possible to make the declared row types of the two portals diverge,
       leading to server memory disclosure and arbitrary code execution.
 -->
-《機械翻訳》<command>EXECUTE</command>および<command>FETCH</command> 2つのポータルを使用します。
-1つはステートメント自分自身用の外部ポータルで、もう1つは問い合わせを実行する内部ポータルです。
-以前は、2つのポータルの宣言された行タイプをmakeすることが可能であったため、サーバメモリの開示と任意のコードの実行につながりました。
+<command>EXECUTE</command>および<command>FETCH</command>は2つのポータルを使用します。
+1つは文そのもののための外側のポータル、もう1つはその文によって実行されるクエリを処理する内側のポータルです。
+以前は、これら2つのポータルの宣言された行型を不一致にすることが可能であり、サーバメモリの漏洩や任意のコード実行につながる恐れがありました。
      </para>
 
      <para>
@@ -394,7 +392,7 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       Fix buffer overrun with long time zone abbreviation in
       <function>to_char()</function> (Tom Lane)
 -->
-《機械翻訳》<function>to_char()</function>では、バッファオーバーランを長いタイムゾーン省略形で固定します。
+<function>to_char()</function>における、長いタイムゾーン略称によるバッファオーバーランが修正されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;4fafe2380">&sect;</ulink>
      </para>
@@ -404,7 +402,7 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       This can easily crash the server, and exploits leading to arbitrary
       code execution have been reported.
 -->
-《機械翻訳》これは容易にサーバをクラッシュすることができ、恣意的なコードの実行につながるエクスプロイトが報告されている。
+これは容易にサーバをクラッシュさせる可能性があり、任意のコード実行につながる悪用事例が報告されています。
      </para>
 
      <para>
@@ -416,8 +414,8 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       for reporting this problem.
       (CVE-2026-14669)
 -->
-《機械翻訳》<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたHcamael、Amjad Shahzad、AntAISecurityLabのTan Zhen、Tomer Fichman、Zheng Yu、Amy Burnett（OpenAI Codexセキュリティ）、Rick de Jager、Heewon Song、Sylvie Mayer、Aleksander Alekseev、およびHillai Ben Sassonに感謝します。
-CVE-2026-14669。
+<productname>PostgreSQL</productname>プロジェクトは、本問題を報告してくれたHcamael、Amjad Shahzad、AntAISecurityLabのTan Zhen、Tomer Fichman、Zheng Yu、Amy Burnett（OpenAI Codex Security）、Rick de Jager、Heewon Song、Sylvie Mayer、Aleksander Alekseev、Hillai Ben Sassonに感謝します。
+(CVE-2026-14669)
      </para>
     </listitem>
 
@@ -436,7 +434,7 @@ Branch: REL_14_STABLE [890327639] 2026-08-10 06:38:35 -0700
 <!--
       Fix buffer overrun in regexp match/split functions (Masahiko Sawada)
 -->
-《機械翻訳》regexpバッファオーバーラン/split関数のマッチを修正しました。
+正規表現のマッチングおよび分割関数におけるバッファオーバーランが修正されました。
 (Masahiko Sawada)
       <ulink url="&commit_baseurl;b7e5c3f63">&sect;</ulink>
      </para>
@@ -446,7 +444,7 @@ Branch: REL_14_STABLE [890327639] 2026-08-10 06:38:35 -0700
       If passed invalidly-encoded data, these functions could write past
       the end of their conversion buffer.
 -->
-《機械翻訳》不正にエンコードされたデータが渡された場合、これらの関数は変換バッファの末尾を超えて書き込む可能性があります。
+不正なエンコーディングデータが渡された場合、これらの関数は変換バッファの末尾を超えて書き込む可能性がありました。
      </para>
 
      <para>
@@ -477,7 +475,7 @@ Branch: REL_14_STABLE [42d333a78] 2026-08-10 06:38:36 -0700
       Harden the <function>ascii()</function> function against invalid
       input (Michael Paquier)
 -->
-《機械翻訳》無効な入力に対して<function>ascii()</function>関数を固定します。
+<function>ascii()</function>関数が不正な入力に対して堅牢にされました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;08e812c02">&sect;</ulink>
      </para>
@@ -488,8 +486,8 @@ Branch: REL_14_STABLE [42d333a78] 2026-08-10 06:38:36 -0700
       to read and return a few bytes of data that it shouldn't.  In
       assert-enabled builds, its assertions could be triggered too.
 -->
-《機械翻訳》無効にエンコードされた入力を提供することで、この関数は、読み取るべきではない結果の数バイトを読み取り、データするように誘導することができます。
-assertが有効なビルドでは、そのアサーションもトリガされる可能性があります。
+不正なエンコーディングの入力を与えることで、本来読み取るべきではない数バイトのデータを読み取り、返却するようにこの関数を誘導できる可能性がありました。
+アサーションが有効なビルドでは、そのアサーションがトリガされる可能性もありました。
      </para>
 
      <para>
@@ -518,7 +516,7 @@ Branch: REL_18_STABLE [8d428c6e6] 2026-08-10 06:38:12 -0700
       in <function>pg_restore_attribute_stats()</function>
       (OpenAI Security Research Team)
 -->
-《機械翻訳》複数範囲のタイプハンドリングを<function>pg_restore_attribute_stats()</function>で修正します。
+<function>pg_restore_attribute_stats()</function>におけるマルチ範囲型の処理が修正されました。
 (OpenAI Security Research Team)
       <ulink url="&commit_baseurl;08454e8b2">&sect;</ulink>
       <ulink url="&commit_baseurl;8d428c6e6">&sect;</ulink>
@@ -531,8 +529,8 @@ Branch: REL_18_STABLE [8d428c6e6] 2026-08-10 06:38:12 -0700
       for the bounds histogram, but it was wrong for all the other
       statistics kinds.
 -->
-《機械翻訳》<function>pg_restore_attribute_stats()</function>は基底の範囲型と同じように多重範囲型を扱いました。
-これは境界のヒストグラムでは正しく動作しますが、他のすべての種類の間違いでは統計処理でした。
+<function>pg_restore_attribute_stats()</function>はマルチ範囲型をその基となる範囲型と同様に扱っていました。
+これは境界ヒストグラムでは正しく動作しますが、その他のすべての統計種別については誤りでした。
      </para>
 
      <para>
@@ -563,7 +561,7 @@ Branch: REL_14_STABLE [59205c7e9] 2026-08-10 06:38:35 -0700
       Make <function>scalarineqsel()</function> check that a constant it
       expects to be of type <type>tid</type> actually is (Tom Lane)
 -->
-《機械翻訳》make <function>scalarineqsel()</function>タイプ<type>TID</type>であると予想されるチェックが実際にある定数。
+<function>scalarineqsel()</function>において、<type>tid</type>型であると想定される定数が実際にその型であることを確認するようになりました。
 (Tom Lane)
       <ulink url="&commit_baseurl;a2cb5a1cf">&sect;</ulink>
      </para>
@@ -574,7 +572,7 @@ Branch: REL_14_STABLE [59205c7e9] 2026-08-10 06:38:35 -0700
       this estimator, but a maliciously-constructed operator could violate
       it, leading to a crash or server memory disclosure.
 -->
-《機械翻訳》この期待は、この推定量を使用するすべての組み込み演算子に当てはまるが、悪意を持って構築された演算子はそれに違反し、クラッシュやサーバメモリの開示につながる可能性がある。
+この想定は、この推定器を使用するすべての組み込み演算子については成り立ちますが、悪意を持って作成された演算子によってその想定が崩されると、クラッシュやサーバメモリの漏洩につながる可能性がありました。
      </para>
 
      <para>
@@ -613,7 +611,7 @@ Branch: REL_14_STABLE [1e3014f37] 2026-08-10 06:38:34 -0700
       overly long values (both individual lexemes and total vector/query
       length) (Tom Lane)
 -->
-《機械翻訳》過度に長い値<type>個々のコードとベクタ/問い合わせ語彙素の合計の両方</type>に対して長さtsvectorと<type>tsquery</type>を強化します。
+<type>tsvector</type>と<type>tsquery</type>のコードについて、過度に長い値（個々の語彙素およびベクトルやクエリの合計長）に対する堅牢性が強化されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;e25135057">&sect;</ulink>
       <ulink url="&commit_baseurl;dddc8a69f">&sect;</ulink>
@@ -623,7 +621,7 @@ Branch: REL_14_STABLE [1e3014f37] 2026-08-10 06:38:34 -0700
 <!--
       The documented limits were not enforced in all code paths.
 -->
-《機械翻訳》文書化された制限は、コードのすべての経路で実施されたわけではありません。
+文書化されていた制限が、すべてのコードパスで適用されていなかったためです。
      </para>
 
      <para>
@@ -662,7 +660,7 @@ Branch: REL_14_STABLE [c7f462838] 2026-08-10 06:38:35 -0700
       deal with more than <literal>FUNC_MAX_ARGS</literal> function
       arguments (Tom Lane)
 -->
-《機械翻訳》<literal>FUNC_MAX_ARGS</literal>関数の議論以上のものを扱う必要がないと誤って想定していたさまざまな場所を修正します。
+関数引数の数が<literal>FUNC_MAX_ARGS</literal>を超えることがないという誤った前提に基づいていた箇所が修正されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;7f0e1aac7">&sect;</ulink>
       <ulink url="&commit_baseurl;2a03f21da">&sect;</ulink>
@@ -674,7 +672,7 @@ Branch: REL_14_STABLE [c7f462838] 2026-08-10 06:38:35 -0700
       aggregate function is <literal>FUNC_MAX_ARGS - 1</literal>, but the
       parser failed to enforce that, creating hazards downstream.
 -->
-《機械翻訳》注目すべきことに、サーバの集約関数への引数の数に対する実際の制限は<literal>FUNC_MAX_ARGS - 1</literal>であるが、パーサはそれを強制することに失敗し、下流に危険をもたらした。
+特に、集約関数の引数の数に関するサーバの実際の制限は<literal>FUNC_MAX_ARGS - 1</literal>ですが、パーサがこれを強制していなかったため、後続の処理で問題が発生する可能性がありました。
      </para>
 
      <para>
@@ -712,7 +710,7 @@ Branch: REL_14_STABLE [913fe0c31] 2026-08-10 06:38:35 -0700
       Reject calls from SQL to functions that take or return
       type <type>internal</type> (Tom Lane)
 -->
-《機械翻訳》SQLから、または戻り値の型<type>内部</type>を取る機能へのコールを拒否します。
+SQLから、<type>internal</type>型を受け取る、または返す関数への呼び出しが拒否されるようになりました。
 (Tom Lane)
       <ulink url="&commit_baseurl;54649de65">&sect;</ulink>
       <ulink url="&commit_baseurl;722695db1">&sect;</ulink>
@@ -723,7 +721,7 @@ Branch: REL_14_STABLE [913fe0c31] 2026-08-10 06:38:35 -0700
       The existing defenses against doing this have been shown to be
       insufficient, so add more explicit checks.
 -->
-《機械翻訳》これを行うことに対する既存の防御策は不十分であることが示されているため、より明示的なチェックを追加します。
+これに対する既存の防御策では不十分であることが判明したため、より明示的なチェックが追加されました。
      </para>
 
      <para>
@@ -754,7 +752,7 @@ Branch: REL_14_STABLE [70a3b4e18] 2026-08-10 06:38:35 -0700
       Preserve the ownership of extended statistics objects when they are
       rebuilt by <command>ALTER TABLE</command> (Masahiko Sawada)
 -->
-《機械翻訳》拡張統計情報オブジェクトが<command>ALTER TABLE</command>によって再建された場合、その所有権を保持します。
+<command>ALTER TABLE</command>によって拡張統計オブジェクトが再構築される際、所有者が保持されるようになりました。
 (Masahiko Sawada)
       <ulink url="&commit_baseurl;a1fa24127">&sect;</ulink>
      </para>
@@ -764,7 +762,7 @@ Branch: REL_14_STABLE [70a3b4e18] 2026-08-10 06:38:35 -0700
       Previously, the role running <command>ALTER TABLE</command> gained
       ownership of such objects, but that seems inappropriate.
 -->
-《機械翻訳》以前は、ロールランニング<command>ALTER TABLE</command>がそのようなオブジェクトのオーナーシップを取得しましたが、それは不適切なようです。
+以前は、<command>ALTER TABLE</command>を実行したロールがそれらのオブジェクトの所有権を取得していましたが、それは不適切であると考えられます。
      </para>
 
      <para>
@@ -795,7 +793,7 @@ Branch: REL_14_STABLE [967acab87] 2026-08-10 06:38:35 -0700
       When deparsing an <function>EXTRACT()</function> function call,
       quote the field name if needed (Nathan Bossart)
 -->
-《機械翻訳》<function>EXTRACT()</function>関数呼び出しを構文解析する際には、必要に応じてフィールド名前を引用してください。
+<function>EXTRACT()</function>関数呼び出しを逆パースする際に、必要に応じてフィールド名を引用符で囲むようになりました。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;0ddd9098a">&sect;</ulink>
      </para>
@@ -808,8 +806,8 @@ Branch: REL_14_STABLE [967acab87] 2026-08-10 06:38:35 -0700
       during <application>pg_dump</application>), the string body was
       regurgitated verbatim, allowing SQL injection.
 -->
-《機械翻訳》パーサは、文字列リテラルをフィールド名前として受け入れます<function>EXTRACT()</function>バリデーションの実行を延期します。
-呼び出しが保存され、<application>pg_dump</application>の間に例に対して解析解除されると、文字列本体が逐語的に戻され、SQLインジェクションが可能になります。
+パーサは、<function>EXTRACT()</function>内のフィールド名として文字列リテラルを受け入れ、妥当性検証は実行時まで先送りされます。
+呼び出しが保存され、例えば<application>pg_dump</application>実行時などに逆パースされる場合、文字列本体がそのまま復元されるため、SQLインジェクションが発生する可能性がありました。
      </para>
 
      <para>
@@ -854,7 +852,7 @@ Branch: REL_14_STABLE [1a358b8f2] 2026-08-10 06:38:36 -0700
       Check for <literal>USAGE</literal> privilege on data types in places
       that formerly failed to check that (Nathan Bossart)
 -->
-《機械翻訳》チェック、以前はそれをチェックすることができなかった場所の<literal>USAGE</literal>データの権限タイプのために。
+以前は検査が行われてなかった箇所において、データ型に対する<literal>USAGE</literal>権限の有無を確認するようになりました。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;2e91f8548">&sect;</ulink>
       <ulink url="&commit_baseurl;57f59ca1d">&sect;</ulink>
@@ -870,9 +868,8 @@ Branch: REL_14_STABLE [1a358b8f2] 2026-08-10 06:38:36 -0700
       objects depending on the type, possibly blocking the type's owner
       from changing the type later.
 -->
-《機械翻訳》<command>CREATEタイプASレンジ</command>はチェックを行わず、<command>ALTERテーブルOF</command>も行わず、格納された式を作成するコマンドも行いませんでした。
-これらの省略により、<literal>USAGE</literal>権限を持たないロールでもタイプに依存するオブジェクトを作成することができました。
-タイプの所有者であるブロッキングは後でタイプを変更する可能性がありました。
+<command>CREATE TYPE AS RANGE</command>、<command>ALTER TABLE OF</command>、格納される式を作成するコマンドで確認が行なわれていませんでした。
+これらの欠落により、<literal>USAGE</literal>権限を持たないロールでもそのデータ型に依存するオブジェクトを作成することができてしまい、その結果、型の所有者が後からその型を変更できなくなる可能性がありました。
      </para>
 
      <para>
@@ -903,7 +900,7 @@ Branch: REL_14_STABLE [f4174aa84] 2026-08-10 06:38:36 -0700
       Invalidate role-dependent cached plans after role changes
       (Ilya Staroverov, Shinya Kato, Nathan Bossart)
 -->
-《機械翻訳》ロールの変更後に、ロールに依存するキャッシュ済計画を無効化します。
+ロールの変更後に、ロールに依存するキャッシュされた計画を無効化するようになりました。
 (Ilya Staroverov, Shinya Kato, Nathan Bossart)
       <ulink url="&commit_baseurl;0b12f56bf">&sect;</ulink>
      </para>
@@ -915,7 +912,7 @@ Branch: REL_14_STABLE [f4174aa84] 2026-08-10 06:38:36 -0700
       previously we'd continue to use cached plans that were made
       according to the old state of affairs.
 -->
-《機械翻訳》ロールメンバシップ、ロール属性、データベースの所有者の変更は、行-レベルセキュリティポリシーの期待される動作をインパクトする可能性がありますが、以前は、古い状況に従って作成されたキャッシュされたプランを引き続き使用していました。
+ロールのメンバシップ、ロールの属性、データベースの所有者の変更は、行単位セキュリティポリシーの期待される動作に影響を及ぼす可能性がありますが、これまでは、変更前の状態に基づいて作成されたキャッシュされた計画をそのまま使用し続けていました。
      </para>
 
      <para>
@@ -942,7 +939,7 @@ Branch: REL_17_STABLE [067a64d40] 2026-08-10 06:38:18 -0700
 <!--
       Reject GSSEncRequest after direct SSL connection (Michael Paquier)
 -->
-《機械翻訳》直接SSLコネクション後にGSSEncRequestを拒否します。
+直接のSSL接続の後のGSSEncRequestを拒否するようになりました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;203a48209">&sect;</ulink>
      </para>
@@ -956,9 +953,9 @@ Branch: REL_17_STABLE [067a64d40] 2026-08-10 06:38:18 -0700
       Thus, a <filename>pg_hba</filename> policy intending to disallow TLS
       would not be enforced correctly.
 -->
-《機械翻訳》TLSで暗号化されたコネクションを確立した後も、サーバはGSSAPI暗号化用のリクエストを受け入れます。
-それが成功した場合、コネクションはTLS暗号化を使用して処理を進めますが、<filename>pg_hba</filename>ルールに対してGSSコネクションのように見えます。
-したがって、TLSを許可しない<filename>pg_hba</filename>ポリシーは正しく適用されません。
+TLS暗号化接続を確立した後でも、サーバはGSSAPI暗号化の要求を受け入れていました。
+それが成功した場合、接続はTLS暗号化を使用して継続されますが、<filename>pg_hba</filename>ルール上はGSS接続のように見えます。
+したがって、TLSを許可しない意図で設定された<filename>pg_hba</filename>ポリシーが正しく適用されないことになっていました。
      </para>
 
      <para>
@@ -986,7 +983,7 @@ Branch: REL_16_STABLE [fadbe882d] 2026-08-10 06:38:24 -0700
 <!--
       Make mock SCRAM authentication secrets more plausible (Nathan Bossart)
 -->
-《機械翻訳》makeはスクラム認証の秘密をよりもっともらしく模倣している。
+SCRAM認証の模擬シークレットを、より本物らしく見えるようにしました。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;822143c4d">&sect;</ulink>
      </para>
@@ -1002,9 +999,9 @@ Branch: REL_16_STABLE [fadbe882d] 2026-08-10 06:38:24 -0700
       instead, to make the mock secret look more like the installation's
       real secrets.
 -->
-《機械翻訳》もしSCRAMログインが存在しないかSCRAM秘密を持っていないロールに対して試みられるなら、攻撃者にこれらの事実を明らかにすることを避けるために、模擬秘密を生成し、とにかく認証ハンドシェイクを実行します。
-しかし、模擬秘密は固定反復カウントで作られました、自分自身では観測可能な回答不一致である可能性があります。
-設定設定を使用してください<varname>scram_iterations</varname>代わりに、makeするために模擬秘密はインストールの本当の秘密のように見えます。
+存在しないロールやSCRAMシークレットを持たないロールに対してSCRAMログインが試行された場合、攻撃者にその事実を悟られないよう、模擬シークレットを生成して認証ハンドシェイクをあえて実行します。
+しかし、この模擬シークレットは固定の反復回数で生成されていたため、それ自体が観測可能な応答の不一致となり得る可能性がありました。
+代わりに、設定項目<varname>scram_iterations</varname>を使用することで、模擬シークレットをインストール環境の実際のシークレットに近いものにします。
      </para>
 
      <para>
@@ -1036,7 +1033,7 @@ Branch: REL_14_STABLE [74c59d062] 2026-08-10 06:38:35 -0700
       applications caused by invalid <type>bytea</type> data received from
       the server (Michael Paquier)
 -->
-《機械翻訳》サーバから受信した無効な<type>bytea</type>データによって引き起こされた<application>ecpg</application>アプリケーションの範囲外の書き込みを修正しました。
+サーバから受信した不正な<type>bytea</type>データに起因する<application>ecpg</application>アプリケーションの範囲外書き込みが修正されました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;a14ba29b1">&sect;</ulink>
      </para>
@@ -1048,8 +1045,8 @@ Branch: REL_14_STABLE [74c59d062] 2026-08-10 06:38:35 -0700
       A broken or malicious server might send a string shorter than 2
       bytes, resulting in memory clobber in the application.
 -->
-《機械翻訳》<application>ecpg</application>は、<type>bytea</type>値が<literal>\x</literal>で始まらなければならないことをチェックせずに想定されます。
-破損した、または悪意のあるサーバは2バイトより短い文字列を送信する可能性があり、その結果、アプリケーションのメモリが破壊されます。
+<application>ecpg</application>は、<type>bytea</type>値は必ず<literal>\x</literal>で始まると検査せずに想定していました。
+破損したサーバや悪意のあるサーバが2バイト未満の文字列を送信した場合、アプリケーションのメモリ破壊を引き起こす可能性がありました。
      </para>
 
      <para>
@@ -1081,7 +1078,7 @@ Branch: REL_14_STABLE [2006fca40] 2026-08-10 06:38:37 -0700
       of <application>psql</application>'s <command>\unrestrict</command>
       command (Nathan Bossart)
 -->
-《機械翻訳》<application>psql</application>の<command>\unrestrict</command>コマンドの引数で逆引用符拡張をしないでください。
+<application>psql</application>の<command>\unrestrict</command>コマンドの引数に対して、バッククォート展開を行わないようになりました。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;71ca694c7">&sect;</ulink>
      </para>
@@ -1094,8 +1091,8 @@ Branch: REL_14_STABLE [2006fca40] 2026-08-10 06:38:37 -0700
       running <application>psql</application>, the exact scenario that
       CVE-2025-8714 intended to prevent.
 -->
-《機械翻訳》CVE-2025-8714の修正におけるこの見落としは、悪意のあるサーバが、<application>psql</application> CVE-2025-8714が防止しようとした正確なシェルであるを実行しているテキストでダンプ時間に実行されるプレーンなリストア出力にマシンコマンドを注入することを可能にする。
-シナリオ
+CVE-2025-8714の修正におけるこの見落としにより、悪意のあるサーバが、<application>psql</application>を実行しているマシン上でリストア時に実行されるプレーンテキスト形式のダンプ出力にシェルコマンドを注入することが可能になります。
+これはまさに、CVE-2025-8714が防止しようとしたシナリオそのものです。
      </para>
 
      <para>
@@ -1128,7 +1125,7 @@ Branch: REL_14_STABLE [57aa21f69] 2026-08-10 06:38:35 -0700
       cannot have more than <literal>FUNC_MAX_ARGS</literal> entries
       (Tom Lane)
 -->
-《機械翻訳》<structname>pg_proc</structname>.<structfield>prontftypes</structfield>は<literal>FUNC_MAX_ARGS</literal>エントリより多く持つことはできないという<application>pg_dump</application>の仮定を削除しました。
+<structname>pg_proc</structname>.<structfield>prontftypes</structfield>のエントリ数が<literal>FUNC_MAX_ARGS</literal>を超えないという<application>pg_dump</application>の前提が削除されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;3392cce5c">&sect;</ulink>
      </para>
@@ -1144,9 +1141,9 @@ Branch: REL_14_STABLE [57aa21f69] 2026-08-10 06:38:35 -0700
       it has.  An overrun would lead to a memory clobber
       inside <application>pg_dump</application>.
 -->
-《機械翻訳》入出力引数の両方に対してエントリが存在する可能性があるため、この配列の長さが<literal>FUNC_MAX_ARGS</literal>入力引数のみを制約するを超える可能性があります。
-たとえそうでなかったとしても、<application>pg_dump</application>はサーバが<literal>FUNC_MAX_ARGS</literal>それが持つと同じ値で構築されたと想定することはできません。
-オーバーランは内部でメモリを破壊することになります<application>pg_dump</application>。
+入力引数と出力引数の両方のエントリが存在する可能性があるため、この配列の長さが入力引数のみを制限する<literal>FUNC_MAX_ARGS</literal>を超えることはあり得ます。
+たとえそうでなかったとしても、サーバが<application>pg_dump</application>と同じ<literal>FUNC_MAX_ARGS</literal>の値でビルドされたと仮定することはできません。
+オーバーランが発生すると<application>pg_dump</application>内部でのメモリ破壊につながる恐れがありました。
      </para>
 
      <para>
@@ -1177,7 +1174,7 @@ Branch: REL_14_STABLE [d7fcfead3] 2026-08-10 06:38:35 -0700
       Harden <application>PL/Perl</application>
       against <quote>tied</quote> Perl arrays and hashes (Tom Lane)
 -->
-《機械翻訳》Perlの配列とハッシュを<application>PL/Perl</application><quote>結合</quote>されたものに対して強化する。
+<quote>tieされた</quote>Perlの配列やハッシュに対して<application>PL/Perl</application>の堅牢性が強化されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;87c4b8219">&sect;</ulink>
      </para>
@@ -1188,7 +1185,7 @@ Branch: REL_14_STABLE [d7fcfead3] 2026-08-10 06:38:35 -0700
       memory overwrite, or to constructing a corrupt result array (which
       would likely cause problems later).
 -->
-《機械翻訳》通常のオブジェクトのように動作しないメモリが関連付けられていると、配列が上書きされたり、不正な結果リザルトが構築されたりする可能性があります（これは後で問題を引き起こす可能性があります）。
+通常のオブジェクトとは異なる挙動をするtieされたオブジェクトは、メモリの上書きや、破損した結果配列の生成を招く恐れがありました。その結果、後で問題を引き起こす可能性がありました。
      </para>
 
      <para>
@@ -1220,8 +1217,7 @@ Branch: REL_14_STABLE [aff9dac1c] 2026-08-10 06:38:35 -0700
       in <application>PL/Perl</application>
       and <application>PL/Tcl</application> (Heikki Linnakangas)
 -->
-《機械翻訳》メモリ内の整数オーバーフローを修正しました。
-<application>PL/Perl</application>と<application>PL/Tcl</application>.アロケーション
+<application>PL/Perl</application>および<application>PL/Tcl</application>におけるメモリ割り当て計算時の整数オーバーフローが修正されました。
 (Heikki Linnakangas)
       <ulink url="&commit_baseurl;028ee716a">&sect;</ulink>
      </para>
@@ -1231,7 +1227,7 @@ Branch: REL_14_STABLE [aff9dac1c] 2026-08-10 06:38:35 -0700
       This is the same type of problem as CVE-2026-6473, just in a
       different part of the code, and is fixed in the same way.
 -->
-《機械翻訳》これは、コードの別のタイプにあるだけで、CVE-2026-6473と同じ問題のパートであり、同じ方法で修正されます。
+これは、CVE-2026-6473と同様の問題でコードの異なる場所で発生していたものであり、同じ方法で修正されています。
      </para>
 
      <para>
@@ -1263,7 +1259,7 @@ Branch: REL_14_STABLE [39d792040] 2026-08-10 06:38:36 -0700
       restrict <varname>search_path</varname> before executing index
       expressions (Noah Misch)
 -->
-《機械翻訳》保証who <filename>contrib/amcheck</filename> functions restrict <varname>search_path</varname>前はインデックス式を実行します。
+<filename>contrib/amcheck</filename>の関数がインデックス式を実行する前に<varname>search_path</varname>を制限するようになりました。
 (Noah Misch)
       <ulink url="&commit_baseurl;0a61fcde0">&sect;</ulink>
      </para>
@@ -1278,9 +1274,9 @@ Branch: REL_14_STABLE [39d792040] 2026-08-10 06:38:36 -0700
       functions; but if that privilege was granted out, it created a
       larger hazard than the documentation suggests.
 -->
-《機械翻訳》amcheckはテーブルのインデックス式のような所有者式を実行しますので、呼び出し元が任意のコードをテーブル所有者として実行するために<varname>search_path</varname>-dependent関数を乗っ取る可能性があります。
-デフォルトではスーパーユーザのみがamcheck関数を呼び出しで実行することを許可されているため、これは弱点ではありません。
-しかし、権限が許可された場合、文書が示唆するよりも大きな危険をもたらしました。
+amcheckはそれらのインデックス式をテーブル所有者の権限で実行するため、呼び出し元が<varname>search_path</varname>に依存する関数を乗っ取り、テーブル所有者として任意のコードを実行する可能性があるからです。
+デフォルトではスーパーユーザのみがamcheck関数を呼び出せることを許可されているため、これは脆弱性にはあたりません。
+しかし、その権限が他のユーザに付与されていた場合、ドキュメントで示されているよりも大きな危険が生じることになります。
      </para>
 
      <para>
@@ -1313,7 +1309,7 @@ Branch: REL_14_STABLE [9505175f2] 2026-08-10 06:38:36 -0700
       and <function>levenshtein_less_equal()</function> functions
       (Nathan Bossart)
 -->
-《機械翻訳》<filename>contrib/fuzzystrmatch</filename>の<function>levenshtein()</function>および<function>levenshtein_less_equal()</function>関数での整数オーバーフローを修正しました。
+<filename>contrib/fuzzystrmatch</filename>の<function>levenshtein()</function>および<function>levenshtein_less_equal()</function>関数における整数オーバーフローが修正されました。
 (Nathan Bossart)
       <ulink url="&commit_baseurl;e88eb4e76">&sect;</ulink>
      </para>
@@ -1324,7 +1320,7 @@ Branch: REL_14_STABLE [9505175f2] 2026-08-10 06:38:36 -0700
       overflows, thereby producing nonsensical results, and even causing
       out-of-bounds writes in some cases.
 -->
-《機械翻訳》これらの関数にラージコストの値を渡すと整数オーバーフローが発生し、意味のない結果が生成されたり、場合によっては範囲外の書き込みが発生したりする可能性がありました。
+これらの関数に大きなコスト値を渡すと整数オーバーフローが発生し、無意味な結果が生成されたり、場合によっては範囲外の書き込みが発生したりする可能性がありました。
      </para>
 
      <para>
@@ -1351,7 +1347,7 @@ Branch: REL_18_STABLE [8a31ffc2d] 2026-08-10 06:38:11 -0700
       Fix buffer overrun
       in <filename>contrib/pg_stat_statements</filename> (Álvaro Herrera)
 -->
-《機械翻訳》バッファオーバーランを<filename>contrib/pg_stat_statements</filename>.
+<filename>contrib/pg_stat_statements</filename>におけるバッファオーバーランが修正されました。
 (Álvaro Herrera)
       <ulink url="&commit_baseurl;8a31ffc2d">&sect;</ulink>
      </para>
@@ -1361,7 +1357,7 @@ Branch: REL_18_STABLE [8a31ffc2d] 2026-08-10 06:38:11 -0700
       Query normalization didn't accurately account for the amount of
       space the normalized string would require.
 -->
-《機械翻訳》問い合わせ正規化は、正規化されたアカウントが必要とするスペースの量に対して、文字列を正確に計算しなかった。
+問い合わせの正規化処理において、正規化された文字列が必要とするサイズが正確に考慮されていませんでした。
      </para>
 
      <para>
@@ -1392,7 +1388,7 @@ Branch: REL_14_STABLE [a74aa0854] 2026-08-10 06:38:35 -0700
       Fix datatype error in <filename>contrib/pg_trgm</filename>'s GiST
       picksplit function (Heikki Linnakangas)
 -->
-《機械翻訳》<filename>contrib/pg_trgm</filename>'s GiST picksplitエラーのデータ型関数を修正しました。
+<filename>contrib/pg_trgm</filename>のGiST picksplit関数におけるデータ型エラーが修正されました。
 (Heikki Linnakangas)
       <ulink url="&commit_baseurl;849019a50">&sect;</ulink>
      </para>
@@ -1403,8 +1399,7 @@ Branch: REL_14_STABLE [a74aa0854] 2026-08-10 06:38:35 -0700
       typically causing bad split decisions; but a crash could ensue
       if you're very unlucky.
 -->
-《機械翻訳》このミスの結果、バッファの終わりを超えて読むことになり、通常は誤った分割決定が発生しました。
-しかし、非常に運が悪いとクラッシュが起こる可能性があります。
+このエラーにより、バッファの末尾を超えて読み込みがおこなわれ、通常は不適切な分割判断の原因となっていましたが、運が悪ければクラッシュに至る可能性がありました。
      </para>
 
      <para>
@@ -1434,7 +1429,7 @@ Branch: REL_14_STABLE [5b72d0279] 2026-06-05 12:08:05 -0500
       Remove the plan cache in <filename>contrib/refint</filename>
       (Ayush Tiwari)
 -->
-《機械翻訳》プランのキャッシュを削除します<filename>contrib/refint</filename>。
+<filename>contrib/refint</filename>のプランキャッシュが削除されました。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;79a506228">&sect;</ulink>
      </para>
@@ -1447,9 +1442,9 @@ Branch: REL_14_STABLE [5b72d0279] 2026-06-05 12:08:05 -0500
       originally-needed values rather than the key values that should be
       used.  The simplest solution is to remove it.
 -->
-《機械翻訳》このキャッシュ動作にはいくつかの重大なバグがあります。
-特に、<function>check_foreign_key()</function>は新しいキー値をカスケード-更新問い合わせに埋め込むため、キャッシュされたプランは、使用されるべきキー値ではなく、本来必要な値を再利用する。
-最も簡単な解決策は、それを削除することです。
+このキャッシュ機能にはいくつかの深刻なバグがあります。
+特に、<function>check_foreign_key()</function>がカスケードUPDATEクエリに新しいキー値を埋め込んでしまうため、キャッシュされたプランが、本来使用されるべきキー値ではなく、最初に必要とされたキー値を再利用してしまう問題があります。
+最も簡単な解決策は、このキャッシュ機能を削除することです。
      </para>
 
      <para>
