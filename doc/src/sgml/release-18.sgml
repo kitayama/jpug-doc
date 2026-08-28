@@ -1837,7 +1837,7 @@ Branch: REL_18_STABLE [fe5d62951] 2026-07-06 16:15:45 +0900
       Avoid pushing <literal>WHERE</literal> clauses down past a grouping
       step that has a different equivalence rule (Richard Guo)
 -->
-異なる等価性ルールを持つグループ化ステップよりも下位へ<literal>WHERE</literal>句ををプッシュダウンすることを避けるようになりました。
+異なる等価性ルールを持つグループ化ステップよりも下位へ<literal>WHERE</literal>句をプッシュダウンすることを避けるようになりました。
 (Richard Guo)
       <ulink url="&commit_baseurl;fe5d62951">&sect;</ulink>
      </para>
