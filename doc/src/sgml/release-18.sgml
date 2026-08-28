@@ -955,7 +955,7 @@ Branch: REL_17_STABLE [067a64d40] 2026-08-10 06:38:18 -0700
 -->
 TLS暗号化接続を確立した後でも、サーバはGSSAPI暗号化の要求を受け入れていました。
 それが成功した場合、接続はTLS暗号化を使用して継続されますが、<filename>pg_hba</filename>ルール上はGSS接続のように見えます。
-したがって、TLSを許可しない意図で設定された<filename>pg_hba</filename>ポリシーが正しく適用されないことになっていました。
+したがって、TLSを許可しない意図で設定された<filename>pg_hba</filename>ルールが正しく適用されないことになっていました。
      </para>
 
      <para>
@@ -1472,8 +1472,7 @@ Branch: REL_18_STABLE [d4420a972] 2026-07-30 14:59:39 +0200
       <structname>pg_class</structname>.<structfield>reltuples</structfield>
       value correctly (Jan Nidzwetzki, Tomas Vondra)
 -->
-《機械翻訳》パラレルGINインデックスが更新を建設する保証は、テーブルの<structname>pg_クラス</structname>です。
-<structfield>reltuples</structfield>値は正しく。
+並列GINインデックスの構築時に、テーブルの<structname>pg_class.</structname>.<structfield>reltuples</structfield>の値が正しく更新されるようになりました。
 (Jan Nidzwetzki, Tomas Vondra)
       <ulink url="&commit_baseurl;d4420a972">&sect;</ulink>
      </para>
@@ -1493,13 +1492,12 @@ Branch: REL_18_STABLE [d4420a972] 2026-07-30 14:59:39 +0200
       their <structfield>reltuples</structfield> entries look sane.
       A query such as this may be helpful:
 -->
-《機械翻訳》パラレルワーカーは、処理した行数の初期化されていない値をレポートし、<structfield>reltuples</structfield> InfinityやNaNであっても偽の値をもたらす可能性があります。
-このような値は、後続のオートバキュームおよび自動分析操作で、テーブルニーズを処理することを決定しない可能性があります。
-その場合、シチュエーションは自己修復しません。
-マニュアル<structfield>reltuples</structfield>コマンド、または別のインデックスの作成は、正しい値にリセットするために必要になります。
-GINインデックスを持つテーブルがある場合は、チェックに<structfield>reltuples</structfield>エントリが正常に見えるかどうかを確認することをお勧めします。
-次のような問い合わせが役立つ場合があります。
-<command>ANALYZE</command>
+パラレルワーカーが処理した行数として初期化されていない値を報告し、その結果<structfield>reltuples</structfield>がInfinityやNaNといった不正な値になる可能性がありました。
+このような値になると、その後の自動バキュームおよび自動解析の処理において、テーブルの処理が必要であると判断されなくなる可能性があります。
+そうなると、この状態は自動的には解消されません。
+<structfield>reltuples</structfield>を正しい値にリセットするには、手動で<command>ANALYZE</command>コマンドを実行するか、別のインデックスを作成する必要があります。
+GINインデックスを持つテーブルがある場合は、<structfield>reltuples</structfield>の値が妥当かどうかを確認することをお勧めします。
+次のような問い合わせが役立つかもしれません。
 <programlisting>
 SELECT DISTINCT t.oid::regclass, t.reltuples
 FROM pg_class t
@@ -1527,8 +1525,7 @@ Branch: REL_14_STABLE [cec48686a] 2026-08-07 17:30:06 +0900
       asynchronous Append plan node (Alexander Korotkov, Gleb Kashkin,
       Etsuro Fujita)
 -->
-《機械翻訳》非同期Appendプランのハンドリングを再スキャンする際に、ノードの読み取りが正しく行われない問題を修正しました。
-非同期
+非同期Appendプランノードを再スキャンする際の、非同期読み取りの不適切な処理が修正されました。
 (Alexander Korotkov, Gleb Kashkin, Etsuro Fujita)
       <ulink url="&commit_baseurl;4ea497a92">&sect;</ulink>
      </para>
@@ -1543,9 +1540,9 @@ Branch: REL_14_STABLE [cec48686a] 2026-08-07 17:30:06 +0900
       scan.  The outcome could be incorrect query results, an infinite
       loop, or an assertion failure.
 -->
-《機械翻訳》上位プランノードがAppend前を再スキャンしてAppendの出力全体を読み込んだら、外部サーバに送信されたin-フライト要求を破棄する必要があります<filename>postgres_fdw</filename> by for例)。
-これは、サブプランにパラメータの変更がある場合や、次のスキャンのパーティションプルーニングによって破棄される場合には正しく行われませんでした。
-結果は、問い合わせの結果が正しくない、無限ループ、またはアサーションの失敗となる可能性があります。
+上位のプランノードがAppendの出力をすべて読み取る前にそのAppendを再スキャンする場合、外部サーバ(例えば<filename>postgres_fdw</filename>など)に送信済の未完了リクエストを破棄する必要があります。
+サブプランのパラメータが変更された場合や、次回のスキャンでパーティションプルーニングによってサブプランが破棄される場合において、この処理が正しく行われていませんでした。
+その結果、問い合わせ結果が不正になったり、無限ループ、アサーション失敗となる可能性がありました。
      </para>
     </listitem>
 
@@ -1565,7 +1562,7 @@ Branch: REL_14_STABLE [6098f35f4] 2026-07-31 15:39:21 +1200
       Fix error in partition pruning for RANGE-partitioned tables
       (David Rowley)
 -->
-《機械翻訳》レンジ～テーブルパーティションのパーティション剪定でエラーを固定。
+RANGEパーティションテーブルのパーティションプルーニングの不具合が修正されました。
 (David Rowley)
       <ulink url="&commit_baseurl;02e69be47">&sect;</ulink>
      </para>
@@ -1575,7 +1572,7 @@ Branch: REL_14_STABLE [6098f35f4] 2026-07-31 15:39:21 +1200
       In some cases the DEFAULT partition would be skipped when it should
       not be, which could lead to rows missing from query results.
 -->
-《機械翻訳》場合によっては、デフォルトパーティションが本来でないときにスキップされたになり、問い合わせの結果から行が欠落することがあります。
+場合によっては、本来スキップされるべきではないDEFAULTパーティションがスキップされてしまうことがあり、その結果、問い合わせの結果から行が欠落する可能性がありました。
      </para>
     </listitem>
 
@@ -1591,7 +1588,7 @@ Branch: REL_18_STABLE [bba4e095d] 2026-06-25 12:15:02 +0900
       Correctly update foreign-data-wrapper state in a ModifyTable plan
       node after pruning result relations (Ayush Tiwari, Rafia Sabih)
 -->
-《機械翻訳》結果のラッパーをプルーニングした後、ModifyTableプランノードで外国-データ-リレーションの状態が正しく更新されます。
+結果リレーションのプルーニング後に、ModifyTableプランノード内の外部データラッパー(FDW)の状態が正しく更新されるようになりました。
 (Ayush Tiwari, Rafia Sabih)
       <ulink url="&commit_baseurl;1ef917e3a">&sect;</ulink>
       <ulink url="&commit_baseurl;bba4e095d">&sect;</ulink>
@@ -1604,7 +1601,7 @@ Branch: REL_18_STABLE [bba4e095d] 2026-06-25 12:15:02 +0900
       and the table had any foreign-table partitions, a crash
       or erroneous behavior was likely.
 -->
-《機械翻訳》以前は、実行時のパーティションプルーニングによって、分割されたターゲットテーブルの一部のパーティションをスキャンする必要がないと判断され、そのテーブルに外部テーブルパーティションがある場合、クラッシュまたは誤った動作が発生する可能性があった。
+以前は、実行時のパーティションプルーニングによって、対象のパーティションテーブルの一部のパーティションをスキャンする必要がないと判断された際、そのテーブルに外部テーブルのパーティションが含まれていると、クラッシュや誤った動作が発生する可能性がありました。
      </para>
     </listitem>
 
@@ -1621,8 +1618,7 @@ Branch: REL_18_STABLE [4908225be] 2026-07-08 20:46:26 +0100
       with <literal>RETURNING OLD</literal> on a table that has
       a <literal>BEFORE UPDATE</literal> trigger (Dean Rasheed)
 -->
-《機械翻訳》<literal>BEFORE UPDATE</literal>トリガを持つテーブル上のwith <literal>RETURNING OLD</literal>で同時更新が失敗する問題を修正しました。
-<command>UPDATE</command>
+<literal>BEFORE UPDATE</literal>トリガを持つテーブルに対して、<literal>RETURNING OLD</literal>を指定した<command>UPDATE</command>で発生していた並行更新の取りこぼしが修正されました。
 (Dean Rasheed)
       <ulink url="&commit_baseurl;4908225be">&sect;</ulink>
      </para>
@@ -1636,8 +1632,8 @@ Branch: REL_18_STABLE [4908225be] 2026-07-08 20:46:26 +0100
       (although the trigger itself, and the final output row, saw the
       correct values).
 -->
-《機械翻訳》ターゲット行が同時に更新された場合、隔離レベルで<literal>READ COMMITTED</literal> <literal>RETURNING</literal>内の任意の<literal>OLD</literal>値は更新された行を反映する必要があります。
-しかし、トリガがある場合は古い値が返されました（ただし、トリガ自分自身と最終的な出力行には正しい値が表示されました）。
+対象の行が並行して更新された場合、<literal>READ COMMITTED</literal>分離レベルでは<literal>RETURNING</literal>句で返される<literal>OLD</literal>値はすべて更新後の行を反映している必要があります。
+しかし、トリガが存在する場合、トリガ自体と最終的な出力行では正しい値が参照されていたにもかかわらず、古い値が返されていました。
      </para>
     </listitem>
 
@@ -1653,7 +1649,7 @@ Branch: REL_18_STABLE [f70acc8a2] 2026-07-31 23:24:46 +1200
       Fix hash join performance issue when there are multiple join keys
       and many NULL values (David Rowley)
 -->
-《機械翻訳》ハッシュ結合パフォーマンスキーと多くのNULL値がある場合のマルチプル結合問題を修正しました。
+複数の結合キーと多くのNULL値がある場合のハッシュ結合のパフォーマンス問題が修正されました。
 (David Rowley)
       <ulink url="&commit_baseurl;f70acc8a2">&sect;</ulink>
      </para>
@@ -1665,9 +1661,8 @@ Branch: REL_18_STABLE [f70acc8a2] 2026-07-31 23:24:46 +1200
       the null was in a non-last join column, bloating the hash table
       quite a lot if many inputs contain nulls.
 -->
-《機械翻訳》NULLキー付きタプルはハッシュテーブルに挿入されるべきではありません。
-なぜなら、それらは他のタプルをマッチにすることは決してないからです。
-コードは、NULLが最後以外の結合カラムにあった場合にこの間違いを取得し、多くの入力にNULLが含まれている場合にハッシュテーブルをかなり膨張させます。
+NULL値を持つタプルは、他のどのタプルとも一致することはないため、ハッシュテーブルに挿入されるべきではありません。
+NULL値が最後以外の結合列にあった場合にコードはこの誤った処理をしたため、NULL値を含む入力データが多いとハッシュテーブルがかなり肥大化していました。
      </para>
     </listitem>
 
@@ -1683,7 +1678,7 @@ Branch: REL_18_STABLE [9108fed3e] 2026-06-11 12:08:48 +0100
       parenthesized <literal>OLD</literal>/<literal>NEW</literal>
       in <literal>RETURNING</literal> expressions (Marko Grujic)
 -->
-《機械翻訳》<literal>RETURNING</literal>エクスプレッション内でカッコで囲まれた<literal>OLD</literal>/<literal>NEW</literal>のパースを修正しました。
+<literal>RETURNING</literal>句の式内のカッコで囲まれた<literal>OLD</literal>/<literal>NEW</literal>の解析処理が修正されました。
 (Marko Grujic)
       <ulink url="&commit_baseurl;9108fed3e">&sect;</ulink>
      </para>
@@ -1694,7 +1689,7 @@ Branch: REL_18_STABLE [9108fed3e] 2026-06-11 12:08:48 +0100
       and <literal>(old).*</literal> were mis-handled, effectively
       converting them to <literal>NEW</literal> references.
 -->
-《機械翻訳》<literal>(old).colname</literal>や<literal>(old).*</literal>などの式は誤って処理され、事実上<literal>NEW</literal>参照に変換されました。
+<literal>(old).colname</literal>や<literal>(old).*</literal>といった式が誤って処理され、実質的に<literal>NEW</literal>への参照に変換されていました。
      </para>
     </listitem>
 
@@ -1716,7 +1711,7 @@ Branch: REL_14_STABLE [13b627a3e] 2026-07-28 16:09:04 -0400
       (<replaceable>array</replaceable>)</literal> expressions
       (Ayush Tiwari)
 -->
-《機械翻訳》プランナの<literal><replaceable>value</replaceable> IN (<replaceable>array</replaceable>)</literal>式に対するNULL許容性と厳密性のチェックを修正した。
+<literal><replaceable>value</replaceable> IN (<replaceable>array</replaceable>)</literal>式に対するプランナのNULL許容性と厳密性チェックが修正されました。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;277122036">&sect;</ulink>
      </para>
@@ -1728,8 +1723,8 @@ Branch: REL_14_STABLE [13b627a3e] 2026-07-28 16:09:04 -0400
       to be applied that should not be.  This could result in wrong query
       answers if the array actually was empty.
 -->
-《機械翻訳》これらのチェックは、配列オペランドが空でないことがわかっているが、考慮されていないため、本来適用されるべきではない最適化が適用された場合にのみ成功します。
-これにより、間違い問い合わせが実際に空の場合に、配列地域の回答が得られる可能性があります。
+これらのチェックは、配列オペランドが空でないことが既知である場合のみ成功すべきですが、その点が考慮されていないため、本来適用されるべきではない最適化が適用されてしまう問題がありました。
+これにより、実際の配列が空であった場合、問い合わせの結果が誤ったものになる可能性がありました。
      </para>
     </listitem>
 
@@ -1752,7 +1747,7 @@ Branch: REL_16_STABLE [d610d8e8b] 2026-07-20 12:17:40 +0900
 <!--
       Fix incorrect join removal logic (Matheus Alcantara, Richard Guo)
 -->
-《機械翻訳》誤った結合取外しロジックを修正する。
+不適切な結合削除のロジックが修正されました。
 (Matheus Alcantara, Richard Guo)
       <ulink url="&commit_baseurl;21f5e659e">&sect;</ulink>
       <ulink url="&commit_baseurl;9e40d07e1">&sect;</ulink>
@@ -1764,7 +1759,7 @@ Branch: REL_16_STABLE [d610d8e8b] 2026-07-20 12:17:40 +0900
       from within the nullable side of an outer join to not be replaced by
       NULL when it should be.
 -->
-《機械翻訳》エッジケースでは、定数のNull許容側の内部から取得した外部結合の出力の値が、NULLによって置換されるべきときに置換されない可能性がありました。
+特殊なケースでは、外部結合のNULL許容側由来の定数出力値が、本来であればNULLに置換される場面でNULLに置換されない問題が発生する可能性がありました。
      </para>
     </listitem>
 
@@ -1782,7 +1777,7 @@ Branch: REL_18_STABLE [18105e6db] 2026-07-15 09:22:58 +0900
       Clean up PlaceHolderVars more thoroughly during join removal
       (Richard Guo, Arne Roland)
 -->
-《機械翻訳》結合の撤去作業中は、PlaceHolderVarsをより徹底的に清掃してください。
+結合の削除処理において、PlaceHolderVarsのクリーンアップがより徹底されるようになりました。
 (Richard Guo, Arne Roland)
       <ulink url="&commit_baseurl;e02526795">&sect;</ulink>
       <ulink url="&commit_baseurl;18105e6db">&sect;</ulink>
@@ -1793,7 +1788,7 @@ Branch: REL_18_STABLE [18105e6db] 2026-07-15 09:22:58 +0900
       This fix corrects various edge cases that could trip assertions or
       result in incorrect plans.
 -->
-《機械翻訳》この修正では、アサーションをトリップしたり、誤った計画を生成する可能性のあるさまざまなエッジケースが修正されている。
+この修正により、アサーションが発生したり、誤った実行計画を生成する可能性があった様々な特殊ケースが修正されました。
      </para>
     </listitem>
 
@@ -1813,7 +1808,7 @@ Branch: REL_14_STABLE [64778fac7] 2026-06-08 11:48:18 -0400
       container datatypes (arrays, composites, ranges) (Andrei Lepikhov,
       Tom Lane)
 -->
-《機械翻訳》コンテナデータ型（配列、コンポジット、範囲）での等価性比較のハッシュ可能性のチェック漏れが追加された。
+コンテナデータ型（配列、複合型、範囲型）の等価比較におけるハッシュ可能性のチェック漏れが追加されました。
 (Andrei Lepikhov, Tom Lane)
       <ulink url="&commit_baseurl;11aed8d19">&sect;</ulink>
      </para>
@@ -1825,8 +1820,8 @@ Branch: REL_14_STABLE [64778fac7] 2026-06-08 11:48:18 -0400
       step was missed in some places, leading to <quote>could not identify
       a hash function</quote> failures at execution.
 -->
-《機械翻訳》プランナは、コンテナのコンポーネントタイプ前のハッシュ可能性を検証し、ハッシュを拠点とするプランタイプを使用できることを決定する必要があります。
-このステップがいくつかの場所で欠落していたため、実行時に失敗しました<quote>ハッシュ機能を識別できませんでした</quote>。
+プランナは、ハッシュベースの実行計画種類を採用する前に、コンテナの構成要素の型がハッシュ化可能かどうかを検証する必要があります。
+この手順が一部で漏れていたため、実行時に<quote>could not identify a hash function</quote>エラーが発生していました。
      </para>
     </listitem>
 
@@ -1842,7 +1837,7 @@ Branch: REL_18_STABLE [fe5d62951] 2026-07-06 16:15:45 +0900
       Avoid pushing <literal>WHERE</literal> clauses down past a grouping
       step that has a different equivalence rule (Richard Guo)
 -->
-《機械翻訳》同等ダウンが異なるグループ化ステップを通過して<literal>WHERE</literal>条項ルールをプッシュすることは避けてください。
+異なる等価性ルールを持つグループ化ステップよりも下位へ<literal>WHERE</literal>句ををプッシュダウンすることを避けるようになりました。
 (Richard Guo)
       <ulink url="&commit_baseurl;fe5d62951">&sect;</ulink>
      </para>
@@ -1854,8 +1849,8 @@ Branch: REL_18_STABLE [fe5d62951] 2026-07-06 16:15:45 +0900
       same collation.  Otherwise it might filter some rows the grouping
       would have merged.
 -->
-《機械翻訳》非決定性テストによってグループ化されたグループ化カラムの照合順序は、同じ照合順序を使用する比較である場合にのみ、セーフからプッシュダウンになります。
-そうでない場合は、グループ化がマージしたはずの行をフィルタする可能性があります。
+非決定的照合順序でグループ化されたグループ化列に対するテストは、その同じ照合順序を使用した比較である場合にのみ、安全にプッシュダウンできます。
+そうでない場合、本来ならグループ化によって統合されるはずだった行がフィルタリングされてしまう可能性がありました。
      </para>
     </listitem>
 
@@ -1875,7 +1870,7 @@ Branch: REL_15_STABLE [842e34efa] 2026-07-08 00:00:34 +1200
       that have an <literal>EXCLUDE</literal> clause or
       lack <literal>ORDER BY</literal> (Chengpeng Yan, David Rowley)
 -->
-《機械翻訳》<literal>EXCLUDE</literal>最適化または欠損<literal>ORDER BY</literal>を持つ<function>COUNT</function>ウィンドウ関数の句ミスを修正した。
+<literal>EXCLUDE</literal>句を含む、または<literal>ORDER BY</literal>を含まない<function>COUNT</function>ウィンドウ関数の誤った最適化が修正されました。
 (Chengpeng Yan, David Rowley)
       <ulink url="&commit_baseurl;cf184ec77">&sect;</ulink>
      </para>
@@ -1885,7 +1880,7 @@ Branch: REL_15_STABLE [842e34efa] 2026-07-08 00:00:34 +1200
       These window functions were treated as monotonic when they should
       not be, allowing wrong answers to be computed.
 -->
-《機械翻訳》これらの窓関数は、単調であるべきでないときに単調として扱われ、間違いの回答を計算することを可能にした。
+これらのウィンドウ関数は、本来単調関数として扱われるべきではないときに単調監数として扱われていたため、誤った結果が算出される可能性がありました。
      </para>
     </listitem>
 
@@ -1901,7 +1896,7 @@ Branch: REL_18_STABLE [5fd1c3f28] 2026-06-28 12:31:29 -0400
       planner looks up statistics for a column of type <type>"char"</type>
       (Feng Wu)
 -->
-《機械翻訳》プランナが統計処理でタイプ<type>"char"</type>のキャッシュを検索する場合は、<quote>照合順序0のカラム検索に失敗</quote>エラーを回避します。
+プランナが<type>"char"</type>型の列の統計情報を参照する際に発生する<quote>cache lookup failoed for collation 0</quote>エラーが回避されていました。
 (Feng Wu)
       <ulink url="&commit_baseurl;5fd1c3f28">&sect;</ulink>
      </para>
@@ -1923,7 +1918,7 @@ Branch: REL_14_STABLE [cad17745e] 2026-08-04 09:06:46 +0200
       Fix <command>ALTER COLUMN ... DROP EXPRESSION</command> to work when
       there are multiple levels of partitions (Alberto Piai)
 -->
-《機械翻訳》<command>ALTER COLUMN ... DROP EXPRESSION</command>マルチプルレベルの間仕切りがある場合に機能するように修正します。
+複数レベルのパーティションが存在する場合でも<command>ALTER COLUMN ... DROP EXPRESSION</command>が正常に動作するよう修正されました。
 (Alberto Piai)
       <ulink url="&commit_baseurl;c374f2807">&sect;</ulink>
      </para>
@@ -1942,7 +1937,7 @@ Branch: REL_17_STABLE [1d6c654c8] 2026-07-20 17:21:20 +0200
       Fix attaching partitions of indexes that are exclusion constraints
       (Japin Li)
 -->
-《機械翻訳》排他制約であるインデックスのパーティションの付加を修正しました。
+排他制約であるインデックスのパーティションのアタッチ処理が修正されました。
 (Japin Li)
       <ulink url="&commit_baseurl;19e3aa704">&sect;</ulink>
      </para>
@@ -1952,7 +1947,7 @@ Branch: REL_17_STABLE [1d6c654c8] 2026-07-20 17:21:20 +0200
       Notably, this oversight broke dump/restore of partitioned exclusion
       constraints.
 -->
-《機械翻訳》特に、この見落としは、分割された排他制約のダンプ/リストアを破壊した。
+特に、この見落としにより、排他制約を持つパーティションテーブルのダンプ/リストアが正常に動作しなくなりました。
      </para>
     </listitem>
 
@@ -1968,7 +1963,7 @@ Branch: REL_18_STABLE [41247cdf6] 2026-05-23 00:01:24 +0900
       partitioned <literal>NOT NULL</literal> constraints
       via <command>ALTER CONSTRAINT</command> (Andreas Karlsson)
 -->
-《機械翻訳》設定を禁止する<literal>NO INHERIT</literal>パーティション化された<literal>NOT NULL</literal> <command>ALTER CONSTRAINT</command>による制約。
+<command>ALTER CONSTRAINT</command>によるパーティションテーブルの<literal>NOT NULL</literal>制約への<literal>NO INHERIT</literal>設定が禁止されました。
 (Andreas Karlsson)
       <ulink url="&commit_baseurl;41247cdf6">&sect;</ulink>
      </para>
@@ -1981,8 +1976,8 @@ Branch: REL_18_STABLE [41247cdf6] 2026-05-23 00:01:24 +0900
       enforced by constraint creation, but not by <command>ALTER TABLE
       ... ALTER CONSTRAINT</command>.
 -->
-《機械翻訳》<literal>NOT NULL</literal>テーブルパーティションの制約はすべてのパーティションに継承されることになっているため、<literal>NO INHERIT</literal>とマークされてはなりません。
-このルールは制約の作成時に正しく適用されましたが、<command>ALTER TABLE ... ALTER CONSTRAINT</command>では適用されませんでした。
+パーティションテーブルの<literal>NOT NULL</literal>制約はすべてのパーティションに継承されるべきものであるため、<literal>NO INHERIT</literal>とマークすることはできません。
+このルールは制約の新規作成時には正しく適用されましたが、<command>ALTER TABLE ... ALTER CONSTRAINT</command>では適用されていませんでした。
      </para>
     </listitem>
 
@@ -2001,7 +1996,7 @@ Branch: REL_14_STABLE [1b17a6e3c] 2026-07-04 11:34:26 -0400
 <!--
       Disallow renaming a rule to <literal>_RETURN</literal> (Tom Lane)
 -->
-《機械翻訳》ルール名を<literal>_RETURN</literal>.
+ルールを<literal>_RETURN</literal>に改名することが禁止されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;a7f7958ab">&sect;</ulink>
      </para>
@@ -2012,7 +2007,7 @@ Branch: REL_14_STABLE [1b17a6e3c] 2026-07-04 11:34:26 -0400
       rule, but <command>ALTER RULE</command> allowed renaming other rules
       to <literal>_RETURN</literal>, causing trouble later.
 -->
-《機械翻訳》その名前はビューの予約である<literal>ON SELECT</literal>ルールだが、<command>ALTERルール</command>は他のルールを<literal>_RETURN</literal>に改名することを許可し、後にトラブルを引き起こした。
+この名前はビューの<literal>ON SELECT</literal>ルール用に予約されていますが、<command>ALTER RULE</command>では他のルールを<literal>_RETURN</literal>に改名できてしまったため、後々問題が発生していました。
      </para>
     </listitem>
 
@@ -2030,7 +2025,7 @@ Branch: REL_16_STABLE [e61d44fde] 2026-08-03 12:25:49 -0700
       Fix missing lock release for role membership grants in <command>DROP
       OWNED BY</command> (Jeff Davis)
 -->
-《機械翻訳》<command>DROP OWNED BY</command>で欠落しているロックリリースのロールメンバシップ認可を修正します。
+<command>DROP OWNED BY</command>におけるロールメンバシップ付与のロック解放漏れが修正されました。
 (Jeff Davis)
       <ulink url="&commit_baseurl;a0daa0b41">&sect;</ulink>
      </para>
@@ -2040,7 +2035,7 @@ Branch: REL_16_STABLE [e61d44fde] 2026-08-03 12:25:49 -0700
       This oversight resulted in a warning message, followed by retaining
       a lock on the membership grant until the end of the transaction.
 -->
-《機械翻訳》この見落としの結果、ワーニングメッセージが誕生し、その後、トランザクションの終わりまでメンバシップ助成金のロックが維持されました。
+この見落としの結果、警告メッセージが表示された後、トランザクション終了までメンバシップ付与に対するロックが保持されたままでした。
      </para>
     </listitem>
 
@@ -2058,7 +2053,7 @@ Branch: REL_16_STABLE [485527190] 2026-07-08 08:51:09 +0900
       Fix failure of <command>EXPLAIN</command> when
       deparsing <literal>SQL/JSON</literal> aggregates (Richard Guo)
 -->
-《機械翻訳》<command>EXPLAIN</command>deparse <literal>SQL/JSON</literal> aggregates.*の失敗を修正しました。
+<literal>SQL/JSON</literal>集約関数のデパース時に<command>EXPLAIN</command>が失敗する問題が修正されました。
 (Richard Guo)
       <ulink url="&commit_baseurl;45364e496">&sect;</ulink>
      </para>
@@ -2068,7 +2063,7 @@ Branch: REL_16_STABLE [485527190] 2026-07-08 08:51:09 +0900
       Some plan structures resulted in <quote>invalid
       JsonConstructorExpr underlying node type</quote> errors.
 -->
-《機械翻訳》一部のプラン構造で<quote>ノードタイプの基礎となる無効なJsonConstructorExpr</quote>エラーが発生しました。
+一部のプラン構造において<quote>invalid JsonConstructorExpr underlying node type</quote>エラーが発生していました。
      </para>
     </listitem>
 
@@ -2088,7 +2083,7 @@ Branch: REL_14_STABLE [55adef7ab] 2026-07-28 08:35:21 +0900
       Fix use of <command>REINDEX CONCURRENTLY</command> with
       a deferred uniqueness constraint (Nitin Motiani)
 -->
-《機械翻訳》<command>REINDEX CONCURRENTLY</command> with a遅延一意性制約の使用を修正しました。
+遅延一意性制約がある場合の<command>REINDEX CONCURRENTLY</command>の使用に関する問題が修正されました。
 (Nitin Motiani)
       <ulink url="&commit_baseurl;e4527519b">&sect;</ulink>
      </para>
@@ -2099,8 +2094,7 @@ Branch: REL_14_STABLE [55adef7ab] 2026-07-28 08:35:21 +0900
       CONCURRENTLY</command> was incorrectly marked as enforcing immediate
       uniqueness, causing spurious reports of constraint violation.
 -->
-《機械翻訳》の間に作成された一時的なインデックスコピーは、即時の一意性を強制するものとして誤ってマークされ、制約違反の誤った報告を引き起こした。
-<command>REINDEX CONCURRENTLY</command>
+<command>REINDEX CONCURRENTLY</command>の実行中に作成される一時的なインデックスコピーが、誤って即時一意性を強制するものとしてマークされていたため、制約違反の誤った報告が発生していました。
      </para>
     </listitem>
 
@@ -2119,7 +2113,7 @@ Branch: REL_18_STABLE [51652c42d] 2026-07-06 14:47:58 -0400
       Fix <literal>LIKE</literal> matching with nondeterministic
       collations and backslashes (Nitin Motiani, Tom Lane)
 -->
-《機械翻訳》照合とバックスラッシュが明確でない<literal>LIKE</literal>マッチングを修正しました。
+非決定論的照合順序とバックスラッシュを使用した<literal>LIKE</literal>マッチングの不具合が修正されました。
 (Nitin Motiani, Tom Lane)
       <ulink url="&commit_baseurl;a99bd8d58">&sect;</ulink>
       <ulink url="&commit_baseurl;51652c42d">&sect;</ulink>
@@ -2135,9 +2129,9 @@ Branch: REL_18_STABLE [51652c42d] 2026-07-06 14:47:58 -0400
       character to be matched exactly rather than allowing the
       nondeterministic collation to decide if there's a match.
 -->
-《機械翻訳》非決定性照合順序を使用する場合、<literal>LIKE</literal>エスケープされたバックスラッシュ<literal>\\</literal>を誤って処理し、実質的に存在しないものとして処理しました。
-また、通常の文字の前に間違いが先行するバックスラッシュの処理も行いました。
-このケースではバックスラッシュは実質的に無視されるはずですが、非決定性照合順序がマッチがあるかどうかを決定できるようにするのではなく、通常の文字が正確に一致するようにしました。
+非決定論的照合順序を使用する場合、<literal>LIKE</literal>はエスケープされたバックスラッシュ<literal>\\</literal>を誤って処理し、実質的に存在しないものとして扱っていました。
+また、通常の文字の前にバックスラッシュが置かれた場合も誤った動作をしていました。
+この場合バックスラッシュは実質的に無視されるべきですが、実際には非決定論的照合順序による判定に委ねるのではなく、その通常の文字と完全に一致するかどうかが判定されてしまっていました。
      </para>
     </listitem>
 
