@@ -2147,7 +2147,7 @@ Branch: REL_18_STABLE [d0bb49e61] 2026-07-06 13:06:25 -0400
       Fix <literal>LIKE</literal>/regex optimization for indexscan with
       exact-match pattern (Jelte Fennema-Nio)
 -->
-《機械翻訳》正確な最適化マッチを使用するインデックススキャン用の<literal>LIKE</literal>/regexパターンを修正しました。
+完全一致パターンを用いたインデックススキャンにおける<literal>LIKE</literal>や正規表現の最適化が修正されました。
 (Jelte Fennema-Nio)
       <ulink url="&commit_baseurl;d0bb49e61">&sect;</ulink>
      </para>
@@ -2163,9 +2163,8 @@ Branch: REL_18_STABLE [d0bb49e61] 2026-07-06 13:06:25 -0400
       <literal>\d <replaceable>tablename</replaceable></literal>
       command much slower.
 -->
-《機械翻訳》<literal>LIKE</literal>非決定性照合を使用したのリファクタリングでは、最適化パターンがマッチインデックスをマッチしていない場合に、<literal>LIKE</literal>または正規表現の正確な式照合順序を等式条件に変換するためのが誤って壊れた。
-とりわけ、<application>psql</application>の<literal>\d <replaceable>tablename</replaceable></literal>コマンドははるかに遅くなった。
-インデックス照合順序
+非決定論的照合順序を用いた<literal>LIKE</literal>のリファクタリングにより、インデックスの照合順序と式の照合順序が一致しない場合に、<literal>LIKE</literal>や正規表現の完全一致パターンを等値インデックス条件に変換する最適化が意図せず破損していました。
+この影響で、特に<application>psql</application>の<literal>\d <replaceable>tablename</replaceable></literal>コマンドが大幅に遅くなっていました。
      </para>
     </listitem>
 
@@ -2187,7 +2186,7 @@ Branch: REL_18_STABLE [5f003855e] 2026-08-11 21:24:28 +0300
       Fix matching of localized month/day names
       in <function>to_date()</function> (Heikki Linnakangas)
 -->
-《機械翻訳》ローカライズされた月/日の名前のマッチングを修正しました<function>to_date()</function>.
+<function>to_date()</function>におけるローカライズされた月名と曜日名の照合処理が修正されました。
 (Heikki Linnakangas)
       <ulink url="&commit_baseurl;011384ba4">&sect;</ulink>
       <ulink url="&commit_baseurl;5f003855e">&sect;</ulink>
@@ -2198,7 +2197,7 @@ Branch: REL_18_STABLE [5f003855e] 2026-08-11 21:24:28 +0300
       The matching logic misbehaved in cases where case-folding changes
       the byte length of the string.
 -->
-《機械翻訳》マッチングロジックでは、ケース折りによって文字列のバイト長さが変更された場合に問題が発生した。
+大文字小文字の変換によって文字列のバイト長が変化する場合に照合ロジックが正常に動作しませんでした。
      </para>
     </listitem>
 
@@ -2213,7 +2212,7 @@ Branch: REL_18_STABLE [66ec24276] 2026-07-07 15:04:31 -0700
 <!--
       Correct case-folding rules for Greek final sigma (Jeff Davis)
 -->
-《機械翻訳》ケース最終シグマのギリシャフォールディング規則を修正する。
+ギリシャ語の語末形のシグマに関する大文字小文字変換ルールが修正されました。
 (Jeff Davis)
       <ulink url="&commit_baseurl;66ec24276">&sect;</ulink>
      </para>
@@ -2224,8 +2223,8 @@ Branch: REL_18_STABLE [66ec24276] 2026-07-07 15:04:31 -0700
       consider it to be a final sigma.  This only affects the
       built-in <literal>pg_unicode_fast</literal> locale.
 -->
-《機械翻訳》文字列の前にケースIgnorable文字しかない場合、それを最終シグマとはみなさない。
-これは組み込みの<literal>pg_unicode_fast</literal>ロケールにのみ影響する。
+文字列の直前に大文字小文字を区別しない文字のみが存在する場合、それを語末形シグマとはみなさないようになりました。
+これは組み込みの<literal>pg_unicode_fast</literal>ロケールにのみに影響します。
      </para>
     </listitem>
 
@@ -2244,7 +2243,7 @@ Branch: REL_14_STABLE [8bb935d61] 2026-06-05 07:50:18 +0900
       Fix incorrect NFC recomposition for Hangul U+11A7 (TBASE)
       (Diego Frias, Michael Paquier)
 -->
-《機械翻訳》ハングルU+11A7(TBASE)の不正なNFC再構成を修正します。
+ハングルU+11A7(TBASE)に対する誤ったNFC再構成が修正されました。
 (Diego Frias, Michael Paquier)
       <ulink url="&commit_baseurl;273fe9485">&sect;</ulink>
      </para>
@@ -2254,7 +2253,7 @@ Branch: REL_14_STABLE [8bb935d61] 2026-06-05 07:50:18 +0900
       This character was treated as a valid T syllable, which it is not,
       and hence silently swallowed during normalization.
 -->
-《機械翻訳》この文字は有効なT音節として扱われましたが、実際はそうではないため、正規化中に静かに飲み込まれました。
+この文字は有効なT音節として扱われましたが、実際にはT音節ではないため、正規化処理中にこの文字が消えてしまっていました。
      </para>
     </listitem>
 
@@ -2273,7 +2272,7 @@ Branch: REL_14_STABLE [1e0458172] 2026-06-08 11:49:27 -0700
       Avoid possible truncation of output lexemes in case-insensitive
       <literal>synonym</literal> dictionaries (Jeff Davis)
 -->
-《機械翻訳》ケースの影響を受けない<literal>synonym</literal>辞書語彙素では、出力が切り捨てられる可能性があります。
+大文字小文字を区別しない<literal>synonym</literal>辞書において、出力語彙素が切り捨てられる可能性が回避されました。
 (Jeff Davis)
       <ulink url="&commit_baseurl;89e648498">&sect;</ulink>
      </para>
@@ -2283,7 +2282,7 @@ Branch: REL_14_STABLE [1e0458172] 2026-06-08 11:49:27 -0700
       If folding to lower case increased the byte length of a lexeme, it
       was incorrectly truncated to its original byte length when emitted.
 -->
-《機械翻訳》下部ケースへの折り畳みが語彙素のバイト長さを増加させた場合、放出時にオリジナルバイト長さに誤って切り捨てられた。
+小文字への変換によって語彙素のバイト長が増加した場合、出力時に元のバイト長に誤って切り捨てられていました。
      </para>
     </listitem>
 
@@ -2300,7 +2299,7 @@ Branch: REL_17_STABLE [5e78ebca5] 2026-07-07 13:35:23 -0700
       Defend against truncated UTF-8 characters in case-conversion logic
       (Jeff Davis)
 -->
-《機械翻訳》ケース-変換ロジックで切り捨てられたUTF-8文字に対する防御。
+大文字小文字変換ロジックにおいて、途中で途切れたUTF-8文字への対処がなされました。
 (Jeff Davis)
       <ulink url="&commit_baseurl;9021c8f3c">&sect;</ulink>
      </para>
@@ -2320,7 +2319,7 @@ Branch: REL_14_STABLE [74d3482f4] 2026-06-03 12:47:34 +0900
 <!--
       Fix typo in <function>hash_record_extended()</function> (Man Zeng)
 -->
-《機械翻訳》タイポを<function>hash_record_extended()</function>.
+<function>hash_record_extended()</function>における誤りが修正されました。
 (Man Zeng)
       <ulink url="&commit_baseurl;b3f13c032">&sect;</ulink>
      </para>
@@ -2333,9 +2332,9 @@ Branch: REL_14_STABLE [74d3482f4] 2026-06-03 12:47:34 +0900
       However, extension-provided hash functions could be affected if they
       inspect <literal>PG_ARGISNULL(1)</literal>.
 -->
-《機械翻訳》コードは、FunctionCallInvoke()に渡された2番目のisnull引数の初期化に失敗しました。
-これは、その値を検査しない既存の-コア拡張ハッシュサポート関数には問題ありません。
-ただし、extension提供のハッシュ関数は、検査<literal>PG_ARGISNULL(1)</literal>。
+このコードでは、FunctionCallInvoke()に渡される2番目のisnull引数が初期化されていませんでした。
+既存の組み込み拡張ハッシュサポート関数はこの値を参照しないため問題はありません。
+ただし、拡張が提供するハッシュ関数が<literal>PG_ARGISNULL(1)</literal>を検査する場合、影響を受ける可能性がありました。
      </para>
     </listitem>
 
@@ -2353,7 +2352,7 @@ Branch: REL_16_STABLE [6c760f6b6] 2026-07-28 10:39:50 -0700
       Fix <function>pg_get_publication_tables()</function> to not fail if
       a publishable table is dropped concurrently (Bharath Rupireddy)
 -->
-《機械翻訳》<function>pg_get_publication_tables()</function>発行可能なテーブルが同時に削除されても失敗しないように修正しました。
+公開可能なテーブルが並行して削除された場合に、<function>pg_get_publication_tables()</function>が失敗しないように修正されました。
 (Bharath Rupireddy)
       <ulink url="&commit_baseurl;73d63d1c1">&sect;</ulink>
      </para>
@@ -2375,7 +2374,7 @@ Branch: REL_14_STABLE [0115650de] 2026-07-06 12:24:28 -0400
       Prevent <function>satisfies_hash_partition()</function> from
       crashing with <literal>VARIADIC NULL</literal> (Robert Haas)
 -->
-《機械翻訳》<function>satisfies_hash_partition()</function>が<literal>VARIADIC NULL</literal>.
+<literal>VARIADIC NULL</literal>を指定した場合に<function>satisfies_hash_partition()</function>がクラッシュするのが防止されました。
 (Robert Haas)
       <ulink url="&commit_baseurl;0c06ebf12">&sect;</ulink>
      </para>
@@ -2397,7 +2396,7 @@ Branch: REL_14_STABLE [262cc4df2] 2026-06-04 12:24:51 -0400
       in <function>tsvector_filter()</function> and allied functions
       (Ewan Young)
 -->
-《機械翻訳》レポートが無効-ウェイトは、<function>tsvector_filter()</function>および関連する関数において、より明確かつ一貫してエラーを発生させる。
+<function>tsvector_filter()</function>および関連関数において、無効な重みエラーをより明確かつ一貫性のある形で報告するようになりました。
 (Ewan Young)
       <ulink url="&commit_baseurl;c5194139c">&sect;</ulink>
      </para>
@@ -2409,8 +2408,8 @@ Branch: REL_14_STABLE [262cc4df2] 2026-06-04 12:24:51 -0400
       as <function>charout()</function> would render them.  This avoids
       possibly producing an invalidly-encoded error message.
 -->
-《機械翻訳》特に、<literal>\<replaceable>nnn</replaceable></literal>のように、8進数のウェイトで表示可能なASCII文字ではないレポートフォーム文字は、<function>charout()</function>表示されます。
-これにより、無効にエンコードされたエラーメッセージが生成される可能性がなくなります。
+特に、ASCIIで印刷できない重み文字は、<function>charout()</function>と同様にレンダリングされる8進数形式<literal>\<replaceable>nnn</replaceable></literal>で報告します。
+これにより、エンコードが正しくないエラーメッセージが表示される可能性を回避できます。
      </para>
     </listitem>
 
@@ -2426,7 +2425,7 @@ Branch: REL_18_STABLE [c31b0fca0] 2026-07-16 11:50:13 -0700
       Reject out-of-range timestamp shift values
       in <function>uuidv7()</function> (Baji Shaik)
 -->
-《機械翻訳》<function>uuidv7()</function>.内のレンジ外タイムスタンプシフト値を拒否します。
+<function>uuidv7()</function>において、範囲外となるタイムスタンプのシフト値を拒否するようになりました。
 (Baji Shaik)
       <ulink url="&commit_baseurl;c31b0fca0">&sect;</ulink>
      </para>
@@ -2437,8 +2436,8 @@ Branch: REL_18_STABLE [c31b0fca0] 2026-07-16 11:50:13 -0700
       of the range that a v7 UUID can represent.  Previously, a garbage
       UUID value was produced.
 -->
-《機械翻訳》シフト値は、v7ラージが表現できるタイムスタンプからレンジを生成するようなUUIDであってはなりません。
-以前は、ガーベッジUUID値が生成されていました。
+シフト値は、v7 UUIDが表現できる範囲外のタイムスタンプが生成されるほど大きいものであってはなりません。
+以前は、無効なUUID値が生成されていました。
      </para>
     </listitem>
 
@@ -2463,7 +2462,7 @@ Branch: REL_14_STABLE [a17f39aa2] 2026-06-12 12:39:40 +0900
       Fix mishandling of namespace nodes in <function>xpath()</function>
       (Michael Paquier)
 -->
-《機械翻訳》<function>xpath()</function>でのネームスペースノードの誤った処理を修正しました。
+<function>xpath()</function>における名前空間ノードの不適切な処理が修正されました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;4c777d6dd">&sect;</ulink>
       <ulink url="&commit_baseurl;0d145be2c">&sect;</ulink>
@@ -2474,7 +2473,7 @@ Branch: REL_14_STABLE [a17f39aa2] 2026-06-12 12:39:40 +0900
       This fix avoids an unexpected <quote>could not copy node</quote>
       error.
 -->
-《機械翻訳》この修正により、予期しない<quote>ノードをコピーできない</quote>エラーが回避されます。
+この修正により、予期しない<quote>could not copy node</quote>エラーが回避されます。
      </para>
     </listitem>
 
@@ -2493,7 +2492,7 @@ Branch: REL_17_STABLE [c768637d6] 2026-07-02 15:06:12 +0900
       Fix <type>jsonpath</type>'s <function>.decimal</function> method to
       not throw a hard error for incorrect precision or scale (Ewan Young)
 -->
-《機械翻訳》<type>jsonpath</type>の<function>.decimal</function>メソッドが誤ったハードまたはエラーに対して精度位取りをスローしないように修正した。
+精度やスケールが不適切な場合に致命的なエラーが発生しないように、<type>jsonpath</type>の<function>.decimal</function>メソッドが修正されました。
 (Ewan Young)
       <ulink url="&commit_baseurl;84001a04d">&sect;</ulink>
       <ulink url="&commit_baseurl;90789900b">&sect;</ulink>
@@ -2503,7 +2502,7 @@ Branch: REL_17_STABLE [c768637d6] 2026-07-02 15:06:12 +0900
 <!--
       Silent mode should suppress these errors, but failed to.
 -->
-《機械翻訳》サイレントモードはこれらの誤りを抑制すべきであるが、できなかった。
+サイレントモードではこれらのエラーが抑制されるべきでしたが、実際には抑制されていませんでした。
      </para>
     </listitem>
 
@@ -2521,7 +2520,7 @@ Branch: REL_16_STABLE [60abb3c73] 2026-06-11 16:17:58 +0200
       constructs have an argument that is of string category but lacks a
       cast to type <type>text</type> (Ayush Tiwari)
 -->
-《機械翻訳》<literal>IS JSON</literal>または類似の構成に、NULLポインタのクラッシュはあるが、タイプ<type>テキスト</type>への引数がない場合、文字列カテゴリを修正しました。
+<literal>IS JSON</literal>や類似の構文において、引数が文字列カテゴリに属するものの<type>text</type>型へのキャストを欠いている場合に発生するNULLポインタによるクラッシュが修正されました。
 キャスト
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;35d9a6263">&sect;</ulink>
@@ -2533,7 +2532,7 @@ Branch: REL_16_STABLE [60abb3c73] 2026-06-11 16:17:58 +0200
       core <productname>PostgreSQL</productname>, but the problem is
       reachable with some extension types.
 -->
-《機械翻訳》コアにはそのようなデータタイプはありません<productname>PostgreSQL</productname>ただし、一部のextensionタイプでは問題が発生する可能性があります。
+<productname>PostgreSQL</productname>コアにはそのようなデータ型は存在しませんが、一部の拡張の型ではこの問題が発生する可能性がありました。
      </para>
     </listitem>
 
@@ -2550,7 +2549,7 @@ Branch: REL_17_STABLE [71cd10cd2] 2026-07-07 08:26:50 +0900
       Ensure that <literal>SQL/JSON</literal> <literal>ON EMPTY / ON ERROR
       DEFAULT</literal> values are coerced to the correct typmod (Ewan Young)
 -->
-《機械翻訳》保証<literal>SQL/JSON</literal> <literal>ON EMPTY / ON ERROR DEFAULT</literal>値は正しいtypmodに強制されます。
+<literal>SQL/JSON</literal>の<literal>ON EMPTY / ON ERROR DEFAULT</literal>の値が、正しいtypmodに強制変換されるようになりました。
 (Ewan Young)
       <ulink url="&commit_baseurl;441e4c8d6">&sect;</ulink>
      </para>
@@ -2561,7 +2560,7 @@ Branch: REL_17_STABLE [71cd10cd2] 2026-07-07 08:26:50 +0900
       a <type>numeric</type> target column were not applied to the default
       value.
 -->
-《機械翻訳》例の場合、宣言された精度と<type>数値</type>位取りカラムのターゲットはデフォルト値に適用されませんでした。
+例えば、<type>numeric</type>型の対象列に対して宣言された精度と桁数が、デフォルト値に適用されていませんでした。
      </para>
     </listitem>
 
@@ -2581,7 +2580,7 @@ Branch: REL_14_STABLE [fec40878c] 2026-08-04 18:01:55 +1200
       Avoid machine-dependent behavior when dividing the smallest
       possible <type>money</type> value by -1 (Andrey Rachitskiy)
 -->
-《機械翻訳》可能な最小の<type>金額</type>値を-1で割るときは、マシンに依存する動作を避けてください。
+<type>money</type>型の最小値を-1で割ったときの、マシン依存の動作が回避されました。
 (Andrey Rachitskiy)
       <ulink url="&commit_baseurl;6298a41b4">&sect;</ulink>
      </para>
@@ -2603,7 +2602,7 @@ Branch: REL_14_STABLE [dda622edc] 2026-08-02 16:49:18 -0400
       Fix crash after out-of-memory failure partway through creation of a
       cache entry for a text search dictionary (Tom Lane)
 -->
-《機械翻訳》クラッシュディクショナリのメモリエントリの作成中に、キャッシュ外エラーが発生した場合にテキストサーチを修正しました。
+全文検索辞書のキャッシュエントリ作成中に、メモリ不足エラーが発生した再のクラッシュが修正されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;81b1e7916">&sect;</ulink>
      </para>
@@ -2625,7 +2624,7 @@ Branch: REL_14_STABLE [cfc720ef4] 2026-08-02 13:22:39 -0400
       Fix memory-safety bugs in processing of incorrect ispell/hunspell
       dictionary files (Andrey Rachitskiy)
 -->
-《機械翻訳》間違ったispell/hunspellディクショナリファイルを処理する際のメモリ安全に関するバグを修正しました。
+不正なispell/hunspell辞書ファイルの処理におけるメモリ安全性のバグが修正されました。
 (Andrey Rachitskiy)
       <ulink url="&commit_baseurl;4689ea9ce">&sect;</ulink>
      </para>
@@ -2648,7 +2647,7 @@ Branch: REL_16_STABLE [cc3fe7e2a] 2026-07-03 18:01:00 +0300
       Prevent access to other sessions' temporary tables (Jim Jones,
       Daniil Davydov, Alexander Korotkov)
 -->
-《機械翻訳》他のセッションのアクセステーブルへの一時的を禁止します。
+他のセッションの一時テーブルへのアクセスが防止されました。
 (Jim Jones, Daniil Davydov, Alexander Korotkov)
       <ulink url="&commit_baseurl;1b0dd0815">&sect;</ulink>
       <ulink url="&commit_baseurl;3aaefe892">&sect;</ulink>
@@ -2659,7 +2658,7 @@ Branch: REL_16_STABLE [cc3fe7e2a] 2026-07-03 18:01:00 +0300
       Some code paths failed to prevent this, leading to silently wrong
       (inconsistent) results.
 -->
-《機械翻訳》コード経路の中にはこれを防ぐことができず、静かに間違い（一貫性のない）結果をもたらした。
+一部のコードパスではこれが防止されておらず、その結果、エラーは発生しないものの誤った（不整合な）結果が生じていました。
      </para>
     </listitem>
 
@@ -2674,7 +2673,7 @@ Branch: REL_18_STABLE [ed8050370] 2026-08-05 11:44:01 -0400
       Prevent <quote>no empty local buffer available</quote> errors during
       temporary table access (Melanie Plageman)
 -->
-《機械翻訳》ローカルバッファアクセス時のエラー<quote>空の一時テーブルがない</quote>を防止します。
+一時テーブルへのアクセス中に発生する<quote>no empty local buffer available</quote>エラーが防止されました。
 (Melanie Plageman)
       <ulink url="&commit_baseurl;ed8050370">&sect;</ulink>
      </para>
@@ -2686,8 +2685,8 @@ Branch: REL_18_STABLE [ed8050370] 2026-08-05 11:44:01 -0400
       of <varname>effective_io_concurrency</varname> could allow a single
       stream to use all the buffers, resulting in failure.
 -->
-《機械翻訳》読取りローカル・ストリーミングが使用できるメカニズム・バッファの数を制限します。
-以前は、ラージ値に<varname>effective_io_concurrency</varname>を指定すると、1つのストリームがすべてのバッファを使用できるため、エラーが発生していました。
+読み取りストリーミング機構が使用できるローカルバッファの数が制限されました。
+以前は、<varname>effective_io_concurrency</varname>の値が大きすぎると、単一のストリームがすべてのバッファを使用できるため、その結果、処理が失敗することがありました。
      </para>
     </listitem>
 
@@ -2704,7 +2703,7 @@ Branch: REL_17_STABLE [288d4e83f] 2026-07-31 10:34:40 -0500
       Fix the order in which autovacuum processes databases
       (Rustam Khamidullin)
 -->
-《機械翻訳》自動バキュームプロセスがデータベースに登録しているオーダーを修正します。
+自動バキュームがデータベースを処理する順番が修正されました。
 (Rustam Khamidullin)
       <ulink url="&commit_baseurl;4cc49cb70">&sect;</ulink>
      </para>
@@ -2714,7 +2713,7 @@ Branch: REL_17_STABLE [288d4e83f] 2026-07-31 10:34:40 -0500
       It was unintentionally processing databases from lowest to highest
       score, when it should be doing the reverse.
 -->
-《機械翻訳》本来はその逆であるべきデータベースを、意図せずに最低スコアから最高スコアまで処理していました。
+本来はスコアの高い順に処理すべきところを、意図せずにスコアが低いものから高いものへとデータベースを処理していました。
      </para>
     </listitem>
 
@@ -2734,7 +2733,7 @@ Branch: REL_18_STABLE [7c25cdb1e] 2026-08-07 10:06:41 -0400
       in <command>VACUUM</command>'s wraparound failsafe mode
       (Melanie Plageman)
 -->
-《機械翻訳》リストア<command>VACUUM</command>周回フェイルセーフモードでの共同バッファプールのフル活用
+<command>VACUUM</command>のXID周回フェイルセーフモードで共有バッファプールの完全な使用が復元されました。
 (Melanie Plageman)
       <ulink url="&commit_baseurl;585181e07">&sect;</ulink>
       <ulink url="&commit_baseurl;7c25cdb1e">&sect;</ulink>
@@ -2749,10 +2748,9 @@ Branch: REL_18_STABLE [7c25cdb1e] 2026-08-07 10:06:41 -0400
       to allow vacuuming to proceed as fast as possible.  This behavior
       was accidentally broken during refactoring in v18; restore it.
 -->
-《機械翻訳》通常の<command>VACUUM</command>は、他の処理にあまり影響を与えないように、いくつかの共有バッファのみを使用するように制限されています。
-ただし、フェイルセーフモードでは、できるだけ早くトランザクションIDを再要求したいので、この制限は放棄され、バキューム処理ができるだけ早く処理できるようになります。
-この動作は、v18でのリファクタリング中に誤って壊れました。
-リストアit。
+通常の<command>VACUUM</command>は、他の処理にあまり影響を与えないように、少数の共有バッファのみを使用するように制限されています。
+ただし、フェイルセーフモードでは、トランザクションIDをできるだけ早く回収する必要があるため、バキューム処理を可能な限り高速に実行できるよう、この制限を解除する必要があります。
+この動作は、v18でのリファクタリング中に誤って壊れてしまったため、元に戻されました。
      </para>
     </listitem>
 
@@ -2767,7 +2765,7 @@ Branch: REL_17_STABLE [8ad414831] 2026-06-08 15:29:21 +0900
 <!--
       Fix memory leak in parallel vacuum worker processes (Baji Shaik)
 -->
-《機械翻訳》パラレルバキュームワーカープロセスでメモリリークを固定します。
+パラレルVACUUMワーカープロセスにおけるメモリリークが修正されました。
 (Baji Shaik)
       <ulink url="&commit_baseurl;4154a1482">&sect;</ulink>
      </para>
@@ -2777,7 +2775,7 @@ Branch: REL_17_STABLE [8ad414831] 2026-06-08 15:29:21 +0900
       Progress reports from a parallel worker leaked about 1kB per report,
       with the waste accumulating for the life of the worker process.
 -->
-《機械翻訳》パラレルワーカーからの経過報告は、レポートごとに約1つのキロバイトが漏洩し、ワーカープロセスの存続期間中に廃棄物が蓄積した。
+パラレルワーカーからの進捗報告ごとに約1kBのメモリリークが発生し、その未解放メモリがワーカープロセスの存続期間中に蓄積され続けていました。
      </para>
     </listitem>
 
