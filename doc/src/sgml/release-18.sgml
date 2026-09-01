@@ -2795,7 +2795,7 @@ Branch: REL_14_STABLE [15fd7a3e2] 2026-07-28 10:56:39 +0200
       Honor query cancel and vacuum delay during GIN index posting-tree
       cleanup (Paul Kim, Alexander Korotkov)
 -->
-《機械翻訳》GINキャンセル赴任中に問い合わせインデックスとバキューム遅延に敬意を表します-ツリークリーンアップ。
+GINインデックスのポスティングツリークリーンアップ中に、問い合わせのキャンセルおよびバキュームの遅延が適切に処理されるようになりました。
 (Paul Kim, Alexander Korotkov)
       <ulink url="&commit_baseurl;7becb647d">&sect;</ulink>
      </para>
@@ -2806,7 +2806,7 @@ Branch: REL_14_STABLE [15fd7a3e2] 2026-07-28 10:56:39 +0200
       missed check could allow vacuum to run for a long time before
       noticing an interrupt.
 -->
-《機械翻訳》共通値のための提示ツリーは、ラージとすることができ、したがって、この逃したチェックは、バキュームが中断に気づいて長い間前を実行することを可能にすることができる。
+一般的な値のためのポスティングツリーは大きくなりうるため、このチェックが漏れると、割り込みに気づく前にバキュームが長時間実行される可能性がありました。
      </para>
     </listitem>
 
@@ -2826,7 +2826,7 @@ Branch: REL_14_STABLE [e4ad22eb0] 2026-07-17 15:52:56 -0400
       Fix possible mis-decoding of index tuples during GiST and SP-GiST
       index-only scans (Peter Geoghegan)
 -->
-《機械翻訳》インデックスおよびSP-GiST GiSTのみのスキャン中に発生する可能性があったインデックスタプルのデコードミスが修正されました。
+GiSTおよびSP-GiSTのインデックスのみスキャン中に、インデックスタプルが誤ってデコードされる可能性が修正されました。
 (Peter Geoghegan)
       <ulink url="&commit_baseurl;959b7fa2c">&sect;</ulink>
      </para>
@@ -2838,8 +2838,8 @@ Branch: REL_14_STABLE [e4ad22eb0] 2026-07-17 15:52:56 -0400
       it could only fail if the range column were not the first index
       column.
 -->
-《機械翻訳》このエラーは、インデックスのみのスキャンプランからの汚染されたデータの排出につながる可能性があります。
-影響を受ける唯一のコアopclassはGiSTのレンジ_opsであり、レンジカラムが最初のインデックスカラムでない場合にのみ失敗します。
+このエラーにより、インデックスのみスキャンプランからの破損したデータが出力される可能性がありました。
+影響を受けるコアの演算子クラスはGiSTのrange_opsのみであり、範囲型の列が最初のインデックス列でない場合にのみ失敗する可能性がありました。
      </para>
     </listitem>
 
@@ -2857,7 +2857,7 @@ Branch: REL_16_STABLE [0fd5595aa] 2026-07-15 15:58:15 -0400
       Ensure that the new last block of a bulk-extended table is added to
       its free space map promptly (Jingtang Zhang)
 -->
-《機械翻訳》バルク-拡張テーブルの新たな最後のブロックがその空き領域マップに速やかに追加される保証。
+バルク拡張されたテーブルの新たな最後のブロックが速やかに空き領域マップに追加されるようになりました。
 (Jingtang Zhang)
       <ulink url="&commit_baseurl;eabc9a9dd">&sect;</ulink>
      </para>
@@ -2869,8 +2869,8 @@ Branch: REL_16_STABLE [0fd5595aa] 2026-07-15 15:58:15 -0400
       eventually get corrected by vacuum, but meanwhile the space wouldn't
       be used.
 -->
-《機械翻訳》マルチ-ブロックテーブルextensionの最後のブロックがマップでフリーと表示されなかったのは、オフごとのエラーが原因でした。
-これは最終的にバキュームによって修正されますが、その間スペースは使用されませんでした。
+オフバイワンエラーにより、複数ブロック単位でのテーブル拡張時に最後終のブロックがマップ上で空き領域としてマークされない不具合が発生していました。
+この状態はいずれバキュームによって修正されますが、それまでの間、当該領域は使用されないままとなっていました。
      </para>
     </listitem>
 
@@ -2886,8 +2886,7 @@ Branch: REL_17_STABLE [011eedcdc] 2026-06-22 18:03:23 -0400
       Avoid possible double-free or infinite error recovery loop in
       resource cleanup during transaction abort (Tom Lane)
 -->
-《機械翻訳》トランザクション中断中のリソースフリーでは、二重無限またはエラーリカバリループの可能性を避けてください。
-クリーンアップ
+トランザクションの中断時におけるリソースのクリーンアップ処理において、二重解放や無限のエラーリカバリループが発生するのが回避されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;ac6a58a70">&sect;</ulink>
      </para>
@@ -2908,7 +2907,7 @@ Branch: REL_14_STABLE [4b3bc6b71] 2026-06-19 12:52:00 -0400
       When creating directories, tolerate concurrent creation of the same
       directory (Andrew Dunstan, Tom Lane)
 -->
-《機械翻訳》ディレクトリを作成する場合、同じディレクトリの同時作成を許容します。
+ディレクトリを作成する際、同一ディレクトリの同時作成が許容されるようになりました。
 (Andrew Dunstan, Tom Lane)
       <ulink url="&commit_baseurl;aa80c34c8">&sect;</ulink>
      </para>
@@ -2925,7 +2924,7 @@ Branch: REL_18_STABLE [e9692de1d] 2026-06-19 15:26:51 +1200
       Fix JIT-compiled tuple deconstruction code to account correctly for
       virtual generated columns (David Rowley)
 -->
-《機械翻訳》仮想的に生成された列に対して、JITコンパイルされたタプル分解コードがアカウントに正しく修正されました。
+仮想生成列を正しく処理できるよう、JITコンパイルされたタプルの展開コードが修正されました。
 (David Rowley)
       <ulink url="&commit_baseurl;e9692de1d">&sect;</ulink>
      </para>
@@ -2952,7 +2951,7 @@ Branch: REL_14_STABLE [36b6ed260] 2026-05-27 18:37:48 +0300
       Prevent creation of dangling object dependencies by acquiring a
       shared lock on any object being depended on (Bertrand Drouvot)
 -->
-《機械翻訳》依存しているオブジェクトの共有ロックを取得することで、ダングリングオブジェクトの依存関係が作成されないようにします。
+依存対象となるオブジェクトに対して共有ロックを取得することで、参照先が失われたオブジェクトの依存関係が作成されなくなります。
 (Bertrand Drouvot)
       <ulink url="&commit_baseurl;c8cd3d697">&sect;</ulink>
       <ulink url="&commit_baseurl;f9d5a52da">&sect;</ulink>
@@ -2968,9 +2967,9 @@ Branch: REL_14_STABLE [36b6ed260] 2026-05-27 18:37:48 +0300
       leaving an invalid function definition behind.  Now, one transaction
       or the other will fail.
 -->
-《機械翻訳》共有ロックは、以前に存在していたオブジェクトを削除して、依存していた競合条件を削除しようとする試みをコンフリクトします。
-例の場合、あるセッションが（空に見える）スキーマを削除すると同時に、他のセッションがそのスキーマに関数を作成すると、以前は両方の取引がコミットする可能性があり、無効な関数定義が残されていました。
-これで、どちらかのトランザクションが失敗します。
+この共有ロックは、依存対象のオブジェクトを削除しようとする操作と競合するため、以前存在していた競合状態が解消されます。
+例えば、あるセッションが（そのセッションからは空に見える）スキーマを削除しようとするのと同時に、別のセッションがそのスキーマに関数を作成する場合を考えます。以前は両方のトランザクションがコミットされ、無効な関数定義が残ってしまう可能性がありました。
+しかし現在では、どちらか一方のトランザクションが失敗するようになります。
      </para>
     </listitem>
 
@@ -2991,7 +2990,7 @@ Branch: REL_14_STABLE [2fc3e1b44] 2026-07-25 12:01:24 -0400
       for <literal>SERIALIZABLE</literal> isolation mode
       (Peter Geoghegan)
 -->
-《機械翻訳》<literal>SERIALIZABLE</literal>隔離競合条件のコンフリクト検出にモードを固定する。
+<literal>SERIALIZABLE</literal>分離レベルにおける競合検出の競合状態が修正されました。
 (Peter Geoghegan)
       <ulink url="&commit_baseurl;d560e730e">&sect;</ulink>
      </para>
@@ -3002,7 +3001,7 @@ Branch: REL_14_STABLE [2fc3e1b44] 2026-07-25 12:01:24 -0400
       index, allowing failure of serializability due to improperly
       allowing conflicting transactions to commit.
 -->
-《機械翻訳》最初は空であったb-treeコンフリクトを検査する際にインデックスが見落とされる可能性があり、コミットへの競合するトランザクションを不適切に許可することにより、直列化可能性の失敗を可能にする。
+最初は空であったB-treeインデックスを検査する際、競合が見落とされる可能性があり、競合するトランザクションのコミットが不適切に許可され、直列化可能性が損なわれる恐れがありました。
      </para>
     </listitem>
 
@@ -3019,7 +3018,7 @@ Branch: REL_15_STABLE [159324a73] 2026-05-27 16:26:08 -0700
 <!--
       Fix race condition in ProcSignalBarrier code (Masahiko Sawada)
 -->
-《機械翻訳》ProcSignalBarrierコードの競合条件を修正します。
+ProcSignalBarrierのコードにおける競合状態が修正されました。
 (Masahiko Sawada)
       <ulink url="&commit_baseurl;1a9b1cc18">&sect;</ulink>
      </para>
@@ -3031,7 +3030,7 @@ Branch: REL_15_STABLE [159324a73] 2026-05-27 16:26:08 -0700
       PID <replaceable>nnnn</replaceable> to accept
       ProcSignalBarrier</quote>.
 -->
-《機械翻訳》このエラーにより、通常はレポート後にプロセスが停止する可能性があります<quote><replaceable>nnnn</replaceable> ProcSignalBarrierを受け入れるためにPIDでバックエンドを待機しています</quote>。
+この問題により、プロセスが停止した状態のままとなる可能性がありました。典型的には、<quote>still waiting for backend with PID <replaceable>nnnn</replaceable> to accept ProcSignalBarrier</quote>というメッセージが表示された後に発生していました。
      </para>
     </listitem>
 
@@ -3056,7 +3055,7 @@ Branch: REL_14_STABLE [db4d12fc9] 2026-05-27 17:20:00 +0900
       Fix race conditions when a set of processes that belong to the same
       lock group exit at the same time (Vlad Lesin)
 -->
-《機械翻訳》同じロックグループに属する一連のプロセスが同時に終了する場合の競合状態を修正した。
+同じロックグループに属する一連のプロセスが同時に終了する際に発生する競合状態が修正されました。
 (Vlad Lesin)
       <ulink url="&commit_baseurl;ae08eb168">&sect;</ulink>
       <ulink url="&commit_baseurl;12c9b8b42">&sect;</ulink>
@@ -3069,10 +3068,8 @@ Branch: REL_14_STABLE [db4d12fc9] 2026-05-27 17:20:00 +0900
       arise in regular parallel query, since the leader won't exit before
       seeing its workers finish; but some extensions reach the problem.
 -->
-《機械翻訳》これらのエラーは、<quote>パニックはすでに所有されています</quote>のようなメッセージを表示して、ラッチの中断につながる可能性があります。
-この問題は通常のパラレル問い合わせでは発生しません。
-なぜなら、リーダーはワーカーが終了するのを見て前を出ることはないからです。
-しかし、いくつかの拡張はこの問題に到達します。
+これらのエラーにより、<quote>latch already owned</quote>などのメッセージが表示され、PANICによる処理中止が発生する可能性がありました。
+通常のパラレル問い合わせでは、リーダーはワーカーが終了するのを確認するまで終了しないため、この問題は発生しませんが、一部の拡張ではこの問題が発生する可能性がありました。
      </para>
     </listitem>
 
@@ -3097,7 +3094,7 @@ Branch: REL_17_STABLE [067213430] 2026-07-15 17:43:38 -0400
       Fix WAL logging of operations that clear bits in tables' visibility
       maps (Melanie Plageman, Andres Freund)
 -->
-《機械翻訳》ロギングがテーブルの可視マップに割り込む操作のWALクリアを修正しました。
+テーブルの可視性マップ内のビットをクリアする操作のWALロギングが修正されました。
 (Melanie Plageman, Andres Freund)
       <ulink url="&commit_baseurl;d0fb1da21">&sect;</ulink>
       <ulink url="&commit_baseurl;f581fa729">&sect;</ulink>
@@ -3112,9 +3109,9 @@ Branch: REL_17_STABLE [067213430] 2026-07-15 17:43:38 -0400
       torn page writes to go uncorrected.  This could lead to misbehavior
       later, such as wrong results from index-only scans.
 -->
-《機械翻訳》このようなVMの変更はWALサマライザによって見逃され、不正な増分バックアップを引き起こす可能性がありました。
-また、必要なときにこのようなVMページのフルページイメージをログすることに失敗し、引き裂かれたページ書き込みが修正されない可能性がありました。
-これは、インデックスのみのスキャンからの間違い結果など、後で不正な動作を引き起こす可能性がありました。
+このような可視性マップ(VM)の変更はWAL要約によって見落とされており、増分バックアップに誤りが生じる可能性がありました。
+また、必要な場合にそのような可視性マップ(VM)ページのフルページイメージをログに記録できていなかったため、ページ断片化の書き込みが修正されないままになる可能性がありました。
+これにより、後にインデックスのみのスキャンで間違った結果が返されるなど、不具合を引き起こす可能性がありました。
      </para>
     </listitem>
 
@@ -3135,7 +3132,7 @@ Branch: REL_17_STABLE [d28cdf46e] 2026-07-22 08:49:00 -0400
       Prevent WAL summarizer process from getting stuck at a timeline
       switch (Robert Haas)
 -->
-《機械翻訳》WALサマライザプロセスがタイムラインスイッチで立ち往生するのを防ぎます。
+WAL要約プロセスがタイムラインの切り替え時に停止するのが防がれるようになりました。
 (Robert Haas)
       <ulink url="&commit_baseurl;18f0de6b8">&sect;</ulink>
       <ulink url="&commit_baseurl;1d299d6ab">&sect;</ulink>
@@ -3160,7 +3157,7 @@ Branch: REL_16_STABLE [d9b49e5b4] 2026-06-12 11:44:19 +0900
       Fix race with timeline selection in logical decoding during standby
       promotion (Bertrand Drouvot)
 -->
-《機械翻訳》スタンバイのプロモーション中にロジカルデコーディングのタイムライン選択とのレースを修正しました。
+スタンバイの昇格中のロジカルデコーディングのタイムライン選択の競合状態が修正されました。
 (Bertrand Drouvot)
       <ulink url="&commit_baseurl;b4bd13850">&sect;</ulink>
       <ulink url="&commit_baseurl;4bff3aa51">&sect;</ulink>
@@ -3173,8 +3170,8 @@ Branch: REL_16_STABLE [d9b49e5b4] 2026-06-12 11:44:19 +0900
       error.  A repeat attempt would succeed, so there was no permanent
       problem but there was an availability hazard.
 -->
-《機械翻訳》スタンバイで実行されるロジカルデコーディングは、<quote>要求されたWALセグメントが既に削除されている</quote>エラーで失敗する可能性がありました。
-再試行は成功するため、永続的な問題はありませんでしたが、可用性の危険がありました。
+スタンバイ側で実行中のロジカルデコーディングが、<quote>requested WAL segment has already been removed</quote>エラーで失敗する可能性がありました。
+再試行すれは成功するため、永続的な問題ではありませんでしたが、可用性上のリスクとなっていました。
      </para>
     </listitem>
 
@@ -3193,7 +3190,7 @@ Branch: REL_14_STABLE [e18b77153] 2026-05-23 08:10:18 +0900
       Avoid exposing a WAL receiver's full connection string during timeline
       jumps (Chao Li)
 -->
-《機械翻訳》タイムラインジャンプ中に、WALレシーバのコネクション文字列全体を露出させないようにします。
+タイムラインの切り替え時に、WALレシーバの完全な接続文字列が公開されなくなりました。
 (Chao Li)
       <ulink url="&commit_baseurl;b903d1792">&sect;</ulink>
      </para>
@@ -3205,8 +3202,8 @@ Branch: REL_14_STABLE [e18b77153] 2026-05-23 08:10:18 +0900
       But it transiently showed the full string when we re-use an existing
       WAL receiver.
 -->
-《機械翻訳》<structname>pg_stat_wal_receiver</structname>ビューはコネクション文字列の消毒されたバージョンを示し、敏感なデータは示さないはずです。
-しかし、既存のWALレシーバを再利用するときに一時的に完全な文字列を示しました。
+<structname>pg_stat_wal_receiver</structname>ビューには、機密情報を含まない加工された(サニタイズされた)接続文字列が表示されるはずです。
+しかし、既存のWALレシーバを再利用する際、一時的に完全な文字列が表示されてしまう状態になっていました。
      </para>
     </listitem>
 
@@ -3226,7 +3223,7 @@ Branch: REL_14_STABLE [510a05f07] 2026-05-16 18:01:46 -0700
       of columns in tuples received during logical replication (Varik
       Matevosyan)
 -->
-《機械翻訳》アサート中に受け取ったタプルの正しい列数を検証するために、論理レプリケーションだけではなく、ランタイム検査を使用してください。
+論理レプリケーション中に受信したタプルの列数が正しいことを検証するために、単なるアサートではなく、実行時の検査を使用するようになりました。
 (Varik Matevosyan)
       <ulink url="&commit_baseurl;dc3db3a83">&sect;</ulink>
      </para>
@@ -3237,8 +3234,8 @@ Branch: REL_14_STABLE [510a05f07] 2026-05-16 18:01:46 -0700
       columns.  While we could not find a scenario in which this would
       have serious ill effects, extra caution seems warranted.
 -->
-《機械翻訳》悪意のあるパブリッシャーやバグのあるシナリオは、矛盾した数の列を送信する可能性があります。
-これが深刻な悪影響を及ぼす地域は見つかりませんでしたが、特別な注意が必要と思われます。
+悪意のある、あるいはバグのあるパブリッシャーが、不整合な列数のタプルを送信する可能性があるためです。
+これが深刻な悪影響を及ぼすようなシナリオは確認されていませんが、十分な注意を払うことが望ましいでしょう。
      </para>
     </listitem>
 
@@ -3257,7 +3254,7 @@ Branch: REL_14_STABLE [2a00840e8] 2026-06-15 15:35:37 -0400
       Clean up quoting of string parameters within constructed replication
       commands (Tom Lane)
 -->
-《機械翻訳》建設された文字列内のレプリケーションコマンドパラメータの見積もりをクリーンアップします。
+生成されるレプリケーションコマンド内の文字列パラメータの引用符付けが修正されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;abb582555">&sect;</ulink>
      </para>
@@ -3274,10 +3271,10 @@ Branch: REL_14_STABLE [2a00840e8] 2026-06-15 15:35:37 -0400
       users and there is no reason for them to use a slot name coming from
       an untrustworthy source.
 -->
-《機械翻訳》レプリケーションコマンドを生成する様々な場所で、これらのコマンドに挿入する必要があるレプリケーションスロット名やその他のパラメータの引用に十分な注意が払われていませんでした。
-これにより、これらのコマンドで予期しない構文エラーが発生する可能性がありました。
+レプリケーションコマンドを生成する様々な箇所において、それらのコマンドに挿入されるレプリケーションスロット名やその他のパラメータの引用符付けに十分な注意が払われていませんでした。
+これにより、これらのコマンド内で予期せぬ構文エラーが発生する可能性がありました。
 原則的には、巧妙に細工されたレプリケーションスロット名前はSQLインジェクションを引き起こす可能性がありますが、実際にはそのようなシナリオは非常に起こりにくいと思われます。
-なぜなら、レプリケーション操作は高度な権限を持つユーザのみが呼び出すことができ、信頼できないソースからのスロット名前を使用する理由はないからです。
+なぜなら、レプリケーション操作を実行できるのは高度な権限を持つユーザに限られており、信頼できないソースからのスロット名を使用する理由はないためです。
      </para>
     </listitem>
 
@@ -3296,7 +3293,7 @@ Branch: REL_14_STABLE [c2d34db0a] 2026-07-28 12:33:50 -0700
 <!--
       Fix logical decoding of empty prepared transactions (Masahiko Sawada)
 -->
-《機械翻訳》空の準備されたトランザクションのロジカルデコーディングを修正しました。
+空のプリペアドトランザクションのロジカルデコーディングが修正されました。
 (Masahiko Sawada)
       <ulink url="&commit_baseurl;b563fc6bd">&sect;</ulink>
      </para>
@@ -3309,8 +3306,8 @@ Branch: REL_14_STABLE [c2d34db0a] 2026-07-28 12:33:50 -0700
       built-in subscriber this breaks replication, and other plugins will
       probably not like it either.
 -->
-《機械翻訳》デコード可能な更新を引き起こさなかったプリペアードトランザクションは、先行する<command>PREPARE</command>がない<command>COMMIT/ROLLBACK PREPARED</command>を出力プラグインに送信する結果になる可能性があります。
-組み込みのサブスクライバーでは、これはレプリケーションを壊し、他のプラグインもおそらくそれを好まないでしょう。
+デコード可能な更新を伴わないプリペアドトランザクションの場合、先行する<command>PREPARE</command>なしで<command>COMMIT/ROLLBACK PREPARED</command>が出力プラグインに送信される可能性がありました。
+組み込みのサブスクライバーでは、これによりレプリケーションが機能しなくなり、他のプラグインでも同様の問題が発生する可能性がありました。
      </para>
     </listitem>
 
@@ -3329,7 +3326,7 @@ Branch: REL_15_STABLE [d2980067b] 2026-06-30 08:52:50 +0900
       Fix corruption of unlogged sequences after standby promotion
       (Fujii Masao)
 -->
-《機械翻訳》スタンバイ昇格後のログされないシーケンスの破損を修正しました。
+スタンバイ昇格後のUNLOGGEDシーケンスの破損が修正されました。
 (Fujii Masao)
       <ulink url="&commit_baseurl;627605713">&sect;</ulink>
      </para>
@@ -3341,7 +3338,7 @@ Branch: REL_15_STABLE [d2980067b] 2026-06-30 08:52:50 +0900
       standby could fail with <quote>bad magic number in sequence</quote>
       or related errors.
 -->
-《機械翻訳》以前は、ログに記録されていないシーケンスがプライマリで作成され、スタンバイに複製された場合、スタンバイをプロモートした後にシーケンスをアクセスすると、<quote>シーケンスのマジックナンバーが悪い</quote>または関連するエラーで失敗することがありました。
+以前は、プライマリでUNLOGGEDシーケンスが作成されスタンバイにレプリケートされていた場合、スタンバイの昇格後シーケンスにアクセスすると、<quote>bad magic number in sequence</quote>などのエラーが発生して失敗することがありました。
      </para>
     </listitem>
 
@@ -3361,7 +3358,7 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       Fix cascading standby reconnect failure after archive fallback
       (Marco Nenciarini)
 -->
-《機械翻訳》カスケードスタンバイ代替後のアーカイブ再接続障害を修正しました。
+アーカイブフォールバック後のカスケードスタンバイの再接続失敗が修正されました。
 (Marco Nenciarini)
       <ulink url="&commit_baseurl;331016322">&sect;</ulink>
      </para>
@@ -3372,7 +3369,7 @@ Branch: REL_14_STABLE [5fb3c6389] 2026-07-29 17:15:45 +0200
       with <quote>requested starting point ... is ahead of the WAL flush
       position</quote> after falling back to archive recovery.
 -->
-《機械翻訳》カスケードスタンバイは、アーカイブスタンバイにフォールバックした後、<quote>要求された開始点が.WALフラッシュ位置の前にあります</quote>で上流リカバリへの再接続に失敗する可能性があります。
+カスケードスタンバイは、アーカイブスタンバイにフォールバックした後、<quote>requested starting point ... is ahead of the WAL flush posision</quote>というエラーでアップストリームのスタンバイへの再接続に失敗する可能性がありました。
      </para>
     </listitem>
 
@@ -3388,7 +3385,7 @@ Branch: REL_18_STABLE [311e66df9] 2026-08-08 00:10:06 +0900
       Prevent accepting hot-standby connections before WAL replay has
       reached a consistent database state (Nikhil Sontakke)
 -->
-《機械翻訳》ホット-スタンバイ間の接続を許可しない前WALリプレイが一貫したデータベース状態になりました。
+WALリプレイによって一貫性のあるデータベース状態に達するまでは、ホットスタンバイ接続を受け付けないようになりました。
 (Nikhil Sontakke)
       <ulink url="&commit_baseurl;311e66df9">&sect;</ulink>
      </para>
@@ -3407,7 +3404,7 @@ Branch: REL_17_STABLE [4a375527a] 2026-05-27 02:28:49 +0300
       <structname>pg_database</structname>.<structfield>dathasloginevt</structfield>
       locally on a standby server (Ayush Tiwari)
 -->
-《機械翻訳》トライからクリア<structname>pg_データベース</structname>には移動しないでください<structfield>dathasloginevt</structfield>スタンバイサーバでローカルに移動します。
+スタンバイサーバ上で<structname>pg_database</structname>.<structfield>dathasloginevt</structfield>をローカルでクリアしようとしなくなりました。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;97b5c5aaa">&sect;</ulink>
      </para>
@@ -3419,8 +3416,8 @@ Branch: REL_17_STABLE [4a375527a] 2026-05-27 02:28:49 +0300
       and there's no need anyway since replay of the primary's database
       change will soon fix it.
 -->
-《機械翻訳》イベントトリガクリーンアップはプライマリだけでなくスタンバイサーバでもその行動を実行しようとしました。
-それはスタンバイでは機能しませんし、プライマリのデータベース変更のリプレイがすぐにそれを修正するので、とにかくその必要はありません。
+イベントトリガによるクリーンアップ処理はプライマリサーバだけでなくスタンバイサーバでもその操作を実行しようとしました。
+スタンバイではその操作は機能しませんし、プライマリのデータベース変更のリプレイによってすぐに修正されるので、そもそも行なう必要もありません。
      </para>
     </listitem>
 
@@ -3436,7 +3433,7 @@ Branch: REL_17_STABLE [ea834d747] 2026-06-18 09:35:53 +0530
       Avoid race condition while dropping obsolete replication slots
       (Xuneng Zhou)
 -->
-《機械翻訳》古い競合条件スロットを削除するときは、レプリケーションを使用しないでください。
+不要になったレプリケーションスロットを削除する際の競合状態が回避されました。
 (Xuneng Zhou)
       <ulink url="&commit_baseurl;08458bcae">&sect;</ulink>
      </para>
@@ -3446,7 +3443,7 @@ Branch: REL_17_STABLE [ea834d747] 2026-06-18 09:35:53 +0530
       An incorrect unlock and log message could occur if another session
       immediately re-used the dropped slot's shared-memory entry.
 -->
-《機械翻訳》誤ったロック解除およびログメッセージは、別のセッションが、ドロップされたスロットの共有メモリエントリを直ちに再利用した場合に発生する可能性がある。
+削除されたスロットの共有メモリ上のエントリが別のセッションによって直ちに再利用された場合、誤ったロック解除やログメッセージが発生する可能性がありました。
      </para>
     </listitem>
 
@@ -3465,7 +3462,7 @@ Branch: REL_14_STABLE [968c50845] 2026-06-03 18:47:52 +0900
       Avoid race condition while dropping ephemeral replication slots
       (Zhijie Hou)
 -->
-《機械翻訳》エフェメラルレプリケーションスロットをドロップするときは、競合条件を避けてください。
+一時的なレプリケーションスロットを削除する際の競合状態が回避されました。
 (Zhijie Hou)
       <ulink url="&commit_baseurl;f833c9207">&sect;</ulink>
      </para>
@@ -3478,9 +3475,9 @@ Branch: REL_14_STABLE [968c50845] 2026-06-03 18:47:52 +0900
       dropped slot's shared-memory entry.  Skip those updates in the case
       of an ephemeral slot.
 -->
-《機械翻訳》スロットをリリースするコードは、レプリケーションスロットをリリースした後に、スロットの共有メモリエントリに対していくつかの追加更新を実行しました。
-これは、削除されたスロットの共有メモリエントリを別のセッションがすぐに再利用できるため、安全ではありません。
-スキップは、一時的なスロットのケースでこれらの更新を行います。
+スロットを解放するコードは、スロットを解放後にレプリケーションスロットの共有メモリ上のエントリに対して追加の更新を行っていました。
+削除されたスロットの共有メモリ上のエントリは別のセッションによって直ちに再利用される可能性があるため、安全ではありません。
+一時的なスロットの場合は、これらの更新をスキップします。
      </para>
     </listitem>
 
@@ -3499,7 +3496,7 @@ Branch: REL_14_STABLE [e3c4e3746] 2026-05-13 11:46:26 +0900
       Fix stale progress reports during logical replication table
       synchronization (Shinya Kato)
 -->
-《機械翻訳》論理レプリケーションテーブルの同期化中に古い進行状況レポートを修正しました。
+論理レプリケーションのテーブル同期中の古い進行報告が修正されました。
 (Shinya Kato)
       <ulink url="&commit_baseurl;d9cd9b4d7">&sect;</ulink>
      </para>
@@ -3512,8 +3509,8 @@ Branch: REL_14_STABLE [e3c4e3746] 2026-05-13 11:46:26 +0900
       data copy had finished.  The stale entry remained visible until
       synchronization caught up with the publisher.
 -->
-《機械翻訳》これまでは、サブスクライバーの<structname>pg_stat_progress_コピー</structname>ビューは、データコピーが終了した後も最初の<command>COPY</command>オペレーションをアクティブとして表示し続けていました。
-古いエントリは、同期がパブリッシャーに追いつくまで可視のままでした。
+これまではデータのコピーが完了した後も、サブスクライバー側の<structname>pg_stat_progress_copy</structname>ビューで初期の<command>COPY</command>操作がアクティブな状態として表示され続けていました。
+この古いエントリは、同期がパブリッシャーに追いつくまで表示されたままでした。
      </para>
     </listitem>
 
