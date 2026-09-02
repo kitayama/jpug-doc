@@ -3532,7 +3532,7 @@ Branch: REL_15_STABLE [a8fb98b7b] 2026-07-06 09:48:06 +0900
 <!--
       Clear base backup progress on backup failure (Chao Li)
 -->
-《機械翻訳》バックアップの失敗に関するクリアベースバックアップの進展。
+バックアップ失敗時にベースバックアップの進捗状況がクリアされるようになりました。
 (Chao Li)
       <ulink url="&commit_baseurl;e7564ee8c">&sect;</ulink>
       <ulink url="&commit_baseurl;e2ad214dd">&sect;</ulink>
@@ -3546,7 +3546,8 @@ Branch: REL_15_STABLE [a8fb98b7b] 2026-07-06 09:48:06 +0900
       disconnected.  <application>pg_basebackup</application> normally
       disconnects immediately, but other clients might not.
 -->
-《機械翻訳》以前は、<structname>pg_stat_progress_basebackup</structname>ビューは、障害発生後、エントリクライアントが切断されるまで、古い進行状況レプリケーションを表示し続けました<application>pg_basebackup</application>通常はすぐに切断されますが、他のクライアントは切断されない場合があります。
+これまでは、バックアップが失敗してもレプリケーションクライアントが切断されるまでは<structname>pg_stat_progress_basebackup</structname>ビューに古い進行状況が表示され続けていました。
+<application>pg_basebackup</application>は通常すぐに切断されますが、他のクライアントでは切断されない場合がありました。
      </para>
     </listitem>
 
@@ -3573,7 +3574,7 @@ Branch: REL_15_STABLE [9e4771825] 2026-06-23 07:59:03 +0900
       when <varname>track_functions</varname> is enabled (Sami Imseih,
       Michael Paquier)
 -->
-《機械翻訳》<varname>track_functions</varname>が有効な場合にpgstatsエントリが同時に削除されることで発生する可能性があったパニックを修正しました。
+<varname>track_functions</varname>が有効な場合に、pgstatsエントリが同時に削除されることで発生する可能性があったPANICが修正されました。
 (Sami Imseih, Michael Paquier)
       <ulink url="&commit_baseurl;5cc59834b">&sect;</ulink>
       <ulink url="&commit_baseurl;8a4f389dd">&sect;</ulink>
@@ -3596,7 +3597,7 @@ Branch: REL_15_STABLE [10e20e59e] 2026-08-07 14:23:39 +0900
       Clean up broken local pgstats entry after failing to obtain space for
       the corresponding shared hashtable entry (Niall Newman)
 -->
-《機械翻訳》対応する共有ハッシュテーブルローカル用のエントリの取得に失敗した後、壊れたスペースpgstatsエントリをクリーンアップします。
+対応する共有ハッシュテーブルエントリ用の領域確保に失敗した後、壊れたローカルpgstatsエントリをクリーンアップするようになりました。
 (Niall Newman)
       <ulink url="&commit_baseurl;2fd8d45ec">&sect;</ulink>
      </para>
@@ -3606,7 +3607,7 @@ Branch: REL_15_STABLE [10e20e59e] 2026-08-07 14:23:39 +0900
       Failure to do this led to a null-pointer dereference the next time
       the local entry was used.
 -->
-《機械翻訳》これを行わなかった場合、次にローカルエントリが使用されたときにNULL-ポインタ間の逆参照が発生しました。
+これを行わなかった場合、そのローカルエントリが次に使用された際にNULLポインタ参照が発生しました。
      </para>
     </listitem>
 
@@ -3621,7 +3622,7 @@ Branch: REL_18_STABLE [13f940b4b] 2026-06-17 16:05:37 +0900
       Avoid recording incorrect I/O operation statistics after a failed
       read or write (Bertrand Drouvot)
 -->
-《機械翻訳》読み取りまたは書き込みに失敗した後に、誤った入出力オペレーション統計処理を記録しないようにしてください。
+読み取りまたは書き込みの失敗後に、誤ったI/O操作の統計が記録されなくなりました。
 (Bertrand Drouvot)
       <ulink url="&commit_baseurl;13f940b4b">&sect;</ulink>
      </para>
@@ -3643,8 +3644,7 @@ Branch: REL_14_STABLE [e520ad34b] 2026-06-24 09:17:36 +0900
       dereference crash when working with an
       invalid <type>PostgreSQL::InServer::ARRAY</type> object (Xing Guo)
 -->
-《機械翻訳》では、無効なヌルポインタ<type>クラッシュ::InServer::PostgreSQL</type>を操作するときに配列がオブジェクトを逆参照しないようにします。
-<application>PL/Perl</application>
+<application>PL/Perl</application>において、無効な<type>PostgreSQL::InServer::ARRAY</type>オブジェクトを扱う際に発生するNULLポインタ参照によるクラッシュが回避されました。
 (Xing Guo)
       <ulink url="&commit_baseurl;e430ecc59">&sect;</ulink>
      </para>
@@ -3666,7 +3666,7 @@ Branch: REL_14_STABLE [309dc4526] 2026-06-29 14:21:15 +0900
       In <application>PL/Python</application>, properly check for errors
       when working with sequence and mapping objects (Richard Guo)
 -->
-《機械翻訳》<application>PL/Python</application>では、シーケンスオブジェクトとマッピングオブジェクトを使用するときのエラーが正しくチェックされるようになりました。
+<application>PL/Python</application>において、シーケンスやマッピングオブジェクトを扱う際、適切にエラーチェックを行うようになりました。
 (Richard Guo)
       <ulink url="&commit_baseurl;53482fcb9">&sect;</ulink>
      </para>
@@ -3676,7 +3676,7 @@ Branch: REL_14_STABLE [309dc4526] 2026-06-29 14:21:15 +0900
       Previously, a broken object or an unhandled exception could result
       in a NULL pointer dereference crash.
 -->
-《機械翻訳》以前は、壊れたオブジェクトまたは処理されない例外により、ヌルポインタのクラッシュの逆参照が発生する可能性があった。
+以前は、破損したオブジェクトや未処理の例外によって、NULLポインタ参照によるクラッシュが発生する可能性がありました。
      </para>
     </listitem>
 
@@ -3718,7 +3718,7 @@ Branch: REL_14_STABLE [7532f2117] 2026-07-09 18:36:41 +0300
       from the SSL or GSS decryption buffer
       during <function>pqReadData()</function> (Jacob Champion)
 -->
-《機械翻訳》<application>libpq</application>では、<function>pqReadData()</function>の間にSSLまたはGSS復号化バッファからすべての保留バイトを常に排出します。
+<application>libpq</application>において、<function>pqReadData()</function>の実行中にSSLまたはGSS復号バッファに残っているすべてのバイトを常に読み出すようになりました。
 (Jacob Champion)
       <ulink url="&commit_baseurl;2167302b7">&sect;</ulink>
       <ulink url="&commit_baseurl;bb0a54518">&sect;</ulink>
@@ -3732,7 +3732,7 @@ Branch: REL_14_STABLE [7532f2117] 2026-07-09 18:36:41 +0300
       calling application waits for more data to arrive on the socket, but
       actually all the data has already arrived.
 -->
-《機械翻訳》これにより、<application>libpq</application>またはその呼び出し元のアプリケーションがソケットにさらにデータが到着するのを待っているが、実際にはすべてのデータがすでに到着しているというエッジケースが回避される。
+これにより、<application>libpq</application>またはそれを呼び出すアプリケーションがソケットへのさらなるデータの到着を待機しているにもかかわらず、実際にはすべてのデータがすでに到着しているというエッジケースが回避されます。
      </para>
     </listitem>
 
@@ -3748,7 +3748,7 @@ Branch: REL_18_STABLE [6b46a5d1b] 2026-08-04 17:05:44 +0900
       Improve <application>libpq</application>'s handling of out-of-memory
       conditions (Anthonin Bonnefoy)
 -->
-《機械翻訳》改善<application>libpq</application>メモリ外の状況のハンドリング。
+<application>libpq</application>におけるメモリ不足時の処理が改善されました。
 (Anthonin Bonnefoy)
       <ulink url="&commit_baseurl;6b46a5d1b">&sect;</ulink>
      </para>
@@ -3767,7 +3767,7 @@ Branch: REL_18_STABLE [dd5eca055] 2026-07-03 15:00:00 +0300
       new-style BackendKeyData and CancelRequest messages correctly
       (Anthonin Bonnefoy)
 -->
-《機械翻訳》<application>libpq</application>のトレース機能をプリントの新しいスタイルBackendKeyDataメッセージとCancelRequestメッセージに正しく修正した。
+<application>libpq</application>のトレース機能において、新しい形式のBackendKeyDataメッセージおよびCancelRequestメッセージが正しく出力されるように修正されました。
 (Anthonin Bonnefoy)
       <ulink url="&commit_baseurl;dd5eca055">&sect;</ulink>
      </para>
@@ -3788,7 +3788,7 @@ Branch: REL_14_STABLE [1b79c8d1a] 2026-06-15 11:38:40 +0300
       Allow <application>libpq</application> to accept
       ParameterDescription messages exceeding 30000 bytes (Ning Sun)
 -->
-《機械翻訳》Allow <application>libpq</application> 30000バイトを超えるParameterDescriptionメッセージを受け入れる。
+<application>libpq</application>が30000バイトを超えるParameterDescriptionメッセージを受け入れられるようになりました。
 (Ning Sun)
       <ulink url="&commit_baseurl;b1ab4bc52">&sect;</ulink>
      </para>
@@ -3800,8 +3800,8 @@ Branch: REL_14_STABLE [1b79c8d1a] 2026-06-15 11:38:40 +0300
       could be long.  The limit resulted in failure for prepared queries
       having more than 7498 parameters, which is unlikely but supported.
 -->
-《機械翻訳》以前は、このメッセージタイプは、<application>libpq</application>有効性のヒューリスティックスで長いと考えられていたものの中には含まれていなかった。
-この制限により、7498を超えるパラメータを持つプリペアド問い合わせで失敗したが、これは起こりそうにないがサポートされている。
+以前は、このメッセージタイプは、<application>libpq</application>の妥当性発見的方法において長くなりうるものとは見なされていませんでした。
+この制限により、発生頻度は低いものの仕様上はサポートされているケースである7498個を超えるパラメータを持つプリペアド問い合わせでエラーが発生していました。
      </para>
     </listitem>
 
@@ -3816,7 +3816,7 @@ Branch: REL_18_STABLE [917fdbc63] 2026-06-25 16:58:29 -0400
       Fix null-pointer crash in <application>ecpg</application> compiler
       (Jehan-Guillaume de Rorthais)
 -->
-《機械翻訳》NULL-ポインタクラッシュを<application>ecpg</application>コンパイラに固定する。
+<application>ecpg</application>コンパイラにおけるNULLポインタによるクラッシュが修正されました。
 (Jehan-Guillaume de Rorthais)
       <ulink url="&commit_baseurl;917fdbc63">&sect;</ulink>
      </para>
@@ -3827,7 +3827,7 @@ Branch: REL_18_STABLE [917fdbc63] 2026-06-25 16:58:29 -0400
       a <literal>DECLARE</literal> section containing a union nested
       inside a struct.
 -->
-《機械翻訳》構造体内にネストされたセクションを含む<literal>DECLARE</literal>ユニオンで<application>ecpg</application>が失敗しました。
+構造体(struct)の中にネストされた共用体(union)を含む<literal>DECLARE</literal>セクションで<application>ecpg</application>が失敗する問題がありました。
      </para>
     </listitem>
 
@@ -3847,7 +3847,7 @@ Branch: REL_14_STABLE [9e8fd9f7a] 2026-06-08 17:14:20 +0900
       in <application>ecpg</application>'s <literal>GET/SET
       DESCRIPTOR</literal> statements (Masashi Kamura)
 -->
-《機械翻訳》<application>ecpg</application>の<literal>GET/SET DESCRIPTOR</literal>ステートメント内のマルチプルディスクリプタヘッダ項目を拒否します。
+<application>ecpg</application>の<literal>GET/SET DESCRIPTOR</literal>文において、複数の記述子ヘッダ項目の指定が禁止されました。
 (Masashi Kamura)
       <ulink url="&commit_baseurl;081434b0f">&sect;</ulink>
      </para>
@@ -3858,8 +3858,8 @@ Branch: REL_14_STABLE [9e8fd9f7a] 2026-06-08 17:14:20 +0900
       generated.  Adjust the grammar and the documentation to allow only
       one header item.
 -->
-《機械翻訳》以前は、文法はこの構文を許可していましたが、壊れたCコードが生成されました。
-文法と文書を調整して、ヘッダアイテムを1つだけ許可するようにしてください。
+以前は、この構文は文法上許容されていましたが、不正なCコードが生成されていました。
+ヘッダ項目を1つだけに制限するよう、文法とドキュメントが修正されました。
      </para>
     </listitem>
 
@@ -3874,7 +3874,7 @@ Branch: REL_18_STABLE [1e9bc4074] 2026-06-03 08:58:29 +0900
       Fix issues with deferred errors in pipeline mode
       in <application>psql</application> (Michael Paquier)
 -->
-《機械翻訳》<application>psql</application>で、パイプラインモードの遅延エラーに関する問題を修正しました。
+<application>psql</application>のパイプラインモードにおける遅延エラー関連の問題が修正されました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;1e9bc4074">&sect;</ulink>
      </para>
@@ -3886,7 +3886,7 @@ Branch: REL_18_STABLE [1e9bc4074] 2026-06-03 08:58:29 +0900
       error in response to a Sync message, such as a deferred constraint
       violation.
 -->
-《機械翻訳》<application>psql</application>遅延のアサーション違反など、サーバが回答のエラーを同期メッセージに報告する一部のシナリオでは、スタックまたは制約障害が発生する可能性があります。
+遅延制約違反など、Syncメッセージへの応答としてサーバがエラーを報告する特定の状況下で、<application>psql</application>が停止したり、アサーション失敗が発生する可能性がありました。
      </para>
     </listitem>
 
@@ -3905,7 +3905,7 @@ Branch: REL_14_STABLE [a4ca91ea1] 2026-06-08 14:38:01 +0900
       Make line widths match in <application>psql</application>'s expanded
       aligned output format (Pavel Stehule)
 -->
-《機械翻訳》make直線幅マッチin <application>psql</application>の拡張に位置合わせされた出力フォーマット。
+<application>psql</application>の拡張整列出力形式において、行の幅が揃えられるようになりました。
 (Pavel Stehule)
       <ulink url="&commit_baseurl;07a6c262b">&sect;</ulink>
      </para>
@@ -3915,7 +3915,7 @@ Branch: REL_14_STABLE [a4ca91ea1] 2026-06-08 14:38:01 +0900
       When the table's data rows are narrower than the record header lines,
       widen the data rows to match the headers, avoiding unsightly output.
 -->
-《機械翻訳》テーブルのデータ行がレコードのヘッダ行よりも狭い場合は、データ行をヘッダのマッチまで広げて、見苦しい出力を回避します。
+テーブルのデータ行がレコードのヘッダ行よりも狭い場合は、データ行の幅をヘッダに合わせて広げることで、見栄えの悪い出力が回避されました。
      </para>
     </listitem>
 
@@ -3932,7 +3932,7 @@ Branch: REL_18_STABLE [e0c641ebb] 2026-05-18 08:33:36 -0700
       variable <varname>WATCH_INTERVAL</varname>
       (Sven Klemm, Daniel Gustafsson)
 -->
-《機械翻訳》<application>psql</application>の特別変数の意図された上限を実施する<varname>WATCH_INTERVAL</varname>。
+<application>psql</application>の特殊変数<varname>WATCH_INTERVAL</varname>に設定された上限を厳守するようになりました。
 (Sven Klemm, Daniel Gustafsson)
       <ulink url="&commit_baseurl;e0c641ebb">&sect;</ulink>
      </para>
@@ -3942,7 +3942,7 @@ Branch: REL_18_STABLE [e0c641ebb] 2026-05-18 08:33:36 -0700
       If a too-large value was given, <application>psql</application>
       reported an error but applied the setting anyway.
 -->
-《機械翻訳》too-ラージ値が指定された場合、<application>psql</application>はエラーを報告しましたが、設定を適用しました。
+大きすぎる値が指定された場合、<application>psql</application>はエラーを報告しながらも設定を適用していました。
      </para>
     </listitem>
 
@@ -3962,7 +3962,7 @@ Branch: REL_14_STABLE [4e19081da] 2026-07-25 19:11:34 +0900
       Fix <application>psql</application>'s privilege check for showing
       database size in <command>\l+</command> (Christoph Berg)
 -->
-《機械翻訳》データベースサイズを見せたフィックス<application>psql</application>の権限チェック<command>\l+</command>。
+<command>\l+</command>でデータベースサイズを表示する際の<application>psql</application>の権限チェックが修正されました。
 (Christoph Berg)
       <ulink url="&commit_baseurl;f2d6cf880">&sect;</ulink>
      </para>
@@ -3976,9 +3976,8 @@ Branch: REL_14_STABLE [4e19081da] 2026-07-25 19:11:34 +0900
       provision and would not call the function unless the user
       has <literal>CONNECT</literal> privilege.
 -->
-《機械翻訳》基礎となるサーバ関数では、<literal>pg_read_all_stats</literal>権限を持つユーザは、すべてのデータベースのサイズを参照することができます。
-これは、データベースが存在しない場合でも同様です<literal>CONNECT</literal>権限。
-しかし、<application>psql</application>はこの規定を認識しておらず、ユーザが<literal>CONNECT</literal>権限を持たない限り、関数を呼び出ししませんでした。
+基盤となるサーバ関数は、<literal>pg_read_all_stats</literal>権限を持つユーザは、<literal>CONNECT</literal>権限を持っていなくても、すべてのデータベースのサイズを確認できます。
+しかし、<application>psql</application>はこの仕様を認識しておらず、ユーザが<literal>CONNECT</literal>権限を持っていない限り、その関数を呼び出していませんでした。
      </para>
     </listitem>
 
@@ -3999,7 +3998,7 @@ Branch: REL_14_STABLE [2d44bb900] 2026-07-03 13:50:51 +0900
       for <command>\df</command> to consider procedures too
       (Erik Wienhold)
 -->
-《機械翻訳》<application>psql</application>ののタブ完了<command>\df</command>手順も検討
+<application>psql</application>の<command>\df</command>コマンドにおけるタブ補完に、プロシージャも対象に含めるよう修正されました。
 (Erik Wienhold)
       <ulink url="&commit_baseurl;598af79b1">&sect;</ulink>
      </para>
@@ -4019,7 +4018,7 @@ Branch: REL_15_STABLE [f18fcd9a4] 2026-05-14 12:31:43 +0900
       Fix thread-safety bug in <application>pgbench</application>
       (Fujii Masao)
 -->
-《機械翻訳》スレッド安全バグを<application>pgbench</application>.
+<application>pgbench</application>のスレッドセーフに関するバグが修正されました。
 (Fujii Masao)
       <ulink url="&commit_baseurl;98dd6c204">&sect;</ulink>
      </para>
@@ -4031,7 +4030,7 @@ Branch: REL_15_STABLE [f18fcd9a4] 2026-05-14 12:31:43 +0900
       could attempt to use the same buffer to construct error messages,
       leading to corrupted log output.
 -->
-《機械翻訳》<application>pgbench</application>がマルチプルスレッドと<option>--verbose-errors</option>オプションで実行されると、異なるスレッドが同じバッファからコンストラクトへのエラーメッセージを使用しようとする可能性があり、ログの出力が破損する可能性があります。
+<application>pgbench</application>を複数のスレッドで実行し、かつ<option>--verbose-errors</option>オプションを指定した場合、異なるスレッドがエラーメッセージの構築に同じバッファを使用しようとする可能性があり、ログ出力が破損する可能性がありました。
      </para>
     </listitem>
 
@@ -4047,7 +4046,7 @@ Branch: REL_17_STABLE [090ce6934] 2026-06-29 13:02:07 +0200
       In <application>pg_combinebackup</application>, prevent infinite
       loop if the source file is shorter than expected (Peter Eisentraut)
 -->
-《機械翻訳》<application>pg_combinebackup</application>では、無限ループが予想より短い場合はソースファイルを防止します。
+<application>pg_combinebackup</application>において、ソースファイルが想定より短い場合に無限ループが発生しないように修正されました。
 (Peter Eisentraut)
       <ulink url="&commit_baseurl;d36b72894">&sect;</ulink>
      </para>
@@ -4065,7 +4064,7 @@ Branch: REL_17_STABLE [c03784a21] 2026-05-27 10:35:49 +0900
       Fix cleanup of publisher-side objects after errors
       in <application>pg_createsubscriber</application> (Nisha Moond)
 -->
-《機械翻訳》<application>pg_createsubscriber</application>でエラーが発生した後のパブリッシャー側オブジェクトのクリーンアップを修正しました。
+<application>pg_createsubscriber</application>でエラーが発生した後のパブリッシャー側オブジェクトのクリーンアップが修正されました。
 (Nisha Moond)
       <ulink url="&commit_baseurl;196b4b5ae">&sect;</ulink>
      </para>
@@ -4077,8 +4076,8 @@ Branch: REL_17_STABLE [c03784a21] 2026-05-27 10:35:49 +0900
       publication and replication slot that it created on the publisher.
       Some error cases failed to do so.
 -->
-《機械翻訳》論理レプリケーションオブジェクトを作成した後に<application>pg_createsubscriber</application>が失敗した場合は、パブリッシャーに作成したパブリケーションとレプリケーションスロットを削除する必要があります。
-そうしなかったエラーのケースもあります。
+<application>pg_createsubscriber</application>が論理レプリケーションオブジェクトを作成後に失敗した場合、パブリッシャー上で作成したパブリケーションとレプリケーションスロットを削除する必要があります。
+一部のエラーケースでは、これが行われていませんでした。
      </para>
     </listitem>
 
@@ -4098,7 +4097,7 @@ Branch: REL_14_STABLE [5552a15a3] 2026-05-20 15:57:19 +0900
       for <application>pg_recvlogical</application> output files
       (Fujii Masao)
 -->
-《機械翻訳》ソースクラスタのグループアクセス権<application>pg_recvlogical</application>ファイルを出力するためのファイル読み取り権限を使用します。
+<application>pg_recvlogical</application>の出力ファイルには、ソースクラスタのグループ読み取り用ファイル権限を使用するようになりました。
 (Fujii Masao)
       <ulink url="&commit_baseurl;89b4b3ae3">&sect;</ulink>
      </para>
@@ -4108,7 +4107,7 @@ Branch: REL_14_STABLE [5552a15a3] 2026-05-20 15:57:19 +0900
       <application>pg_recvlogical</application> was documented to behave
       this way, but it never actually enabled group-read.
 -->
-《機械翻訳》<application>pg_recvlogical</application>はこのように動作すると説明されていましたが、実際にグループが読めるようにはなっていませんでした。
+<application>pg_recvlogical</application>は本来このように動作をする仕様でしたが、実際にはグループ読み取り権限が有効にはなっていませんでした。
      </para>
     </listitem>
 
@@ -4127,7 +4126,7 @@ Branch: REL_18_STABLE [477efef08] 2026-06-16 15:58:17 +0900
       or <option>&#45;-statistics-only</option>
       (Chao Li, Michael Paquier)
 -->
-《機械翻訳》<option>--statistics</option>または<option>--statistics-only</option>を持つ<application>pg_リストア</application>の一貫性のない動作を修正しました。
+<option>--statistics</option>または<option>--statistics-only</option>オプションを指定した際の<application>pg_restore</application>の一貫性のない動作が修正されました。
 (Chao Li, Michael Paquier)
       <ulink url="&commit_baseurl;42ffdedcf">&sect;</ulink>
       <ulink url="&commit_baseurl;477efef08">&sect;</ulink>
@@ -4140,7 +4139,7 @@ Branch: REL_18_STABLE [477efef08] 2026-06-16 15:58:17 +0900
       expected items, unlike <application>pg_dump</application> with
       similar options.
 -->
-《機械翻訳》<option>--schema</option>のような他の選択的リストアオプションと組み合わせると、これらのオプションは<application>pg_dump</application>類似のリストアとは異なり、期待された項目をオプションすることができなかった。
+<option>--schema</option>などの他の選択的リストアオプションと併用した場合、同様のオプションを指定した<application>pg_dump</application>とは異なり、これらのオプションでは期待された項目がリストアすることができませんでした。
      </para>
     </listitem>
 
@@ -4155,7 +4154,7 @@ Branch: REL_18_STABLE [7e085aabd] 2026-06-17 09:18:39 -0500
       Fix <command>vacuumdb &#45;-missing-stats-only</command> to ignore
       partitioned expression indexes (Baji Shaik)
 -->
-《機械翻訳》<command>vacuumdb --missing-stats-only</command>パーティション化された式インデックスを無視するように修正しました。
+<command>vacuumdb --missing-stats-only</command>が、パーティションテーブルの式インデックスを無視するように修正されました。
 (Baji Shaik)
       <ulink url="&commit_baseurl;7e085aabd">&sect;</ulink>
      </para>
@@ -4167,8 +4166,8 @@ Branch: REL_18_STABLE [7e085aabd] 2026-06-17 09:18:39 -0500
       nothing since statistics are never created for partitioned indexes,
       only for their leaf indexes.
 -->
-《機械翻訳》以前は、<application>vacuumdb</application>は常に<command>ANALYZE</command>パーティション化されたテーブルを試みていました。
-統計処理はパーティション化されたインデックスに対して作成されることはなく、リーフインデックスに対してのみ作成されるため、何も達成されませんでした。
+以前は、<application>vacuumdb</application>は常にパーティションテーブルに対して<command>ANALYZE</command>を試みていました。
+パーティションテーブルのインデックスに対して統計情報は作成されず、リーフインデックスに対してのみ作成されるため、この処理は無駄なものとなっていました。
      </para>
     </listitem>
 
@@ -4184,7 +4183,7 @@ Branch: REL_18_STABLE [12c32bbc8] 2026-06-12 09:39:19 +0900
       corruption of a btree metapage's <literal>allequalimage</literal>
       flag (Chao Li)
 -->
-《機械翻訳》<filename>contrib/amcheck</filename>btreeメタページ<literal>allequalimage</literal>レポートのフラグの破損に対する失敗を修正しました。
+<filename>contrib/amcheck</filename>において、btreeのメタページの<literal>allequalimage</literal>フラグの破損が報告されない不具合が修正されました。
 (Chao Li)
       <ulink url="&commit_baseurl;12c32bbc8">&sect;</ulink>
      </para>
@@ -4202,7 +4201,7 @@ Branch: REL_18_STABLE [1f8ab91c1] 2026-07-06 09:32:30 +0900
       In <filename>contrib/amcheck</filename>, fix query-lifespan memory
       leak while verifying a GIN index (Kirill Reshke)
 -->
-《機械翻訳》<filename>contrib/amcheck</filename>では、問い合わせメモリリークを検証する際にGIN寿命インデックスを修正しました。
+<filename>contrib/amcheck</filename>において、GINインデックスの検証中に発生していた問い合わせの生存期間にわたるメモリリークが修正されました。
 (Kirill Reshke)
       <ulink url="&commit_baseurl;1f8ab91c1">&sect;</ulink>
      </para>
@@ -4223,7 +4222,7 @@ Branch: REL_14_STABLE [af09b18cb] 2026-06-14 04:06:43 +0300
       In <filename>contrib/amcheck</filename>, handle short-header varlena
       datums correctly (Andrey Borodin)
 -->
-《機械翻訳》<filename>contrib/amcheck</filename>,ハンドルshort-ヘッダvarlenaデータムで正しく動作するようになりました。
+<filename>contrib/amcheck</filename>において、ショートヘッダのvarlenaデータムが正しく処理されるように修正されました。
 (Andrey Borodin)
       <ulink url="&commit_baseurl;897e79486">&sect;</ulink>
      </para>
@@ -4233,7 +4232,7 @@ Branch: REL_14_STABLE [af09b18cb] 2026-06-14 04:06:43 +0300
       This error could result in doing excess work while verifying a btree
       index, but seems not to have had any worse consequences.
 -->
-《機械翻訳》このエラーは、btreeインデックスを検証する際に過剰な作業を行う可能性がありますが、これ以上悪い結果にはならなかったようです。
+このエラーにより、btreeインデックスを検証時に過剰な処理を引き起こす可能性がありますが、それ以上の深刻な影響は確認されていません。
      </para>
     </listitem>
 
@@ -4254,7 +4253,7 @@ Branch: REL_14_STABLE [255bce448] 2026-07-01 13:27:22 -0400
       fix <literal>NaN</literal> handling in the <type>float4</type>
       and <type>float8</type> opclasses (Bill Kim, Tom Lane)
 -->
-《機械翻訳》<filename>contrib/btree_GiST</filename>で、opclass <literal>NaN</literal><type>float4</type>と<type>float8</type>のハンドリングを修正しました。
+<filename>contrib/btree_gist</filename>において、<type>float4</type>および<type>float8</type>演算子クラスでの<literal>NaN</literal>の扱いが修正されました。
 (Bill Kim, Tom Lane)
       <ulink url="&commit_baseurl;1e1d07792">&sect;</ulink>
      </para>
@@ -4268,8 +4267,8 @@ Branch: REL_14_STABLE [255bce448] 2026-07-01 13:27:22 -0400
       after installing this update, if there is any possibility that there
       are <literal>NaN</literal> entries in those columns.
 -->
-《機械翻訳》比較は、GiSTペナルティ関数や遠隔関数と同様に、アカウントではありませんでした<literal>NaN</literal>そして、渡されたときに間違いの答えを返します。
-これらの列に<literal>NaN</literal>エントリがある可能性がある場合は、この更新をインストールした後にインデックス再作成<filename>btree_GiST</filename>float列のインデックスを行うことをお勧めします。
+比較演算やGiSTペナルティ関数や距離関数では<literal>NaN</literal>が考慮されていなかったため、渡された際に誤った結果が返される問題がありました。
+この更新を適用した後にfloat型の列の<filename>btree_gist</filename>に<literal>NaN</literal>が含まれている可能性がある場合は、インデックスの再作成を推奨します。
      </para>
     </listitem>
 
