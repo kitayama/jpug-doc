@@ -4285,7 +4285,7 @@ Branch: REL_18_STABLE [558c4ea9a] 2026-07-03 13:11:14 -0400
       of <type>bit</type>/<type>varbit</type> entries during GiST index
       construction (Tom Lane)
 -->
-《機械翻訳》<filename>contrib/btree_GiST</filename>では、並べ替えインデックスの構築中に<type>ビット</type>/<type>varbit</type>エントリのGiSTを修正しました。
+<filename>contrib/btree_gist</filename>において、GiSTインデックスの構築時の<type>bit</type>型と<type>varbit</type>型の値のソート処理が修正されました。
 (Tom Lane)
       <ulink url="&commit_baseurl;558c4ea9a">&sect;</ulink>
      </para>
@@ -4299,9 +4299,8 @@ Branch: REL_18_STABLE [558c4ea9a] 2026-07-03 13:11:14 -0400
       reindex <filename>btree_gist</filename> indexes on bit columns
       after installing this update.
 -->
-《機械翻訳》ビット型の値は<type>bytea</type>であるかのようにソートされました。
-これは明らかな失敗を引き起こしませんでしたが、型の表現が異なるため、非効率的なインデックスになりました。
-このインデックス再作成をインストールした後に、ビット<filename>btree_gist</filename>更新列のインデックスを行うことをお勧めします。
+これまではbit型の値は<type>bytea</type>型であるかのようにソートされていました。これにより直ちに何らかの障害が発生するわけではありませんでしたが、型の表現方法が異なるため、インデックスの効率が低下する原因となっていました。
+本アップデートをインストールした後に、bit型列に対する<filename>btree_gist</filename>インデックスの再構築をお勧めします。
      </para>
     </listitem>
 
@@ -4321,7 +4320,7 @@ Branch: REL_14_STABLE [286f9a3ce] 2026-07-03 13:50:14 -0400
       In <filename>contrib/btree_gist</filename>, fix searches using a
       not-equal operator (Ayush Tiwari)
 -->
-《機械翻訳》<filename>contrib/btree_gist</filename>で、等しくない演算子を使用した検索を修正しました。
+<filename>contrib/btree_gist</filename>において、不等号演算子を使用した検索が修正されました。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;12c519207">&sect;</ulink>
      </para>
@@ -4332,7 +4331,7 @@ Branch: REL_14_STABLE [286f9a3ce] 2026-07-03 13:50:14 -0400
       pages applied the wrong comparison function, leading to wrong
       results and potentially crashes.
 -->
-《機械翻訳》変数-長さデータタイプの場合、リーフインデックス以外のページをスキャンするコードは間違い比較関数を適用していたため、間違いの結果が得られ、クラッシュする可能性がありました。
+可変長データ型の場合、非リーフインデックスページをスキャンするコードで誤った比較関数が適用されていたため、誤った結果となったり、クラッシュが発生する可能性がありました。
      </para>
     </listitem>
 
@@ -4351,7 +4350,7 @@ Branch: REL_18_STABLE [130396e6c] 2026-05-26 00:52:38 +0900
       setting for <varname>use_scram_passthrough</varname> overrides one
       for a foreign server (Matheus Alcantara)
 -->
-《機械翻訳》<filename>contrib/dblink</filename>および<filename>contrib/postgres_fdw</filename>,保証では、ユーザ-マッピングの設定<varname>use_scram_passthrough</varname>は外部サーバの設定より優先されます。
+<filename>contrib/dblink</filename>および<filename>contrib/postgres_fdw</filename>において、<varname>use_scram_passthrough</varname>に関するユーザマッピングの設定が、外部サーバの設定よりも優先されるようになりました。
 (Matheus Alcantara)
       <ulink url="&commit_baseurl;88d7748d2">&sect;</ulink>
       <ulink url="&commit_baseurl;130396e6c">&sect;</ulink>
@@ -4362,7 +4361,7 @@ Branch: REL_18_STABLE [130396e6c] 2026-05-26 00:52:38 +0900
       Previously the precedence went the other way, but that is
       inconsistent with the behavior of other foreign-table options.
 -->
-《機械翻訳》以前は優先順位が逆でしたが、それは他の外国-テーブルオプションの行動と矛盾しています。
+以前はこの優先順位が逆でしたが、それは他の外部テーブルオプションの動作と整合性が取れていませんでした。
      </para>
     </listitem>
 
@@ -4378,7 +4377,7 @@ Branch: REL_18_STABLE [cd777e27e] 2026-05-26 01:08:47 +0900
       on <filename>contrib/dblink</filename> foreign-data wrappers
       (Matheus Alcantara)
 -->
-《機械翻訳》<filename>contrib/dblink</filename>外部通過地点ラッパーの設定<varname>use_scram_データ</varname>を拒否する。
+<filename>contrib/dblink</filename>の外部データラッパー(FDW)における<varname>use_scram_passthrough</varname>設定が拒否されるようになりました。
 (Matheus Alcantara)
       <ulink url="&commit_baseurl;cd777e27e">&sect;</ulink>
      </para>
@@ -4389,7 +4388,7 @@ Branch: REL_18_STABLE [cd777e27e] 2026-05-26 01:08:47 +0900
       mappings, but dblink incorrectly allowed it at the FDW level as
       well (and then ignored it).
 -->
-《機械翻訳》このオプションは外部サーバとユーザのマッピングでのみ意味がありますが、dblinkは誤ってFDWレベルでもこのオプションを許可しました（そして無視しました）。
+このオプションは外部サーバとユーザマッピングでのみ意味がありますが、dblinkは誤ってFDWレベルでもこの設定を許可していました（そして実際には無視されていました）。
      </para>
     </listitem>
 
@@ -4417,7 +4416,7 @@ Branch: REL_14_STABLE [1f6b2295f] 2026-06-18 12:22:55 -0400
       <filename>contrib/jsonb_plpython</filename>
       (Aleksander Alekseev)
 -->
-《機械翻訳》<filename>contrib/hstore_plperl</filename>,<filename>contrib/jsonb_plperl</filename>,and <filename>contrib/jsonb_plpython</filename>.における無防備な再帰とループを修正しました。
+<filename>contrib/hstore_plperl</filename>、<filename>contrib/jsonb_plperl</filename>、<filename>contrib/jsonb_plpython</filename>における保護されていない再帰とループが修正されました。
 (Aleksander Alekseev)
       <ulink url="&commit_baseurl;e3b7a43fa">&sect;</ulink>
       <ulink url="&commit_baseurl;d65cf6f80">&sect;</ulink>
@@ -4430,7 +4429,7 @@ Branch: REL_14_STABLE [1f6b2295f] 2026-06-18 12:22:55 -0400
       loop caused when attempting to dereference circular chains of Perl
       object references.
 -->
-《機械翻訳》深くネストされた<type>スタックオーバーフロー</type>値を処理するときのjsonbを防止し、Perl無限ループ参照の循環チェーンを逆参照しようとするときに発生するオブジェクトの中断を許可します。
+深くネストされた<type>jsonb</type>値を処理する際のスタックオーバーフローを防ぐとともに、Perlオブジェクト参照の循環チェーンを間接参照しようとした際に発生する無限ループを中断できるようになりました。
      </para>
     </listitem>
 
@@ -4449,7 +4448,7 @@ Branch: REL_14_STABLE [a96b051a9] 2026-05-25 18:15:49 -0400
       Fix missed release of statistics catcache entry
       in <filename>contrib/intarray</filename> (Man Zeng)
 -->
-《機械翻訳》<filename>contrib/intarray</filename>にある統計処理catcacheエントリの見逃しリリースを修正しました。
+<filename>contrib/intarray</filename>における統計情報のcatcacheエントリの解放漏れが修正されました。
 (Man Zeng)
       <ulink url="&commit_baseurl;e7544c518">&sect;</ulink>
      </para>
@@ -4459,7 +4458,7 @@ Branch: REL_14_STABLE [a96b051a9] 2026-05-25 18:15:49 -0400
       This oversight led to warnings like <quote>resource was not closed:
       cache pg_statistic</quote>.
 -->
-《機械翻訳》この見落としにより、<quote>resource is not閉じた:キャッシュpg_statistic</quote>のような警告が発生しました。
+この見落としにより、<quote>resource is not closed: cache pg_statistic</quote>といった警告が発生していました。
      </para>
     </listitem>
 
@@ -4478,8 +4477,7 @@ Branch: REL_14_STABLE [f528a5606] 2026-06-16 09:31:23 +0300
       In <filename>contrib/ltree</filename>, fix integer overflow in
       comparisons (Ayush Tiwari)
 -->
-《機械翻訳》では、整数オーバーフローを比較して修正します。
-<filename>contrib/ltree</filename>
+<filename>contrib/ltree</filename>において、比較時の整数オーバーフローが修正されました。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;c3e36a9a5">&sect;</ulink>
      </para>
@@ -4491,8 +4489,8 @@ Branch: REL_14_STABLE [f528a5606] 2026-06-16 09:31:23 +0300
       index contains such values, it is probably corrupt and should be
       reindexed after installing this update.
 -->
-《機械翻訳》<type>ltree</type>値に約14,653を超えるラベルが含まれている場合、オーバーフローのために間違い比較の回答が得られました。
-btreeインデックス包含の値の場合、おそらく破損しているため、この更新をインストールした後にインデックスを再作成する必要があります。
+約14,653個を超えるラベルが含む<type>ltree</type>値では、オーバーフローにより比較結果が誤ったものとなっていました。
+そのような値を含むbtreeインデックスは破損している可能性が高いため、この更新を適用した後にインデックスを再作成する必要があります。
      </para>
     </listitem>
 
@@ -4509,7 +4507,7 @@ Branch: REL_17_STABLE [2aa6be6e6] 2026-06-22 12:59:16 -0400
       after encountering an error while using an OSSLCipher object
       (Yuelin Wang)
 -->
-《機械翻訳》で、<filename>contrib/pgcrypto</filename> OSLSCipherフリーを使用中にクラッシュに遭遇した後は、二重エラーオブジェクトを使用しないでください。
+<filename>contrib/pgcrypto</filename>において、OSSLCipherオブジェクトの使用中にエラーが発生した後の二重解放によるクラッシュを回避するようになりました。
 (Yuelin Wang)
       <ulink url="&commit_baseurl;020426268">&sect;</ulink>
      </para>
@@ -4527,7 +4525,7 @@ Branch: REL_18_STABLE [3bf2cb225] 2026-06-26 19:48:20 +0200
       in <filename>contrib/pg_prewarm</filename>'s autoprewarm worker
       (Matheus Alcantara)
 -->
-《機械翻訳》境界外のアクセスを<filename>contrib/pg_prewarm</filename>のautoprewarmワーカーで修正します。
+<filename>contrib/pg_prewarm</filename>のautoprewarmワーカーにおける範囲外アクセスの問題が修正されました。
 (Matheus Alcantara)
       <ulink url="&commit_baseurl;3bf2cb225">&sect;</ulink>
      </para>
@@ -4537,7 +4535,7 @@ Branch: REL_18_STABLE [3bf2cb225] 2026-06-26 19:48:20 +0200
       The code tried to fetch a value from one past the end of an array,
       risking a segfault.
 -->
-《機械翻訳》コードは、配列の端を過ぎたところから値をフェッチしようとし、セグフォールトの危険を冒しました。
+このコードでは、配列の末尾の次にある要素の値を取得しようとしており、セグメンテーション違反を引き起こす恐れがありました。
      </para>
     </listitem>
 
@@ -4557,7 +4555,7 @@ Branch: REL_14_STABLE [1eda3eb07] 2026-06-06 08:16:46 +0900
       <function>heap_force_kill</function> and
       <function>heap_force_freeze</function> functions (Michael Paquier)
 -->
-《機械翻訳》<filename>contrib/pg_surgery</filename>の<function>heap_force_kill</function>および<function>heap_force_freeze</function>関数の配列オーバーランを修正しました。
+<filename>contrib/pg_surgery</filename>の<function>heap_force_kill</function>および<function>heap_force_freeze</function>関数における配列の範囲外書き込みが修正されました。
 (Michael Paquier)
       <ulink url="&commit_baseurl;2b09f8a91">&sect;</ulink>
      </para>
@@ -4568,7 +4566,7 @@ Branch: REL_14_STABLE [1eda3eb07] 2026-06-06 08:16:46 +0900
       MaxHeapTuplesPerPage wrote one byte past the end of the allocated
       array, potentially crashing the server.
 -->
-《機械翻訳》TID番号がMaxHeapTuplePerPageに等しいオフセットを変更しようとすると、割り当てられたバイトの末尾を超えて1つの配列が書き込まれ、サーバがクラッシュする可能性がありました。
+オフセット番号がMaxHeapTuplePerPageと等しいTIDを変更しようとすると、割り当てられた配列の末尾を1バイト超えて書き込みがおこなわれ、サーバがクラッシュする可能性がありました。
      </para>
     </listitem>
 
@@ -4588,7 +4586,7 @@ Branch: REL_14_STABLE [e9d53cf45] 2026-08-04 11:44:11 +0200
       In <filename>contrib/pg_surgery</filename>, avoid infinite loop with
       TID arrays having more than 64K elements (Andrey Rachitskiy)
 -->
-《機械翻訳》では、<filename>contrib/pg_surgery</filename> 64K以上の要素を持つ無限ループ配列を持つTIDは避けてください。
+<filename>contrib/pg_surgery</filename>において、64K個を超える要素を持つTID配列による無限ループを回避するようになりました。
 (Andrey Rachitskiy)
       <ulink url="&commit_baseurl;19f0391df">&sect;</ulink>
      </para>
@@ -4610,7 +4608,7 @@ Branch: REL_14_STABLE [1de0a711d] 2026-05-14 13:11:49 -0500
       in <filename>contrib/refint</filename>'s
       <function>check_foreign_key()</function> (Ayush Tiwari)
 -->
-《機械翻訳》<filename>contrib/refint</filename>の<function>check_foreign_key()</function>.*でのNULL-ポインタの逆参照を避ける。
+<filename>contrib/refint</filename>の<function>check_foreign_key()</function>におけるNULLポインタ参照が回避されました。
 (Ayush Tiwari)
       <ulink url="&commit_baseurl;ed0c4d5af">&sect;</ulink>
      </para>
@@ -4621,8 +4619,8 @@ Branch: REL_14_STABLE [1de0a711d] 2026-05-14 13:11:49 -0500
       led to a crash.  This is an oversight in the fix for CVE-2026-6637,
       but the code that was there before that wasn't really right either.
 -->
-《機械翻訳》更新カスケードケースでは、被参照カラムのNULL値がクラッシュにつながりました。
-これはCVE-2026-6637の修正における見落としですが、以前に存在していたコードも実際には正しくありませんでした。
+ON UPDATE CASCADEの場合、参照される列の値がNULLだとクラッシュが発生していました。
+これはCVE-2026-6637の修正における見落としですが、それ以前のコードもそもそも適切ではありませんでした。
      </para>
     </listitem>
 
@@ -4642,7 +4640,7 @@ Branch: REL_14_STABLE [58b91fc73] 2026-06-11 12:34:45 +0300
       with <literal>~</literal> certainty indicators correctly
       (Ewan Young)
 -->
-《機械翻訳》<filename>contrib/seg</filename>をプリントセグメントに<literal>~</literal>確実度インジケータで正しく修正した。
+<filename>contrib/seg</filename>において、確実性指示子<literal>~</literal>を含むセグメントが正しく表示されるように修正されました。
 (Ewan Young)
       <ulink url="&commit_baseurl;0004cab4d">&sect;</ulink>
      </para>
@@ -4656,8 +4654,8 @@ Branch: REL_14_STABLE [58b91fc73] 2026-06-11 12:34:45 +0300
       the upper boundary was not printed at all, incorrectly converting
       the value into an open interval.
 -->
-《機械翻訳》タイポのために、<function>seg_out()</function>は<literal>~</literal>セグメントの上部境界にアタッチされた確実性指示子を印刷しませんでした。
-さらに悪いことに、下部境界に<literal>~</literal>があり、上部境界には指示子がない場合、上部境界はまったく印刷されず、値がオープンインターバルに誤って変換されました。
+タイプミスにより、<function>seg_out()</function>はセグメントの上限に付随する<literal>~</literal>の確実性指示子を出力していませんでした。
+さらに悪いことに、下限に<literal>~</literal>があり、上限に指示子がない場合、上限まったく出力されず、その値が誤って開空間変換されていました。
      </para>
     </listitem>
 
@@ -4677,7 +4675,7 @@ Branch: REL_14_STABLE [f3f901a53] 2026-06-11 14:29:29 +0900
       <function>xpath_nodeset()</function> function (Andrey Chernyy,
       Michael Paquier)
 -->
-《機械翻訳》<filename>contrib/xml2</filename>の<function>xpath_nodeset()</function>関数の名前空間ノードでクラッシュを修正しました。
+<filename>contrib/xml2</filename>の<function>xpath_nodeset()</function>関数における名前空間ノードに起因するクラッシュが修正されました。
 (Andrey Chernyy, Michael Paquier)
       <ulink url="&commit_baseurl;91b57eade">&sect;</ulink>
      </para>
@@ -4698,7 +4696,7 @@ Branch: REL_14_STABLE [086652c02] 2026-06-12 13:57:22 +0200
       Support building <productname>PostgreSQL</productname> with
       OpenSSL 4 (Daniel Gustafsson)
 -->
-《機械翻訳》サポートの建物<productname>PostgreSQL</productname>OpenSSL 4.
+OpenSSL 4を使用した<productname>PostgreSQL</productname>のビルドがサポートされました。
 (Daniel Gustafsson)
       <ulink url="&commit_baseurl;27cf3b5af">&sect;</ulink>
      </para>
@@ -4733,9 +4731,9 @@ Branch: REL_14_STABLE [812cc1a73] 2026-08-02 11:26:30 -0400
       be <literal>CST</literal> from that time forward.  That seems likely
       to change, but it's unclear what new abbreviation will be used.
 -->
-《機械翻訳》アルバータ（アメリカ/エドモントン）は、2026年11月から1年を通してUTC-06（事実上の恒久的なDST）になります。
-このリリースでは、TZの省略形が<literal>CST</literal>それ以降になると想定しています。
-これは変更される可能性がありますが、新しい省略形が使用されるかどうかは不明です。
+アルバータ州(America/Edmonton)は、2026年11月から通年でUTC-06（実質的に恒久的な夏時間）になります。
+このリリースでは、その時点以降のタイムゾーンの省略形が<literal>CST</literal>になると想定しています。
+これは変更される可能性がありますが、どのような新しい略称が使用されるかは不明です。
      </para>
 
      <para>
@@ -4743,7 +4741,7 @@ Branch: REL_14_STABLE [812cc1a73] 2026-08-02 11:26:30 -0400
       Morocco (Africa/Casablanca) will move to permanent UTC+00,
       without daylight saving time transitions, on 2026-09-20.
 -->
-《機械翻訳》モロッコ(Africa/Casablanca)は、2026-09-20に夏時間の移行なしで恒久的なUTC+00に移行します。
+モロッコ(Africa/Casablanca)は、2026年9月20日に夏時間の切り替えなしに恒久的なUTC+00に移行します。
      </para>
     </listitem>
 
