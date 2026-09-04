@@ -1849,7 +1849,7 @@ Branch: REL_18_STABLE [fe5d62951] 2026-07-06 16:15:45 +0900
       same collation.  Otherwise it might filter some rows the grouping
       would have merged.
 -->
-非決定的照合順序でグループ化されたグループ化列に対するテストは、その同じ照合順序を使用した比較である場合にのみ、安全にプッシュダウンできます。
+非決定論的照合順序でグループ化されたグループ化列に対するテストは、その同じ照合順序を使用した比較である場合にのみ、安全にプッシュダウンできます。
 そうでない場合、本来ならグループ化によって統合されるはずだった行がフィルタリングされてしまう可能性がありました。
      </para>
     </listitem>
@@ -5243,10 +5243,8 @@ Branch: REL_14_STABLE [b282280e9] 2026-05-11 05:13:51 -0700
       data dependency of those functions is usefully exploitable in any of
       these places, but in the interests of safety, replace them.
 -->
-《マッチ度[89.389068]》パスワードやハッシュなどの検証には、 <function>memcpy()</function>や<function>strcmp()</function>の代わりに<function>timingsafe_bcmp()</function>を使用するようになりました。
+パスワードやハッシュなどの検証には、 <function>memcpy()</function>や<function>strcmp()</function>の代わりに<function>timingsafe_bcmp()</function>を使用するようになりました。
 これらの関数のデータ依存性が、これらの箇所で悪用される可能性があるかどうかは不明ですが、安全を期してこれらが置き換えられました。
-《機械翻訳》使用<function>timingsafe_bcmp()</function>代わり<function>memcmp()</function>または、パスワード、ハッシュなどをチェックする場合には、または、これらの関数のデータ依存性がこれらの場所のいずれかで有効に利用できるかどうかは不明であるが、安全のためにそれらを置き換える。
-<function>strcmp()</function>
      </para>
 
      <para>
@@ -5537,7 +5535,7 @@ Branch: REL_14_STABLE [172034f6e] 2026-05-05 10:34:07 +0900
 多くのプランナ最適化では、例えば<literal>x</literal>に一意インデックスが存在する場合、<literal>WHERE x = 'abc'</literal>を満たすテーブル行は最大で1つであると仮定しています。
 しかし、インデックスと<literal>WHERE</literal>句に異なる照合順序が設定されている場合には、この結論は一般的に安全ではありません。
 両方の照合順序が決定論的である場合は安全です。なぜなら、その性質上、2つの文字列の等価性はビット単位の等価性を意味するからです。
-しかし、非決定論的な照合順序はそのように動作しないため、<literal>WHERE</literal>句またはインデックスのいずれかに非決定論的照合順序が設定されている場合、一意一致を前提とした最適化は誤ったクエリ結果をもたらす可能性がありました。
+しかし、非決定論的照合順序はそのように動作しないため、<literal>WHERE</literal>句またはインデックスのいずれかに非決定論的照合順序が設定されている場合、一意一致を前提とした最適化は誤ったクエリ結果をもたらす可能性がありました。
      </para>
     </listitem>
 
@@ -13963,7 +13961,7 @@ Author: Peter Eisentraut <peter@eisentraut.org>
      with <link linkend="collation-nondeterministic">nondeterministic
      collations</link> (Peter Eisentraut)
 -->
-<link linkend="collation-nondeterministic">非決定論的な照合順序</link>で<link linkend="functions-like"><literal>LIKE</literal></link>を使用できるようになりました。
+<link linkend="collation-nondeterministic">非決定論的照合順序</link>で<link linkend="functions-like"><literal>LIKE</literal></link>を使用できるようになりました。
 (Peter Eisentraut)
      <ulink url="&commit_baseurl;85b7efa1c">&sect;</ulink>
      </para>
@@ -13980,7 +13978,7 @@ Author: Peter Eisentraut <peter@eisentraut.org>
      Allow text position search functions with nondeterministic collations
      (Peter Eisentraut)
 -->
-非決定論的な照合順序でテキスト位置検索関数を使用できるようになりました。
+非決定論的照合順序でテキスト位置検索関数を使用できるようになりました。
 (Peter Eisentraut)
      <ulink url="&commit_baseurl;329304c90">&sect;</ulink>
      </para>
